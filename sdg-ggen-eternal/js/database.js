@@ -1,7 +1,7 @@
 /* =====================================================================
  * database.js — 快取與 CRUD
  * ===================================================================== */
-const cache = { units: null, characters: null, supports: null };
+const cache = { units: null, characters: null, supports: null, stages: null };
 const inv = t => cache[t] = null;
  
 async function getAll(t) {

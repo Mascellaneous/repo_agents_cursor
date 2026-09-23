@@ -57,6 +57,7 @@ const TAB_CHARACTERS_HTML = `
             <button class="btn btn-info" onclick="openReorderModal('characters')">↕ 調整獲得順序</button>
             <button class="btn btn-info" onclick="openSkillModal()">📖 角色技能一覽</button>
             <button class="btn btn-info" onclick="openAbilityModal()">📖 角色能力一覽</button>
+            <button class="btn btn-info" onclick="openStageDataModal()">🎯 關卡資料</button>
         </div>
     </div>
     <div class="pagination-controls">

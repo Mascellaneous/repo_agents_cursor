@@ -74,7 +74,8 @@ async function buildPayload() {
             source: APP_NAME + ' — GitHub Sync',
             counts: {
                 units: data.units.length, characters: data.characters.length,
-                supports: data.supports.length, optionalParts: (data.optionalParts || []).length
+                supports: data.supports.length, optionalParts: (data.optionalParts || []).length,
+                stages: (data.stages || []).length
             }
         },
         ...data
@@ -245,12 +246,16 @@ async function applyRemoteData(obj, opts = {}) {
     const S = sanitizeRecords(obj.supports, 'supports');
     const hasOP = Object.prototype.hasOwnProperty.call(obj, 'optionalParts');
     const OP = (hasOP && typeof sanitizeOptionalParts === 'function') ? sanitizeOptionalParts(obj.optionalParts) : null;
+    const hasST = Object.prototype.hasOwnProperty.call(obj, 'stages');
+    const ST = (hasST && typeof sanitizeStages === 'function') ? sanitizeStages(obj.stages) : null;
 
     if (!silent) {
-        const opLine = OP
-            ? `、選擇性零件 ${OP.length}`
-            : '（遠端沒有選擇性零件欄，本地零件會保留）';
-        const msg = `下載成功：單位 ${U.length}、角色 ${C.length}、支援單位 ${S.length}${opLine}。\n\n` +
+        const extra = (OP ? `、選擇性零件 ${OP.length}` : '') + (ST ? `、關卡 ${ST.length}` : '');
+        const keep = [];
+        if (!OP) keep.push('遠端沒有選擇性零件欄，本地零件會保留');
+        if (!ST) keep.push('遠端沒有關卡資料欄，本地關卡會保留');
+        const keepLine = keep.length ? `（${keep.join('；')}）` : '';
+        const msg = `下載成功：單位 ${U.length}、角色 ${C.length}、支援單位 ${S.length}${extra}。${keepLine}\n\n` +
                     `⚠ 將【完全取代】本地資料庫：\n` +
                     `・相同 ID → 以雲端版本覆蓋\n` +
                     `・雲端已刪除的記錄 → 本地一併移除\n` +
@@ -270,6 +275,13 @@ async function applyRemoteData(obj, opts = {}) {
         await getAll('optionalParts');
         if (typeof renderOptionalPartsIfOpen === 'function') renderOptionalPartsIfOpen();
     }
+    if (ST) {
+        await db.clearStore('stages');
+        if (ST.length) await db.bulkPut('stages', ST);
+        cache.stages = null;
+        await getAll('stages');
+        if (typeof renderStagesIfOpen === 'function') renderStagesIfOpen();
+    }
 
     /* 本地「上次匯出時間」對齊遠端；下載後本地＝雲端，清除 dirty 標記 */
     const remoteTs = obj.exportInfo ? new Date(obj.exportInfo.exportDate).getTime() : Date.now();
@@ -280,7 +292,7 @@ async function applyRemoteData(obj, opts = {}) {
     await refreshSeriesOptions();
     TYPES.forEach(t => RENDER[t]());
     updateStorageStatus();
-    return { units: U.length, characters: C.length, supports: S.length, optionalParts: OP ? OP.length : null };
+    return { units: U.length, characters: C.length, supports: S.length, optionalParts: OP ? OP.length : null, stages: ST ? ST.length : null };
 }
  
 /* ================= 手動：自 GitHub 下載 ================= */
@@ -305,7 +317,8 @@ async function syncFromGitHub() {
         const res = await applyRemoteData(obj, { silent: false });
         if (res) {
             setSync(`上次下載：${new Date().toLocaleTimeString()}`);
-            alert(`同步完成！\n單位 ${res.units}\n角色 ${res.characters}\n支援單位 ${res.supports}`);
+            alert(`同步完成！\n單位 ${res.units}\n角色 ${res.characters}\n支援單位 ${res.supports}` +
+                (res.stages == null ? '' : `\n關卡 ${res.stages}`));
         }
     } catch (err) {
         console.error(err); setSync('下載失敗', true); alert('下載失敗：' + err.message);
@@ -346,7 +359,8 @@ async function autoDownloadFromGitHub() {
         const res = await applyRemoteData(obj, { silent: true });
         if (res) {
             setSync(`啟動自動下載完成：${new Date().toLocaleTimeString()}`);
-            showToast(`已自 GitHub 下載並取代本地資料（單位 ${res.units}／角色 ${res.characters}／支援單位 ${res.supports}）`, false);
+            showToast(`已自 GitHub 下載並取代本地資料（單位 ${res.units}／角色 ${res.characters}／支援單位 ${res.supports}` +
+                (res.stages == null ? '' : `／關卡 ${res.stages}`) + `）`, false);
         }
     } catch (err) {
         console.error(err);

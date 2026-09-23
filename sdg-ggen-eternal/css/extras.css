@@ -64,3 +64,55 @@ body.dark-mode .op-card.on{background:#1b3a52;border-color:#3498db}
 body.dark-mode .op-card span{color:#bbb}
 body.dark-mode .op-effect{background:#333;border-color:#555}
 body.dark-mode .op-preview{background:#243040;color:#e0e0e0}
+
+/* =========================================================
+   關卡資料視窗 — 版面；欄位意義見 js/stage-data.js
+   ========================================================= */
+.st-modal{background:#fff;border-radius:8px;width:min(98vw,1180px);max-height:92vh;
+ display:flex;flex-direction:column;padding:14px;gap:8px;font-family:inherit;color:#2c3e50}
+.st-filters{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px}
+.st-filters label{display:inline-flex;align-items:center;gap:3px}
+.st-filters input,.st-editor input,.st-editor select,.st-editor textarea{
+ padding:4px 6px;border:1px solid #ddd;border-radius:4px;font-size:12px;font-family:inherit;background:#fff;color:#2c3e50}
+.st-filters input[type=text]{width:220px}
+.st-body{display:grid;grid-template-columns:260px 1fr;gap:10px;min-height:0;flex:1}
+.st-list,.st-editor{border:1px dashed #ccc;border-radius:6px;overflow:auto;min-height:180px;max-height:62vh;padding:6px}
+.st-card{display:block;width:100%;text-align:left;border:1px solid #e0e0e0;background:#fff;border-radius:6px;
+ padding:6px 8px;margin:0 0 6px;cursor:pointer;font-family:inherit;color:inherit}
+.st-card.on{border-color:#3498db;background:#eef6fc}
+.st-card b{display:block;font-size:12px}
+.st-card span{display:block;font-size:11px;color:#666;white-space:pre-wrap}
+.st-clear{border:1px solid #d0d7de;border-radius:6px;padding:8px;margin-bottom:8px;background:#fafafa}
+.st-clear-head,.st-team-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.st-text{display:flex;flex-direction:column;gap:2px;font-size:11px;margin-bottom:6px}
+.st-text textarea{width:100%;min-height:48px;resize:vertical}
+.st-teams{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.st-team{border:1px solid #e5e5e5;border-radius:6px;padding:6px;background:#fff}
+.st-slot{display:grid;grid-template-columns:16px minmax(0,1.3fr) minmax(0,1.1fr) minmax(0,1.1fr) 28px;gap:4px;align-items:end;margin-bottom:4px}
+.st-slot label,.st-supline{display:flex;flex-direction:column;gap:2px;font-size:11px;font-weight:normal;min-width:0}
+.st-slot select,.st-supline select{width:100%;min-width:0}
+.st-idx{font-size:11px;color:#888;padding-bottom:6px}
+.st-supline{margin-top:6px}
+.st-preview{font-size:12px;background:#f4f8fb;border-radius:4px;padding:6px 8px;margin:6px 0;white-space:pre-wrap}
+.st-empty{font-size:12px;color:#888;padding:8px}
+@media (max-width:800px){
+  .st-modal{overflow:auto}
+  .st-body{grid-template-columns:1fr}
+  .st-editor{order:-1;max-height:none}
+  .st-list{max-height:28vh}
+  .st-teams{grid-template-columns:1fr}
+  .st-slot{grid-template-columns:minmax(0,1fr) 28px}
+  .st-idx{display:none}
+  .st-slot label{grid-column:1}
+  .st-slot [data-st="rm-slot"]{grid-column:2;grid-row:1 / span 3;align-self:start}
+}
+body.dark-mode .st-modal{background:#2c2c2c;color:#e0e0e0}
+body.dark-mode .st-filters input,body.dark-mode .st-editor input,
+body.dark-mode .st-editor select,body.dark-mode .st-editor textarea{background:#454545;color:#e0e0e0;border-color:#666}
+body.dark-mode .st-list,body.dark-mode .st-editor{border-color:#666}
+body.dark-mode .st-card{background:#3a3a3a;border-color:#555;color:#e0e0e0}
+body.dark-mode .st-card.on{background:#1b3a52;border-color:#3498db}
+body.dark-mode .st-card span{color:#bbb}
+body.dark-mode .st-clear{background:#333;border-color:#555}
+body.dark-mode .st-team{background:#2a2a2a;border-color:#555}
+body.dark-mode .st-preview{background:#243040;color:#e0e0e0}

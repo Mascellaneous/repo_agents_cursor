@@ -20,7 +20,7 @@
 <div class="container">
     <div class="header">
         <h1>SD高達G世代永恆 收藏管理庫</h1>
-        <p>單位・角色・支援單位</p>
+        <p>單位・角色・支援單位・關卡</p>
         <div id="storage-status"></div>
     </div>
  
@@ -36,6 +36,7 @@
         <button class="btn btn-warning" onclick="clearAllData()">清空資料庫</button>
         <span style="border-left:1px solid #ccc;height:20px;"></span>
         <button class="btn btn-info" onclick="openOptionalPartsModal()">🧩 選擇性零件 (OP)</button>
+        <button class="btn btn-info" onclick="openStageDataModal()">🎯 關卡資料</button>
         <span style="border-left:1px solid #ccc;height:20px;"></span>
         <button class="btn btn-primary" id="gh-up" onclick="syncToGitHub()">⬆ 上傳至 GitHub</button>
         <button class="btn btn-warning" id="gh-dn" onclick="syncFromGitHub()">⬇ 自 GitHub 下載</button>
@@ -99,6 +100,7 @@
 <script src="js/import-export.js"></script>
 <script src="js/reorder.js"></script>
 <script src="js/optional-parts.js"></script>
+<script src="js/stage-data.js"></script>
 <!-- 4. Entry Point -->
 <script src="js/main.js"></script>
 </body>

@@ -25,6 +25,7 @@ const TAB_SUPPORTS_HTML = `
             <div class="ttl">🛠 操作</div>
             <button class="btn btn-primary" onclick="openSupportForm()">➕ 新增支援單位</button>
             <button class="btn btn-info" onclick="openReorderModal('supports')">↕ 調整獲得順序</button>
+            <button class="btn btn-info" onclick="openStageDataModal()">🎯 關卡資料</button>
         </div>
     </div>
     <div class="pagination-controls">
