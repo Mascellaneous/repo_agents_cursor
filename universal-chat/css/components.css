@@ -1,0 +1,219 @@
+/* =============================================================
+   components.css — 通用元件：按鈕、輸入、Tabs、Switch、Modal、
+                    Toast、Badge、Chip、Model 清單、提示詞卡
+   ============================================================= */
+ 
+/* ------------------ 按鈕 ------------------ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--bg-elev); color: var(--text);
+  border: 1px solid transparent; border-radius: var(--radius-sm);
+  padding: 8px 12px; cursor: pointer; font-size: .86rem;
+  transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+  white-space: nowrap;
+}
+.btn:hover { background: var(--bg-hover); }
+.btn:active { transform: scale(.97); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+ 
+.btn--primary { background: var(--accent); color: #fff; }
+.btn--primary:hover { filter: brightness(1.08); background: var(--accent); }
+.btn--danger { background: var(--danger); color: #fff; }
+.btn--danger:hover { filter: brightness(1.08); background: var(--danger); }
+.btn--outline { background: transparent; border-color: var(--border); }
+.btn--ghost { background: transparent; }
+.btn--ghost:hover { background: var(--bg-hover); }
+.btn--block { width: 100%; }
+.btn--sm { padding: 5px 9px; font-size: .78rem; }
+.btn--icon { padding: 8px; width: 36px; height: 36px; }
+.btn--chip { border: 1px solid var(--border); background: transparent; border-radius: 999px; max-width: 260px; }
+.btn--chip span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.btn.is-active { border-color: var(--accent); color: var(--accent); }
+ 
+/* ------------------ 表單 ------------------ */
+.input {
+  width: 100%; background: var(--bg-input); color: var(--text);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 8px 10px; font-size: .88rem; font-family: inherit;
+}
+.input:focus { outline: none; border-color: var(--accent); }
+.input--sm { padding: 5px 8px; font-size: .8rem; }
+.input--color { padding: 2px; height: 34px; width: 60px; }
+textarea.input { resize: vertical; line-height: 1.55; }
+ 
+input[type="range"] {
+  width: 100%; -webkit-appearance: none; appearance: none;
+  height: 4px; border-radius: 4px; background: var(--border); outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--accent); cursor: pointer; border: 2px solid var(--bg);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 14px; height: 14px; border: 0; border-radius: 50%;
+  background: var(--accent); cursor: pointer;
+}
+ 
+/* 開關樣式的 checkbox */
+.switch { display: flex; align-items: center; gap: 10px; padding: 7px 0; cursor: pointer; font-size: .86rem; }
+.switch input { appearance: none; width: 38px; height: 21px; border-radius: 999px;
+  background: var(--border); position: relative; cursor: pointer; transition: background var(--t); flex: 0 0 auto; }
+.switch input::after {
+  content: ""; position: absolute; top: 3px; left: 3px;
+  width: 15px; height: 15px; border-radius: 50%; background: #fff;
+  transition: transform var(--t);
+}
+.switch input:checked { background: var(--accent); }
+.switch input:checked::after { transform: translateX(17px); }
+ 
+.chk { display: inline-flex; align-items: center; gap: 5px; font-size: .8rem; color: var(--text-dim); cursor: pointer; }
+ 
+.field { margin-bottom: 14px; }
+.field > label { display: block; font-size: .82rem; color: var(--text-dim); margin-bottom: 5px; }
+ 
+/* ------------------ Tabs ------------------ */
+.tabs { display: flex; gap: 4px; }
+.tab {
+  background: transparent; border: 0; padding: 6px 10px;
+  border-radius: var(--radius-sm); cursor: pointer;
+  color: var(--text-muted); font-size: .8rem;
+}
+.tab:hover { background: var(--bg-hover); color: var(--text); }
+.tab.is-active { background: var(--bg-elev); color: var(--text); }
+.tabs--mini .tab { flex: 1; text-align: center; padding: 4px 6px; font-size: .74rem; }
+ 
+/* ------------------ Badge / Chip ------------------ */
+.badge {
+  display: inline-block; padding: 1px 7px; border-radius: 999px;
+  font-size: .68rem; background: var(--bg-elev); color: var(--text-dim);
+  border: 1px solid var(--border-soft);
+}
+.badge--accent { background: color-mix(in srgb, var(--accent) 20%, transparent); color: var(--accent); }
+.badge--muted { background: transparent; }
+.badge--free { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 40%, transparent); }
+.badge--vision { color: var(--info); border-color: color-mix(in srgb, var(--info) 40%, transparent); }
+.badge--err { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 40%, transparent); }
+ 
+.file-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--bg-elev); border: 1px solid var(--border-soft);
+  border-radius: 999px; padding: 4px 10px; font-size: .76rem; max-width: 260px;
+}
+.file-chip img { width: 22px; height: 22px; object-fit: cover; border-radius: 4px; }
+.file-chip .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-chip .size { color: var(--text-muted); font-size: .68rem; }
+.file-chip .rm { cursor: pointer; color: var(--danger); border: 0; background: none; padding: 0 2px; }
+/* 歷史訊息文字附件的下載鈕（stripped 的附件會 disabled） */
+.file-chip .dl { cursor: pointer; color: var(--text-dim); border: 0; background: none; padding: 0 2px; }
+.file-chip .dl:hover:not(:disabled) { color: var(--accent); }
+.file-chip .dl:disabled { opacity: .35; cursor: not-allowed; }
+ 
+/* ------------------ Modal ------------------ */
+.modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.55); backdrop-filter: blur(3px); }
+.modal__panel {
+  position: relative; z-index: 1; width: 100%; max-width: 620px;
+  max-height: 88vh; display: flex; flex-direction: column;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  animation: pop var(--t);
+  overflow: hidden;
+}
+.modal__panel--lg { max-width: 920px; }
+.modal__panel--sm { max-width: 420px; }
+.modal__head {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 14px 16px; border-bottom: 1px solid var(--border-soft);
+}
+.modal__head h2 { font-size: 1rem; }
+.modal__toolbar {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 10px 16px; border-bottom: 1px solid var(--border-soft);
+}
+.modal__toolbar .input { flex: 1; min-width: 160px; }
+.modal__body { padding: 16px; overflow-y: auto; }
+.modal__foot {
+  display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+  padding: 12px 16px; border-top: 1px solid var(--border-soft);
+}
+.modal__foot .muted { margin-right: auto; }
+ 
+/* ------------------ 模型清單 ------------------ */
+.model-list { overflow-y: auto; padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+.model-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: var(--radius); cursor: pointer;
+  border: 1px solid transparent;
+}
+.model-row:hover { background: var(--bg-hover); }
+.model-row.is-selected { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.model-row__main { flex: 1; min-width: 0; }
+.model-row__name { font-size: .9rem; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.model-row__id { font-size: .72rem; color: var(--text-muted); font-family: var(--font-mono); }
+.model-row__meta { font-size: .72rem; color: var(--text-dim); text-align: right; white-space: nowrap; }
+.model-row .fav { background: none; border: 0; cursor: pointer; font-size: 1rem; opacity: .5; }
+.model-row .fav.is-on { opacity: 1; }
+ 
+/* ------------------ 提示詞卡 / 搜尋結果 ------------------ */
+.prompt-list, .search-results {
+  overflow-y: auto; padding: 10px 16px 16px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.prompt-card, .result-card {
+  border: 1px solid var(--border-soft); border-radius: var(--radius);
+  padding: 10px 12px; background: var(--bg-elev);
+}
+.prompt-card__head, .result-card__head {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 4px;
+}
+.prompt-card__head b { font-size: .88rem; }
+.prompt-card__body, .result-card__body {
+  font-size: .78rem; color: var(--text-dim);
+  max-height: 62px; overflow: hidden; white-space: pre-wrap;
+}
+.prompt-card__actions { display: flex; gap: 6px; margin-top: 8px; }
+.result-card { cursor: pointer; }
+.result-card:hover { border-color: var(--accent); }
+.result-card mark { background: color-mix(in srgb, var(--accent) 40%, transparent); color: inherit; border-radius: 3px; }
+ 
+/* ------------------ Toast ------------------ */
+.toast-root {
+  position: fixed; z-index: 2000; right: 16px; bottom: 16px;
+  display: flex; flex-direction: column; gap: 8px; max-width: 360px;
+}
+.toast {
+  display: flex; align-items: flex-start; gap: 8px;
+  background: var(--bg-elev); color: var(--text);
+  border: 1px solid var(--border); border-left: 3px solid var(--accent);
+  border-radius: var(--radius); padding: 10px 12px;
+  box-shadow: var(--shadow); font-size: .84rem; animation: fadeIn var(--t);
+}
+.toast--error { border-left-color: var(--danger); }
+.toast--warn { border-left-color: var(--warn); }
+.toast--ok { border-left-color: var(--ok); }
+.toast__close { background: none; border: 0; cursor: pointer; color: var(--text-muted); }
+.toast.is-leaving { opacity: 0; transform: translateX(12px); transition: all var(--t); }
+ 
+/* ------------------ 快捷鍵表 ------------------ */
+.kbd-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.kbd-table td { padding: 7px 4px; border-bottom: 1px solid var(--border-soft); }
+.kbd-table td:first-child { width: 190px; }
+kbd {
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-bottom-width: 2px; border-radius: 5px; padding: 1px 6px; font-size: .78rem;
+}
+ 
+/* ------------------ 色票 ------------------ */
+.swatches { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.swatch {
+  width: 26px; height: 26px; border-radius: 50%; cursor: pointer;
+  border: 2px solid transparent; box-shadow: var(--shadow-sm);
+}
+.swatch.is-active { border-color: var(--text); }
+ 
+/* 載入中小圓圈 */
+.spinner {
+  display: inline-block; width: 13px; height: 13px;
+  border: 2px solid var(--border); border-top-color: var(--accent);
+  border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -2px;
+}

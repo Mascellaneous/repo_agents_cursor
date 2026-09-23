@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Universal Chat</title>
+<meta name="color-scheme" content="dark light">
+ 
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/chat.css">
+<link rel="stylesheet" href="css/settings.css">
+<link rel="stylesheet" href="css/addons.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+ 
+<div class="app" id="app">
+ 
+  <!-- ==================== 側邊欄 ==================== -->
+  <aside class="sidebar">
+    <div class="sidebar__top">
+      <button id="btn-new-chat" class="btn btn--outline btn--block" style="justify-content:flex-start">＋　新對話</button>
+      <button id="btn-new-folder" class="btn btn--outline btn--icon" title="新增資料夾" aria-label="新增資料夾">🗂️</button>
+    </div>
+ 
+    <div class="sidebar__filter">
+      <input id="input-chat-search" class="input input--sm" type="search" placeholder="搜尋對話標題…" aria-label="搜尋對話標題">
+      <div class="tabs tabs--mini" id="chat-filter" role="tablist">
+        <button class="tab is-active" data-filter="all">全部</button>
+        <button class="tab" data-filter="pinned">釘選</button>
+        <button class="tab" data-filter="archived">封存</button>
+      </div>
+    </div>
+ 
+    <div class="chat-list" id="chat-list"></div>
+ 
+    <div class="sidebar__bottom">
+      <button id="btn-search-all" class="btn btn--ghost btn--block" style="justify-content:flex-start">🔍　全文搜尋</button>
+      <button id="btn-prompts"    class="btn btn--ghost btn--block" style="justify-content:flex-start">📚　提示詞庫</button>
+      <button id="btn-settings"   class="btn btn--ghost btn--block" style="justify-content:flex-start">⚙️　設定</button>
+      <div class="sidebar__meta">
+        <span id="storage-usage">💾 —</span>
+        <span id="sync-badge" class="sync-badge s-off" title="未啟用同步">⛔</span>
+      </div>
+    </div>
+  </aside>
+ 
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+ 
+  <!-- ==================== 主區 ==================== -->
+  <main class="main">
+ 
+    <header class="topbar">
+      <button id="btn-toggle-sidebar" class="btn btn--ghost btn--icon" title="收起／展開側邊欄（Ctrl+B）" aria-label="收起或展開側邊欄">☰</button>
+ 
+      <div class="topbar__title">
+        <h1 id="chat-title">新對話</h1>
+        <small class="muted" id="chat-meta"></small>
+      </div>
+ 
+      <div class="topbar__actions">
+        <span class="badge" id="provider-badge" title="目前服務供應商">OpenRouter</span>
+        <button id="btn-model" class="btn btn--chip" aria-label="選擇模型"><span>🧠</span><span id="model-label">—</span></button>
+        <button id="btn-chat-config" class="btn btn--ghost btn--icon" title="本對話設定" aria-label="本對話設定">🎛️</button>
+        <button id="btn-toggle-temp" class="btn btn--ghost btn--icon" title="切換暫時/永久對話" aria-label="切換暫時或永久對話">🕶️</button>
+        <button id="btn-tts-toggle"  class="btn btn--ghost btn--icon" title="自動朗讀" aria-label="切換自動朗讀">🔈</button>
+        <button id="btn-export"      class="btn btn--ghost btn--icon" title="匯出對話" aria-label="匯出對話">📤</button>
+        <button id="btn-clear-chat"  class="btn btn--ghost btn--icon" title="清空訊息" aria-label="清空訊息">🧹</button>
+        <button id="btn-help"        class="btn btn--ghost btn--icon" title="快捷鍵說明（Ctrl+/）" aria-label="快捷鍵說明">❓</button>
+      </div>
+    </header>
+ 
+    <!-- 書籤列：有書籤才顯示（由 ui-messages.js 渲染） -->
+    <div class="bookmark-bar hidden" id="bookmark-bar" aria-label="書籤列"></div>
+ 
+    <div class="chat-scroll" id="chat-scroll">
+      <div class="chat-history" id="chat-history"></div>
+    </div>
+ 
+    <!-- 浮動導航鈕：回頂／回底（由 ui-messages.onScroll 依捲動位置控制顯示） -->
+    <button class="scroll-top hidden" id="btn-scroll-top" title="回到頂部" aria-label="回到頂部">↑</button>
+    <button class="scroll-bottom hidden" id="btn-scroll-bottom" title="回到底部" aria-label="回到底部">↓</button>
+ 
+    <div class="composer">
+      <div class="composer__status" id="composer-status"></div>
+      <div class="attachments hidden" id="attachment-list"></div>
+ 
+      <div class="composer__box">
+        <button id="btn-attach" class="btn btn--ghost btn--icon" title="附加檔案" aria-label="附加檔案">📎</button>
+        <input type="file" id="input-file" class="hidden" multiple>
+        <textarea id="user-input" rows="1" placeholder="輸入訊息…（輸入 / 可使用指令）" aria-label="訊息輸入框"></textarea>
+        <button id="btn-mic"  class="btn btn--ghost btn--icon" title="語音輸入" aria-label="語音輸入">🎙️</button>
+        <button id="btn-send" class="btn btn--primary btn--icon" title="送出" aria-label="送出訊息">➤</button>
+        <button id="btn-stop" class="btn btn--danger btn--icon hidden" title="停止生成（Esc）" aria-label="停止生成">■</button>
+      </div>
+ 
+      <div class="composer__foot">
+        <span id="status-text"></span>
+        <span id="token-counter">0 字 / 約 0 tokens</span>
+      </div>
+    </div>
+  </main>
+</div>
+ 
+<div class="drop-zone hidden" id="drop-zone">📥　放開以附加檔案</div>
+<div class="toast-root" id="toast-root" aria-live="polite"></div>
+ 
+<!-- ==================== 設定 Modal ==================== -->
+<div class="modal hidden" id="modal-settings">
+  <div class="modal__backdrop"></div>
+  <div class="modal__panel modal__panel--lg" style="height:88vh">
+    <div class="modal__head">
+      <h2>⚙️ 設定</h2>
+      <button class="btn btn--ghost btn--icon" data-close>✕</button>
+    </div>
+ 
+    <div class="settings">
+      <nav class="settings__nav" id="settings-nav">
+        <button class="tab is-active" data-tab="api">🔑 API</button>
+        <button class="tab" data-tab="models">🧠 模型與參數</button>
+        <button class="tab" data-tab="context">🧩 上下文</button>
+        <button class="tab" data-tab="ui">🎨 介面</button>
+        <button class="tab" data-tab="voice">🎧 語音</button>
+        <button class="tab" data-tab="files">📎 檔案</button>
+        <button class="tab" data-tab="sync">☁️ 同步</button>
+        <button class="tab" data-tab="data">💾 資料</button>
+        <button class="tab" data-tab="about">ℹ️ 關於</button>
+      </nav>
+ 
+      <div class="settings__body">
+ 
+        <!-- ---------- API ---------- -->
+        <section class="settings__panel is-active" data-panel="api">
+          <div class="field">
+            <label>服務供應商</label>
+            <select class="input" data-setting="provider">
+              <option value="openrouter">OpenRouter（數百個模型 / 有免費模型）</option>
+              <option value="poe">Poe（自行維護模型清單）</option>
+            </select>
+            <p class="hint">切換後，模型清單、金鑰與 Base URL 都會自動改用該供應商的設定。</p>
+          </div>
+ 
+          <div id="api-openrouter">
+            <div class="field">
+              <label>OpenRouter API Key</label>
+              <div class="row">
+                <input id="set-api-key" class="input" type="password" autocomplete="off"
+                       placeholder="sk-or-v1-…" data-setting="apiKey" aria-label="OpenRouter API Key">
+                <button id="btn-toggle-key"  class="btn btn--outline btn--icon" title="顯示/隱藏" aria-label="顯示或隱藏金鑰">👁️</button>
+                <button id="btn-verify-key"  class="btn btn--outline nowrap">驗證</button>
+              </div>
+              <p class="hint">金鑰只會存在你的瀏覽器，不會傳送到任何第三方伺服器（僅送往 OpenRouter）。</p>
+            </div>
+            <div class="field">
+              <label>API Base URL</label>
+              <input class="input" type="text" data-setting="baseUrl" aria-label="API Base URL">
+              <p class="hint">可改為代理位址，例如自建的 Cloudflare Worker。</p>
+            </div>
+            <div class="field" id="or-only-credits">
+              <label>帳戶額度</label>
+              <div class="row wrap">
+                <button id="btn-check-credits" class="btn btn--outline">查詢帳戶額度</button>
+                <span class="badge hidden" id="credits-badge"></span>
+              </div>
+              <p class="hint" id="credits-info"></p>
+            </div>
+          </div>
+ 
+          <div id="api-poe" class="hidden">
+            <div class="field">
+              <label>Poe API Key</label>
+              <div class="row">
+                <input id="set-poe-key" class="input" type="password" autocomplete="off"
+                       placeholder="貼上 Poe API Key" data-setting="poeApiKey" aria-label="Poe API Key">
+                <button id="btn-toggle-poe-key" class="btn btn--outline btn--icon" title="顯示/隱藏" aria-label="顯示或隱藏 Poe 金鑰">👁️</button>
+                <button id="btn-verify-poe-key" class="btn btn--outline nowrap">驗證</button>
+              </div>
+              <p class="hint">到 <b>poe.com → Settings → API Key</b> 取得；同樣只存在你的瀏覽器。</p>
+            </div>
+            <div class="field">
+              <label>Poe Base URL</label>
+              <input class="input" type="text" data-setting="poeBaseUrl" aria-label="Poe Base URL">
+            </div>
+            <div class="field">
+              <label>常用模型清單（以逗號分隔，自行維護）</label>
+              <textarea class="input" rows="3" data-setting="poeModels" data-type="array"
+                        placeholder="Gemini-3.6-Flash, Claude-Opus-5" aria-label="Poe 常用模型清單"></textarea>
+              <p class="hint">Poe 沒有公開的模型目錄 API，因此這份清單由你自己維護。
+                 名稱需與 Poe 上的 bot 名稱完全一致（大小寫敏感）。</p>
+            </div>
+          </div>
+ 
+          <hr class="sep">
+ 
+          <div class="field">
+            <label>金鑰儲存位置（兩個供應商共用此設定）</label>
+            <select class="input" data-setting="keyStorage">
+              <option value="local">永久保存（localStorage）</option>
+              <option value="session">僅本次工作階段（sessionStorage）</option>
+              <option value="memory">不保存（僅記憶體，重整即消失）</option>
+            </select>
+          </div>
+ 
+          <div class="grid-2">
+            <div class="field">
+              <label>應用程式名稱（X-Title）</label>
+              <input class="input" type="text" data-setting="appTitle">
+            </div>
+            <div class="field">
+              <label>來源網址（HTTP-Referer）</label>
+              <input class="input" type="text" data-setting="referer" placeholder="留空＝自動">
+            </div>
+          </div>
+ 
+          <div class="grid-3">
+            <div class="field"><label>逾時（秒）</label><input class="input" type="number" min="10" max="900" data-setting="timeoutSec"></div>
+            <div class="field"><label>自動重試次數</label><input class="input" type="number" min="0" max="6" data-setting="maxRetries"></div>
+            <div class="field"><label>重試間隔（毫秒）</label><input class="input" type="number" min="100" max="10000" step="100" data-setting="retryDelayMs"></div>
+          </div>
+        </section>
+ 
+        <!-- ---------- 模型與參數 ---------- -->
+        <section class="settings__panel" data-panel="models">
+          <div class="field">
+            <label>預設模型</label>
+            <div class="row">
+              <input id="default-model-label" class="input" readonly aria-label="目前預設模型">
+              <button id="btn-pick-default-model" class="btn btn--outline nowrap">選擇…</button>
+            </div>
+          </div>
+ 
+          <div class="field">
+            <label>標題產生模型（留空＝使用對話目前的模型）</label>
+            <div class="row">
+              <input id="title-model-label" class="input" readonly aria-label="標題產生模型">
+              <button id="btn-pick-title-model"  class="btn btn--outline nowrap">選擇…</button>
+              <button id="btn-clear-title-model" class="btn btn--ghost nowrap">清除</button>
+            </div>
+            <p class="hint">建議用免費模型（OpenRouter 預設 Nemotron 3 Ultra free），產生標題幾乎不花錢。</p>
+          </div>
+ 
+          <label class="switch"><input type="checkbox" data-setting="stream"><span>串流回應（逐字顯示）</span></label>
+          <label class="switch"><input type="checkbox" data-setting="compareEnabled"><span>多模型比較模式（同一則提問同時詢問多個模型）</span></label>
+ 
+          <div class="field">
+            <label>比較用模型</label>
+            <div class="row">
+              <input id="compare-models-label" class="input" readonly aria-label="比較用模型">
+              <button id="btn-pick-compare-models" class="btn btn--outline nowrap">選擇…</button>
+            </div>
+          </div>
+ 
+          <hr class="sep">
+          <h3 style="font-size:.9rem">取樣參數</h3>
+ 
+          <div class="field">
+            <label>Temperature：<b data-out="temperature">0.7</b></label>
+            <input type="range" min="0" max="2" step="0.05" data-setting="temperature" aria-label="Temperature">
+            <p class="hint">越高越有創意，越低越穩定。</p>
+          </div>
+          <div class="field">
+            <label>Top P：<b data-out="topP">1</b></label>
+            <input type="range" min="0" max="1" step="0.01" data-setting="topP" aria-label="Top P">
+          </div>
+          <div class="grid-3">
+            <div class="field"><label>Top K（0＝停用）</label><input class="input" type="number" min="0" max="200" data-setting="topK"></div>
+            <div class="field"><label>最大輸出 tokens（0＝自動）</label><input class="input" type="number" min="0" max="200000" data-setting="maxTokens"></div>
+            <div class="field"><label>Seed（留空＝隨機）</label><input class="input" type="number" data-setting="seed"></div>
+          </div>
+          <div class="field">
+            <label>Frequency Penalty：<b data-out="frequencyPenalty">0</b></label>
+            <input type="range" min="-2" max="2" step="0.1" data-setting="frequencyPenalty" aria-label="Frequency Penalty">
+          </div>
+          <div class="field">
+            <label>Presence Penalty：<b data-out="presencePenalty">0</b></label>
+            <input type="range" min="-2" max="2" step="0.1" data-setting="presencePenalty" aria-label="Presence Penalty">
+          </div>
+          <div class="field">
+            <label>Repetition Penalty：<b data-out="repetitionPenalty">1</b></label>
+            <input type="range" min="0.5" max="2" step="0.05" data-setting="repetitionPenalty" aria-label="Repetition Penalty">
+          </div>
+          <div class="field">
+            <label>停止序列（以逗號分隔）</label>
+            <input class="input" type="text" data-setting="stopSequences" data-type="array">
+          </div>
+          <div class="field">
+            <label>推理強度（支援 reasoning 的模型）</label>
+            <select class="input" data-setting="reasoningEffort">
+              <option value="">不指定</option>
+              <option value="low">低</option>
+              <option value="medium">中</option>
+              <option value="high">高</option>
+            </select>
+          </div>
+          <label class="switch"><input type="checkbox" data-setting="showReasoning"><span>顯示模型的思考過程（可折疊）</span></label>
+ 
+          <div class="row wrap" style="margin-top:12px">
+            <button id="btn-save-chat-params"  class="btn btn--outline">把目前參數存為「本對話專用」</button>
+            <button id="btn-clear-chat-params" class="btn btn--ghost">清除本對話專用參數</button>
+          </div>
+          <p class="hint">Poe 供應商只會送出 temperature / top_p / max_tokens / stop，其餘參數會自動略過。</p>
+        </section>
+ 
+        <!-- ---------- 上下文 ---------- -->
+        <section class="settings__panel" data-panel="context">
+          <div class="field">
+            <label>全域系統提示詞</label>
+            <textarea class="input" rows="5" data-setting="systemPrompt" aria-label="全域系統提示詞"></textarea>
+            <p class="hint">若對話有自己的系統提示詞，會優先採用對話設定。</p>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label>傳送的歷史訊息數（0＝全部）</label><input class="input" type="number" min="0" max="200" data-setting="historyLimit"></div>
+            <div class="field">
+              <label>上下文用量警示比例：<b data-out="contextWarnRatio">0.8</b></label>
+              <input type="range" min="0.3" max="1" step="0.05" data-setting="contextWarnRatio" aria-label="上下文用量警示比例">
+            </div>
+          </div>
+          <label class="switch"><input type="checkbox" data-setting="autoTitle"><span>自動為新對話產生標題（第一次回覆後）</span></label>
+          <label class="switch"><input type="checkbox" data-setting="autoSummarize"><span>自動摘要舊訊息以節省 tokens</span></label>
+          <div class="field"><label>觸發摘要的訊息數門檻</label><input class="input" type="number" min="6" max="200" data-setting="summarizeThreshold"></div>
+          <label class="switch"><input type="checkbox" data-setting="sendChatMetadata"><span>在系統提示詞後附加目前時間資訊</span></label>
+        </section>
+ 
+        <!-- ---------- 介面 ---------- -->
+        <section class="settings__panel" data-panel="ui">
+          <div class="grid-2">
+            <div class="field">
+              <label>主題</label>
+              <select class="input" data-setting="theme">
+                <option value="system">跟隨系統</option>
+                <option value="dark">深色</option>
+                <option value="light">淺色</option>
+                <option value="midnight">午夜藍</option>
+                <option value="sepia">紙墨</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>訊息密度</label>
+              <select class="input" data-setting="density">
+                <option value="comfortable">舒適</option>
+                <option value="cozy">適中</option>
+                <option value="compact">緊湊</option>
+              </select>
+            </div>
+          </div>
+ 
+          <div class="field">
+            <label>強調色</label>
+            <div class="swatches" id="accent-swatches"></div>
+            <input class="input input--color" type="color" data-setting="accent" aria-label="自訂強調色">
+          </div>
+ 
+          <div class="grid-2">
+            <div class="field">
+              <label>字級：<b data-out="fontSize">15</b> px</label>
+              <input type="range" min="12" max="22" step="1" data-setting="fontSize" aria-label="字級">
+            </div>
+            <div class="field">
+              <label>內容寬度：<b data-out="chatWidth">820</b> px</label>
+              <input type="range" min="600" max="1400" step="20" data-setting="chatWidth" aria-label="內容寬度">
+            </div>
+          </div>
+ 
+          <div class="two-col-switches">
+            <label class="switch"><input type="checkbox" data-setting="renderMarkdown"><span>渲染 Markdown</span></label>
+            <label class="switch"><input type="checkbox" data-setting="codeWrap"><span>程式碼自動換行</span></label>
+            <label class="switch"><input type="checkbox" data-setting="showLineNumbers"><span>程式碼顯示行號</span></label>
+            <label class="switch"><input type="checkbox" data-setting="showTimestamps"><span>顯示時間</span></label>
+            <label class="switch"><input type="checkbox" data-setting="showModelBadge"><span>顯示模型標籤</span></label>
+            <label class="switch"><input type="checkbox" data-setting="showTokenUsage"><span>顯示 token / 花費</span></label>
+            <label class="switch"><input type="checkbox" data-setting="showAvatars"><span>顯示頭像</span></label>
+            <label class="switch"><input type="checkbox" data-setting="autoScroll"><span>自動滾動到底部</span></label>
+            <label class="switch"><input type="checkbox" data-setting="sendOnEnter"><span>Enter 直接送出</span></label>
+            <label class="switch"><input type="checkbox" data-setting="animations"><span>啟用動畫</span></label>
+            <label class="switch"><input type="checkbox" data-setting="soundOnDone"><span>回覆完成時提示音</span></label>
+            <label class="switch"><input type="checkbox" data-setting="confirmDelete"><span>刪除前先確認</span></label>
+            <label class="switch"><input type="checkbox" data-setting="saveDraft"><span>自動保存未送出草稿</span></label>
+            <label class="switch"><input type="checkbox" data-setting="developerMode"><span>開發者模式（顯示原始請求）</span></label>
+          </div>
+ 
+          <hr class="sep">
+          <h3 style="font-size:.9rem">數學公式</h3>
+          <label class="switch"><input type="checkbox" data-setting="mathEnabled"><span>渲染 LaTeX 數學公式（$…$ / $$…$$）</span></label>
+          <div class="field">
+            <label>渲染引擎</label>
+            <select class="input" data-setting="mathEngine">
+              <option value="auto">自動（優先 KaTeX，失敗改用內建）</option>
+              <option value="katex">只用 KaTeX（需連網或自架）</option>
+              <option value="builtin">只用內建輕量渲染（完全離線）</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>KaTeX 載入位址</label>
+            <input class="input" type="text" data-setting="katexBase">
+            <p class="hint">可改成自架路徑（例如 <code>vendor/katex/</code>）以完全離線使用。</p>
+          </div>
+          <label class="switch"><input type="checkbox" data-setting="mathPromptHint"><span>在系統提示詞附加「請用 $…$ 輸出數學」規則</span></label>
+        </section>
+ 
+        <!-- ---------- 語音 ---------- -->
+        <section class="settings__panel" data-panel="voice">
+          <label class="switch"><input type="checkbox" data-setting="ttsEnabled"><span>啟用朗讀功能（TTS）</span></label>
+          <label class="switch"><input type="checkbox" data-setting="ttsAutoPlay"><span>回覆完成後自動朗讀</span></label>
+          <div class="field">
+            <label>朗讀語音</label>
+            <div class="row">
+              <select id="tts-voice" class="input" data-setting="ttsVoice"></select>
+              <button id="btn-tts-test" class="btn btn--outline nowrap">試聽</button>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <label>語速：<b data-out="ttsRate">1</b></label>
+              <input type="range" min="0.5" max="2" step="0.1" data-setting="ttsRate" aria-label="朗讀語速">
+            </div>
+            <div class="field">
+              <label>音高：<b data-out="ttsPitch">1</b></label>
+              <input type="range" min="0" max="2" step="0.1" data-setting="ttsPitch" aria-label="朗讀音高">
+            </div>
+          </div>
+          <div class="field">
+            <label>語音輸入語言（STT）</label>
+            <select class="input" data-setting="sttLang">
+              <option value="zh-TW">中文（台灣）</option>
+              <option value="zh-CN">中文（普通話）</option>
+              <option value="en-US">English (US)</option>
+              <option value="ja-JP">日本語</option>
+              <option value="ko-KR">한국어</option>
+            </select>
+          </div>
+          <label class="switch"><input type="checkbox" data-setting="sttAutoSend"><span>語音輸入結束後自動送出</span></label>
+        </section>
+ 
+        <!-- ---------- 檔案 ---------- -->
+        <section class="settings__panel" data-panel="files">
+          <div class="grid-2">
+            <div class="field"><label>單一檔案大小上限（MB）</label><input class="input" type="number" min="1" max="64" data-setting="maxFileSizeMB"></div>
+            <div class="field"><label>單一文字檔擷取字元上限</label><input class="input" type="number" min="1000" max="400000" step="1000" data-setting="maxTextChars"></div>
+          </div>
+          <label class="switch"><input type="checkbox" data-setting="visionEnabled"><span>圖片以 Vision 格式送出（需模型支援）</span></label>
+          <label class="switch"><input type="checkbox" data-setting="pasteImage"><span>允許從剪貼簿貼上圖片</span></label>
+          <label class="switch"><input type="checkbox" data-setting="storeAttachments"><span>把附件內容一起保存在瀏覽器（會佔用空間）</span></label>
+          <p class="hint">支援的文字副檔名：txt / md / js / ts / json / html / css / py / java / c / cpp / cs / go / rs / rb / php / sql / yml / yaml / xml / csv / log / ini / sh 等。</p>
+        </section>
+ 
+        <!-- ---------- 同步 ---------- -->
+        <section class="settings__panel" data-panel="sync">
+          <h3 style="font-size:.95rem">☁️ GitHub 同步 <span class="badge">選用</span></h3>
+          <p class="sub">不啟用也完全沒問題，資料一樣只存在本機。啟用後可跨裝置同步，並把歷史對話搬到 GitHub 備份。</p>
+ 
+          <label class="switch"><input type="checkbox" id="gh-enabled"><span>啟用 GitHub 同步</span></label>
+ 
+          <div id="gh-panel" class="hidden">
+            <div class="field">
+              <label>Personal Access Token（fine-grained）</label>
+              <div class="row">
+                <input id="gh-token" class="input" type="password" autocomplete="off" placeholder="github_pat_…" aria-label="GitHub Personal Access Token">
+                <button id="btn-gh-token-toggle" class="btn btn--outline btn--icon" title="顯示/隱藏" aria-label="顯示或隱藏 Token">👁️</button>
+              </div>
+            </div>
+ 
+            <div class="field">
+              <label>Token 儲存位置</label>
+              <select id="gh-token-store" class="input">
+                <option value="local">永久保存（localStorage）</option>
+                <option value="session">僅本次工作階段（sessionStorage）</option>
+                <option value="memory">不保存（重整需重新輸入）</option>
+              </select>
+            </div>
+ 
+            <details class="hint" style="margin-bottom:12px">
+              <summary>如何建立 Token（點開）</summary>
+              <ol class="about-list">
+                <li>建立一個 <b>Private</b> repo，例如 <code>my-chat-archive</code>。</li>
+                <li>GitHub → Settings → Developer settings → <b>Fine-grained tokens</b> → Generate new token。</li>
+                <li>Repository access → <b>Only select repositories</b> → 只選剛剛那個 repo。</li>
+                <li>Permissions → Repository permissions → <b>Contents: Read and write</b>（其他都不要給）。</li>
+                <li>設定到期日（建議 90 天），複製後貼到上方欄位。</li>
+              </ol>
+              <p>⚠️ Token 會存在此瀏覽器。請勿在公用電腦啟用；務必使用 <b>private</b> repo 並只授權單一 repo。
+                 <b>匯出的備份檔永遠不會包含 Token。</b></p>
+            </details>
+ 
+            <div class="grid-3">
+              <div class="field"><label>Owner（帳號）</label><input id="gh-owner" class="input" placeholder="your-name"></div>
+              <div class="field"><label>Repo</label><input id="gh-repo" class="input" placeholder="my-chat-archive"></div>
+              <div class="field"><label>Branch（留空＝預設）</label><input id="gh-branch" class="input" placeholder="main"></div>
+            </div>
+            <div class="grid-3">
+              <div class="field"><label>資料夾</label><input id="gh-dir" class="input" placeholder="chats"></div>
+              <div class="field"><label>自動同步間隔（分鐘）</label><input id="gh-interval" class="input" type="number" min="1" max="120"></div>
+              <div class="field"><label>本機保留最近幾個對話</label><input id="gh-offload-keep" class="input" type="number" min="5" max="500"></div>
+            </div>
+            <label class="switch"><input type="checkbox" id="gh-auto"><span>自動同步（啟動時、變更後、定時、切換分頁時）</span></label>
+ 
+            <div class="row wrap" style="margin:10px 0">
+              <button id="btn-gh-test"   class="btn btn--outline">🔌 測試連線</button>
+              <button id="btn-gh-sync"   class="btn btn--primary">🔄 立即同步</button>
+              <button id="btn-gh-backup" class="btn btn--ghost">📦 在 repo 建立快照</button>
+            </div>
+            <p id="gh-status" class="hint"></p>
+ 
+            <details>
+              <summary class="danger-title">⚠️ 進階／危險操作</summary>
+              <div class="row wrap" style="margin-top:10px">
+                <button id="btn-gh-force-push" class="btn btn--danger btn--sm">以本機覆蓋雲端</button>
+                <button id="btn-gh-force-pull" class="btn btn--danger btn--sm">以雲端覆蓋本機</button>
+                <button id="btn-gh-offload"    class="btn btn--outline btn--sm">釋放本機空間（把舊對話卸載到雲端）</button>
+              </div>
+              <p class="hint">兩個「覆蓋」操作都需要打字確認，並且會 <b>先自動備份</b>（雲端 <code>backups/</code> ＋下載一份到你的電腦）。</p>
+            </details>
+          </div><!-- /#gh-panel -->
+ 
+          <!-- ============================================================
+               ⇪ 檔案輸出：刻意放在 #gh-panel 之外——
+               不啟用聊天同步、只用輸出專用 Token 的使用者也能看到這裡。
+               ============================================================ -->
+          <hr class="sep">
+          <h3 style="font-size:.95rem">⇪ 檔案輸出 <span class="badge">選用</span></h3>
+          <p class="sub">把 AI 回覆中的程式碼區塊一鍵 commit 到 GitHub——目的地可與聊天備份完全不同的 repo／分支／資料夾，並能在每個對話個別指定。</p>
+ 
+          <label class="switch"><input type="checkbox" id="pub-enabled"><span>啟用「發佈程式碼」功能</span></label>
+ 
+          <div id="pub-panel" class="hidden">
+            <label class="switch"><input type="checkbox" id="pub-use-sync-token"><span>沿用上方同步用的 GitHub Token（跨 repo 時可取消，改用專用 Token）</span></label>
+            <div class="field hidden" id="pub-token-row">
+              <label>輸出專用 Personal Access Token（需該 repo 的 Contents: Read and write）</label>
+              <div class="row">
+                <input id="pub-token" class="input" type="password" autocomplete="off" placeholder="github_pat_…" aria-label="輸出專用 GitHub Token">
+                <button id="btn-pub-token-toggle" class="btn btn--outline btn--icon" title="顯示/隱藏" aria-label="顯示或隱藏輸出 Token">👁️</button>
+              </div>
+              <select id="pub-token-store" class="input" style="max-width:220px;margin-top:6px" aria-label="輸出 Token 儲存位置">
+                <option value="local">永久保存（localStorage）</option>
+                <option value="session">僅本次工作階段</option>
+                <option value="memory">不保存（僅記憶體）</option>
+              </select>
+            </div>
+            <div class="grid-2">
+              <div class="field"><label>預設 Owner</label><input id="pub-owner" class="input" placeholder="your-name"></div>
+              <div class="field"><label>預設 Repo</label><input id="pub-repo" class="input" placeholder="ai-outputs"></div>
+            </div>
+            <div class="grid-2">
+              <div class="field"><label>預設 Branch（留空＝預設分支）</label><input id="pub-branch" class="input" placeholder="main"></div>
+              <div class="field"><label>預設資料夾（留空＝根目錄）</label><input id="pub-dir" class="input" placeholder="outputs"></div>
+            </div>
+            <div class="row wrap" style="margin:8px 0">
+              <button id="btn-pub-test" class="btn btn--outline">🔌 測試輸出目的地</button>
+            </div>
+            <p id="pub-status" class="hint"></p>
+            <p class="hint">Token 只存在本瀏覽器，永不寫入 IndexedDB、永不隨對話同步、永不進任何備份檔。</p>
+          </div>
+        </section>
+         
+        <!-- ---------- 資料 ---------- -->
+        <section class="settings__panel" data-panel="data">
+          <div class="field">
+            <label>目前對話</label>
+            <div class="row wrap">
+              <button class="btn btn--outline btn--sm" data-export="json">匯出 JSON</button>
+              <button class="btn btn--outline btn--sm" data-export="md">匯出 Markdown</button>
+              <button class="btn btn--outline btn--sm" data-export="txt">匯出純文字</button>
+              <button class="btn btn--outline btn--sm" data-export="html">匯出 HTML</button>
+              <button class="btn btn--outline btn--sm" data-export="csv">匯出 CSV</button>
+            </div>
+          </div>
+ 
+          <div class="field">
+            <label>整體備份</label>
+            <div class="row wrap">
+              <button id="btn-export-all" class="btn btn--outline btn--sm">匯出全部資料</button>
+              <button id="btn-import-all" class="btn btn--outline btn--sm">匯入備份檔</button>
+              <input id="input-import-all" class="hidden" type="file" accept="application/json">
+            </div>
+          </div>
+ 
+          <div class="field">
+            <label>儲存空間</label>
+            <p class="hint" id="storage-detail">—</p>
+          </div>
+ 
+          <hr class="sep">
+          <div class="field">
+            <label class="danger-title">危險操作</label>
+            <div class="row wrap">
+              <button id="btn-reset-settings" class="btn btn--outline btn--sm">重設所有設定</button>
+              <button id="btn-clear-archived" class="btn btn--outline btn--sm">刪除所有已封存對話</button>
+              <button id="btn-clear-all"      class="btn btn--danger btn--sm">清除全部資料</button>
+            </div>
+          </div>
+        </section>
+ 
+        <!-- ---------- 關於 ---------- -->
+        <section class="settings__panel" data-panel="about">
+          <h3 style="font-size:1rem">Universal Chat</h3>
+          <p class="sub">版本 <b id="about-version">—</b>｜純前端、零依賴、資料全部留在你的瀏覽器。</p>
+          <ul class="about-list">
+            <li>🔑 API Key 僅存於本機儲存空間。</li>
+            <li>🌐 請求直接送往你選擇的供應商（OpenRouter / Poe）。</li>
+            <li>📦 支援匯出／匯入完整備份，方便換裝置。</li>
+            <li>☁️ 可選的 GitHub 同步，跨裝置共用同一份歷史。</li>
+          </ul>
+          <button id="btn-open-shortcuts" class="btn btn--outline btn--sm">查看快捷鍵</button>
+        </section>
+ 
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ==================== 模型選擇 Modal ==================== -->
+<div class="modal hidden" id="modal-models">
+  <div class="modal__backdrop"></div>
+  <div class="modal__panel modal__panel--lg" style="height:82vh">
+    <div class="modal__head">
+      <h2 id="model-picker-title">🧠 選擇模型</h2>
+      <button class="btn btn--ghost btn--icon" data-close>✕</button>
+    </div>
+    <div class="modal__toolbar">
+      <input id="model-search" class="input" type="search" placeholder="搜尋模型名稱或 ID…" aria-label="搜尋模型">
+      <label class="chk"><input type="checkbox" id="model-filter-free">只看免費</label>
+      <label class="chk"><input type="checkbox" id="model-filter-vision">支援圖片</label>
+      <label class="chk"><input type="checkbox" id="model-filter-fav">只看收藏</label>
+      <select id="model-sort" class="input input--sm" style="width:auto;flex:0 0 auto" aria-label="排序方式">
+        <option value="name">依名稱</option>
+        <option value="context">依上下文長度</option>
+        <option value="price">依價格</option>
+      </select>
+      <button id="btn-refresh-models" class="btn btn--outline btn--sm nowrap">↻ 更新清單</button>
+    </div>
+    <div class="model-list" id="model-list"></div>
+    <div class="modal__foot">
+      <span class="muted" id="model-count"></span>
+      <button class="btn btn--primary" data-close>完成</button>
+    </div>
+  </div>
+</div>
+ 
+<!-- ==================== 提示詞庫 Modal ==================== -->
+<div class="modal hidden" id="modal-prompts">
+  <div class="modal__backdrop"></div>
+  <div class="modal__panel" style="height:78vh">
+    <div class="modal__head">
+      <h2>📚 提示詞庫</h2>
+      <button class="btn btn--ghost btn--icon" data-close>✕</button>
+    </div>
+    <div class="modal__toolbar">
+      <input id="prompt-search" class="input" type="search" placeholder="搜尋提示詞…" aria-label="搜尋提示詞">
+      <button id="btn-new-prompt" class="btn btn--primary btn--sm nowrap">＋ 新增</button>
+    </div>
+    <div class="prompt-list" id="prompt-list"></div>
+  </div>
+</div>
+ 
+<!-- ==================== 全文搜尋 Modal ==================== -->
+<div class="modal hidden" id="modal-search">
+  <div class="modal__backdrop"></div>
+  <div class="modal__panel" style="height:78vh">
+    <div class="modal__head">
+      <h2>🔍 全文搜尋</h2>
+      <button class="btn btn--ghost btn--icon" data-close>✕</button>
+    </div>
+    <div class="modal__toolbar">
+      <input id="search-input" class="input" type="search" placeholder="輸入關鍵字…" aria-label="全文搜尋關鍵字">
+    </div>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+ 
+<!-- ==================== 本對話設定 Modal ==================== -->
+<div class="modal hidden" id="modal-chat-config">
+  <div class="modal__backdrop"></div>
+  <div class="modal__panel">
+    <div class="modal__head">
+      <h2>🎛️ 本對話設定</h2>
+      <button class="btn btn--ghost btn--icon" data-close>✕</button>
+    </div>
+    <div class="modal__body">
+      <div class="field">
+        <label>對話標題</label>
+        <div class="row">
+          <input id="chat-config-title" class="input" type="text" maxlength="80" aria-label="對話標題">
+          <button id="btn-gen-title" class="btn btn--outline nowrap" title="用 AI 依對話內容產生標題">✨ AI 產生</button>
+        </div>
+        <p class="hint" id="chat-config-title-hint"></p>
+      </div>
+ 
+      <div class="field">
+        <label>本對話系統提示詞（留空＝使用全域設定）</label>
+        <textarea id="chat-config-system" class="input" rows="5" aria-label="本對話系統提示詞"></textarea>
+      </div>
+ 
+      <div class="field">
+        <label>本對話模型（留空＝使用預設模型）</label>
+        <div class="row">
+          <input id="chat-config-model" class="input" readonly aria-label="本對話模型">
+          <button id="btn-chat-config-model"       class="btn btn--outline nowrap">選擇…</button>
+          <button id="btn-chat-config-model-clear" class="btn btn--ghost nowrap">清除</button>
+        </div>
+      </div>
+ 
+      <div class="field">
+        <label>資料夾</label>
+        <select id="chat-config-folder" class="input" aria-label="所屬資料夾"></select>
+      </div>
+
+      <details class="field" id="chat-config-out-box">
+        <summary style="cursor:pointer;font-size:.82rem;color:var(--text-dim)">⇪　輸出檔案目的地（把回覆中的程式碼 commit 到 GitHub）</summary>
+        <div style="padding-top:8px">
+          <div class="field">
+            <label>目的地模式</label>
+            <select id="cc-out-mode" class="input" aria-label="輸出目的地模式">
+              <option value="global">跟隨全域預設（設定 → ☁️ 同步 → 檔案輸出）</option>
+              <option value="custom">本對話自訂（可以是另一個 repo）</option>
+            </select>
+          </div>
+          <div id="cc-out-custom" class="hidden">
+            <div class="grid-2">
+              <div class="field"><label>Owner</label><input id="cc-out-owner" class="input" placeholder="your-name"></div>
+              <div class="field"><label>Repo</label><input id="cc-out-repo" class="input" placeholder="project-x"></div>
+            </div>
+            <div class="grid-2">
+              <div class="field"><label>Branch（留空＝預設）</label><input id="cc-out-branch" class="input" placeholder="main"></div>
+              <div class="field"><label>資料夾（留空＝根目錄）</label><input id="cc-out-dir" class="input" placeholder="src/generated"></div>
+            </div>
+            <label class="switch"><input type="checkbox" id="cc-out-auto"><span>每次生成後自動發佈新的程式碼區塊</span></label>
+          </div>
+          <p class="hint">啟用後，助理回覆的每個程式碼區塊會出現「⇪ 發佈」鈕，操作列也有「⇪ 全部發佈」。檔名優先取圍欄標註（如 <code>```python main.py</code>）或首行註解。</p>
+        </div>
+      </details> 
+
+      <!-- 📝 自動摘要（低調）：只有真的產生過摘要才會出現 -->
+      <details class="field" id="chat-config-summary-box">
+        <summary style="cursor:pointer;font-size:.82rem;color:var(--text-dim)">📝　自動摘要（送給模型的上下文，可檢視／編輯）</summary>
+        <div style="padding-top:8px">
+          <p class="hint" id="chat-config-summary-meta"></p>
+          <textarea id="chat-config-summary" class="input" rows="7" style="margin-top:6px"
+                    aria-label="本對話摘要（可編輯，按下方儲存生效）"></textarea>
+          <div class="row wrap" style="margin-top:8px">
+            <button id="btn-resummarize"       class="btn btn--outline btn--sm">🔄 立即重新摘要</button>
+            <button id="btn-reset-summary-ptr" class="btn btn--outline btn--sm">↺ 只重設進度</button>
+            <button id="btn-clear-summary"     class="btn btn--ghost btn--sm">🗑️ 清除摘要</button>
+          </div>
+          <p class="hint">「只重設進度」＝ summarizedUpTo 歸零但保留文字；下次達門檻時會把同一批舊訊息再摘要一次、接在現有文字後面。</p>
+        </div>
+      </details>
+ 
+      <p class="hint" id="chat-config-override">—</p>
+    </div>
+    <div class="modal__foot">
+      <button class="btn btn--ghost" data-close>取消</button>
+      <button id="btn-chat-config-save" class="btn btn--primary">儲存</button>
+    </div>
+  </div>
+</div>
+ 
+<!-- ==================== 快捷鍵 Modal ==================== -->
+<div class="modal hidden" id="modal-shortcuts">
+  <div class="modal__backdrop"></div>
+  <div class="modal__panel">
+    <div class="modal__head">
+      <h2>⌨️ 快捷鍵</h2>
+      <button class="btn btn--ghost btn--icon" data-close>✕</button>
+    </div>
+    <div class="modal__body">
+      <table class="kbd-table"><tbody id="shortcuts-table"></tbody></table>
+    </div>
+  </div>
+</div>
+ 
+<!-- ==================== 通用 ask Modal ==================== -->
+<div class="modal hidden" id="modal-ask">
+  <div class="modal__backdrop"></div>
+  <div class="modal__panel modal__panel--sm">
+    <div class="modal__head"><h2 id="ask-title">確認</h2></div>
+    <div class="modal__body">
+      <p id="ask-message" class="sub" style="white-space:pre-wrap"></p>
+      <input  id="ask-input"  class="input hidden" type="text" aria-label="輸入">
+      <select id="ask-select" class="input hidden" aria-label="選擇"></select>
+    </div>
+    <div class="modal__foot">
+      <button id="ask-extra"  class="btn btn--outline hidden"></button>
+      <button id="ask-cancel" class="btn btn--ghost">取消</button>
+      <button id="ask-ok"     class="btn btn--primary">確定</button>
+    </div>
+  </div>
+</div>
+ 
+<!-- ==================== Scripts（順序即依賴順序） ==================== -->
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/db.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/math.js"></script>
+<script src="js/markdown.js"></script>
+<script src="js/files.js"></script>
+<script src="js/models.js"></script>
+<script src="js/api.js"></script>
+<script src="js/chatStore.js"></script>
+<script src="js/github.js"></script>
+<script src="js/publisher.js"></script>
+<script src="js/prompts.js"></script>
+<script src="js/exporter.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/ui-state.js"></script>
+<script src="js/ui-header.js"></script>
+<script src="js/ui-messages.js"></script>
+<script src="js/ui-composer.js"></script>
+<script src="js/ui-sidebar.js"></script>
+<script src="js/ui-modals.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/shortcuts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

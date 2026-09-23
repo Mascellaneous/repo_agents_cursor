@@ -1,0 +1,30 @@
+/* =============================================================
+   settings.css — 設定 Modal 的雙欄式版面
+   ============================================================= */
+
+.settings { display: flex; min-height: 0; flex: 1; }
+
+.settings__nav {
+  flex: 0 0 176px; display: flex; flex-direction: column; gap: 2px;
+  padding: 12px 8px; border-right: 1px solid var(--border-soft);
+  overflow-y: auto; background: var(--bg-elev);
+}
+.settings__nav .tab { text-align: left; padding: 9px 10px; font-size: .84rem; }
+
+.settings__body { flex: 1; overflow-y: auto; padding: 18px 22px 26px; min-width: 0; }
+.settings__panel { display: none; animation: fadeIn var(--t); }
+.settings__panel.is-active { display: block; }
+
+.two-col-switches {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0 18px;
+}
+
+.about-list { padding-left: 1.2em; color: var(--text-dim); font-size: .85rem; }
+.about-list li { margin: .3em 0; }
+
+/* 讓 range 旁的數值不跳動 */
+.field b[data-out] {
+  display: inline-block; min-width: 3.2em; color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
