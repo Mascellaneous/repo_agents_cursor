@@ -88,6 +88,7 @@ const TAB_UNITS_HTML = `
             <div class="ttl">🛠 操作</div>
             <button class="btn btn-primary" onclick="openUnitForm()">➕ 新增單位</button>
             <button class="btn btn-info" onclick="openReorderModal('units')">↕ 調整獲得順序</button>
+            <button class="btn btn-info" onclick="openOptionalPartsModal()">🧩 選擇性零件 (OP)</button>
         </div>
     </div>
     <div class="pagination-controls">

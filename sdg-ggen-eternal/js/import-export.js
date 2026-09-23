@@ -14,9 +14,10 @@
 /* ---------- 收集全部資料（GitHub-sync.js 的 buildPayload 也使用） ---------- */
 async function gatherAll() {
     return {
-        units:       await getAll('units'),
-        characters:  await getAll('characters'),
-        supports:    await getAll('supports')
+        units:          await getAll('units'),
+        characters:     await getAll('characters'),
+        supports:       await getAll('supports'),
+        optionalParts:  await getAll('optionalParts')
     };
 }
  
@@ -41,12 +42,15 @@ async function exportData() {
         exportInfo: {
             exportDate: new Date().toISOString(),
             source: APP_NAME + ' — JSON 匯出',
-            counts: { units: data.units.length, characters: data.characters.length, supports: data.supports.length }
+            counts: {
+                units: data.units.length, characters: data.characters.length,
+                supports: data.supports.length, optionalParts: data.optionalParts.length
+            }
         },
         ...data
     };
     downloadBlobFile(JSON.stringify(payload, null, 2), `sdg-ggen-export_${fileStamp()}.json`);
-    showToast(`已匯出：單位 ${data.units.length}、角色 ${data.characters.length}、支援單位 ${data.supports.length}`);
+    showToast(`已匯出：單位 ${data.units.length}、角色 ${data.characters.length}、支援單位 ${data.supports.length}、選擇性零件 ${data.optionalParts.length}`);
 }
  
 /* ---------- 整庫下載 (.db) ---------- */
@@ -57,7 +61,10 @@ async function saveDbFile() {
             exportDate: new Date().toISOString(),
             source: APP_NAME + ' — 整庫備份 (.db)',
             kind: 'fulldb',
-            counts: { units: data.units.length, characters: data.characters.length, supports: data.supports.length }
+            counts: {
+                units: data.units.length, characters: data.characters.length,
+                supports: data.supports.length, optionalParts: data.optionalParts.length
+            }
         },
         ...data
     };
@@ -89,13 +96,18 @@ async function applyExternalData(obj, label, reason) {
     const U = sanitizeRecords(obj.units, 'units');
     const C = sanitizeRecords(obj.characters, 'characters');
     const S = sanitizeRecords(obj.supports, 'supports');
-    if (!U.length && !C.length && !S.length) {
+    const hasOP = Object.prototype.hasOwnProperty.call(obj, 'optionalParts');
+    const OP = (hasOP && typeof sanitizeOptionalParts === 'function') ? sanitizeOptionalParts(obj.optionalParts) : null;
+    if (!U.length && !C.length && !S.length && !(OP && OP.length)) {
         showToast('檔案中沒有任何有效記錄（無 id 或重複的記錄已被略過）', true);
         return false;
     }
- 
+
+    const opLine = OP
+        ? `、選擇性零件 ${OP.length}`
+        : '（此檔沒有選擇性零件欄，本地零件會保留）';
     const ok = confirm(
-        `${label} 內容檢查完成：\n單位 ${U.length}、角色 ${C.length}、支援單位 ${S.length}\n\n` +
+        `${label} 內容檢查完成：\n單位 ${U.length}、角色 ${C.length}、支援單位 ${S.length}${opLine}\n\n` +
         `⚠ 將【完全取代】本地資料庫：\n` +
         `・相同 ID → 以檔案版本覆蓋\n` +
         `・檔案中已刪除的記錄 → 本地一併移除\n\n繼續？`);
@@ -106,12 +118,20 @@ async function applyExternalData(obj, label, reason) {
     if (U.length) await db.bulkPut('units', U);
     if (C.length) await db.bulkPut('characters', C);
     if (S.length) await db.bulkPut('supports', S);
- 
+    if (OP) {
+        await db.clearStore('optionalParts');
+        if (OP.length) await db.bulkPut('optionalParts', OP);
+        cache.optionalParts = null;
+        await getAll('optionalParts');
+        if (typeof renderOptionalPartsIfOpen === 'function') renderOptionalPartsIfOpen();
+    }
+
     await Promise.all(TYPES.map(t => getAll(t)));   // 重填快取
     await refreshSeriesOptions();
     TYPES.forEach(t => RENDER[t]());
     updateStorageStatus();
-    showToast(`已套用${label}：單位 ${U.length}、角色 ${C.length}、支援單位 ${S.length}`);
+    showToast(`已套用${label}：單位 ${U.length}、角色 ${C.length}、支援單位 ${S.length}` +
+        (OP ? `、選擇性零件 ${OP.length}` : ''));
  
     /* ★ 編輯性操作 → 自動上傳（Auto-sync 關閉時僅標記 dirty，下次載入會提示） */
     scheduleAutoSync(reason);
@@ -146,12 +166,16 @@ function loadDbFile() {
  
 /* ---------- 清空資料庫 ---------- */
 async function clearAllData() {
-    if (!confirm('確定要清空資料庫嗎？\n單位／角色／支援單位的所有資料都會被刪除！')) return;
+    if (!confirm('確定要清空資料庫嗎？\n單位／角色／支援單位／選擇性零件的所有資料都會被刪除！')) return;
     if (!confirm('再次確認：真的要刪除全部資料？此操作無法復原（除非有備份）。\n' +
                  '注意：Auto-sync 開啟時，清空後約 1.5 秒會自動上傳「空資料庫」至 GitHub。')) return;
  
     await Promise.all(TYPES.map(t => db.clearStore(t)));
+    await db.clearStore('optionalParts');
+    cache.optionalParts = null;
     await Promise.all(TYPES.map(t => getAll(t)));   // 清空後重填（空陣列）
+    await getAll('optionalParts');
+    if (typeof renderOptionalPartsIfOpen === 'function') renderOptionalPartsIfOpen();
     await refreshSeriesOptions();                   // 清空後系列/標籤/能力需求下拉應同步變空
     TYPES.forEach(t => RENDER[t]());
     updateStorageStatus();

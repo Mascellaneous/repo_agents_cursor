@@ -35,6 +35,8 @@
         <button class="btn btn-info" onclick="loadDbFile()">還原整庫 (.db)</button>
         <button class="btn btn-warning" onclick="clearAllData()">清空資料庫</button>
         <span style="border-left:1px solid #ccc;height:20px;"></span>
+        <button class="btn btn-info" onclick="openOptionalPartsModal()">🧩 選擇性零件 (OP)</button>
+        <span style="border-left:1px solid #ccc;height:20px;"></span>
         <button class="btn btn-primary" id="gh-up" onclick="syncToGitHub()">⬆ 上傳至 GitHub</button>
         <button class="btn btn-warning" id="gh-dn" onclick="syncFromGitHub()">⬇ 自 GitHub 下載</button>
         <!-- ★ Auto-sync 開關：控制「編輯後自動上傳」；頁面載入時的自動下載仍會執行（但本地有未上傳變更時會自動略過下載以保護資料） -->
@@ -96,6 +98,7 @@
 <script src="js/forms.js"></script>
 <script src="js/import-export.js"></script>
 <script src="js/reorder.js"></script>
+<script src="js/optional-parts.js"></script>
 <!-- 4. Entry Point -->
 <script src="js/main.js"></script>
 </body>

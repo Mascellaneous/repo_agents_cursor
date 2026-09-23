@@ -24,3 +24,43 @@ body.dark-mode .wdrow{border-bottom-color:#555}
 body.dark-mode .wd-lv{color:#e0e0e0}
 body.dark-mode .wdrow > label,body.dark-mode .wd-attrs{color:#bbb}
 body.dark-mode .wdrow select{background:#454545;color:#e0e0e0;border-color:#666}
+
+/* =========================================================
+   選擇性零件 (OP) 視窗 — 版面；欄位意義見 js/optional-parts.js
+   ========================================================= */
+.op-modal{background:#fff;border-radius:8px;width:min(96vw,1080px);max-height:92vh;
+ display:flex;flex-direction:column;padding:14px;gap:8px;font-family:inherit;color:#2c3e50}
+.op-filters{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px}
+.op-filters label{display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.op-filters input,.op-filters select,.op-editor input,.op-editor select{
+ padding:4px 6px;border:1px solid #ddd;border-radius:4px;font-size:12px;font-family:inherit;background:#fff;color:#2c3e50}
+.op-filters input[type=text]{width:120px}
+.op-body{display:grid;grid-template-columns:280px 1fr;gap:10px;min-height:0;flex:1}
+.op-list,.op-editor{border:1px dashed #ccc;border-radius:6px;overflow:auto;min-height:180px;max-height:58vh;padding:6px}
+.op-card{display:block;width:100%;text-align:left;border:1px solid #e0e0e0;background:#fff;border-radius:6px;
+ padding:6px 8px;margin:0 0 6px;cursor:pointer;font-family:inherit;color:inherit}
+.op-card.on{border-color:#3498db;background:#eef6fc}
+.op-card b{display:block;font-size:12px}
+.op-card span{display:block;font-size:11px;color:#666;white-space:pre-wrap}
+.op-effect{border:1px solid #e5e5e5;border-radius:6px;padding:8px;margin-bottom:8px;background:#fafafa}
+.op-clause{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-bottom:4px}
+.op-clause input[type=number]{width:72px}
+.op-cond{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:4px;font-size:11px}
+.op-cond input[type=text]{width:140px}
+.op-preview{font-size:12px;background:#f4f8fb;border-radius:4px;padding:6px 8px;margin:6px 0;white-space:pre-wrap}
+.op-empty{font-size:12px;color:#888;padding:8px}
+@media (max-width:800px){
+  .op-modal{overflow:auto}
+  .op-body{grid-template-columns:1fr}
+  .op-editor{order:-1;max-height:none}
+  .op-list{max-height:28vh}
+}
+body.dark-mode .op-modal{background:#2c2c2c;color:#e0e0e0}
+body.dark-mode .op-filters input,body.dark-mode .op-filters select,
+body.dark-mode .op-editor input,body.dark-mode .op-editor select{background:#454545;color:#e0e0e0;border-color:#666}
+body.dark-mode .op-list,body.dark-mode .op-editor{border-color:#666}
+body.dark-mode .op-card{background:#3a3a3a;border-color:#555;color:#e0e0e0}
+body.dark-mode .op-card.on{background:#1b3a52;border-color:#3498db}
+body.dark-mode .op-card span{color:#bbb}
+body.dark-mode .op-effect{background:#333;border-color:#555}
+body.dark-mode .op-preview{background:#243040;color:#e0e0e0}

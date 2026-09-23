@@ -72,7 +72,10 @@ async function buildPayload() {
         exportInfo: {
             exportDate: new Date(ts).toISOString(),
             source: APP_NAME + ' — GitHub Sync',
-            counts: { units: data.units.length, characters: data.characters.length, supports: data.supports.length }
+            counts: {
+                units: data.units.length, characters: data.characters.length,
+                supports: data.supports.length, optionalParts: (data.optionalParts || []).length
+            }
         },
         ...data
     };
@@ -240,9 +243,14 @@ async function applyRemoteData(obj, opts = {}) {
     const U = sanitizeRecords(obj.units, 'units');
     const C = sanitizeRecords(obj.characters, 'characters');
     const S = sanitizeRecords(obj.supports, 'supports');
- 
+    const hasOP = Object.prototype.hasOwnProperty.call(obj, 'optionalParts');
+    const OP = (hasOP && typeof sanitizeOptionalParts === 'function') ? sanitizeOptionalParts(obj.optionalParts) : null;
+
     if (!silent) {
-        const msg = `下載成功：單位 ${U.length}、角色 ${C.length}、支援單位 ${S.length}。\n\n` +
+        const opLine = OP
+            ? `、選擇性零件 ${OP.length}`
+            : '（遠端沒有選擇性零件欄，本地零件會保留）';
+        const msg = `下載成功：單位 ${U.length}、角色 ${C.length}、支援單位 ${S.length}${opLine}。\n\n` +
                     `⚠ 將【完全取代】本地資料庫：\n` +
                     `・相同 ID → 以雲端版本覆蓋\n` +
                     `・雲端已刪除的記錄 → 本地一併移除\n` +
@@ -255,7 +263,14 @@ async function applyRemoteData(obj, opts = {}) {
     if (U.length) await db.bulkPut('units', U);
     if (C.length) await db.bulkPut('characters', C);
     if (S.length) await db.bulkPut('supports', S);
- 
+    if (OP) {
+        await db.clearStore('optionalParts');
+        if (OP.length) await db.bulkPut('optionalParts', OP);
+        cache.optionalParts = null;
+        await getAll('optionalParts');
+        if (typeof renderOptionalPartsIfOpen === 'function') renderOptionalPartsIfOpen();
+    }
+
     /* 本地「上次匯出時間」對齊遠端；下載後本地＝雲端，清除 dirty 標記 */
     const remoteTs = obj.exportInfo ? new Date(obj.exportInfo.exportDate).getTime() : Date.now();
     await db.putMeta('lastExportTime', Number.isNaN(remoteTs) ? Date.now() : remoteTs);
@@ -265,7 +280,7 @@ async function applyRemoteData(obj, opts = {}) {
     await refreshSeriesOptions();
     TYPES.forEach(t => RENDER[t]());
     updateStorageStatus();
-    return { units: U.length, characters: C.length, supports: S.length };
+    return { units: U.length, characters: C.length, supports: S.length, optionalParts: OP ? OP.length : null };
 }
  
 /* ================= 手動：自 GitHub 下載 ================= */

@@ -74,6 +74,7 @@ async function initApp() {
         RENDER.units();
         RENDER.characters();
         RENDER.supports();
+        updateStorageStatus();
  
         /* 7. 載入完成 → 自動自 GitHub 下載（完全取代本地資料庫） */
         autoDownloadFromGitHub();

@@ -7,10 +7,10 @@ class IDB {
     }
     init() {
         return new Promise((res, rej) => {
-            const rq = indexedDB.open(this.name, 1);
+            const rq = indexedDB.open(this.name, 2);
             rq.onupgradeneeded = e => {
                 const d = e.target.result;
-                ['units', 'characters', 'supports'].forEach(s => {
+                ['units', 'characters', 'supports', 'optionalParts'].forEach(s => {
                     if (!d.objectStoreNames.contains(s)) d.createObjectStore(s, { keyPath: 'id' });
                 });
                 if (!d.objectStoreNames.contains('metadata')) d.createObjectStore('metadata', { keyPath: 'key' });

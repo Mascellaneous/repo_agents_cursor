@@ -78,7 +78,8 @@ async function updateStorageStatus() {
         const lists = await Promise.all(TYPES.map(t => getAll(t)));
         /* ★ 排除武裝效果名稱對照的系統記錄（id='__wkinds__'），不計入單位數 */
         const unitsCount = lists[0].filter(u => u && u.id !== '__wkinds__').length;
-        let txt = `目前資料：單位 ${unitsCount}・角色 ${lists[1].length}・支援單位 ${lists[2].length}`;
+        const opN = (await getAll('optionalParts')).length;
+        let txt = `目前資料：單位 ${unitsCount}・角色 ${lists[1].length}・支援單位 ${lists[2].length}・選擇性零件 ${opN}`;
         if (navigator.storage && navigator.storage.estimate) {
             const est = await navigator.storage.estimate();
             if (est && typeof est.usage === 'number') {
