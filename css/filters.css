@@ -1,0 +1,98 @@
+/* =========================================================
+   filters.css
+   ========================================================= */
+.stats-bar{background:#ecf0f1;padding:8px 15px;color:#2c3e50;font-size:12px}
+.filter-panel{padding:12px 15px;border-bottom:1px solid #eee;display:flex;flex-direction:column;gap:10px}
+.fsec{border:1px solid #ddd;border-radius:6px;padding:10px 12px;background:#fff;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.fsec .ttl{width:100%;font-size:11px;font-weight:bold;color:#2c3e50;text-transform:uppercase;letter-spacing:.5px;
+ border-bottom:1px solid #eee;padding-bottom:4px;margin-bottom:2px}
+.fgroup{display:flex;align-items:center;gap:4px;font-size:12px}
+.fgroup label{white-space:nowrap}
+.fsec input[type=text],.fsec select{padding:4px 6px;border:1px solid #ddd;border-radius:4px;font-size:12px}
+.search-box{flex:1;min-width:200px}
+.fgroup.ckline .ck{display:inline-flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.fgroup.ckline .ck input{margin:0}
+.toolbar{padding:10px 15px;border-bottom:1px solid #eee;display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:#fbfbfb}
+.toolbar .sync-status{font-size:11px;font-style:italic;color:#666;margin-left:6px}
+.pagination-controls{display:flex;justify-content:space-between;align-items:center;padding:10px 15px;background:#f8f9fa;flex-wrap:wrap;gap:8px}
+.pagination-controls.bottom{justify-content:flex-end;border-top:1px dashed #eee}
+.pagination-info{display:flex;align-items:center;gap:8px;font-size:12px;color:#7f8c8d}
+.pagination-info select{padding:3px 6px;border:1px solid #ddd;border-radius:4px;font-size:11px}
+.pagination-buttons{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.pagination-btn{padding:4px 9px;border:1px solid #ddd;background:#fff;color:#2c3e50;cursor:pointer;border-radius:4px;font-size:12px}
+.pagination-btn:hover{background:#3498db;color:#fff;border-color:#3498db}
+.pagination-btn.active{background:#3498db;color:#fff;border-color:#3498db;font-weight:bold}
+.pagination-btn:disabled{opacity:.4;cursor:default}
+.pdots{color:#7f8c8d;font-size:12px;padding:0 2px}
+ 
+/* =========================================================
+   ★ 地形篩選：下拉前的地形名稱標籤
+   ========================================================= */
+.tr-flab{font-size:11px;font-weight:bold;color:#555;white-space:nowrap;margin-left:2px}
+.tr-flab:first-of-type{margin-left:0}
+ 
+/* =========================================================
+   ★ 標籤篩選：面板摘要（含 AND/OR 徽章＋排除標籤）＋ 獨立選擇視窗
+   （視窗骨架沿用 reorder.css 的 .ro-head/.ro-hint/.ro-foot/.ro-count）
+   ========================================================= */
+.tag-summary{display:inline-flex;flex-wrap:wrap;gap:3px;align-items:center;font-size:11px;color:#666;min-width:0}
+.ts-label{white-space:nowrap}
+.ts-mode{border:none;border-radius:9px;background:#3498db;color:#fff;font-size:10px;font-weight:bold;
+ padding:1px 7px;cursor:pointer;line-height:1.5}
+.ts-mode:hover{background:#2f81b7}
+.ts-sep{opacity:.6}
+.sel-chip{display:inline-flex;align-items:center;gap:4px;margin:0}
+.sel-chip.exc-chip{background:#c0392b;color:#fff}
+.sel-rm{border:none;background:none;cursor:pointer;font-size:10px;line-height:1;padding:0;color:inherit}
+.sel-rm:hover{color:#e74c3c}
+.sel-chip.exc-chip .sel-rm-exc{border:none;background:none;cursor:pointer;font-size:10px;line-height:1;padding:0;color:inherit}
+.sel-chip.exc-chip .sel-rm-exc:hover{color:#ffe0dd}
+ 
+/* ---- 視窗本體 ---- */
+.tagov{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1400;display:none;align-items:center;justify-content:center}
+.tagov.show{display:flex}
+.tag-modal{background:#fff;border-radius:8px;width:min(94vw,780px);max-height:85vh;
+ display:flex;flex-direction:column;padding:14px;gap:10px}
+ 
+/* ---- AND/OR 邏輯列 ---- */
+.tag-modewrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px}
+.tm-label{font-weight:bold;color:#2c3e50}
+.tag-modeswitch{display:inline-flex;border:1px solid #bbb;border-radius:14px;overflow:hidden}
+.tag-modeswitch button{border:none;background:#fff;padding:3px 14px;font-size:12px;cursor:pointer;color:#555}
+.tag-modeswitch button + button{border-left:1px solid #bbb}
+.tag-modeswitch button.active{background:#3498db;color:#fff;font-weight:bold}
+.tm-hint{color:#888;font-size:11px}
+ 
+/* ---- 雙欄主體 ---- */
+.tag-body{display:flex;gap:12px;flex:1;min-height:220px}
+.tag-left{flex:1;display:flex;flex-direction:column;min-width:0}
+.tag-toolbar{display:flex;gap:6px;align-items:center;margin-bottom:8px}
+.tag-toolbar input{flex:1;min-width:140px;padding:6px 8px;border:1px solid #ddd;border-radius:4px;font-size:12px}
+.tag-list{overflow-y:auto;flex:1;min-height:150px;border:1px dashed #ccc;border-radius:6px;
+ padding:8px;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;background:#fdfdfd}
+.tag-list .tagpick{font-size:12px;padding:4px 10px}
+.tag-use{opacity:.55;font-size:10px;margin-left:2px}
+ 
+/* ---- ★ 排除切換鈕（左欄每個標籤旁的 ⊘） ---- */
+.tag-exc{border:1px solid #ddd;border-radius:4px;background:#fff;color:#999;cursor:pointer;
+ font-size:11px;line-height:1;padding:3px 5px}
+.tag-exc:hover{border-color:#c0392b;color:#c0392b}
+.tag-exc.on{background:#c0392b;border-color:#c0392b;color:#fff;font-weight:bold}
+ 
+/* ---- 右欄：已選預覽 ---- */
+.tag-right{width:215px;flex-shrink:0;border-left:1px solid #e5e5e5;padding-left:12px;
+ display:flex;flex-direction:column;min-height:0}
+.tr-head{font-size:12px;font-weight:bold;color:#2c3e50;padding-bottom:6px;border-bottom:1px solid #eee;margin-bottom:8px}
+.tr-sub{width:100%;font-size:10px;font-weight:bold;color:#888;margin:4px 0 2px}
+.tr-sub-exc{color:#c0392b}
+.tag-selbox{overflow-y:auto;flex:1;display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start}
+.tsel{font-size:12px;padding:4px 10px}
+.tsel-exc{background:#c0392b;color:#fff}
+.tsel-rm,.tsel-rm-exc{border:none;background:none;cursor:pointer;font-size:10px;line-height:1;padding:0;color:inherit;opacity:.75}
+.tsel-rm:hover{color:#e74c3c;opacity:1}
+.tsel-rm-exc:hover{color:#ffe0dd;opacity:1}
+ 
+@media (max-width:640px){
+    .tag-body{flex-direction:column}
+    .tag-right{width:100%;border-left:none;border-top:1px dashed #ccc;padding-left:0;padding-top:8px;max-height:130px}
+}

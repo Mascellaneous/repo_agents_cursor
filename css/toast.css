@@ -1,0 +1,7 @@
+/* =========================================================
+   toast.css
+   ========================================================= */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#2c3e50;color:#fff;
+ padding:12px 18px;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.35);z-index:1500;display:none;
+ align-items:center;gap:14px;font-size:13px;max-width:90vw}
+#toast.show{display:flex}

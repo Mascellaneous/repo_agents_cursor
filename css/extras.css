@@ -1,0 +1,26 @@
+/* =========================================================
+   extras.css — 新功能樣式（Auto-sync 開關、武裝詳細設定）
+   ========================================================= */
+ 
+/* ---- 工具列：Auto-sync 核取方塊 ---- */
+.toolbar .autosync-line{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:bold;
+ color:#2c3e50;cursor:pointer;margin-left:2px;user-select:none;white-space:nowrap}
+.toolbar .autosync-line input{margin:0;cursor:pointer}
+body.dark-mode .toolbar .autosync-line{color:#e0e0e0}
+ 
+/* ---- 武裝詳細設定列 ---- */
+.wdrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:12px;
+ padding:5px 2px;border-bottom:1px dashed #e5e5e5}
+.wdrow:last-child{border-bottom:none}
+.wd-lv{font-weight:bold;color:#2c3e50;min-width:48px}
+.wdrow > label{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#555;font-weight:normal}
+.wdrow select{padding:2px 4px;border:1px solid #ddd;border-radius:4px;font-size:11px;background:#fff}
+.wd-attrs{display:inline-flex;gap:8px;align-items:center;font-size:11px;color:#555;flex-wrap:wrap}
+.wd-attr{display:inline-flex;align-items:center;gap:2px;cursor:pointer}
+.wd-attr input{margin:0;cursor:pointer}
+.wd-none{font-size:10px;color:#aaa}
+ 
+body.dark-mode .wdrow{border-bottom-color:#555}
+body.dark-mode .wd-lv{color:#e0e0e0}
+body.dark-mode .wdrow > label,body.dark-mode .wd-attrs{color:#bbb}
+body.dark-mode .wdrow select{background:#454545;color:#e0e0e0;border-color:#666}

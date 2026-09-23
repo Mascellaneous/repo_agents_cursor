@@ -1,0 +1,40 @@
+/* =========================================================
+   reorder.css — 獲得順序拖曳視窗
+   ========================================================= */
+.b-ord { background: #34495e; }
+ 
+.ro-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 1400;
+              display: none; align-items: center; justify-content: center; }
+.ro-overlay.show { display: flex; }
+.ro-modal { background: #fff; border-radius: 8px; width: min(92vw, 560px); max-height: 85vh;
+            display: flex; flex-direction: column; padding: 14px; gap: 10px; font-family: inherit; }
+.ro-head { display: flex; justify-content: space-between; align-items: center; }
+.ro-head h3 { font-size: 15px; color: #2c3e50; margin: 0; }
+.ro-hint { font-size: 11px; color: #888; margin: 0; }
+.ro-list { list-style: none; overflow-y: auto; flex: 1; margin: 0; padding: 2px;
+           border: 1px dashed #ccc; border-radius: 6px; min-height: 120px; }
+.ro-item { display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: #fff;
+           border: 1px solid #e0e0e0; border-radius: 6px; margin: 4px 0; cursor: grab; user-select: none; }
+.ro-item.dragging { opacity: .45; border-style: dashed; }
+.ro-handle { color: #aaa; cursor: grab; }
+.ro-num { min-width: 28px; text-align: center; font-weight: bold; color: #fff;
+          background: #3498db; border-radius: 10px; font-size: 11px; padding: 2px 0; flex-shrink: 0; }
+.ro-thumb { width: 32px; height: 32px; flex: 0 0 32px; border-radius: 4px; background: #ecf0f1;
+            display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.ro-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.ro-thumb .ph { font-size: 10px; color: #95a5a6; }
+.ro-name { flex: 1; font-size: 12px; color: #2c3e50; word-break: break-word; }
+.ro-btns { display: flex; gap: 3px; }
+.ro-foot { display: flex; justify-content: flex-end; gap: 8px; align-items: center; }
+.ro-count { font-size: 11px; color: #7f8c8d; margin-right: auto; }
+ 
+body.dark-mode .ro-modal { background: #2c2c2c; color: #e0e0e0; }
+body.dark-mode .ro-head h3, body.dark-mode .ro-name { color: #e0e0e0; }
+body.dark-mode .ro-item { background: #3a3a3a; border-color: #555; }
+body.dark-mode .ro-list { border-color: #666; }
+body.dark-mode .ro-hint, body.dark-mode .ro-count { color: #aaa; }
+body.dark-mode .ro-thumb { background: #4a4a4a; }
+
+.ro-item .ro-meta { margin-left: 8px; white-space: nowrap; }
+.ro-meta .badge { display:inline-block; padding:1px 7px; border-radius:9px;
+                  font-size:10px; font-weight:bold; }

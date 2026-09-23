@@ -1,0 +1,56 @@
+/* =========================================================
+   dark-mode.css
+   ========================================================= */
+body.dark-mode{background:#141414}
+body.dark-mode .container{background:#2c2c2c;box-shadow:0 4px 8px rgba(0,0,0,.4)}
+body.dark-mode .header,body.dark-mode .tabs,body.dark-mode .tab{background:#222}
+body.dark-mode .tab.active{background:#0d47a1;border-bottom-color:#64b5f6}
+body.dark-mode .stats-bar,body.dark-mode .fsec,body.dark-mode .toolbar,
+body.dark-mode .form-section,body.dark-mode .pagination-controls{background:#3a3a3a;color:#e0e0e0;border-color:#555}
+body.dark-mode .fsec .ttl{color:#e0e0e0;border-bottom-color:#555}
+body.dark-mode .fsec input[type=text],body.dark-mode .fsec select,
+body.dark-mode .fg input,body.dark-mode .fg select,body.dark-mode .fg textarea{background:#454545;color:#e0e0e0;border-color:#666}
+body.dark-mode .card{background:#3a3a3a;border-color:#555;color:#e0e0e0}
+body.dark-mode .card-head{background:#262626}
+body.dark-mode .card-actions{background:#333;border-top-color:#555}
+body.dark-mode .kv,body.dark-mode .kv b,body.dark-mode .skillline strong,body.dark-mode .statrow b{color:#e0e0e0}
+body.dark-mode .kv b{color:#ff8a80}
+body.dark-mode .statrow,body.dark-mode .skillline{color:#bbb}
+body.dark-mode .chip{background:#4a4a4a;color:#ddd}
+body.dark-mode .chip.tag{background:#1b3a52;color:#7fc4f8}
+body.dark-mode .chip.feat{background:#4d3a14;color:#ffcc80}
+body.dark-mode .chip.tr{background:#143d24;color:#7ddb9a}
+body.dark-mode .comments-blk{background:#2f2f2f;color:#aaa}
+body.dark-mode .thumb{background:#4a4a4a}
+body.dark-mode .pagination-btn{background:#3a3a3a;color:#e0e0e0;border-color:#555}
+body.dark-mode .pagination-btn:hover,body.dark-mode .pagination-btn.active{background:#1976d2;color:#fff;border-color:#1976d2}
+body.dark-mode .ac-box{background:#3a3a3a;border-color:#555}
+body.dark-mode .ac-item{color:#e0e0e0;border-bottom-color:#4a4a4a}
+body.dark-mode .ac-item:hover,body.dark-mode .ac-item.hl{background:#1976d2;color:#fff}
+@media (max-width:640px){.grid{grid-template-columns:1fr}}
+ 
+/* 標籤篩選視窗（深色模式） */
+body.dark-mode .tag-modal{background:#2c2c2c;color:#e0e0e0}
+body.dark-mode .tag-toolbar input{background:#454545;color:#e0e0e0;border-color:#666}
+body.dark-mode .tag-list{border-color:#666;background:#333}
+body.dark-mode .tagpick{background:#4a4a4a;color:#ddd}
+body.dark-mode .tagpick:hover{background:#5a5a5a}
+body.dark-mode .tagpick.on{background:#1976d2;color:#fff}
+body.dark-mode .tag-summary{color:#bbb}
+
+/* 標籤篩選視窗＋摘要（深色模式） */
+body.dark-mode .tag-modal{background:#2c2c2c;color:#e0e0e0}
+body.dark-mode .tag-toolbar input{background:#454545;color:#e0e0e0;border-color:#666}
+body.dark-mode .tag-list{border-color:#666;background:#333}
+body.dark-mode .tagpick{background:#4a4a4a;color:#ddd}
+body.dark-mode .tagpick:hover{background:#5a5a5a}
+body.dark-mode .tagpick.on{background:#1976d2;color:#fff}
+body.dark-mode .tag-summary{color:#bbb}
+body.dark-mode .tm-label,body.dark-mode .tr-head{color:#e0e0e0}
+body.dark-mode .tm-hint{color:#999}
+body.dark-mode .tag-modeswitch{border-color:#666}
+body.dark-mode .tag-modeswitch button{background:#3a3a3a;color:#ccc}
+body.dark-mode .tag-modeswitch button.active{background:#1976d2;color:#fff}
+body.dark-mode .tag-right{border-left-color:#555}
+body.dark-mode .tr-head{border-bottom-color:#555}
+body.dark-mode .ts-mode{background:#1976d2;color:#fff}

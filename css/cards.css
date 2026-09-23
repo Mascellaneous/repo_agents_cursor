@@ -1,0 +1,40 @@
+/* =========================================================
+   cards.css
+   ========================================================= */
+.grid{padding:15px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.grid.grid-sm{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.card{border:1px solid #ddd;border-radius:6px;background:#fff;display:flex;flex-direction:column;transition:box-shadow .25s;overflow:hidden}
+.card:hover{box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.card-head{display:flex;gap:10px;padding:10px 12px;background:#34495e;color:#fff}
+.thumb{width:76px;height:76px;flex:0 0 76px;border-radius:6px;background:#ecf0f1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb .ph{font-size:10px;color:#95a5a6}
+.head-main{flex:1;min-width:0}
+.c-title{font-size:15px;margin-bottom:5px;word-break:break-word}
+.badges{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:bold;color:#fff}
+.b-UR{background:#f1c40f;color:#5b4a00}.b-SSR{background:#8e44ad}.b-SR{background:#2980b9}
+.b-R{background:#27ae60}.b-N{background:#7f8c8d}
+.b-atk{background:#e74c3c}.b-def{background:#2980b9}.b-sup{background:#e8a713}
+.b-ltd{background:#e67e22}.b-sp{background:#16a085}.b-ssp{background:#8e44ad}
+.mini-line{font-size:11px;opacity:.9;line-height:1.5;word-break:break-word}
+.card-body{padding:10px 12px;flex:1;display:flex;flex-direction:column;gap:6px}
+.kv{font-size:12px;color:#2c3e50}
+.kv b{color:#c0392b}
+.chip{display:inline-block;background:#ecf0f1;color:#2c3e50;border-radius:10px;padding:1px 8px;font-size:10px;margin:2px 3px 2px 0}
+.chip.tag{background:#e8f4fd;color:#2471a3}
+.chip.feat{background:#fdebd0;color:#9c640c}
+.chip.tr{background:#eafaf1;color:#1e8449}
+.statrow{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:#555}
+.statrow b{color:#2c3e50}
+.skillline{font-size:11px;color:#555;line-height:1.45}
+.skillline strong{color:#2c3e50}
+.comments-blk{background:#f8f9fa;border-radius:4px;padding:7px 9px;font-size:11px;font-style:italic;color:#555;
+ overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.card-actions{display:flex;gap:6px;padding:9px 12px;border-top:1px solid #eee;background:#fafafa}
+.empty-msg{text-align:center;padding:40px;color:#7f8c8d;grid-column:1/-1}
+
+/* 等級上限顯示 */
+.lv-cap { opacity:.6; font-weight:normal; }
+.lv-done { color:#f1c40f; }
+body.dark-mode .lv-done { color:#ffd700; }

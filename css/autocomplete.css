@@ -1,0 +1,8 @@
+/* =========================================================
+   autocomplete.css
+   ========================================================= */
+.ac-box{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid #ddd;border-top:none;
+ border-radius:0 0 4px 4px;max-height:170px;overflow-y:auto;z-index:1200;box-shadow:0 3px 8px rgba(0,0,0,.12)}
+.ac-item{padding:6px 10px;font-size:12px;cursor:pointer;border-bottom:1px solid #f2f2f2}
+.ac-item:hover,.ac-item.hl{background:#3498db;color:#fff}
+.fg{position:relative}
