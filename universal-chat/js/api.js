@@ -267,6 +267,93 @@ window.API = (() => {
     return { label: `已連線（${r.model || Models.defaultModel()}）` };
   }
  
+  /* ------------------------------ 測試單一 Poe 模型 --------------------- */
+
+  const POE_TEST_PROMPT = '請只用兩個字回覆：收到';
+  const POE_TEST_TIMEOUT_MS = 60000;
+  const POE_TEST_MAX_TOKENS = 256;
+
+  function messageText(content) {
+    if (typeof content === 'string') return content;
+    if (Array.isArray(content)) return content.map(p => (p && p.text) || '').join('');
+    return '';
+  }
+
+  /**
+   * 對單一 Poe bot 送一句極短提問，確認金鑰能呼叫它、而且有文字回來。
+   * 不走 chat()：避免套用使用者的長逾時、自動重試，以及目前供應商（這支永遠打 Poe）。
+   * @returns {Promise<{reply:string, fromReasoning:boolean, model:string, elapsedMs:number}>}
+   */
+  async function testPoeModel(model, opts = {}) {
+    const name = String(model || '').trim();
+    if (!name) throw new Error('請先填入模型名稱');
+
+    const baseUrl = (Settings.get('poeBaseUrl') || PROVIDERS.poe.baseUrl).replace(/\/+$/, '');
+    const key = Settings.get('poeApiKey');
+    if (!key) throw new Error('請先填入 Poe API Key');
+
+    const timeoutCtrl = new AbortController();
+    let timedOut = false;
+    const timer = setTimeout(() => { timedOut = true; timeoutCtrl.abort(); }, POE_TEST_TIMEOUT_MS);
+    const onAbort = () => timeoutCtrl.abort(opts.signal?.reason ?? new Error('aborted'));
+    opts.signal?.addEventListener('abort', onAbort, { once: true });
+    const started = (typeof performance !== 'undefined' ? performance.now() : Date.now());
+
+    try {
+      const res = await fetch(`${baseUrl}/chat/completions`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${key}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: name,
+          messages: [{ role: 'user', content: POE_TEST_PROMPT }],
+          stream: false,
+          temperature: 0,
+          max_tokens: POE_TEST_MAX_TOKENS,
+        }),
+        signal: timeoutCtrl.signal,
+      });
+
+      if (!res.ok) {
+        const err = new Error(extractError(await res.text(), res.status, name));
+        err.status = res.status;
+        throw err;
+      }
+
+      const json = await res.json();
+      if (json.error) throw new Error(json.error.message || 'API 錯誤');
+
+      const msg = json.choices?.[0]?.message || {};
+      const content = messageText(msg.content).trim();
+      const reasoning = messageText(msg.reasoning || msg.reasoning_content).trim();
+      const reply = content || reasoning;
+      if (!reply) {
+        const finish = json.choices?.[0]?.finish_reason;
+        throw new Error(finish ? `模型沒有文字回覆（finish: ${finish}）` : '模型沒有文字回覆');
+      }
+
+      const elapsedMs = Math.round((typeof performance !== 'undefined' ? performance.now() : Date.now()) - started);
+      return {
+        reply,
+        fromReasoning: !content && !!reasoning,
+        model: json.model || name,
+        elapsedMs,
+      };
+    } catch (e) {
+      if (opts.signal?.aborted) throw Object.assign(new Error('已取消測試'), { aborted: true });
+      if (timedOut || e?.name === 'AbortError') {
+        throw Object.assign(new Error('測試逾時（超過 60 秒），此模型可能無法使用或回應過慢'), { timeout: true });
+      }
+      if (e instanceof TypeError) throw new Error('網路連線失敗，請確認網路或 Poe Base URL');
+      throw e;
+    } finally {
+      clearTimeout(timer);
+      opts.signal?.removeEventListener('abort', onAbort);
+    }
+  }
+
   /** 查詢額度（僅 OpenRouter 支援） */
   async function credits() {
     if (isPoe()) throw new Error('Poe 未提供額度查詢 API，請到 poe.com 查看');
@@ -387,7 +474,7 @@ window.API = (() => {
   }
  
   return {
-    chat, verifyKey, credits, generateTitle, summarize, buildParams, sanitizeTitle,
+    chat, verifyKey, testPoeModel, credits, generateTitle, summarize, buildParams, sanitizeTitle,
     provider, isPoe, conn, hasKey, keyHint,
   };
 })();

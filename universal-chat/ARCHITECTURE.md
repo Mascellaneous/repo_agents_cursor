@@ -432,6 +432,10 @@ api.js 對 Poe 的差異處理：
 - 不送 stream_options。
 - buildParams() 只保留 temperature / top_p / max_tokens / stop。
 - credits() 直接丟出「Poe 不支援」；verifyKey() 先試 /models，失敗則送 4-token 的 ping。
+- 設定頁的 Poe 清單是逐筆新增／刪除／改名（`poeModels` 仍是字串陣列），不再綁定逗號文字框。
+  每一列的「測試」呼叫 `API.testPoeModel()`：永遠打 Poe 的 `/chat/completions`（不看目前供應商），
+  非串流、temperature 0、max_tokens 256、60 秒逾時、不套用自動重試，提示詞固定為「請只用兩個字回覆：收到」。
+  有文字（或只有思考內容）視為可用，並把回覆顯示在該列；HTTP 錯誤、空回覆與逾時則顯示原因。
  
 ### 6.4 SSE 串流解析（api.js → readStream）
  

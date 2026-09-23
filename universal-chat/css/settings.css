@@ -28,3 +28,66 @@
   display: inline-block; min-width: 3.2em; color: var(--accent);
   font-variant-numeric: tabular-nums;
 }
+
+/* Poe 模型：逐筆新增／刪除／測試 */
+.poe-models {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.poe-models:empty { display: none; }
+.poe-models__empty {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: .82rem;
+}
+.poe-models__add { margin-bottom: 0; }
+.poe-model {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+  padding: 8px;
+}
+.poe-model__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.poe-model__name {
+  flex: 1 1 140px;
+  min-width: 0;
+  font-family: var(--font-mono);
+}
+.poe-model__actions {
+  display: flex;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+.poe-model__status {
+  margin: 6px 2px 0;
+  font-size: .78rem;
+  line-height: 1.45;
+  color: var(--text-dim);
+  word-break: break-word;
+}
+.poe-model__status[hidden] { display: none; }
+.poe-model__status.is-pending { color: var(--text-muted); }
+.poe-model__status.is-ok { color: var(--ok); }
+.poe-model__status.is-err { color: var(--danger); }
+.poe-model__reply {
+  color: var(--text);
+  margin-top: 2px;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 520px) {
+  .poe-model__row { flex-wrap: wrap; }
+  .poe-model__actions { width: 100%; }
+  .poe-model__actions .btn { flex: 1; }
+}

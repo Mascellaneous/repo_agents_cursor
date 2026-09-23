@@ -231,9 +231,288 @@ window.UIModals = (() => {
     if (fmt) Exporter.exportChat(chat, fmt);
   }
 
+  /* --------------------------- Poe 模型清單 --------------------------- */
+
+  /** 測試結果只留在這一頁（重新整理就清掉），鍵是 bot 名稱。 */
+  const poeTests = new Map();
+  const poeInflight = new Map();
+
+  function poeNames() {
+    const list = Settings.get('poeModels');
+    return Array.isArray(list) ? list.filter(id => typeof id === 'string' && id.trim()) : [];
+  }
+
+  function savePoeNames(next) {
+    Settings.set('poeModels', next);
+  }
+
+  /** 改名或刪除時，跟著改預設模型／標題模型／比較清單／收藏。to 為空字串代表刪除。 */
+  function retargetPoeName(from, to, fallbackDefault) {
+    if (Settings.get('poeModel') === from) Settings.set('poeModel', to || fallbackDefault || '');
+    if (Settings.get('poeTitleModel') === from) Settings.set('poeTitleModel', to || '');
+
+    const remap = (ids) => {
+      const out = [];
+      (ids || []).forEach(id => {
+        const n = id === from ? to : id;
+        if (n && !out.includes(n)) out.push(n);
+      });
+      return out;
+    };
+    const cmp = Settings.get('compareModels') || [];
+    if (cmp.includes(from)) Settings.set('compareModels', remap(cmp));
+    const favs = Settings.get('favoriteModels') || [];
+    if (favs.includes(from)) Settings.set('favoriteModels', remap(favs));
+  }
+
+  function movePoeTest(from, to) {
+    if (poeTests.has(from)) {
+      const status = poeTests.get(from);
+      poeTests.delete(from);
+      if (to) poeTests.set(to, status);
+    }
+    if (poeInflight.has(from)) {
+      const job = poeInflight.get(from);
+      poeInflight.delete(from);
+      if (to) poeInflight.set(to, job);
+      else job.ctrl.abort();
+    }
+  }
+
+  function commitPoeRename(from, raw) {
+    const to = String(raw || '').trim();
+    if (!from || to === from) return false;
+    const cur = poeNames();
+    if (!cur.includes(from)) return false;
+    if (!to) { Toast.warn('模型名稱不能是空白'); renderPoeModelList(); return false; }
+    if (cur.includes(to)) { Toast.warn(`「${to}」已在清單中`); renderPoeModelList(); return false; }
+    movePoeTest(from, to);
+    retargetPoeName(from, to, '');
+    savePoeNames(cur.map(n => (n === from ? to : n)));
+    return true;
+  }
+
+  function removePoeModel(name) {
+    const next = poeNames().filter(n => n !== name);
+    movePoeTest(name, '');
+    retargetPoeName(name, '', next[0] || '');
+    savePoeNames(next);
+    Toast.info(`已移除「${name}」`);
+  }
+
+  function addPoeModelsFromInput() {
+    const input = U.$('#poe-model-input');
+    if (!input) return;
+    const parts = input.value.split(/[,，\n]/).map(s => s.trim()).filter(Boolean);
+    if (!parts.length) { Toast.warn('請輸入模型名稱'); input.focus(); return; }
+
+    const cur = poeNames();
+    const seen = new Set(cur);
+    const added = [];
+    let skipped = 0;
+    parts.forEach(n => {
+      if (seen.has(n)) { skipped += 1; return; }
+      seen.add(n);
+      added.push(n);
+    });
+    if (!added.length) {
+      Toast.warn(parts.length > 1 ? '這些模型都已在清單中' : `「${parts[0]}」已在清單中`);
+      input.focus();
+      return;
+    }
+    savePoeNames([...cur, ...added]);
+    input.value = '';
+    input.focus();
+    if (skipped) Toast.info(`已加入 ${added.length} 個，略過 ${skipped} 個重複`);
+    else if (added.length === 1) Toast.ok(`已加入「${added[0]}」`);
+    else Toast.ok(`已加入 ${added.length} 個模型`);
+  }
+
+  function formatTestElapsed(ms) {
+    if (ms < 1000) return `${ms} 毫秒`;
+    return `${(ms / 1000).toFixed(1)} 秒`;
+  }
+
+  function clipReply(text, max = 240) {
+    const arr = [...String(text || '')];
+    return arr.length <= max ? arr.join('') : arr.slice(0, max).join('') + '…';
+  }
+
+  function paintPoeStatus(el, status) {
+    el.className = 'poe-model__status';
+    el.replaceChildren();
+    if (!status || (status.state === 'idle' && !status.note)) {
+      el.hidden = true;
+      return;
+    }
+    el.hidden = false;
+    if (status.state === 'pending') {
+      el.classList.add('is-pending');
+      el.textContent = '測試中…正在向此模型索取簡短回覆';
+      return;
+    }
+    if (status.state === 'ok') {
+      el.classList.add('is-ok');
+      const via = status.model && status.model !== status.requested ? ` · ${status.model}` : '';
+      el.append(
+        U.el('div', { text: `可用 · ${formatTestElapsed(status.elapsedMs)}${via}` }),
+        U.el('div.poe-model__reply', {
+          text: `${status.fromReasoning ? '（回覆在思考內容裡）' : '回覆：'}${clipReply(status.reply)}`,
+        }),
+      );
+      return;
+    }
+    if (status.state === 'err') {
+      el.classList.add('is-err');
+      el.textContent = `無法使用：${status.message || '未知錯誤'}`;
+      return;
+    }
+    el.textContent = status.note || '';
+  }
+
+  function poeRow(name) {
+    const pending = poeInflight.has(name);
+    const li = U.el('li.poe-model', { dataset: { model: name } });
+    const input = U.el('input.input.poe-model__name', {
+      type: 'text',
+      value: name,
+      spellcheck: 'false',
+      autocomplete: 'off',
+      'aria-label': `模型名稱 ${name}`,
+    });
+    input.disabled = pending;
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); input.blur(); }
+      else if (e.key === 'Escape') { input.value = name; input.blur(); }
+    });
+    input.addEventListener('blur', () => {
+      /* 整列被重繪換掉時也會冒出 blur；此時名稱已由別的動作處理，不要再寫一次 */
+      if (!input.isConnected) return;
+      commitPoeRename(name, input.value);
+    });
+
+    const testBtn = U.el('button.btn.btn--outline.btn--sm', {
+      type: 'button',
+      text: pending ? '停止' : '測試',
+      'aria-label': pending ? `停止測試 ${name}` : `測試模型 ${name}`,
+    });
+    testBtn.addEventListener('mousedown', e => e.preventDefault());
+    testBtn.addEventListener('click', () => {
+      const typed = input.value.trim();
+      if (typed && typed !== name) {
+        if (!commitPoeRename(name, typed)) return;
+        testPoeModelRow(typed);
+        return;
+      }
+      testPoeModelRow(name);
+    });
+
+    const delBtn = U.el('button.btn.btn--ghost.btn--sm', {
+      type: 'button',
+      text: '刪除',
+      'aria-label': `刪除模型 ${name}`,
+    });
+    delBtn.disabled = pending;
+    delBtn.addEventListener('mousedown', e => e.preventDefault());
+    delBtn.addEventListener('click', () => removePoeModel(name));
+
+    const status = U.el('div.poe-model__status');
+    paintPoeStatus(status, poeTests.get(name));
+    li.append(
+      U.el('div.poe-model__row', {}, [input, U.el('div.poe-model__actions', {}, [testBtn, delBtn])]),
+      status,
+    );
+    return li;
+  }
+
+  function renderPoeModelList() {
+    const list = U.$('#poe-model-list');
+    const empty = U.$('#poe-model-empty');
+    if (!list) return;
+    const items = poeNames();
+    if (empty) empty.classList.toggle('hidden', items.length > 0);
+    list.replaceChildren(...items.map(poeRow));
+  }
+
+  function refreshPoeRow(name) {
+    const list = U.$('#poe-model-list');
+    if (!list) return;
+    const li = U.$$('.poe-model', list).find(n => n.dataset.model === name);
+    if (!li) { renderPoeModelList(); return; }
+    li.replaceWith(poeRow(name));
+  }
+
+  async function testPoeModelRow(name) {
+    if (!poeNames().includes(name)) return;
+    const existing = poeInflight.get(name);
+    if (existing) { existing.ctrl.abort(); return; }
+
+    if (!String(Settings.get('poeApiKey') || '').trim()) {
+      poeTests.set(name, { state: 'err', message: '請先填入 Poe API Key' });
+      refreshPoeRow(name);
+      Toast.error('請先填入 Poe API Key');
+      return;
+    }
+
+    const ctrl = new AbortController();
+    poeInflight.set(name, { ctrl });
+    poeTests.set(name, { state: 'pending' });
+    refreshPoeRow(name);
+
+    try {
+      const r = await API.testPoeModel(name, { signal: ctrl.signal });
+      if (!poeNames().includes(name)) return;
+      poeTests.set(name, {
+        state: 'ok',
+        reply: r.reply,
+        fromReasoning: r.fromReasoning,
+        model: r.model,
+        requested: name,
+        elapsedMs: r.elapsedMs,
+      });
+      Toast.ok(`「${name}」可用`);
+    } catch (e) {
+      if (!poeNames().includes(name)) return;
+      if (e?.aborted) poeTests.set(name, { state: 'idle', note: '已取消測試' });
+      else {
+        poeTests.set(name, { state: 'err', message: e.message || '測試失敗' });
+        Toast.error(`「${name}」無法使用：${e.message || '測試失敗'}`);
+      }
+    } finally {
+      poeInflight.delete(name);
+      if (poeNames().includes(name)) refreshPoeRow(name);
+    }
+  }
+
+  function initPoeModelList() {
+    const input = U.$('#poe-model-input');
+    const btn = U.$('#btn-add-poe-model');
+    if (!input || !btn || input.dataset.bound) return;
+    input.dataset.bound = '1';
+    btn.addEventListener('click', addPoeModelsFromInput);
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); addPoeModelsFromInput(); }
+    });
+    Settings.on('*', (_value, key) => {
+      if (key === 'poeModels' || key === '*') renderPoeModelList();
+    });
+    /* 舊版逗號文字框可能存進空白或重複名稱，打開新介面時清一次 */
+    const raw = Settings.get('poeModels');
+    if (Array.isArray(raw)) {
+      const next = [];
+      raw.forEach(id => {
+        const n = typeof id === 'string' ? id.trim() : '';
+        if (n && !next.includes(n)) next.push(n);
+      });
+      const changed = next.length !== raw.length || raw.some((id, i) => id !== next[i]);
+      if (changed) { Settings.set('poeModels', next); return; }
+    }
+    renderPoeModelList();
+  }
+
   return {
     openSettings, switchSettingsTab, applyProviderUI, onProviderChanged, refreshSettingsLabels,
     verifyCurrentKey, openModelPicker, openSearch, renderSearch,
-    aiTitleInto, openChatConfig, saveChatConfig, exportMenu,
+    aiTitleInto, openChatConfig, saveChatConfig, exportMenu, initPoeModelList,
   };
 })();

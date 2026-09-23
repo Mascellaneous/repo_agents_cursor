@@ -53,10 +53,13 @@ window.Models = (() => {
     };
   }
 
-  /** 由使用者維護的 Poe 清單建目錄（無價格 / 無 context 資訊） */
+  /** 由使用者維護的 Poe 清單建目錄（無價格 / 無 context 資訊）。
+      空陣列就是空目錄——不再偷偷換回預設清單，否則設定頁刪光後選擇器仍會看到舊 bot。 */
   function poeCatalog() {
     const list = Settings.get('poeModels');
-    const ids = (Array.isArray(list) && list.length) ? list : POE_DEFAULT_MODELS;
+    const ids = Array.isArray(list)
+      ? list.filter(id => typeof id === 'string' && id.trim())
+      : POE_DEFAULT_MODELS;
     return ids.map(id => ({
       id, name: id,
       context: 0, promptPrice: 0, completionPrice: 0,
@@ -165,7 +168,7 @@ window.Models = (() => {
     if (!list.length) {
       box.appendChild(U.el('p.muted', {
         text: isPoe()
-          ? '清單是空的。請到「設定 → API → 常用模型清單」自行填入 Poe bot 名稱。'
+          ? '清單是空的。請到「設定 → API」自行加入 Poe bot。'
           : '找不到符合條件的模型。',
       }));
       return;

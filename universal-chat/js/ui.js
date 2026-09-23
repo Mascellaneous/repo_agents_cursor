@@ -165,6 +165,7 @@ window.UI = (() => {
       i.type = i.type === 'password' ? 'text' : 'password';
     };
     U.$('#btn-verify-poe-key').onclick = D.verifyCurrentKey;
+    D.initPoeModelList();
  
     /* ---- 設定：模型 ---- */
     U.$('#btn-pick-default-model').onclick = () => Models.openPicker({

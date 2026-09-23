@@ -185,11 +185,18 @@
               <input class="input" type="text" data-setting="poeBaseUrl" aria-label="Poe Base URL">
             </div>
             <div class="field">
-              <label>常用模型清單（以逗號分隔，自行維護）</label>
-              <textarea class="input" rows="3" data-setting="poeModels" data-type="array"
-                        placeholder="Gemini-3.6-Flash, Claude-Opus-5" aria-label="Poe 常用模型清單"></textarea>
+              <label id="poe-models-label">常用模型</label>
+              <ul id="poe-model-list" class="poe-models" aria-labelledby="poe-models-label"></ul>
+              <p id="poe-model-empty" class="poe-models__empty hidden">尚未加入模型。在下方輸入 Poe 上的 bot 名稱，再按「新增」。</p>
+              <div class="row poe-models__add">
+                <input id="poe-model-input" class="input" type="text" autocomplete="off" spellcheck="false"
+                       placeholder="bot 名稱，例如 Claude-Opus-5" aria-label="新增 Poe 模型名稱">
+                <button id="btn-add-poe-model" class="btn btn--primary nowrap" type="button">新增</button>
+              </div>
               <p class="hint">Poe 沒有公開的模型目錄 API，因此這份清單由你自己維護。
-                 名稱需與 Poe 上的 bot 名稱完全一致（大小寫敏感）。</p>
+                 名稱需與 Poe 上的 bot 名稱完全一致（大小寫敏感）。
+                 可一次貼上多個名稱（以逗號或換行分隔）。
+                 「測試」會送出一句簡短提問，確認該模型能回覆。</p>
             </div>
           </div>
  
