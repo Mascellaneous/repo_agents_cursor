@@ -320,3 +320,50 @@ async function renderQuestions() {
     `;
     }).join('');
 }
+
+// Copy every question that matches the current filters, in the current sort
+// order. Pagination is ignored. A large set asks for confirmation first
+// because the clipboard text includes full stems and answers.
+const COPY_CONFIRM_THRESHOLD = 50;
+
+function answerTextForCopy(q) {
+    const letter = q.answerMC && q.answerMC !== '-' ? String(q.answerMC).trim() : '';
+    const written = q.answerChi && q.answerChi !== '-' ? String(q.answerChi).trim() : '';
+    if (letter && written) {
+        return written.includes(letter) ? written : `${letter}\n${written}`;
+    }
+    return letter || written || '（沒有答案）';
+}
+
+async function copyFilteredQuestions() {
+    const searchEl = document.getElementById('search');
+    const filters = {
+        search: searchEl ? searchEl.value : '',
+        searchScope: window.searchScope || 'all',
+        triState: triStateFilters,
+        percentageFilter: window.percentageFilter,
+        marksFilter: window.marksFilter
+    };
+
+    let questions = await storage.getQuestions(filters);
+    const sortSelect = document.getElementById('sort-order');
+    const sortBy = sortSelect ? sortSelect.value : 'default';
+    questions = sortQuestions(questions, sortBy);
+
+    const button = document.getElementById('copy-filtered-btn');
+    if (questions.length === 0) {
+        alert('沒有符合篩選條件的題目可複製。');
+        return;
+    }
+    if (questions.length > COPY_CONFIRM_THRESHOLD) {
+        const ok = confirm(`現時篩選有 ${questions.length} 題。複製後剪貼簿會包含每題的全文和答案，內容可能很長。確定要複製嗎？`);
+        if (!ok) return;
+    }
+
+    const text = questions.map(q => {
+        const question = (q.plainText || q.questionTextChi || '').trim();
+        return `${question}\n${answerTextForCopy(q)}`;
+    }).join('\n\n');
+
+    copyToClipboard(text, button);
+}

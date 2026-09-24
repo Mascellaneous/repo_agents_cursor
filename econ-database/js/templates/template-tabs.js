@@ -56,6 +56,7 @@ function renderTabContentsTemplate() {
                 <input type="checkbox" id="show-tags-toggle" checked onchange="toggleTags(this)"> 顯示詳細標籤
             </label>
             <span class="total-count" id="question-count">總題目數: 0</span>
+            <button type="button" class="btn btn-outline-primary" id="copy-filtered-btn" onclick="copyFilteredQuestions()">📋 複製篩選題目</button>
         </div>
 
         <!-- Action bar (admin-only actions) -->
