@@ -9,6 +9,14 @@ const TAB_SUPPORTS_HTML = `
                 <option value="">全部</option><option>UR</option><option>SSR</option><option>SR</option><option value="none">未設定</option></select></div>
             <div class="fgroup"><label>圖片</label><select id="fs-image" onchange="fc('supports')">
                 <option value="">全部</option><option value="y">有圖片</option><option value="n">無圖片</option></select></div>
+            <div class="fgroup"><label>限定</label><select id="fs-limited" onchange="fc('supports')">
+                <option value="">全部</option><option value="Y">限定</option><option value="N">非限定</option></select></div>
+            <div class="fgroup"><label>隊長技能（系列）</label><select id="fs-cap-series" onchange="fc('supports')" title="隊長技能的系列清單包含此值">
+                <option value="">全部</option></select></div>
+            <div class="fgroup"><label>隊長技能（標籤）</label><select id="fs-cap-tag" onchange="fc('supports')" title="隊長技能的標籤清單包含此值">
+                <option value="">全部</option></select></div>
+            <div class="fgroup"><label>支援技能</label><select id="fs-supskill" onchange="fc('supports')">
+                <option value="">全部</option><option value="hp">恢復HP</option><option value="en">恢復EN</option><option value="none">沒有支援技能</option></select></div>
             <div class="fgroup"><label>等級</label>
                 <select id="fs-lvlstate" onchange="fc('supports')"
                         title="支援單位以上限值判斷滿級（上限見程式內 SUPPORT_MAX_LEVEL）">
@@ -18,7 +26,7 @@ const TAB_SUPPORTS_HTML = `
                 </select>
             </div>
             <div class="fgroup"><label>排序</label>
-                <select id="fs-sort" onchange="fc('supports')"><option value="date">加入日期</option><option value="order" selected>獲得順序</option><option value="name">名稱</option><option value="rarity">稀有度</option></select>
+                <select id="fs-sort" onchange="fc('supports')"><option value="date">加入日期</option><option value="order" selected>獲得順序</option><option value="name">名稱</option><option value="rarity">稀有度</option><option value="limited">限定</option><option value="captain">隊長技能%</option><option value="skill">支援技能名稱</option></select>
                 <select id="fs-order" onchange="fc('supports')"><option value="desc">降冪</option><option value="asc">升冪</option></select>
             </div>
             <button class="btn btn-clear" onclick="clearS()">清除</button>
@@ -54,6 +62,25 @@ const TAB_SUPPORTS_HTML = `
                     <option value="">請選擇</option><option>UR</option><option>SSR</option><option>SR</option></select></div>
                 <div class="fg slim"><label>獲得順序</label><input type="number" id="s-acq" min="1" step="1" placeholder="自動"></div>
                 <div class="fg slim"><label>等級 (1–100)</label><input type="number" id="s-lvl" min="1" max="100" step="1" value="1"></div>
+                <div class="fg slim"><label>限定</label><select id="s-limited"><option value="N">N</option><option value="Y">Y</option></select></div>
+            </div>
+            <div class="frow">
+                <div class="fg"><label>隊長技能</label>
+                    <p class="hint">選擇單位的系列或標籤。顯示為「系列／標籤升特定單位的全能力值n%（EN除外）」。</p>
+                    <div class="frow" style="margin:3px 0 0;gap:4px;align-items:center;">
+                        <button type="button" class="btn btn-info btn-sm" onclick="openSupCapPicker('series')">＋ 系列…</button>
+                        <button type="button" class="btn btn-info btn-sm" onclick="openSupCapPicker('tag')">＋ 標籤…</button>
+                        <select id="s-caplogic" title="多個系列／標籤之間的關係">
+                            <option value="AND">AND・且</option><option value="OR">OR・或</option></select>
+                        <label>全能力值%<input type="number" id="s-cappct" min="1" max="100" step="1" value="36" style="width:64px;"></label>
+                    </div>
+                    <div id="s-cap-chips" class="abreq-chips" style="margin-top:3px;min-height:18px;"></div>
+                </div>
+            </div>
+            <div class="frow">
+                <div class="fg"><label>支援技能名稱</label><input type="text" id="s-skname" maxlength="80" placeholder="技能名稱"></div>
+                <div class="fg slim"><label>恢復HP %</label><input type="number" id="s-skhp" min="1" max="100" step="1" placeholder="空白＝無"></div>
+                <div class="fg slim"><label>恢復EN %</label><input type="number" id="s-sken" min="1" max="100" step="1" placeholder="空白＝無"></div>
             </div>
             <div class="frow">
                 <button type="submit" class="btn btn-success">💾 儲存支援單位</button>

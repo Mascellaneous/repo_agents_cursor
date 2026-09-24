@@ -19,7 +19,7 @@
 | 命名鐵律 | 篩選面板控制項 ID：`fu-*`／`fc-*`／`fs-*`；表單控制項 ID：`u-*`／`c-*`／`s-*`。**兩者嚴禁混用**（`search-units.js`／`search-characters.js`／`search-supports.js` 檔頭明文規定） |
 | 擴充模式 | `weapon-filters.js` 在載入時以 wrap（包裝）方式擴充 `applyUnitFilters`／`clearU`／`normalizeWeaponEntry` 三個既有函式（`_wf` 旗標防重複），見 §9 |
 | 特殊記錄 | `units` store 內 id 為 `__wkinds__` 的舊版系統記錄：現已無作用但**必須從渲染與統計中排除**，見 §8.12 |
-| 等級上限 | UR 100；SSR／SR／R／N 為 90／80／70／60；SP 化後一律 100（UR 不適用 SP）；支援單位固定 100（`SUPPORT_MAX_LEVEL`）。支援單位稀有度只有 `UR`／`SSR`／`SR`（`SUPPORT_RARITIES`） |
+| 等級上限 | UR 100；SSR／SR／R／N 為 90／80／70／60；SP 化後一律 100（UR 不適用 SP）；支援單位固定 100（`SUPPORT_MAX_LEVEL`）。支援單位稀有度只有 `UR`／`SSR`／`SR`，另有限定、隊長技能（系列／標籤＋百分比）、支援技能（恢復 HP／EN） |
 | XSS 防護 | 所有動態插入 HTML 的插值一律經 `esc()`；輸入清理用 `sanitizeText()`／`wdCleanStr()` |
  
 ---

@@ -218,6 +218,26 @@ function normalizeUnitRecord(u) {
     return u;
 }
  
+function normalizeSupportRecord(r) {
+    r.rarity = (typeof SUPPORT_RARITIES !== 'undefined' && SUPPORT_RARITIES.includes(r.rarity)) ? r.rarity : '';
+    r.limited = r.limited === 'Y' ? 'Y' : 'N';
+    const arr = v => Array.isArray(v) ? v.map(x => String(x)).filter(Boolean) : (v ? [String(v)] : []);
+    r.captainSeries = arr(r.captainSeries);
+    r.captainTags = arr(r.captainTags);
+    r.captainLogic = r.captainLogic === 'OR' ? 'OR' : 'AND';
+    const pct = parseInt(r.captainPct, 10);
+    r.captainPct = (r.captainSeries.length || r.captainTags.length) && pct >= 1 && pct <= 100 ? pct : null;
+    r.supportSkillName = String(r.supportSkillName || '').slice(0, 80);
+    const effects = [];
+    (Array.isArray(r.supportEffects) ? r.supportEffects : []).forEach(e => {
+        if (!e || (e.stat !== 'hp' && e.stat !== 'en')) return;
+        const p = parseInt(e.pct, 10);
+        if (p >= 1 && p <= 100 && !effects.some(x => x.stat === e.stat)) effects.push({ stat: e.stat, pct: p });
+    });
+    r.supportEffects = effects;
+    return r;
+}
+
 /* 記錄檢查：捨棄無 id／格式錯誤者；依 id 去除重複（僅保留第一筆）→ 絕不產生重複記錄 */
 function sanitizeRecords(arr, kind) {
     if (!Array.isArray(arr)) return [];
@@ -232,7 +252,7 @@ function sanitizeRecords(arr, kind) {
         const r = { ...raw, id };
         if (!r.name) r.name = '(未命名)';
         if (kind === 'units') normalizeUnitRecord(r);
-        if (kind === 'supports') r.rarity = (typeof SUPPORT_RARITIES !== 'undefined' && SUPPORT_RARITIES.includes(r.rarity)) ? r.rarity : '';
+        if (kind === 'supports') normalizeSupportRecord(r);
         out.push(r);
     }
     return out;

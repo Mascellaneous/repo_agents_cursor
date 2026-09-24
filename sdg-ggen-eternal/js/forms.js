@@ -24,6 +24,29 @@ function loadABREQ(c) {
     ABREQ[0].series = abReqArr(c.tagBonusSeries);   // 契合度（相容舊單值）
     ABREQ[0].tag    = abReqArr(c.tagBonusTag);
 }
+/* 支援單位隊長技能：系列／標籤多選，邏輯與百分比在表單下拉／數字欄。 */
+let SUP_CAP = { series: [], tags: [] };
+function resetSupCap() { SUP_CAP = { series: [], tags: [] }; }
+function loadSupCap(s) {
+    SUP_CAP = {
+        series: abReqArr(s && s.captainSeries),
+        tags: abReqArr(s && s.captainTags)
+    };
+}
+function updSupCapChips() {
+    const el = gi('s-cap-chips'); if (!el) return;
+    const mk = (arr, kind, pre) => (arr || []).map(v =>
+        `<span class="chip tag">${pre}${esc(v)}` +
+        `<button type="button" class="sel-rm-supcap" data-kind="${kind}" data-v="${esc(v)}" title="移除">✕</button></span>`).join('');
+    el.innerHTML = mk(SUP_CAP.series, 'series', '系列：') + mk(SUP_CAP.tags, 'tag', '標籤：');
+}
+function supPctOrNull(id) {
+    const raw = gi(id) ? String(gi(id).value).trim() : '';
+    if (raw === '') return null;
+    const n = parseInt(raw, 10);
+    return (n >= 1 && n <= 100) ? n : null;
+}
+
 function updAbReqChips(i) {
     const el = gi(i === 0 ? 'c-tbreq-chips' : 'c-ab' + i + 'req-chips'); if (!el) return;
     const mk = (arr, kind, pre) => (arr || []).map(v =>
@@ -395,6 +418,9 @@ async function openSupportForm() {
     EDIT.supports = null;
     gi('s-id').value = '';
     gi('form-supports').reset();
+    resetSupCap();
+    updSupCapChips();
+    if (gi('s-cappct')) gi('s-cappct').value = '36';
     showForm('supports', '新增支援單位');
 }
  
@@ -408,15 +434,38 @@ async function editSupport(id) {
     gi('s-acq').value = (typeof s.acqOrder === 'number' && s.acqOrder > 0) ? s.acqOrder : '';
     gi('s-lvl').value = (s.level ?? 1);
     gi('s-rarity').value = SUPPORT_RARITIES.includes(s.rarity) ? s.rarity : '';
+    gi('s-limited').value = s.limited === 'Y' ? 'Y' : 'N';
+    loadSupCap(s);
+    updSupCapChips();
+    gi('s-caplogic').value = s.captainLogic === 'OR' ? 'OR' : 'AND';
+    gi('s-cappct').value = (s.captainPct >= 1 && s.captainPct <= 100) ? s.captainPct : 36;
+    gi('s-skname').value = s.supportSkillName || '';
+    const hp = (s.supportEffects || []).find(e => e && e.stat === 'hp');
+    const en = (s.supportEffects || []).find(e => e && e.stat === 'en');
+    gi('s-skhp').value = hp ? hp.pct : '';
+    gi('s-sken').value = en ? en.pct : '';
     showForm('supports', '編輯支援單位 — ' + (s.name || ''));
 }
  
 function collectSupportFromForm() {
+    const effects = [];
+    const hp = supPctOrNull('s-skhp');
+    const en = supPctOrNull('s-sken');
+    if (hp) effects.push({ stat: 'hp', pct: hp });
+    if (en) effects.push({ stat: 'en', pct: en });
+    const hasCap = SUP_CAP.series.length || SUP_CAP.tags.length;
     return {
         name: gi('s-name').value.trim(),
         image: normalizeImagePath(gi('s-image').value, 'supports'),
         rarity: gi('s-rarity').value,
-        level: parseInt(gi('s-lvl').value, 10) || 1
+        level: parseInt(gi('s-lvl').value, 10) || 1,
+        limited: gi('s-limited').value === 'Y' ? 'Y' : 'N',
+        captainSeries: [...SUP_CAP.series],
+        captainTags: [...SUP_CAP.tags],
+        captainLogic: gi('s-caplogic').value === 'OR' ? 'OR' : 'AND',
+        captainPct: hasCap ? (supPctOrNull('s-cappct') || 36) : null,
+        supportSkillName: gi('s-skname').value.trim(),
+        supportEffects: effects
     };
 }
  
@@ -424,6 +473,9 @@ async function saveSupport() {
     const s = collectSupportFromForm();
     if (!s.name) { showToast('請輸入名稱', true); return; }
     if (!SUPPORT_RARITIES.includes(s.rarity)) { showToast('請選擇稀有度（UR／SSR／SR）', true); return; }
+    if ((SUP_CAP.series.length || SUP_CAP.tags.length) && !supPctOrNull('s-cappct')) {
+        showToast('隊長技能的百分比須為 1–100', true); return;
+    }
     const editingId = gi('s-id').value || null;
     if (editingId) {
         const old = (await getAll('supports')).find(x => x.id === editingId);
@@ -439,5 +491,6 @@ async function saveSupport() {
         showToast('支援單位已新增：' + item.name);
     }
     hideForm('supports');
+    if (typeof refreshSupFilterSelects === 'function') refreshSupFilterSelects();
     RENDER.supports();
 }

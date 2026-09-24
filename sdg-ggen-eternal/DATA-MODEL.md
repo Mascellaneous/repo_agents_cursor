@@ -83,6 +83,15 @@
 | `name`／`image`／`acqOrder` | 同上 | `image` 純檔名自動補 `images/supports/` |
 | `rarity` | string | 表單必填：`UR`／`SSR`／`SR`（`SUPPORT_RARITIES`）。沒有 `R`／`N`，也沒有類型。舊資料或匯入值不在這三個之中 → `sanitizeRecords` 歸 `''`（卡片無徽章；篩選「未設定」用 `fs-rarity=none`） |
 | `level` | number | 等級 1–100（滿級判定用固定上限 `SUPPORT_MAX_LEVEL = 100`） |
+| `limited` | string | `Y`／`N`（限定）。非 `Y` 正規化為 `N` |
+| `captainSeries` | string[] | 隊長技能套用的單位系列（多選，池與角色契合度相同） |
+| `captainTags` | string[] | 隊長技能套用的單位標籤 |
+| `captainLogic` | string | `'AND'`（預設）／`'OR'` |
+| `captainPct` | number 或 null | 全能力值提升百分比（EN 除外）。有系列或標籤時才保留 1–100，否則 `null`。表單預設 36 |
+| `supportSkillName` | string | 支援技能名稱，最長 80 |
+| `supportEffects` | object[] | `{ stat:'hp'\|'en', pct:1–100 }`，每種最多一筆。顯示為「範圍內的我方單位恢復HP／EN{pct}%」 |
+
+篩選：`fs-limited`、`fs-cap-series`、`fs-cap-tag`、`fs-supskill`（`hp`／`en`／`none`）。排序另有 `limited`、`captain`（百分比）、`skill`（支援技能名稱）。
 
 ## 4.1 optionalParts（選擇性零件）
 

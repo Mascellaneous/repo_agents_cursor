@@ -346,7 +346,7 @@ function clearC() {
 }
 function clearS() {
     gi('s-search').value = '';
-    ['fs-lvlstate','fs-image','fs-rarity'].forEach(id => gi(id).value = '');
+    ['fs-lvlstate','fs-image','fs-rarity','fs-limited','fs-cap-series','fs-cap-tag','fs-supskill'].forEach(id => gi(id).value = '');
     gi('fs-sort').value = 'order'; gi('fs-order').value = 'desc'; // 預設：獲得順序降冪
     fc('supports');
 }
@@ -586,6 +586,7 @@ function refreshAbReqSelects() {
     keep(gi('fc-abreq-tag'),   [...reqT].sort(srt), '全部');
     keep(gi('fc-tbseries'),    [...tbS].sort(srt), '全部');
     keep(gi('fc-tbtag'),       [...tbT].sort(srt), '全部');
+    if (typeof refreshSupFilterSelects === 'function') refreshSupFilterSelects();
 }
 
 /* =========================================================
@@ -644,7 +645,74 @@ function closeAbReqPicker() { const ov = gi('abreq-modal'); if (ov) ov.remove();
 /* 表單 chips 上的 ✕：移除單一需求（委派） */
 document.addEventListener('click', e => {
     const rm = e.target.closest('.sel-rm-abreq');
-    if (!rm || !ABREQ) return;
-    const i = +rm.dataset.i, kind = rm.dataset.kind, v = rm.dataset.v;
-    if (ABREQ[i]) { ABREQ[i][kind] = ABREQ[i][kind].filter(x => x !== v); updAbReqChips(i); }
+    if (rm && ABREQ) {
+        const i = +rm.dataset.i, kind = rm.dataset.kind, v = rm.dataset.v;
+        if (ABREQ[i]) { ABREQ[i][kind] = ABREQ[i][kind].filter(x => x !== v); updAbReqChips(i); }
+    }
+    const cap = e.target.closest('.sel-rm-supcap');
+    if (cap && typeof SUP_CAP !== 'undefined') {
+        const kind = cap.dataset.kind === 'series' ? 'series' : 'tags';
+        SUP_CAP[kind] = (SUP_CAP[kind] || []).filter(x => x !== cap.dataset.v);
+        updSupCapChips();
+    }
 });
+
+function refreshSupFilterSelects() {
+    const keep = (el, arr) => {
+        if (!el) return;
+        const cur = el.value;
+        el.innerHTML = '<option value="">全部</option>' +
+            arr.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join('');
+        if ([...el.options].some(o => o.value === cur)) el.value = cur;
+    };
+    const series = new Set(), tags = new Set();
+    (cache.supports || []).forEach(s => {
+        abReqArr(s.captainSeries).forEach(x => series.add(x));
+        abReqArr(s.captainTags).forEach(x => tags.add(x));
+    });
+    const srt = (a, b) => a.localeCompare(b, 'zh-Hant');
+    keep(gi('fs-cap-series'), [...series].sort(srt));
+    keep(gi('fs-cap-tag'), [...tags].sort(srt));
+}
+
+function openSupCapPicker(kind) {
+    if (typeof SUP_CAP === 'undefined') return;
+    const key = kind === 'series' ? 'series' : 'tags';
+    const draft = new Set(SUP_CAP[key] || []);
+    const pool = key === 'series' ? poolSeries() : poolTags('units');
+    let ov = gi('supcap-modal'); if (ov) ov.remove();
+    ov = document.createElement('div');
+    ov.id = 'supcap-modal'; ov.className = 'ro-overlay show';
+    ov.innerHTML = `
+        <div class="ro-modal">
+            <div class="ro-head">
+                <h3>隊長技能${key === 'series' ? '系列' : '標籤'}</h3>
+                <button type="button" class="btn btn-warning btn-sm" onclick="closeSupCapPicker()">✕</button>
+            </div>
+            <p class="ro-hint">可複選單位的系列或標籤。多個條件用表單上的 AND／OR。</p>
+            <div class="ro-list" style="max-height:55vh;overflow:auto;">
+                ${pool.length ? pool.map(s => `
+                    <label class="abreq-pick" style="display:block;padding:3px 6px;cursor:pointer;">
+                        <input type="checkbox" value="${esc(s)}"${draft.has(s) ? ' checked' : ''}> ${esc(s)}
+                    </label>`).join('')
+                : '<p class="empty-msg" style="width:100%;">沒有可選項目。請先在單位加上系列或標籤。</p>'}
+            </div>
+            <div class="ro-foot">
+                <button type="button" class="btn btn-warning" onclick="closeSupCapPicker()">取消</button>
+                <button type="button" class="btn btn-success" id="supcap-apply">💾 套用</button>
+            </div>
+        </div>`;
+    document.body.appendChild(ov);
+    ov.addEventListener('change', e => {
+        const cb = e.target.closest('input[type=checkbox]');
+        if (!cb) return;
+        cb.checked ? draft.add(cb.value) : draft.delete(cb.value);
+    });
+    ov.addEventListener('click', e => { if (e.target === ov) closeSupCapPicker(); });
+    gi('supcap-apply').onclick = () => {
+        SUP_CAP[key] = [...draft].sort((a, b) => a.localeCompare(b, 'zh-Hant'));
+        updSupCapChips();
+        closeSupCapPicker();
+    };
+}
+function closeSupCapPicker() { const ov = gi('supcap-modal'); if (ov) ov.remove(); }
