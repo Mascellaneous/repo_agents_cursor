@@ -25,7 +25,9 @@ IndexedDBStorage.prototype.applyFilters = function(questions, filters) {
             const checkSection = () => q.section && q.section.toLowerCase().includes(searchLower);
             const checkNum = () => q.questionNumber && q.questionNumber.toLowerCase().includes(searchLower);
             const checkContent = () => (q.questionTextChi && q.questionTextChi.toLowerCase().includes(searchLower)) ||
-                                     (q.questionTextEng && q.questionTextEng.toLowerCase().includes(searchLower));
+                                     (q.questionTextEng && q.questionTextEng.toLowerCase().includes(searchLower)) ||
+                                     (q.plainText && q.plainText.toLowerCase().includes(searchLower)) ||
+                                     (q.topic && q.topic.toLowerCase().includes(searchLower));
             const checkPublisher = () => q.publisher && q.publisher.toLowerCase().includes(searchLower);
             const checkAnswer = () => {
                 return (q.answerMC && q.answerMC.toLowerCase().includes(searchLower)) ||

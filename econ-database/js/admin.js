@@ -22,6 +22,7 @@ async function hashPassword(password) {
  */
 async function verifyPasswordWithServer(passwordHash) {
     try {
+        if (!CONFIG.GOOGLE_APPS_SCRIPT_URL) return false;
         const scriptUrl = CONFIG.GOOGLE_APPS_SCRIPT_URL;
         // Use POST instead of GET
         const response = await fetch(scriptUrl, {
@@ -57,38 +58,14 @@ async function toggleAdminMode() {
         renderQuestions();
         showNotification('已退出管理員模式', 'info');
     } else {
-        // Prompt for password
-        const password = prompt('請輸入管理員密碼：');
-        
-        if (password === null) return; // User cancelled
-        
-        if (!password.trim()) {
-            showNotification('密碼不能為空', 'error');
+        // Local dataset: there is no Apps Script password check.
+        if (!confirm('進入管理員模式後可編輯本機題庫。重新載入 JSON 會覆蓋未匯出的修改。繼續？')) {
             return;
         }
-        
-        // Show loading
-        showNotification('驗證中...', 'info');
-        
-        try {
-            // Hash the password
-            const passwordHash = await hashPassword(password);
-            
-            // Verify with server
-            const isValid = await verifyPasswordWithServer(passwordHash);
-            
-            if (isValid) {
-                isAdminMode = true;
-                updateAdminUI();
-                renderQuestions();
-                showNotification('已進入管理員模式', 'success');
-            } else {
-                showNotification('密碼錯誤！', 'error');
-            }
-        } catch (error) {
-            console.error('Admin mode error:', error);
-            showNotification('驗證失敗，請稍後再試', 'error');
-        }
+        isAdminMode = true;
+        updateAdminUI();
+        renderQuestions();
+        showNotification('已進入管理員模式', 'success');
     }
 }
 

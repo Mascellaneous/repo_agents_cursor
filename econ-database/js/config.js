@@ -1,17 +1,11 @@
-// Configuration file for Google Sheets sync
-// Dependencies: storage-sync.js (GoogleSheetsSync)
+// Questions are loaded from a local JSON file instead of Google Sheets.
+// Dependencies: storage-sync.js (QuestionJsonSource)
 
 const CONFIG = {
-    GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbyz0vQ1VM5ouux34jApZpvWbkW48u-4OOKQYJmUij6LfIq6ulEm9oCwfWvyL33fMg85/exec'
+    QUESTIONS_JSON_URL: 'data/questions.json'
 };
 
-// Initialize sync on page load
-// Dependencies: storage-sync.js (GoogleSheetsSync)
-window.addEventListener('DOMContentLoaded', async () => {
-    if (CONFIG.GOOGLE_APPS_SCRIPT_URL && CONFIG.GOOGLE_APPS_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-        window.googleSheetsSync = new GoogleSheetsSync(CONFIG.GOOGLE_APPS_SCRIPT_URL);
-        console.log('✅ Google Sheets Sync initialized');
-    } else {
-        console.warn('⚠️ Google Apps Script URL not configured in config.js');
-    }
+window.addEventListener('DOMContentLoaded', () => {
+    window.questionJsonSource = new QuestionJsonSource(CONFIG.QUESTIONS_JSON_URL);
+    console.log('✅ JSON question source initialized');
 });

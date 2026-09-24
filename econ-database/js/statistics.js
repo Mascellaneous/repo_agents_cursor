@@ -167,16 +167,17 @@ async function renderConceptStats() {
     const stats = {};
     
     questions.forEach(q => {
-        if (q.concepts && Array.isArray(q.concepts)) {
-            q.concepts.forEach(concept => {
-                if (!stats[concept]) {
-                    stats[concept] = { total: 0, mc: 0, text: 0 };
-                }
-                stats[concept].total++;
-                if (q.questionType === 'MC') stats[concept].mc++;
-                if (q.questionType === '文字題 (SQ/LQ)') stats[concept].text++;
-            });
-        }
+        const topics = q.topic
+            ? String(q.topic).split('；').map(s => s.trim()).filter(Boolean)
+            : (Array.isArray(q.concepts) ? q.concepts : []);
+        topics.forEach(concept => {
+            if (!stats[concept]) {
+                stats[concept] = { total: 0, mc: 0, text: 0 };
+            }
+            stats[concept].total++;
+            if (q.questionType === 'MC') stats[concept].mc++;
+            if (q.questionType === '文字題 (SQ/LQ)') stats[concept].text++;
+        });
     });
     
     const grid = document.getElementById('concepts-grid');

@@ -69,17 +69,18 @@ async function importJSON() {
                 return;
             }
             
-            // Clear existing data
-            await storage.clear();
-            
-            // Import questions
             let imported = 0;
-            for (const question of data.questions) {
-                try {
-                    await storage.addQuestion(question);
-                    imported++;
-                } catch (error) {
-                    console.error('Failed to import question:', question, error);
+            if (window.questionJsonSource) {
+                imported = await window.questionJsonSource.importPayload(data);
+            } else {
+                await storage.clear();
+                for (const question of data.questions) {
+                    try {
+                        await storage.addQuestion(question);
+                        imported++;
+                    } catch (error) {
+                        console.error('Failed to import question:', question, error);
+                    }
                 }
             }
             

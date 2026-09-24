@@ -247,20 +247,17 @@ async function submitFeedback() {
     submitBtn.disabled = true;
     
     try {
-        // Construct the URL for the Google Apps Script
-        const scriptUrl = window.googleSheetsSync ? window.googleSheetsSync.webAppUrl : CONFIG.GOOGLE_APPS_SCRIPT_URL;
-        
-        // We no longer send targetSheetId; the backend handles it via config.gs
-        const url = `${scriptUrl}?action=feedback&questionId=${encodeURIComponent(questionId)}&username=${encodeURIComponent(username)}&comment=${encodeURIComponent(feedbackText)}`;
-        
-        const response = await fetch(url);
-        
-        if (response.ok) {
-            alert('✅ 感謝您的回報！我們已收到您的建議。');
-            closeFeedbackModal();
-        } else {
-            throw new Error('Server response not ok');
-        }
+        const key = 'econ_feedback';
+        const existing = JSON.parse(localStorage.getItem(key) || '[]');
+        existing.push({
+            questionId,
+            username,
+            comment: feedbackText,
+            time: new Date().toISOString()
+        });
+        localStorage.setItem(key, JSON.stringify(existing));
+        alert('✅ 感謝您的回報！意見已儲存在這部瀏覽器。');
+        closeFeedbackModal();
     } catch (error) {
         console.error('Feedback error:', error);
         alert('❌ 傳送失敗，請稍後再試。');

@@ -1,9 +1,10 @@
 # HKDSE Economics Questions Database
 
 A single-page web app for browsing, filtering, and managing a database of
-HKDSE / HKCEE / HKALE Economics past-paper questions. Data is synced from
-Google Sheets (via Google Apps Script) into IndexedDB for fast client-side
-filtering. The UI is in Traditional Chinese.
+HKDSE / HKCEE / HKALE Economics past-paper questions. Data is loaded from
+a JSON file (data/questions.json) into IndexedDB for fast client-side
+filtering. Users can also import another JSON file with the same shape.
+The UI is in Traditional Chinese.
 
 Documentation convention: do NOT use fenced code blocks anywhere in this
 Readme. Describe code, file paths, and identifiers inline in prose or in
@@ -16,8 +17,8 @@ plain lists instead.
 1. Serve the project folder with any static web server (or open
    index.html directly — but a server is recommended so fetch/CORS
    behaves consistently).
-2. The app shows「載入中...」while it pulls data from the configured
-   Google Apps Script endpoint and writes it into IndexedDB.
+2. The app shows「載入中...」while it reads data/questions.json and
+   writes the questions into IndexedDB.
 3. When sync completes, a「✓ 資料載入完成」pill appears in the header
    corner and the question list renders.
 
@@ -113,13 +114,16 @@ Templates (js/templates/):
 ### Permissions
 - Elements with class btn-admin-only are hidden for non-admin users, and
   the 'Colleagues' group never sees chapter names (filter or stats).
-- Note: this is UI-level gating only. Real write protection must be
-  enforced in the Google Apps Script endpoint.
+- Note: this is UI-level gating only. The JSON file is the source of
+  truth; IndexedDB edits last until the next JSON reload.
 
 ### Data & Security
 - IndexedDB is treated as a disposable cache: it is wiped and rebuilt
-  from Google Sheets on every sync/login. Do not store user-entered
+  from data/questions.json on every load. Do not store user-entered
   data only in IndexedDB (this is why the old 備註 feature was removed).
+- Each question record has id, topic (identified syllabus topic) and
+  plainText (the question wording). questionTextChi is kept equal to
+  plainText so older card code still has the wording.
 - XSS policy: every Sheet-sourced value injected into HTML must pass
   through escapeHTML() — body text, attribute values (data-value,
   title), and tag labels alike. URL fields (imageChi, imageEng,
@@ -137,8 +141,8 @@ Templates (js/templates/):
 
 ## 4. Known Limitations / TODO
 
-- Statistics tabs are hidden pending review; re-enable via
-  TAB_DEFINITIONS when ready.
+- Topic, curriculum, chapter, and pattern statistics tabs are published
+  so the mock-paper topic distribution can be reviewed.
 - Range slider thumbs are styled for WebKit only; add the -moz
   range-thumb selector for Firefox.
 - Persistent per-question notes would require a write-back endpoint

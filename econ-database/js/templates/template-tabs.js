@@ -7,10 +7,10 @@
 const TAB_DEFINITIONS = [
     { id: 'questions',  label: '題目',        visible: true  },
     { id: 'publishers', label: '出版商統計',   visible: false },
-    { id: 'concepts',   label: '涉及概念統計', visible: false },
-    { id: 'topics',     label: '課程分類統計', visible: false },
-    { id: 'chapters',   label: 'Chapters統計', visible: false },
-    { id: 'patterns',   label: '題型統計',     visible: false },
+    { id: 'concepts',   label: '課題分佈',     visible: true  },
+    { id: 'topics',     label: '課程分類統計', visible: true  },
+    { id: 'chapters',   label: 'Chapters統計', visible: true  },
+    { id: 'patterns',   label: '題型統計',     visible: true  },
 ];
 
 function renderTabsNavTemplate() {

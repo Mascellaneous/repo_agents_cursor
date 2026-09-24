@@ -286,8 +286,8 @@ function showLoginModal() {
     });
 }
 
-// Attempt login
-// Dependencies: window.googleSheetsSync, window.authManager, storage-core.js (window.storage)
+// Attempt login. Identity is local; the question bank comes from JSON.
+// Dependencies: window.authManager
 async function attemptLogin() {
     const username = document.getElementById('username-input').value.trim().toLowerCase();
     const errorDiv = document.getElementById('login-error');
@@ -299,103 +299,20 @@ async function attemptLogin() {
         return;
     }
     
-    // Disable button during login
     loginBtn.disabled = true;
-    loginBtn.textContent = '驗證中...';
+    loginBtn.textContent = '進入中...';
     loginBtn.style.background = '#95a5a6';
     loginBtn.style.cursor = 'not-allowed';
     
     try {
-        showLoading('正在驗證使用者...');
-        
-        // Verify user with Google Apps Script
-        const response = await fetch(`${window.googleSheetsSync.webAppUrl}?username=${encodeURIComponent(username)}`);
-        
-        if (!response.ok) {
-            throw new Error('無法連接伺服器');
-        }
-        
-        // Try to parse JSON - catch if it's not JSON
-        let result;
-        try {
-            result = await response.json();
-        } catch (jsonError) {
-            throw new Error('伺服器回應格式錯誤');
-        }
-        
-        // Check for error before proceeding
-        if (result.error) {
-            hideLoading();
-            errorDiv.innerHTML = '❌ ' + result.message;
-            errorDiv.style.display = 'block';
-            resetLoginButton(loginBtn);
-            return;
-        }
-        
-        // Only proceed if login successful
-        if (!result.success) {
-            hideLoading();
-            errorDiv.innerHTML = '❌ 驗證失敗';
-            errorDiv.style.display = 'block';
-            resetLoginButton(loginBtn);
-            return;
-        }
-        
-        // Save user credentials
-        window.authManager.saveUser(result.username, result.displayName, result.userGroup);
-        
-        // Remove login modal
+        window.authManager.saveUser(username, username, 'Local');
         document.getElementById('login-modal').remove();
-        
-        hideLoading();
-        
-        // Show welcome message
-        showWelcomeMessage(result.displayName);
-        
-        // Initialize storage first, then load data
-        if (result.data) {
-            showLoading('正在初始化資料庫...');
-            
-            // === MODIFIED: Update status to "Loading" ===
-            if (typeof updateStorageStatus === 'function') {
-                updateStorageStatus('loading', '⏳ 載入資料中...');
-            }
-            
-            // Initialize storage if needed
-            if (!window.storage) {
-                window.storage = new IndexedDBStorage();
-                await window.storage.init();
-            }
-            
-            // Load the data
-            await loadAuthenticatedData(result.data);
-            
-            // === MODIFIED: Update status to "Complete" ===
-            if (typeof updateStorageStatus === 'function') {
-                updateStorageStatus('connected', '✓ 資料載入完成');
-            }
-            
-            // Initialize the rest of the app
-            await initializeApp();
-        } else {
-            alert('❌ 伺服器未返回資料');
+        showWelcomeMessage(username);
+        if (typeof init === 'function') {
+            await init();
         }
-        
     } catch (error) {
-        hideLoading();
-        
-        // Better error messages
-        let errorMessage = '驗證失敗';
-        
-        if (error.message.includes('JSON') || error.message.includes('Unexpected token')) {
-            errorMessage = '使用者名稱錯誤或無權限';
-        } else if (error.message.includes('Failed to fetch')) {
-            errorMessage = '無法連接伺服器，請檢查網路';
-        } else {
-            errorMessage = error.message;
-        }
-        
-        errorDiv.innerHTML = '❌ ' + errorMessage;
+        errorDiv.innerHTML = '❌ ' + error.message;
         errorDiv.style.display = 'block';
         resetLoginButton(loginBtn);
     }

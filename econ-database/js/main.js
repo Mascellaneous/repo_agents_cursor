@@ -51,22 +51,22 @@ async function init() {
         return; // Stop if storage fails
     }
     
-    // Auto-sync from Google Sheets on page load (for cookie-based login)
-    if (window.googleSheetsSync) {
+    // Load the bundled question JSON (replaces Google Sheets sync).
+    if (window.questionJsonSource) {
         try {
-            console.log('📥 開始從 Google Sheets 載入資料...');
+            console.log('📥 開始從 JSON 載入資料...');
             updateStorageStatus('loading', '⏳ 載入資料中...');
-            const result = await window.googleSheetsSync.syncOnLoad();
+            const result = await window.questionJsonSource.syncOnLoad();
             
             if (result.success) {
-                console.log('✅ Google Sheets 資料載入完成');
+                console.log('✅ JSON 資料載入完成');
                 console.log(`📊 載入 ${result.count} 題`);
                 updateStorageStatus('connected', `✓ 資料載入完成`);
             }
         } catch (error) {
-            console.error('Failed to sync on load:', error);
-            console.warn('⚠️ Google Sheets 同步失敗:', error.message);
-            // Don't stop - continue with whatever data is in IndexedDB
+            console.error('Failed to load JSON:', error);
+            console.warn('⚠️ JSON 載入失敗:', error.message);
+            updateStorageStatus('disconnected', '✗ JSON 載入失敗');
         }
     }
     
@@ -153,30 +153,29 @@ function showLoadingState(show) {
     }
 }
 
-// Manual sync (reload from Google Sheets)
+// Reload questions from the bundled JSON file.
 async function manualSync() {
-    if (!window.googleSheetsSync) {
-        alert('Google Sheets 未設定，請檢查 config.js');
+    if (!window.questionJsonSource) {
+        alert('JSON 資料來源未設定，請檢查 config.js');
         return;
     }
     
     try {
-        showLoading('正在從 Google Sheets 載入資料...');
-        const result = await window.googleSheetsSync.syncOnLoad();
+        showLoading('正在從 JSON 載入資料...');
+        const result = await window.questionJsonSource.syncOnLoad();
         hideLoading();
         
         if (result.success) {
-            // Re-populate search scope after sync as permissions might have changed
             if (typeof populateSearchScope === 'function') {
                 populateSearchScope();
             }
             await refreshViews();
-            alert(`✅ 同步成功！\n\n匯入 ${result.count} 題`);
-            console.log('✅ Google Sheets 資料同步完成');
+            alert(`✅ 載入成功！\n\n匯入 ${result.count} 題`);
+            console.log('✅ JSON 資料載入完成');
         }
     } catch (error) {
         hideLoading();
-        alert('❌ 同步失敗: ' + error.message);
+        alert('❌ 載入失敗: ' + error.message);
     }
 }
 

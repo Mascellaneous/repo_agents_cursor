@@ -243,7 +243,13 @@ async function renderQuestions() {
             </div>
             
             <div class="question-content">
-                ${renderCollapsibleSection('題目：', q.questionTextChi)}
+                ${(q.topic && q.topic !== '-') ? `
+                    <div class="info-item" style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                        <strong>課題：</strong>
+                        <span class="tag">${escapeHTML(q.topic)}</span>
+                    </div>
+                ` : ''}
+                ${renderCollapsibleSection('純文字：', q.plainText || q.questionTextChi)}
                 ${renderCollapsibleSection('Question:', q.questionTextEng)}
 
                 ${(q.answerMC && q.answerMC !== '-') ? `
