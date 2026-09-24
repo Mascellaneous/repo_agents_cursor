@@ -220,5 +220,5 @@
     "政策比較表",
     "收費表"
   ],
-  "note": "Use these labels when reviewing a new mock paper. Add a label only when none of these fits, then add it here."
+  "note": "Written by build_mock_questions.py from database.json. Do not edit by hand; run the script so new concepts, patterns, diagram types, and table types are added."
 }

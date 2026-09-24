@@ -98,6 +98,12 @@ class QuestionJsonSource {
     }
 
     async fetchPayload() {
+        // index.html starts this fetch as soon as the page loads.
+        if (window.databaseReady) {
+            const pending = window.databaseReady;
+            window.databaseReady = null;
+            return pending;
+        }
         const response = await fetch(this.jsonUrl, { cache: 'no-cache' });
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: 無法讀取 JSON 資料`);

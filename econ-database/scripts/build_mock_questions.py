@@ -4,12 +4,15 @@
 import json
 import os
 import re
+import sys
 import zipfile
 from xml.etree import ElementTree as ET
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 MOCK_DIR = os.path.join(ROOT, "MockTests")
-OUT_PATH = os.path.join(ROOT, "econ-database", "data", "questions.json")
+DATA_DIR = os.path.join(ROOT, "econ-database", "data")
+OUT_PATH = os.path.join(DATA_DIR, "database.json")
+VOCAB_PATH = os.path.join(DATA_DIR, "vocabulary.json")
 
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 
@@ -686,6 +689,96 @@ def join_plain(lines):
     return text
 
 
+def _clean_labels(values):
+    cleaned = []
+    for value in values or []:
+        text = str(value).strip()
+        if text and text not in ("-", "圖", "表格", "其他圖", "其他表格") and text not in cleaned:
+            cleaned.append(text)
+    return cleaned
+
+
+def labels_from_questions(questions):
+    concepts, patterns, diagrams, tables = [], [], [], []
+    for question in questions:
+        concepts.extend(question.get("concepts") or [])
+        patterns.extend(question.get("patterns") or [])
+        diagrams.append(question.get("graphType") or "")
+        tables.append(question.get("tableType") or "")
+    return (
+        _clean_labels(concepts),
+        _clean_labels(patterns),
+        _clean_labels(diagrams),
+        _clean_labels(tables),
+    )
+
+
+def merge_labels(preferred, existing, found):
+    """Keep a stable order, then append any label that appears in the bank."""
+    merged = []
+    for label in list(preferred or []) + list(existing or []) + list(found or []):
+        text = str(label).strip()
+        if text and text not in merged:
+            merged.append(text)
+    return merged
+
+
+def write_vocabulary(questions):
+    """Rewrite vocabulary.json from the question bank so new labels are not left out."""
+    existing = {}
+    if os.path.exists(VOCAB_PATH):
+        try:
+            existing = json.load(open(VOCAB_PATH, encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            existing = {}
+    concepts, patterns, diagrams, tables = labels_from_questions(questions)
+    payload = {
+        "concepts": merge_labels([], existing.get("concepts"), concepts),
+        "patterns": merge_labels([], existing.get("patterns"), patterns),
+        "diagramTypes": merge_labels(DIAGRAM_TYPES, existing.get("diagramTypes"), diagrams),
+        "tableTypes": merge_labels(TABLE_TYPES, existing.get("tableTypes"), tables),
+        "note": "Written by build_mock_questions.py from database.json. Do not edit by hand; run the script so new concepts, patterns, diagram types, and table types are added.",
+    }
+    os.makedirs(DATA_DIR, exist_ok=True)
+    with open(VOCAB_PATH, "w", encoding="utf-8") as fh:
+        json.dump(payload, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
+    return payload
+
+
+def load_previous_questions():
+    """Reviewed rows live in database.json. Fall back to the older questions.json name."""
+    for path in (OUT_PATH, os.path.join(DATA_DIR, "questions.json")):
+        if not os.path.exists(path):
+            continue
+        try:
+            previous = json.load(open(path, encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        questions = previous.get("questions", [])
+        if questions:
+            return questions
+    return []
+
+
+def sync_vocabulary_from_disk():
+    questions = load_previous_questions()
+    if not questions:
+        raise SystemExit(f"No questions found in {OUT_PATH}")
+    payload = write_vocabulary(questions)
+    print(
+        "vocabulary",
+        len(payload["concepts"]),
+        "concepts",
+        len(payload["patterns"]),
+        "patterns",
+        len(payload["diagramTypes"]),
+        "diagrams",
+        len(payload["tableTypes"]),
+        "tables",
+    )
+
+
 def build():
     files = os.listdir(MOCK_DIR)
     by_num = {}
@@ -785,14 +878,9 @@ def build():
             })
 
     reviewed = {}
-    if os.path.exists(OUT_PATH):
-        try:
-            previous = json.load(open(OUT_PATH, encoding="utf-8"))
-            for old in previous.get("questions", []):
-                if str(old.get("reviewedByAI", "")).upper() == "Y" and old.get("id"):
-                    reviewed[old["id"]] = old
-        except (OSError, json.JSONDecodeError):
-            reviewed = {}
+    for old in load_previous_questions():
+        if str(old.get("reviewedByAI", "")).upper() == "Y" and old.get("id"):
+            reviewed[old["id"]] = old
 
     merged = []
     seen = set()
@@ -818,6 +906,15 @@ def build():
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     with open(OUT_PATH, "w", encoding="utf-8") as fh:
         json.dump(payload, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
+    vocab = write_vocabulary(merged)
+    print(
+        "vocabulary",
+        len(vocab["concepts"]),
+        "concepts",
+        len(vocab["patterns"]),
+        "patterns",
+    )
     print("\n".join(report))
     print("TOTAL", len(merged), "preserved", len(reviewed))
     # topic distribution
@@ -828,4 +925,7 @@ def build():
 
 
 if __name__ == "__main__":
-    build()
+    if "--sync-vocabulary" in sys.argv:
+        sync_vocabulary_from_disk()
+    else:
+        build()

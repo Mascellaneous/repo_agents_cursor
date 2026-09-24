@@ -2,7 +2,7 @@
 // Dependencies: storage-sync.js (QuestionJsonSource)
 
 const CONFIG = {
-    QUESTIONS_JSON_URL: 'data/questions.json'
+    QUESTIONS_JSON_URL: 'data/database.json'
 };
 
 window.addEventListener('DOMContentLoaded', () => {

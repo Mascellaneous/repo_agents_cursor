@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HKDSE Economics Questions Database</title>
+    <script>
+        // Start reading the question bank as soon as the page loads.
+        window.databaseReady = fetch('data/database.json', { cache: 'no-cache' }).then(function (response) {
+            if (!response.ok) {
+                throw new Error('HTTP ' + response.status + ': 無法讀取 database.json');
+            }
+            return response.json();
+        });
+    </script>
     <!-- Standard Favicon (Fallback for older browsers) -->
     <link rel="icon" href="favicon.ico?v3" sizes="any">
     

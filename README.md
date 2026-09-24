@@ -1,10 +1,10 @@
 # Mock-paper question bank: notes for a future agent
 
-This repository holds Aristo HKDSE Economics mock papers and the `econ-database` app that browses them. The app loads `econ-database/data/questions.json`. It does not fetch Google Sheets.
+This repository holds Aristo HKDSE Economics mock papers and the `econ-database` app that browses them. Opening `econ-database/index.html` starts a fetch of `econ-database/data/database.json`. The app does not fetch Google Sheets.
 
 ## What the Python script is for
 
-`econ-database/scripts/build_mock_questions.py` is only the first import. It reads every `.docx` in `MockTests/`, splits Paper 1 and Paper 2 into questions, guesses a chapter (`topic`), specific concepts, and question patterns, and writes `econ-database/data/questions.json`.
+`econ-database/scripts/build_mock_questions.py` is only the first import. It reads every `.docx` in `MockTests/`, splits Paper 1 and Paper 2 into questions, guesses a chapter (`topic`), specific concepts, and question patterns, and writes `econ-database/data/database.json`.
 
 That parse is rough. Word files repeat text boxes, glue diagram labels into the stem, and sometimes split one question into two. Do not treat the script output as finished.
 
@@ -50,7 +50,7 @@ Read `econ-database/data/vocabulary.json` before you classify a new paper. It li
 - `tableType` is a table type from `tableTypes`, or `-` when there is no table. Do not leave it as 表格.
 - A figure labelled 下圖 that is only rows of numbers is a table, not a diagram.
 - 細閱以下 by itself is not a diagram. Use it only when the question actually shows or asks for a figure.
-- Add a new label only when none of the existing ones fits, and add that label to `vocabulary.json` in the same change.
+- Add a new label on the question when none of the existing ones fits. Do not edit `vocabulary.json` by hand. Every time the builder writes `database.json`, it rewrites `vocabulary.json` from the concepts, patterns, diagram types, and table types on those questions, and it keeps labels already in the file. After you change labels without a full import, run `python3 econ-database/scripts/build_mock_questions.py --sync-vocabulary`. That reads `database.json` and updates `vocabulary.json` only.
 
 ## Adding another mock paper
 
@@ -58,4 +58,4 @@ Read `econ-database/data/vocabulary.json` before you classify a new paper. It li
 2. Add the Chinese paper number to `PAPER_NUM` in the builder if it is not already listed.
 3. Run `python3 econ-database/scripts/build_mock_questions.py`. New ids arrive with `reviewedByAI` `N`. Existing `Y` rows stay as they are.
 4. Review every new `N` row using the steps above. Do not mark `Y` from the script alone.
-5. Commit `questions.json` and the new docx files together.
+5. Commit `database.json`, `vocabulary.json`, and the new docx files together. The builder refreshes `vocabulary.json` in the same run.

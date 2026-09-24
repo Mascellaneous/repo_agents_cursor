@@ -2,7 +2,7 @@
 
 A single-page web app for browsing, filtering, and managing a database of
 HKDSE / HKCEE / HKALE Economics past-paper questions. Data is loaded from
-a JSON file (data/questions.json) into IndexedDB for fast client-side
+a JSON file (data/database.json) into IndexedDB for fast client-side
 filtering. Users can also import another JSON file with the same shape.
 The UI is in Traditional Chinese.
 
@@ -21,7 +21,8 @@ plain lists instead.
 1. Serve the project folder with any static web server (or open
    index.html directly — but a server is recommended so fetch/CORS
    behaves consistently).
-2. The app shows「載入中...」while it reads data/questions.json and
+2. index.html starts reading data/database.json as soon as the page loads.
+   The app shows「載入中...」while it finishes that read and
    writes the questions into IndexedDB.
 3. When sync completes, a「✓ 資料載入完成」pill appears in the header
    corner and the question list renders.
@@ -123,7 +124,7 @@ Templates (js/templates/):
 
 ### Data & Security
 - IndexedDB is treated as a disposable cache: it is wiped and rebuilt
-  from data/questions.json on every load. Do not store user-entered
+  from data/database.json on every load. Do not store user-entered
   data only in IndexedDB (this is why the old 備註 feature was removed).
 - Each question record has id, topic (identified syllabus topic) and
   plainText (the question wording). questionTextChi is kept equal to
