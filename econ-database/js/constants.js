@@ -60,6 +60,7 @@ const CURRICULUM_ORDER = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'E1'
 // Feature filter items
 const FEATURE_ITEMS = [
     '含圖表',
+    '有內嵌圖',
     '含表格',
     '含計算',
     '複選',

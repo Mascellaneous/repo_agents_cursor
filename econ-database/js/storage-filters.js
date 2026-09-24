@@ -364,6 +364,8 @@ IndexedDBStorage.prototype.applyFilters = function(questions, filters) {
                                 q.graphType !== '' && 
                                 q.graphType !== '-' && 
                                 q.graphType !== '沒有圖';
+                        } else if (value === '有內嵌圖') {
+                            return !!(q.inlineDiagrams && String(q.inlineDiagrams).trim());
                         } else if (value === '含表格') {
                             return q.tableType && 
                                 q.tableType !== '' && 
@@ -403,6 +405,8 @@ IndexedDBStorage.prototype.applyFilters = function(questions, filters) {
                                 q.graphType === '' || 
                                 q.graphType === '-' || 
                                 q.graphType === '沒有圖';
+                        } else if (value === '有內嵌圖') {
+                            return !(q.inlineDiagrams && String(q.inlineDiagrams).trim());
                         } else if (value === '含表格') {
                             return !q.tableType || 
                                 q.tableType === '' || 
