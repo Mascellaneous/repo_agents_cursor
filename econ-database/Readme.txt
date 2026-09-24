@@ -6,6 +6,10 @@ a JSON file (data/questions.json) into IndexedDB for fast client-side
 filtering. Users can also import another JSON file with the same shape.
 The UI is in Traditional Chinese.
 
+Future agents adding mock papers should read /README.md first. The
+Python builder is only the first import. Records with reviewedByAI Y
+must not be overwritten. lastReviewDate is the day of that read.
+
 Documentation convention: do NOT use fenced code blocks anywhere in this
 Readme. Describe code, file paths, and identifiers inline in prose or in
 plain lists instead.

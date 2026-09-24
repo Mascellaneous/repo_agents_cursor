@@ -1,1 +1,4 @@
 sdg-ggen-eternal/api.js
+
+__pycache__/
+*.pyc

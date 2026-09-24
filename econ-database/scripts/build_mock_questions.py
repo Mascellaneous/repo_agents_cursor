@@ -579,6 +579,8 @@ def build():
                 "multipleSelectionType": multi,
                 "calculationType": calc,
                 "source": f"模擬試卷{label} 卷一",
+                "reviewedByAI": "N",
+                "lastReviewDate": "",
             })
 
         p2 = parse_paper2(docx_paragraphs(info["p2"]))
@@ -615,20 +617,46 @@ def build():
                 "multipleSelectionType": multi,
                 "calculationType": calc,
                 "source": f"模擬試卷{label} 卷二",
+                "reviewedByAI": "N",
+                "lastReviewDate": "",
             })
+
+    reviewed = {}
+    if os.path.exists(OUT_PATH):
+        try:
+            previous = json.load(open(OUT_PATH, encoding="utf-8"))
+            for old in previous.get("questions", []):
+                if str(old.get("reviewedByAI", "")).upper() == "Y" and old.get("id"):
+                    reviewed[old["id"]] = old
+        except (OSError, json.JSONDecodeError):
+            reviewed = {}
+
+    merged = []
+    seen = set()
+    for question in questions:
+        kept = reviewed.get(question["id"])
+        if kept:
+            merged.append(kept)
+        else:
+            merged.append(question)
+        seen.add(question["id"])
+    # Keep reviewed questions even if this parse no longer emits their id.
+    for qid, old in reviewed.items():
+        if qid not in seen:
+            merged.append(old)
 
     payload = {
         "version": "1.0",
         "source": "Aristo HKDSE Economics mock papers 35–44",
-        "description": "Each record is one question. topic is the chapter; concepts are specific ideas such as 機會成本; patterns are question styles and do not repeat questionType; plainText is the wording.",
-        "questionCount": len(questions),
-        "questions": questions,
+        "description": "Each record is one question. topic is the chapter; concepts are specific ideas such as 機會成本; patterns are question styles and do not repeat questionType; plainText is the wording. reviewedByAI is Y or N. lastReviewDate is YYYY-MM-DD when reviewed. The builder does not overwrite records with reviewedByAI Y.",
+        "questionCount": len(merged),
+        "questions": merged,
     }
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     with open(OUT_PATH, "w", encoding="utf-8") as fh:
         json.dump(payload, fh, ensure_ascii=False, indent=2)
     print("\n".join(report))
-    print("TOTAL", len(questions))
+    print("TOTAL", len(merged), "preserved", len(reviewed))
     # topic distribution
     from collections import Counter
     c = Counter(q["topic"].split("；")[0] for q in questions)
