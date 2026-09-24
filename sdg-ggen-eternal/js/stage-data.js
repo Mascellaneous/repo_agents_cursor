@@ -15,6 +15,14 @@
  * Each unit should have a corresponding character.
  * Each unit may carry 1 optional parts.
  *
+ * 在關卡資料中，選擇單位(units)及角色(characters)時，可以一併顯示稀有度、類型、等級嗎？
+ * 例如：GN-X II加農型（SSR・支援・Lv.100）
+ * 此外，由於機體、角色、支援單位的數量較多，dropdown可以讓用家打字嗎？
+ * 單位與角色的選項文字為「名稱（稀有度・類型・Lv.等級）」。
+ * 支援單位沒有稀有度與類型，選項文字為「名稱（Lv.等級）」。
+ * 這三個欄位改成可打字的下拉：輸入名稱、稀有度、類型或等級都會篩選。
+ * 存檔仍只記 id 與名稱，不把括號裡的稀有度寫進名稱快照。
+ *
  * ── 儲存格式（IndexedDB store: stages，keyPath id）──────────────
  * {
  *   id: 'st_…',
@@ -58,6 +66,8 @@ let ST_DRAFT = null;
 let ST_CLEAN = '';
 let ST_FILTER = '';
 let ST_OPENING = false;
+let ST_PICK = null;
+const ST_PICK_LIMIT = 80;
 let ST_CAT = { units: [], characters: [], supports: [], parts: [] };
 
 function stClip(s, n) {
@@ -181,10 +191,168 @@ function stSelect(list, selectedId, snapshotName, blankLabel) {
     return opts.join('');
 }
 
-function stSelMeta(sel) {
-    if (!sel || !sel.value) return { id: '', name: '' };
-    const opt = sel.selectedOptions && sel.selectedOptions[0];
-    return { id: sel.value, name: opt ? (opt.getAttribute('data-name') || '') : '' };
+function stSelMeta(el) {
+    if (!el || !el.value) return { id: '', name: '' };
+    if (el.selectedOptions) {
+        const opt = el.selectedOptions[0];
+        return { id: el.value, name: opt ? (opt.getAttribute('data-name') || '') : '' };
+    }
+    return { id: el.value, name: el.getAttribute('data-name') || '' };
+}
+
+/* 單位／角色：名稱（稀有度・類型・Lv.等級）。支援單位沒有稀有度與類型，只附等級。 */
+function stStatLabel(it) {
+    const name = (it && it.name) || '(未命名)';
+    return name + '（' + (it.rarity || '?') + '・' + (it.type || '?') + '・Lv.' + (it.level == null || it.level === '' ? '?' : it.level) + '）';
+}
+function stSupportLabel(it) {
+    const name = (it && it.name) || '(未命名)';
+    const lv = it && it.level != null && it.level !== '' ? it.level : '?';
+    return name + '（Lv.' + lv + '）';
+}
+function stPickPool(kind) {
+    const list = kind === 'unit' ? ST_CAT.units : kind === 'char' ? ST_CAT.characters : ST_CAT.supports;
+    return (list || []).filter(it => it && it.id != null && it.id !== '__wkinds__').map(it => ({
+        id: String(it.id),
+        name: it.name || '(未命名)',
+        label: kind === 'support' ? stSupportLabel(it) : stStatLabel(it)
+    }));
+}
+function stPickDisplay(kind, id, snapshotName) {
+    if (!id) return '';
+    const hit = stPickPool(kind).find(o => o.id === String(id));
+    if (hit) return hit.label;
+    return (snapshotName || '(未命名)') + '（已不在資料庫）';
+}
+function stPickHtml(kind, cls, id, snapshotName, placeholder) {
+    const sid = id ? String(id) : '';
+    const hit = sid ? stPickPool(kind).find(o => o.id === sid) : null;
+    const plain = hit ? hit.name : (sid ? (snapshotName || '') : '');
+    return `<div class="st-pick" data-kind="${kind}">
+        <input type="text" class="st-pick-q" placeholder="${esc(placeholder)}" autocomplete="off" value="${esc(stPickDisplay(kind, sid, snapshotName))}">
+        <input type="hidden" class="${cls}" value="${esc(sid)}" data-name="${esc(plain)}">
+    </div>`;
+}
+function stPickClose() {
+    if (!ST_PICK) return false;
+    if (ST_PICK.box) ST_PICK.box.remove();
+    ST_PICK = null;
+    return true;
+}
+function stPickOpen(inp, forceAll) {
+    const wrap = inp.closest('.st-pick');
+    if (!wrap) return;
+    stPickClose();
+    const kind = wrap.dataset.kind;
+    const q = forceAll ? '' : inp.value.trim().toLowerCase();
+    let pool = stPickPool(kind);
+    if (q) pool = pool.filter(o => o.label.toLowerCase().includes(q) || o.name.toLowerCase().includes(q));
+    const items = pool.slice(0, ST_PICK_LIMIT);
+    const box = document.createElement('div');
+    box.className = 'ac-box st-ac';
+    if (!items.length) {
+        const d = document.createElement('div');
+        d.className = 'ac-item';
+        d.style.cursor = 'default';
+        d.textContent = q ? '沒有符合的項目' : '目前沒有任何項目';
+        box.appendChild(d);
+    } else {
+        items.forEach((o, i) => {
+            const d = document.createElement('div');
+            d.className = 'ac-item';
+            d.textContent = o.label;
+            d.dataset.idx = String(i);
+            d.addEventListener('mousedown', e => { e.preventDefault(); stPickChoose(inp, o); });
+            box.appendChild(d);
+        });
+        if (pool.length > ST_PICK_LIMIT) {
+            const d = document.createElement('div');
+            d.className = 'ac-item';
+            d.style.cursor = 'default';
+            d.style.opacity = '.65';
+            d.textContent = '共 ' + pool.length + ' 筆符合，僅顯示前 ' + ST_PICK_LIMIT + ' 筆，請再輸入關鍵字';
+            box.appendChild(d);
+        }
+    }
+    const r = inp.getBoundingClientRect();
+    box.style.position = 'fixed';
+    box.style.left = r.left + 'px';
+    box.style.top = (r.bottom + 1) + 'px';
+    box.style.width = Math.max(r.width, 240) + 'px';
+    box.style.zIndex = '2500';
+    document.body.appendChild(box);
+    ST_PICK = { inp, box, items, hi: -1 };
+}
+function stPickPaint() {
+    if (!ST_PICK || !ST_PICK.box) return;
+    ST_PICK.box.querySelectorAll('.ac-item[data-idx]').forEach(el => {
+        el.classList.toggle('hl', +el.dataset.idx === ST_PICK.hi);
+    });
+}
+function stPickChoose(inp, o) {
+    const hid = inp.parentElement.querySelector('input[type=hidden]');
+    if (hid) {
+        hid.value = o.id;
+        hid.setAttribute('data-name', o.name);
+    }
+    inp.value = o.label;
+    stPickClose();
+    refreshStPreview();
+}
+function stPickCommit(inp) {
+    const wrap = inp.closest('.st-pick');
+    const hid = wrap && wrap.querySelector('input[type=hidden]');
+    if (!hid) return;
+    const txt = inp.value.trim();
+    const kind = wrap.dataset.kind;
+    if (!txt) {
+        hid.value = '';
+        hid.setAttribute('data-name', '');
+        inp.value = '';
+        refreshStPreview();
+        return;
+    }
+    const current = stPickDisplay(kind, hid.value, hid.getAttribute('data-name') || '');
+    if (txt === current) return;
+    const exact = stPickPool(kind).filter(o => o.label === txt || o.name === txt);
+    if (exact.length === 1) {
+        hid.value = exact[0].id;
+        hid.setAttribute('data-name', exact[0].name);
+        inp.value = exact[0].label;
+    } else {
+        inp.value = current;
+    }
+    refreshStPreview();
+}
+function onStPickKey(e) {
+    const inp = e.target;
+    if (!inp || !inp.classList || !inp.classList.contains('st-pick-q')) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (!ST_PICK || ST_PICK.inp !== inp) stPickOpen(inp, false);
+        if (!ST_PICK || !ST_PICK.items.length) return;
+        ST_PICK.hi = e.key === 'ArrowDown'
+            ? Math.min(ST_PICK.hi + 1, ST_PICK.items.length - 1)
+            : Math.max(ST_PICK.hi - 1, -1);
+        stPickPaint();
+        return;
+    }
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        if (ST_PICK && ST_PICK.inp === inp && ST_PICK.hi >= 0) stPickChoose(inp, ST_PICK.items[ST_PICK.hi]);
+        else stPickClose();
+        return;
+    }
+    if (e.key === 'Tab' && ST_PICK && ST_PICK.inp === inp && ST_PICK.hi >= 0) {
+        stPickChoose(inp, ST_PICK.items[ST_PICK.hi]);
+    }
+    if (e.key === 'Escape' && ST_PICK && ST_PICK.inp === inp) {
+        e.preventDefault();
+        e.stopPropagation();
+        const hid = inp.parentElement.querySelector('input[type=hidden]');
+        inp.value = hid ? stPickDisplay(inp.closest('.st-pick').dataset.kind, hid.value, hid.getAttribute('data-name') || '') : '';
+        stPickClose();
+    }
 }
 
 function stClearText(cl) {
@@ -318,10 +486,10 @@ function renderStSlot(u, ui) {
     return `<div class="st-slot" data-ui="${ui}">
         <span class="st-idx">${ui + 1}</span>
         <label>單位 *
-            <select class="st-unit">${stSelect(ST_CAT.units, u.unitId, u.unitName, '選擇單位')}</select>
+            ${stPickHtml('unit', 'st-unit', u.unitId, u.unitName, '輸入名稱、稀有度或等級')}
         </label>
         <label>角色 *
-            <select class="st-char">${stSelect(ST_CAT.characters, u.characterId, u.characterName, '選擇角色')}</select>
+            ${stPickHtml('char', 'st-char', u.characterId, u.characterName, '輸入名稱、稀有度或等級')}
         </label>
         <label>選擇性零件
             <select class="st-op">${stSelect(ST_CAT.parts, u.optionalPartId, u.optionalPartName, '無')}</select>
@@ -340,7 +508,7 @@ function renderStTeam(team, ti) {
         ${units.map((u, ui) => renderStSlot(u, ui)).join('')}
         ${addBtn}
         <label class="st-supline">支援單位（可無）
-            <select class="st-sup">${stSelect(ST_CAT.supports, team.supportId, team.supportName, '無')}</select>
+            ${stPickHtml('support', 'st-sup', team.supportId, team.supportName, '輸入名稱或等級，留空表示無')}
         </label>
     </div>`;
 }
@@ -364,6 +532,7 @@ function renderStClear(cl, ci) {
 }
 
 function renderStEditor() {
+    stPickClose();
     const box = gi('st-editor');
     if (!box || !ST_DRAFT) return;
     const d = ST_DRAFT;
@@ -414,6 +583,7 @@ function stCatalogHint() {
     const s = ST_CAT.supports.length, p = ST_CAT.parts.length;
     let txt = `可用資料：單位 ${u}、角色 ${c}、支援單位 ${s}、選擇性零件 ${p}。`;
     txt += '每一組通關隊伍固定兩隊；每隊 1～5 個單位，每個單位要選角色，選擇性零件與支援單位可以不選。';
+    txt += '單位與角色顯示為「名稱（稀有度・類型・Lv.等級）」，支援單位顯示等級；這三欄可直接打字搜尋。';
     if (!u || !c) txt += ' 單位或角色還是空的，請先到對應分頁新增。';
     return txt;
 }
@@ -453,6 +623,10 @@ async function openStageDataModal() {
         ov.addEventListener('click', onStClick);
         ov.addEventListener('input', onStInput);
         ov.addEventListener('change', onStChange);
+        ov.addEventListener('focusin', onStFocus);
+        ov.addEventListener('focusout', onStBlur);
+        ov.addEventListener('keydown', onStPickKey);
+        ov.addEventListener('scroll', stPickClose, true);
         document.addEventListener('keydown', onStKey);
         renderStList();
         renderStEditor();
@@ -462,11 +636,30 @@ async function openStageDataModal() {
 }
 
 function onStKey(e) {
-    if (e.key === 'Escape' && gi('st-modal')) { e.preventDefault(); closeStageDataModal(); }
+    if (e.key === 'Escape' && gi('st-modal')) {
+        if (ST_PICK) { stPickClose(); e.preventDefault(); return; }
+        e.preventDefault();
+        closeStageDataModal();
+    }
+}
+function onStFocus(e) {
+    const t = e.target;
+    if (!t || !t.classList || !t.classList.contains('st-pick-q')) return;
+    t.select();
+    stPickOpen(t, true);
+}
+function onStBlur(e) {
+    const t = e.target;
+    if (!t || !t.classList || !t.classList.contains('st-pick-q')) return;
+    setTimeout(() => {
+        if (ST_PICK && ST_PICK.inp === t) stPickClose();
+        if (document.body.contains(t)) stPickCommit(t);
+    }, 150);
 }
 function onStInput(e) {
     const t = e.target;
     if (!t) return;
+    if (t.classList && t.classList.contains('st-pick-q')) { stPickOpen(t, false); return; }
     if (t.dataset && t.dataset.st === 'filter') { ST_FILTER = t.value; renderStList(); return; }
     if (t.closest && t.closest('#st-editor')) refreshStPreview();
 }
@@ -665,6 +858,7 @@ async function deleteStage() {
 
 function closeStageDataModal() {
     if (!confirmDiscardSt()) return;
+    stPickClose();
     const ov = gi('st-modal');
     if (ov) ov.remove();
     document.removeEventListener('keydown', onStKey);
