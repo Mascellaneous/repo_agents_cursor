@@ -134,6 +134,79 @@ def option_letter(line):
     return m.group(1) if m else None
 
 
+def option_mark(line):
+    """A real option, or a diagram label that is only ``A.`` / ``B.`` / ``C.`` / ``D.``."""
+    match = re.match(r"^([A-D])\.(?:\t(.*))?$", line)
+    if not match:
+        return None
+    return match.group(1), (match.group(2) or "")
+
+
+def looks_like_new_stem(line):
+    """A new multiple-choice stem, not a diagram label or a table cell."""
+    if option_mark(line) or len(line) < 8:
+        return False
+    if line.startswith("(") or line.startswith("（"):
+        return False
+    if not re.search(r"[\u4e00-\u9fff]", line):
+        return False
+    # A new stem asks something. Diagram labels and table cells do not.
+    if re.search(r"[？?。]", line):
+        return True
+    return len(line) >= 18 and "哪" in line
+
+
+def _starts_question(line):
+    return bool(re.search(r"[\u4e00-\u9fff]", line) and re.search(r"[？?。]", line))
+
+
+def _has_real_option(lines):
+    return any(re.match(r"^[A-D]\.\t", line) for line in lines)
+
+
+def _has_question(lines):
+    return any("？" in line or "?" in line for line in lines)
+
+
+def _is_diagram_debris(line):
+    """A drawing or table fragment left after an option label closed the previous question."""
+    if _starts_question(line) or re.search(r"下列|以下|假設|參閱|下表|下圖|細閱|哪", line):
+        return False
+    if re.match(r"^[A-D]\.\t", line):
+        return False
+    chinese = re.findall(r"[\u4e00-\u9fff]", line)
+    if len(chinese) >= 8:
+        return False
+    return True
+
+
+def _strip_diagram_prefix(lines):
+    """Drop a repeated drawing that was left in front of the next question."""
+    if not lines or not _is_diagram_debris(lines[0]):
+        return lines
+    for i, line in enumerate(lines):
+        if not _is_diagram_debris(line):
+            return lines[i:]
+    return lines
+
+
+def _repair_split_questions(questions):
+    """Join a diagram-label fragment back onto the question it was split from."""
+    merged = []
+    for lines in questions:
+        lines = _strip_diagram_prefix(lines)
+        fragment = (
+            _is_diagram_debris(lines[0])
+            and not _has_question(lines)
+            and not _has_real_option(lines)
+        )
+        if merged and fragment:
+            merged[-1].extend(lines)
+            continue
+        merged.append(lines)
+    return merged
+
+
 def parse_paper1(paras):
     start = 0
     for i, line in enumerate(paras):
@@ -156,9 +229,8 @@ def parse_paper1(paras):
                 questions.append(buf)
                 buf = []
                 letters = []
-        elif letters and "D" in letters and set(letters) >= {"A", "B", "C", "D"}:
-            # safety: D already closed
-            pass
+    if buf and "D" in letters and set(letters) >= {"A", "B", "C", "D"}:
+        questions.append(buf)
     # Drop a duplicated second copy of the paper if present
     if len(questions) > 40 and len(questions) % 2 == 0:
         half = len(questions) // 2
@@ -167,7 +239,7 @@ def parse_paper1(paras):
             b = "".join(questions[half])[:40]
             if a == b:
                 questions = questions[:half]
-    return questions
+    return _repair_split_questions(questions)
 
 
 def clean_lines(lines):
