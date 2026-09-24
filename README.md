@@ -48,6 +48,8 @@ Read `econ-database/data/vocabulary.json` before you classify a new paper. It li
 - `patterns` describe how the question is asked. Do not repeat `questionType`.
 - `graphType` is a diagram type from `diagramTypes`, or `-` when there is no diagram. Do not leave it as 圖.
 - `tableType` is a table type from `tableTypes`, or `-` when there is no table. Do not leave it as 表格.
+- `calculationType` is a calculation type from `calculationTypes`, or `-`. Do not leave it as 計算. Wording such as 包括在本地生產總值的計算之內 is not a calculation question.
+- `multipleSelectionType` is a combination type from `multipleSelectionTypes`, or `-`. Do not leave it as 複選. Three numbered statements are 三項陳述組合; four are 四項陳述組合. A 哪幅圖 item whose choices are numbered diagrams is 圖選組合.
 - A figure labelled 下圖 that is only rows of numbers is a table, not a diagram.
 - 細閱以下 by itself is not a diagram. Use it only when the question actually shows or asks for a figure.
 - Add a new label on the question when none of the existing ones fits. Do not edit `vocabulary.json` by hand. Every time the builder writes `database.json`, it rewrites `vocabulary.json` from the concepts, patterns, diagram types, and table types on those questions, and it keeps labels already in the file. After you change labels without a full import, run `python3 econ-database/scripts/build_mock_questions.py --sync-vocabulary`. That reads `database.json` and updates `vocabulary.json` only.

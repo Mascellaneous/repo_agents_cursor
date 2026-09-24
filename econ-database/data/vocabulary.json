@@ -169,9 +169,9 @@
     "表格判讀",
     "複選組合",
     "解釋",
-    "計算",
     "資料回應",
-    "選擇最佳答案"
+    "選擇最佳答案",
+    "計算"
   ],
   "diagramTypes": [
     "供需圖",
@@ -220,5 +220,24 @@
     "政策比較表",
     "收費表"
   ],
-  "note": "Written by build_mock_questions.py from database.json. Do not edit by hand; run the script so new concepts, patterns, diagram types, and table types are added."
+  "calculationTypes": [
+    "機會成本計算",
+    "產量計算",
+    "勞工生產力計算",
+    "彈性計算",
+    "利潤計算",
+    "本地生產總值計算",
+    "實質產出計算",
+    "物價指數計算",
+    "貨幣數量論計算",
+    "貨幣供應計算",
+    "貿易得益計算"
+  ],
+  "multipleSelectionTypes": [
+    "兩項陳述組合",
+    "三項陳述組合",
+    "四項陳述組合",
+    "圖選組合"
+  ],
+  "note": "Written by build_mock_questions.py from database.json. Do not edit by hand; run the script so new concepts, patterns, diagram types, table types, calculation types, and multiple-selection types are added."
 }

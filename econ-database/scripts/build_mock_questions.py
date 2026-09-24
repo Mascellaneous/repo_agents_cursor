@@ -652,6 +652,114 @@ def classify_diagram(text):
     return "其他圖"
 
 
+CALCULATION_TYPES = [
+    "機會成本計算",
+    "產量計算",
+    "勞工生產力計算",
+    "彈性計算",
+    "利潤計算",
+    "本地生產總值計算",
+    "實質產出計算",
+    "物價指數計算",
+    "貨幣數量論計算",
+    "貨幣供應計算",
+    "貿易得益計算",
+]
+
+MULTIPLE_SELECTION_TYPES = [
+    "兩項陳述組合",
+    "三項陳述組合",
+    "四項陳述組合",
+    "圖選組合",
+]
+
+
+def _asks_for_number(text):
+    """True when the student must work out a number, not merely read the word 計算."""
+    if any(k in text for k in ("是多少", "列示你的計算", "寫出你的計算", "計算步驟")):
+        return True
+    if re.search(r"(?:計算|找出)(?:上述|該|甲國|食物|乙國)?[^。\n]{0,16}(?:比率|通脹率|得益|獲益|機會成本|貨幣供應|貨幣基礎|存款|利潤|彈性|總產量)", text):
+        return True
+    if re.search(r"[\t\n]計算", text) or text.startswith("計算"):
+        return True
+    if re.search(r"[XxＸ]的(?:值|數值)是", text):
+        return True
+    if "貢獻分別是" in text or "貢獻是" in text:
+        return True
+    if "本地生產總值為" in text or "本地生產總值是" in text:
+        return True
+    if re.search(r"彈性是\s*[_＿]", text) or "弧彈性是" in text:
+        return True
+    if "機會成本是多少" in text or re.search(r"機會成本是\s*[_＿]", text):
+        return True
+    if "平均勞工生產力" in text and ("差異" in text or "差別" in text):
+        return True
+    if ("平均產量" in text or "總產量" in text or "邊際產量" in text) and ("邊際回報" in text or "陳述是正確" in text or "能否說明" in text):
+        return True
+    if "資產負債表" in text and ("法定儲備" in text or "貨幣供應" in text or "存款" in text) and ("計算" in text or "下列哪項是" in text or "哪些有關" in text):
+        return True
+    if "貨幣數量論" in text and "百分" in text:
+        return True
+    if "以市價計算" in text and "以要素成本" in text and ("淨出口" in text or "本地居民總收入" in text):
+        return True
+    if "內含平減物價指數" in text and "實質產出" in text:
+        return True
+    if "海外要素收益淨值" in text and "平減物價指數" in text:
+        return True
+    return False
+
+
+def classify_calculation(text):
+    """Return a calculation type, or None when the question does not ask for a number."""
+    if not _asks_for_number(text):
+        return None
+    if any(k in text for k in ("貿易得益", "貿易獲益", "貿易比率", "比較優勢", "運輸成本", "運輸費用")):
+        return "貿易得益計算"
+    if "機會成本是多少" in text or re.search(r"機會成本是\s*[_＿]", text):
+        return "機會成本計算"
+    if "計算" in text and "通脹率" in text:
+        return "物價指數計算"
+    if "貨幣數量論" in text:
+        return "貨幣數量論計算"
+    if "實質產出" in text and "平減" in text:
+        return "實質產出計算"
+    if any(k in text for k in ("本地生產總值", "生產鏈", "以要素成本", "以市價計算", "海外要素收益")):
+        return "本地生產總值計算"
+    if any(k in text for k in ("法定儲備", "貨幣供應", "貨幣基礎", "存款創造", "超額儲備", "資產負債表")):
+        return "貨幣供應計算"
+    if "弧彈性" in text or "需求彈性是" in text:
+        return "彈性計算"
+    if "利潤" in text and "平均成本" in text:
+        return "利潤計算"
+    if "平均勞工生產力" in text:
+        return "勞工生產力計算"
+    if any(k in text for k in ("本地生產總值", "生產鏈", "以要素成本", "以市價計算", "海外要素收益")):
+        return "本地生產總值計算"
+    if "平均產量" in text or "邊際產量" in text or "總產量" in text or "邊際回報" in text:
+        return "產量計算"
+    return "其他計算"
+
+
+def classify_multiple(text):
+    """Return a combination-question type, or None when it is not one."""
+    if not (re.search(r"\(1\)", text) and re.search(r"\(2\)", text)):
+        return None
+    head = text.split("\nA")[0]
+    nums = [int(n) for n in re.findall(r"\((\d+)\)", head)]
+    if not nums:
+        return None
+    if "哪幅圖" in text or "哪圖" in head:
+        return "圖選組合"
+    n = max(nums)
+    if n >= 4:
+        return "四項陳述組合"
+    if n == 3:
+        return "三項陳述組合"
+    if n == 2:
+        return "兩項陳述組合"
+    return "陳述組合"
+
+
 def features(text):
     diagram = classify_diagram(text)
     table = classify_table(text)
@@ -662,8 +770,8 @@ def features(text):
         graph = diagram or "-"
     if not table:
         table = "-"
-    multi = "複選" if re.search(r"\(1\)", text) and re.search(r"\(2\)", text) else "-"
-    calc = "計算" if re.search(r"計算|找出|百分率|彈性是|平均產量|邊際產量", text) else "-"
+    multi = classify_multiple(text) or "-"
+    calc = classify_calculation(text) or "-"
     return graph, table, multi, calc
 
 
@@ -699,26 +807,33 @@ def _clean_labels(values):
 
 
 def labels_from_questions(questions):
-    concepts, patterns, diagrams, tables = [], [], [], []
+    concepts, patterns, diagrams, tables, calculations, multiples = [], [], [], [], [], []
     for question in questions:
         concepts.extend(question.get("concepts") or [])
         patterns.extend(question.get("patterns") or [])
         diagrams.append(question.get("graphType") or "")
         tables.append(question.get("tableType") or "")
+        calculations.append(question.get("calculationType") or "")
+        multiples.append(question.get("multipleSelectionType") or "")
     return (
         _clean_labels(concepts),
         _clean_labels(patterns),
         _clean_labels(diagrams),
         _clean_labels(tables),
+        _clean_labels(calculations),
+        _clean_labels(multiples),
     )
 
 
-def merge_labels(preferred, existing, found):
+def merge_labels(preferred, existing, found, banned=()):
     """Keep a stable order, then append any label that appears in the bank."""
     merged = []
+    blocked = {"-", "圖", "表格", "其他圖", "其他表格", *banned}
     for label in list(preferred or []) + list(existing or []) + list(found or []):
         text = str(label).strip()
-        if text and text not in merged:
+        if text in blocked or text in merged:
+            continue
+        if text:
             merged.append(text)
     return merged
 
@@ -731,13 +846,15 @@ def write_vocabulary(questions):
             existing = json.load(open(VOCAB_PATH, encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             existing = {}
-    concepts, patterns, diagrams, tables = labels_from_questions(questions)
+    concepts, patterns, diagrams, tables, calculations, multiples = labels_from_questions(questions)
     payload = {
         "concepts": merge_labels([], existing.get("concepts"), concepts),
         "patterns": merge_labels([], existing.get("patterns"), patterns),
         "diagramTypes": merge_labels(DIAGRAM_TYPES, existing.get("diagramTypes"), diagrams),
         "tableTypes": merge_labels(TABLE_TYPES, existing.get("tableTypes"), tables),
-        "note": "Written by build_mock_questions.py from database.json. Do not edit by hand; run the script so new concepts, patterns, diagram types, and table types are added.",
+        "calculationTypes": merge_labels(CALCULATION_TYPES, existing.get("calculationTypes"), calculations, banned=("計算", "複選", "其他計算")),
+        "multipleSelectionTypes": merge_labels(MULTIPLE_SELECTION_TYPES, existing.get("multipleSelectionTypes"), multiples, banned=("計算", "複選", "其他計算")),
+        "note": "Written by build_mock_questions.py from database.json. Do not edit by hand; run the script so new concepts, patterns, diagram types, table types, calculation types, and multiple-selection types are added.",
     }
     os.makedirs(DATA_DIR, exist_ok=True)
     with open(VOCAB_PATH, "w", encoding="utf-8") as fh:
@@ -776,6 +893,10 @@ def sync_vocabulary_from_disk():
         "diagrams",
         len(payload["tableTypes"]),
         "tables",
+        len(payload["calculationTypes"]),
+        "calculations",
+        len(payload["multipleSelectionTypes"]),
+        "multiple-selection",
     )
 
 

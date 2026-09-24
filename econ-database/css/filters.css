@@ -265,6 +265,7 @@
     border-top: 1px solid #eee;
     font-size: 14px;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .sort-label {

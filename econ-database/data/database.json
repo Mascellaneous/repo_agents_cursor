@@ -259,7 +259,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十五 卷一",
       "reviewedByAI": "Y",
@@ -296,7 +296,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十五 卷一",
       "reviewedByAI": "Y",
@@ -443,7 +443,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十五 卷一",
       "reviewedByAI": "Y",
@@ -588,12 +588,13 @@
       "patterns": [
         "表格判讀",
         "複選組合",
-        "正誤判斷"
+        "正誤判斷",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "投入產出表",
-      "multipleSelectionType": "複選",
-      "calculationType": "計算",
+      "multipleSelectionType": "三項陳述組合",
+      "calculationType": "產量計算",
       "source": "模擬試卷三十五 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -630,7 +631,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十五 卷一",
       "reviewedByAI": "Y",
@@ -739,7 +740,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十五 卷一",
       "reviewedByAI": "Y",
@@ -778,7 +779,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十五 卷一",
       "reviewedByAI": "Y",
@@ -815,7 +816,7 @@
       ],
       "graphType": "-",
       "tableType": "銷量表",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十五 卷一",
       "reviewedByAI": "Y",
@@ -1031,12 +1032,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "總支出表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "彈性計算",
       "source": "模擬試卷三十五 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -1073,7 +1075,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十五 卷一",
       "reviewedByAI": "Y",
@@ -1218,12 +1220,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "解釋"
+        "解釋",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "投入產出表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "產量計算",
       "source": "模擬試卷三十五 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -1379,13 +1382,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
-        "解釋"
+        "解釋",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "成本產出表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "利潤計算",
       "source": "模擬試卷三十五 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -1464,7 +1467,7 @@
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "機會成本計算",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -1499,7 +1502,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -1572,7 +1575,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -1754,7 +1757,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -1787,13 +1790,13 @@
       ],
       "patterns": [
         "圖表判讀",
-        "計算",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "供應曲線",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "彈性計算",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -2025,7 +2028,7 @@
       ],
       "graphType": "供需圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -2061,7 +2064,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -2130,13 +2133,12 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
         "複選組合"
       ],
       "graphType": "-",
       "tableType": "堅尼系數表",
-      "multipleSelectionType": "複選",
-      "calculationType": "計算",
+      "multipleSelectionType": "三項陳述組合",
+      "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -2175,7 +2177,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -2208,13 +2210,12 @@
         "本地生產總值"
       ],
       "patterns": [
-        "計算",
         "複選組合"
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
-      "calculationType": "計算",
+      "multipleSelectionType": "三項陳述組合",
+      "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -2247,13 +2248,13 @@
       ],
       "patterns": [
         "圖表判讀",
-        "計算",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "生產鏈",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "本地生產總值計算",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -2284,13 +2285,13 @@
         "本地生產總值"
       ],
       "patterns": [
-        "計算",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "本地生產總值計算",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -2399,13 +2400,11 @@
         "工資差異",
         "本地生產總值"
       ],
-      "patterns": [
-        "計算"
-      ],
+      "patterns": [],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -2443,7 +2442,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -2482,7 +2481,7 @@
       ],
       "graphType": "短期總供應曲線",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -2556,7 +2555,7 @@
       ],
       "graphType": "總供需圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -2708,7 +2707,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -2745,7 +2744,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -2781,7 +2780,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
@@ -2887,14 +2886,14 @@
         "貨幣供應"
       ],
       "patterns": [
-        "計算",
         "複選組合",
-        "正誤判斷"
+        "正誤判斷",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
-      "calculationType": "-",
+      "multipleSelectionType": "三項陳述組合",
+      "calculationType": "貨幣供應計算",
       "source": "模擬試卷三十六 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -3042,14 +3041,13 @@
         "成本"
       ],
       "patterns": [
-        "計算",
         "解釋",
         "舉例"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十六 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -3160,13 +3158,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
-        "解釋"
+        "解釋",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "資產負債表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "貨幣供應計算",
       "source": "模擬試卷三十六 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -3209,7 +3207,7 @@
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十六 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -3242,13 +3240,12 @@
       ],
       "patterns": [
         "圖表判讀",
-        "計算",
         "解釋"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十六 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -3324,7 +3321,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
@@ -3360,7 +3357,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
@@ -3539,13 +3536,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
-        "複選組合"
+        "複選組合",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "貿易生產表",
-      "multipleSelectionType": "複選",
-      "calculationType": "計算",
+      "multipleSelectionType": "三項陳述組合",
+      "calculationType": "勞工生產力計算",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -3807,7 +3804,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
@@ -3885,7 +3882,7 @@
       ],
       "graphType": "供需圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
@@ -3925,7 +3922,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
@@ -3962,7 +3959,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
@@ -4002,7 +3999,7 @@
       ],
       "graphType": "供需圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
@@ -4041,7 +4038,7 @@
       ],
       "graphType": "供需圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
@@ -4109,13 +4106,12 @@
         "收入不均"
       ],
       "patterns": [
-        "計算",
         "複選組合"
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
-      "calculationType": "計算",
+      "multipleSelectionType": "三項陳述組合",
+      "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -4154,7 +4150,7 @@
       "graphType": "洛倫茨曲線",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -4185,13 +4181,13 @@
         "本地生產總值"
       ],
       "patterns": [
-        "計算",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "本地生產總值計算",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -4260,13 +4256,11 @@
         "工資差異",
         "本地生產總值"
       ],
-      "patterns": [
-        "計算"
-      ],
+      "patterns": [],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -4416,7 +4410,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
@@ -4677,7 +4671,7 @@
       ],
       "graphType": "稅制圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
@@ -4862,7 +4856,7 @@
       "graphType": "-",
       "tableType": "貿易生產表",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "貿易得益計算",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -4936,7 +4930,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
@@ -4968,13 +4962,12 @@
         "匯率"
       ],
       "patterns": [
-        "表格判讀",
-        "計算"
+        "表格判讀"
       ],
       "graphType": "-",
       "tableType": "匯率表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -5169,13 +5162,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
-        "解釋"
+        "解釋",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "物價指數表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "物價指數計算",
       "source": "模擬試卷三十七 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -5247,14 +5240,14 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
         "解釋",
-        "比較"
+        "比較",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "貿易生產表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "貿易得益計算",
       "source": "模擬試卷三十七 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -5297,7 +5290,7 @@
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十七 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -5502,7 +5495,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -5539,7 +5532,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -5576,7 +5569,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -5653,7 +5646,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -5729,7 +5722,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -5841,7 +5834,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -5915,7 +5908,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -5949,12 +5942,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "正誤判斷"
+        "正誤判斷",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "成本產出表",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "產量計算",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -6098,7 +6092,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -6211,7 +6205,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -6285,7 +6279,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -6471,7 +6465,7 @@
       ],
       "graphType": "壟斷定價圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -6544,7 +6538,7 @@
       "graphType": "洛倫茨曲線",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -6583,7 +6577,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
       "reviewedByAI": "Y",
@@ -6976,7 +6970,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
@@ -7342,7 +7336,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
@@ -7495,7 +7489,7 @@
       ],
       "graphType": "供需圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
@@ -7532,7 +7526,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
@@ -7608,7 +7602,7 @@
       ],
       "graphType": "供需圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
@@ -7648,7 +7642,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
@@ -7687,7 +7681,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
@@ -7725,7 +7719,7 @@
       ],
       "graphType": "-",
       "tableType": "工資表",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
@@ -7757,13 +7751,11 @@
         "稅項與津貼",
         "收入不均"
       ],
-      "patterns": [
-        "計算"
-      ],
+      "patterns": [],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -7794,13 +7786,12 @@
         "收入不均"
       ],
       "patterns": [
-        "計算",
         "正誤判斷"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -7834,12 +7825,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "正誤判斷"
+        "正誤判斷",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "本地生產總值計算",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -7875,7 +7867,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
@@ -8176,8 +8168,8 @@
       ],
       "graphType": "經濟周期圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
-      "calculationType": "計算",
+      "multipleSelectionType": "四項陳述組合",
+      "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -8216,7 +8208,7 @@
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "貨幣數量論計算",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -8369,7 +8361,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
@@ -8552,12 +8544,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "正誤判斷"
+        "正誤判斷",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "投入產出表",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "貿易得益計算",
       "source": "模擬試卷三十九 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -8702,12 +8695,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "解釋"
+        "解釋",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "投入產出表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "產量計算",
       "source": "模擬試卷三十九 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -8900,14 +8894,14 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
         "解釋",
-        "舉例"
+        "舉例",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "資產負債表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "貨幣供應計算",
       "source": "模擬試卷三十九 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -8939,14 +8933,14 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
         "解釋",
-        "比較"
+        "比較",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "貿易生產表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "貿易得益計算",
       "source": "模擬試卷三十九 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -8986,7 +8980,7 @@
       "graphType": "-",
       "tableType": "市場佔有率表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十九 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -9067,13 +9061,12 @@
         "國際收支"
       ],
       "patterns": [
-        "計算",
         "解釋"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十九 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -9114,7 +9107,7 @@
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷三十九 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -9229,7 +9222,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十 卷一",
       "reviewedByAI": "Y",
@@ -9449,7 +9442,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十 卷一",
       "reviewedByAI": "Y",
@@ -9631,7 +9624,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十 卷一",
       "reviewedByAI": "Y",
@@ -9776,7 +9769,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十 卷一",
       "reviewedByAI": "Y",
@@ -9810,12 +9803,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "投入產出表",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "產量計算",
       "source": "模擬試卷四十 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -9848,12 +9842,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "投入產出表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "產量計算",
       "source": "模擬試卷四十 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -10001,7 +9996,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十 卷一",
       "reviewedByAI": "Y",
@@ -10227,7 +10222,7 @@
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷四十 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -10299,7 +10294,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十 卷一",
       "reviewedByAI": "Y",
@@ -10726,7 +10721,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -10762,7 +10757,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -10913,7 +10908,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -10981,7 +10976,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -11018,7 +11013,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -11171,7 +11166,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -11330,7 +11325,7 @@
       ],
       "graphType": "壟斷定價圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -11369,8 +11364,8 @@
       ],
       "graphType": "洛倫茨曲線",
       "tableType": "-",
-      "multipleSelectionType": "複選",
-      "calculationType": "計算",
+      "multipleSelectionType": "三項陳述組合",
+      "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -11405,7 +11400,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -11439,13 +11434,13 @@
       ],
       "patterns": [
         "圖表判讀",
-        "計算",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "生產鏈",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "本地生產總值計算",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -11476,13 +11471,13 @@
         "本地生產總值"
       ],
       "patterns": [
-        "計算",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "本地生產總值計算",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -11514,13 +11509,12 @@
         "本地生產總值"
       ],
       "patterns": [
-        "計算",
         "複選組合"
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
-      "calculationType": "計算",
+      "multipleSelectionType": "三項陳述組合",
+      "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -11592,13 +11586,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
-        "正誤判斷"
+        "正誤判斷",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "物價指數表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "本地生產總值計算",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -11714,7 +11708,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -11829,7 +11823,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -11904,7 +11898,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -12015,7 +12009,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -12088,7 +12082,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
       "reviewedByAI": "Y",
@@ -12272,14 +12266,13 @@
         "工資差異"
       ],
       "patterns": [
-        "計算",
         "解釋",
         "舉例"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷四十一 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -12468,14 +12461,14 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
         "解釋",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "資產負債表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "貨幣供應計算",
       "source": "模擬試卷四十一 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -12588,7 +12581,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
@@ -12739,7 +12732,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
@@ -12807,13 +12800,11 @@
       "concepts": [
         "工資差異"
       ],
-      "patterns": [
-        "計算"
-      ],
+      "patterns": [],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -12959,7 +12950,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
@@ -12996,7 +12987,7 @@
       ],
       "graphType": "-",
       "tableType": "銷量表",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
@@ -13068,7 +13059,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
@@ -13108,7 +13099,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
@@ -13342,8 +13333,8 @@
       ],
       "graphType": "洛倫茨曲線",
       "tableType": "-",
-      "multipleSelectionType": "複選",
-      "calculationType": "計算",
+      "multipleSelectionType": "三項陳述組合",
+      "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -13413,13 +13404,13 @@
       ],
       "patterns": [
         "圖表判讀",
-        "計算",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "生產鏈",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "本地生產總值計算",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -13450,13 +13441,11 @@
         "工資差異",
         "本地生產總值"
       ],
-      "patterns": [
-        "計算"
-      ],
+      "patterns": [],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -13488,14 +13477,14 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
         "複選組合",
-        "正誤判斷"
+        "正誤判斷",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "本地生產總值表",
-      "multipleSelectionType": "複選",
-      "calculationType": "計算",
+      "multipleSelectionType": "三項陳述組合",
+      "calculationType": "本地生產總值計算",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -13687,7 +13676,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
@@ -13763,7 +13752,7 @@
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "貨幣供應計算",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -13802,7 +13791,7 @@
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "貨幣供應計算",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -14070,7 +14059,7 @@
       ],
       "graphType": "稅制圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "圖選組合",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
@@ -14145,7 +14134,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
@@ -14182,7 +14171,7 @@
       ],
       "graphType": "-",
       "tableType": "貿易生產表",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
@@ -14219,7 +14208,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
       "reviewedByAI": "Y",
@@ -14497,7 +14486,7 @@
       "graphType": "匯率走勢圖",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷四十二 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -14531,13 +14520,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
-        "舉例"
+        "舉例",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "資產負債表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "貨幣供應計算",
       "source": "模擬試卷四十二 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -14575,7 +14564,7 @@
       "graphType": "-",
       "tableType": "生產與消費表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "貿易得益計算",
       "source": "模擬試卷四十二 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -14656,14 +14645,13 @@
         "國際收支"
       ],
       "patterns": [
-        "計算",
         "解釋",
         "舉例"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷四十二 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -14822,12 +14810,13 @@
         "機會成本"
       ],
       "patterns": [
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "機會成本計算",
       "source": "模擬試卷四十三 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -14899,7 +14888,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
       "reviewedByAI": "Y",
@@ -15008,7 +14997,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
       "reviewedByAI": "Y",
@@ -15121,7 +15110,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
       "reviewedByAI": "Y",
@@ -15154,13 +15143,13 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
-        "解釋"
+        "解釋",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "貿易生產表",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "勞工生產力計算",
       "source": "模擬試卷四十三 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -15196,7 +15185,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "四項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
       "reviewedByAI": "Y",
@@ -15386,7 +15375,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
       "reviewedByAI": "Y",
@@ -15457,7 +15446,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
       "reviewedByAI": "Y",
@@ -15722,7 +15711,7 @@
       ],
       "graphType": "供需圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
       "reviewedByAI": "Y",
@@ -15871,7 +15860,7 @@
       ],
       "graphType": "供需圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
       "reviewedByAI": "Y",
@@ -15904,13 +15893,12 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
         "比較"
       ],
       "graphType": "-",
       "tableType": "堅尼系數表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -16292,7 +16280,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -16368,7 +16356,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -16442,7 +16430,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -16478,7 +16466,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -16518,7 +16506,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -16632,7 +16620,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -16856,7 +16844,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -16970,7 +16958,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -17052,7 +17040,7 @@
       ],
       "graphType": "供需圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -17086,13 +17074,12 @@
       ],
       "patterns": [
         "表格判讀",
-        "計算",
         "解釋"
       ],
       "graphType": "-",
       "tableType": "堅尼系數表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -17161,13 +17148,13 @@
       ],
       "patterns": [
         "圖表判讀",
-        "計算",
-        "填空"
+        "填空",
+        "計算"
       ],
       "graphType": "生產鏈",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "本地生產總值計算",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -17200,13 +17187,11 @@
         "工資差異",
         "本地生產總值"
       ],
-      "patterns": [
-        "計算"
-      ],
+      "patterns": [],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -17474,7 +17459,7 @@
       ],
       "graphType": "-",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -17549,7 +17534,7 @@
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "貨幣供應計算",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -17587,7 +17572,7 @@
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "-",
+      "calculationType": "貨幣供應計算",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -17624,7 +17609,7 @@
       "graphType": "經濟周期圖",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -17734,7 +17719,7 @@
       ],
       "graphType": "稅制圖",
       "tableType": "-",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -17925,7 +17910,7 @@
       ],
       "graphType": "-",
       "tableType": "貿易生產表",
-      "multipleSelectionType": "複選",
+      "multipleSelectionType": "三項陳述組合",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
       "reviewedByAI": "Y",
@@ -18155,13 +18140,13 @@
       "patterns": [
         "圖表判讀",
         "表格判讀",
-        "計算",
-        "解釋"
+        "解釋",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "物價指數表",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "實質產出計算",
       "source": "模擬試卷四十四 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -18270,14 +18255,14 @@
         "比較優勢"
       ],
       "patterns": [
-        "計算",
         "解釋",
-        "比較"
+        "比較",
+        "計算"
       ],
       "graphType": "-",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "貿易得益計算",
       "source": "模擬試卷四十四 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
@@ -18353,7 +18338,7 @@
       "graphType": "考生繪圖",
       "tableType": "-",
       "multipleSelectionType": "-",
-      "calculationType": "計算",
+      "calculationType": "-",
       "source": "模擬試卷四十四 卷二",
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24"
