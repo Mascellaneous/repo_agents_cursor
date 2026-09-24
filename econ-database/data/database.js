@@ -3709,7 +3709,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/28/p2-11.jpg,originals/28/p2-12.jpg",
-      "originalAnswerImage": "originals/28/ans-13.jpg"
+      "originalAnswerImage": "originals/28/ans-13.jpg",
+      "inlineDiagrams": "diagrams/M28-P2-Q09.jpg"
     },
     {
       "id": "M28-P2-Q10",
@@ -3801,7 +3802,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalAnswerImage": "originals/28/ans-16.jpg",
-      "originalQuestionImage": "originals/28/p2-19.jpg,originals/28/p2-20.jpg,originals/28/p2-21.jpg"
+      "originalQuestionImage": "originals/28/p2-19.jpg,originals/28/p2-20.jpg,originals/28/p2-21.jpg",
+      "inlineDiagrams": "diagrams/M28-P2-Q11.jpg"
     },
     {
       "id": "M28-P2-Q12",
@@ -3847,7 +3849,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalAnswerImage": "originals/28/ans-17.jpg",
-      "originalQuestionImage": "originals/28/p2-22.jpg"
+      "originalQuestionImage": "originals/28/p2-22.jpg",
+      "inlineDiagrams": "diagrams/M28-P2-Q12.jpg"
     },
     {
       "id": "M29-P1-Q01",
@@ -6083,7 +6086,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalAnswerImage": "originals/29/ans-17.jpg",
-      "originalQuestionImage": "originals/29/p2-19.jpg,originals/29/p2-20.jpg,originals/29/p2-21.jpg"
+      "originalQuestionImage": "originals/29/p2-19.jpg,originals/29/p2-20.jpg,originals/29/p2-21.jpg",
+      "inlineDiagrams": "diagrams/M29-P2-Q11.jpg"
     },
     {
       "id": "M29-P2-Q12",
@@ -6129,7 +6133,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalAnswerImage": "originals/29/ans-18.jpg",
-      "originalQuestionImage": "originals/29/p2-22.jpg"
+      "originalQuestionImage": "originals/29/p2-22.jpg",
+      "inlineDiagrams": "diagrams/M29-P2-Q12.jpg"
     },
     {
       "id": "M30-P1-Q01",
@@ -7687,7 +7692,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/30/p2-11.jpg",
-      "originalAnswerImage": "originals/30/ans-11.jpg"
+      "originalAnswerImage": "originals/30/ans-11.jpg",
+      "inlineDiagrams": "diagrams/M30-P2-Q09.jpg"
     },
     {
       "id": "M31-P1-Q01",
@@ -10021,7 +10027,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/31/p2-20.jpg,originals/31/p2-21.jpg,originals/31/p2-22.jpg",
-      "originalAnswerImage": "originals/31/ans-19.jpg"
+      "originalAnswerImage": "originals/31/ans-19.jpg",
+      "inlineDiagrams": "diagrams/M31-P2-Q13.jpg"
     },
     {
       "id": "M31-P2-Q14",
@@ -10063,7 +10070,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/31/p2-23.jpg",
-      "originalAnswerImage": "originals/31/ans-20.jpg"
+      "originalAnswerImage": "originals/31/ans-20.jpg",
+      "inlineDiagrams": "diagrams/M31-P2-Q14.jpg"
     },
     {
       "id": "M32-P1-Q01",
@@ -12401,7 +12409,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/32/p2-19.jpg,originals/32/p2-20.jpg,originals/32/p2-21.jpg",
-      "originalAnswerImage": "originals/32/ans-21.jpg"
+      "originalAnswerImage": "originals/32/ans-21.jpg",
+      "inlineDiagrams": "diagrams/M32-P2-Q13.jpg"
     },
     {
       "id": "M32-P2-Q14",
@@ -12443,7 +12452,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/32/p2-22.jpg",
-      "originalAnswerImage": "originals/32/ans-22.jpg"
+      "originalAnswerImage": "originals/32/ans-22.jpg",
+      "inlineDiagrams": "diagrams/M32-P2-Q14.jpg"
     },
     {
       "id": "M33-P1-Q01",
@@ -16273,7 +16283,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalAnswerImage": "originals/34/ans-19.jpg",
-      "originalQuestionImage": "originals/34/p2-19.jpg,originals/34/p2-20.jpg,originals/34/p2-21.jpg"
+      "originalQuestionImage": "originals/34/p2-19.jpg,originals/34/p2-20.jpg,originals/34/p2-21.jpg",
+      "inlineDiagrams": "diagrams/M34-P2-Q12.jpg"
     },
     {
       "id": "M34-P2-Q13",
@@ -16316,7 +16327,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalAnswerImage": "originals/34/ans-20.jpg",
-      "originalQuestionImage": "originals/34/p2-22.jpg"
+      "originalQuestionImage": "originals/34/p2-22.jpg",
+      "inlineDiagrams": "diagrams/M34-P2-Q13.jpg"
     },
     {
       "id": "M35-P1-Q01",
@@ -19620,7 +19632,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/36/p2-05.jpg",
-      "originalAnswerImage": "originals/36/ans-12.jpg"
+      "originalAnswerImage": "originals/36/ans-12.jpg",
+      "inlineDiagrams": "diagrams/M36-P2-Q05.jpg"
     },
     {
       "id": "M36-P2-Q06",
@@ -22041,7 +22054,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/37/p2-19.jpg,originals/37/p2-20.jpg,originals/37/p2-21.jpg",
-      "originalAnswerImage": "originals/37/ans-18.jpg"
+      "originalAnswerImage": "originals/37/ans-18.jpg",
+      "inlineDiagrams": "diagrams/M37-P2-Q11.jpg"
     },
     {
       "id": "M37-P2-Q12",
@@ -22085,7 +22099,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/37/p2-22.jpg",
-      "originalAnswerImage": "originals/37/ans-19.jpg"
+      "originalAnswerImage": "originals/37/ans-19.jpg",
+      "inlineDiagrams": "diagrams/M37-P2-Q12.jpg"
     },
     {
       "id": "M38-P1-Q01",
@@ -25772,7 +25787,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/39/p2-11.jpg,originals/39/p2-12.jpg",
-      "originalAnswerImage": "originals/39/ans-18.jpg"
+      "originalAnswerImage": "originals/39/ans-18.jpg",
+      "inlineDiagrams": "diagrams/M39-P2-Q09.jpg"
     },
     {
       "id": "M39-P2-Q10",
@@ -25900,7 +25916,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/39/p2-21.jpg,originals/39/p2-22.jpg,originals/39/p2-23.jpg",
-      "originalAnswerImage": "originals/39/ans-22.jpg"
+      "originalAnswerImage": "originals/39/ans-22.jpg",
+      "inlineDiagrams": "diagrams/M39-P2-Q12.jpg"
     },
     {
       "id": "M39-P2-Q13",
@@ -25942,7 +25959,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/39/p2-24.jpg",
-      "originalAnswerImage": "originals/39/ans-23.jpg"
+      "originalAnswerImage": "originals/39/ans-23.jpg",
+      "inlineDiagrams": "diagrams/M39-P2-Q13.jpg"
     },
     {
       "id": "M40-P1-Q01",
@@ -27357,7 +27375,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/40/p2-06.jpg",
-      "originalAnswerImage": "originals/40/ans-09.jpg"
+      "originalAnswerImage": "originals/40/ans-09.jpg",
+      "inlineDiagrams": "diagrams/M40-P2-Q06-1.jpg"
     },
     {
       "id": "M40-P2-Q07",
@@ -29283,7 +29302,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/41/p2-05.jpg",
-      "originalAnswerImage": "originals/41/ans-10.jpg"
+      "originalAnswerImage": "originals/41/ans-10.jpg",
+      "inlineDiagrams": "diagrams/M41-P2-Q05.jpg"
     },
     {
       "id": "M41-P2-Q06",
@@ -29366,7 +29386,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/41/p2-08.jpg,originals/41/p2-09.jpg",
-      "originalAnswerImage": "originals/41/ans-12.jpg"
+      "originalAnswerImage": "originals/41/ans-12.jpg",
+      "inlineDiagrams": "diagrams/M41-P2-Q07-1.jpg"
     },
     {
       "id": "M41-P2-Q08",
@@ -31720,7 +31741,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/42/p2-17.jpg,originals/42/p2-18.jpg,originals/42/p2-19.jpg",
-      "originalAnswerImage": "originals/42/ans-17.jpg"
+      "originalAnswerImage": "originals/42/ans-17.jpg",
+      "inlineDiagrams": "diagrams/M42-P2-Q11.jpg"
     },
     {
       "id": "M42-P2-Q12",
@@ -31766,7 +31788,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/42/p2-20.jpg",
-      "originalAnswerImage": "originals/42/ans-18.jpg"
+      "originalAnswerImage": "originals/42/ans-18.jpg",
+      "inlineDiagrams": "diagrams/M42-P2-Q12.jpg"
     },
     {
       "id": "M43-P1-Q01",
@@ -33107,7 +33130,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/43/p2-03.jpg",
-      "originalAnswerImage": "originals/43/ans-07.jpg"
+      "originalAnswerImage": "originals/43/ans-07.jpg",
+      "inlineDiagrams": "diagrams/M43-P2-Q04.jpg"
     },
     {
       "id": "M43-P2-Q05",
@@ -35665,7 +35689,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/44/p2-18.jpg,originals/44/p2-19.jpg,originals/44/p2-20.jpg",
-      "originalAnswerImage": "originals/44/ans-19.jpg"
+      "originalAnswerImage": "originals/44/ans-19.jpg",
+      "inlineDiagrams": "diagrams/M44-P2-Q13.jpg"
     },
     {
       "id": "M44-P2-Q14",
@@ -35706,7 +35731,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "Y",
       "lastReviewDate": "2026-09-24",
       "originalQuestionImage": "originals/44/p2-21.jpg",
-      "originalAnswerImage": "originals/44/ans-20.jpg"
+      "originalAnswerImage": "originals/44/ans-20.jpg",
+      "inlineDiagrams": "diagrams/M44-P2-Q14.jpg"
     }
   ]
 };
