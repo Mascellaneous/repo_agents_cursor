@@ -19,7 +19,7 @@
  * 例如：GN-X II加農型（SSR・支援・Lv.100）
  * 此外，由於機體、角色、支援單位的數量較多，dropdown可以讓用家打字嗎？
  * 單位與角色的選項文字為「名稱（稀有度・類型・Lv.等級）」。
- * 支援單位沒有稀有度與類型，選項文字為「名稱（Lv.等級）」。
+ * 支援單位沒有類型，選項文字為「名稱（稀有度・Lv.等級）」。稀有度只有 UR、SSR、SR。
  * 這三個欄位改成可打字的下拉：輸入名稱、稀有度、類型或等級都會篩選。
  * 存檔仍只記 id 與名稱，不把括號裡的稀有度寫進名稱快照。
  *
@@ -200,7 +200,7 @@ function stSelMeta(el) {
     return { id: el.value, name: el.getAttribute('data-name') || '' };
 }
 
-/* 單位／角色：名稱（稀有度・類型・Lv.等級）。支援單位沒有稀有度與類型，只附等級。 */
+/* 單位／角色：名稱（稀有度・類型・Lv.等級）。支援單位沒有類型：名稱（稀有度・Lv.等級）。 */
 function stStatLabel(it) {
     const name = (it && it.name) || '(未命名)';
     return name + '（' + (it.rarity || '?') + '・' + (it.type || '?') + '・Lv.' + (it.level == null || it.level === '' ? '?' : it.level) + '）';
@@ -208,7 +208,7 @@ function stStatLabel(it) {
 function stSupportLabel(it) {
     const name = (it && it.name) || '(未命名)';
     const lv = it && it.level != null && it.level !== '' ? it.level : '?';
-    return name + '（Lv.' + lv + '）';
+    return name + '（' + (it.rarity || '?') + '・Lv.' + lv + '）';
 }
 function stPickPool(kind) {
     const list = kind === 'unit' ? ST_CAT.units : kind === 'char' ? ST_CAT.characters : ST_CAT.supports;
@@ -583,7 +583,7 @@ function stCatalogHint() {
     const s = ST_CAT.supports.length, p = ST_CAT.parts.length;
     let txt = `可用資料：單位 ${u}、角色 ${c}、支援單位 ${s}、選擇性零件 ${p}。`;
     txt += '每一組通關隊伍固定兩隊；每隊 1～5 個單位，每個單位要選角色，選擇性零件與支援單位可以不選。';
-    txt += '單位與角色顯示為「名稱（稀有度・類型・Lv.等級）」，支援單位顯示等級；這三欄可直接打字搜尋。';
+    txt += '單位與角色顯示為「名稱（稀有度・類型・Lv.等級）」，支援單位顯示「名稱（稀有度・Lv.等級）」；這三欄可直接打字搜尋。';
     if (!u || !c) txt += ' 單位或角色還是空的，請先到對應分頁新增。';
     return txt;
 }

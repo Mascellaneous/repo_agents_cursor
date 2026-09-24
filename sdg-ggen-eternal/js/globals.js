@@ -5,6 +5,7 @@ const APP_NAME = 'SD高達G世代永恆 收藏管理庫';
 const TYPES = ['units', 'characters', 'supports'];
 const LABEL = { units: '單位', characters: '角色', supports: '支援單位' };
 const RARITIES = ['UR', 'SSR', 'SR', 'R', 'N'];
+const SUPPORT_RARITIES = ['UR', 'SSR', 'SR'];
 const RARITY_ORD = { UR: 5, SSR: 4, SR: 3, R: 2, N: 1 };
 const TYPE_ORD = { '攻擊': 1, '防禦': 2, '支援': 3 };
 const WEAPON_OPTS = ['-', '1', '2', '3', '4', '5'];

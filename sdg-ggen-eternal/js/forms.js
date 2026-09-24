@@ -407,6 +407,7 @@ async function editSupport(id) {
     gi('s-image').value = s.image || '';
     gi('s-acq').value = (typeof s.acqOrder === 'number' && s.acqOrder > 0) ? s.acqOrder : '';
     gi('s-lvl').value = (s.level ?? 1);
+    gi('s-rarity').value = SUPPORT_RARITIES.includes(s.rarity) ? s.rarity : '';
     showForm('supports', '編輯支援單位 — ' + (s.name || ''));
 }
  
@@ -414,6 +415,7 @@ function collectSupportFromForm() {
     return {
         name: gi('s-name').value.trim(),
         image: normalizeImagePath(gi('s-image').value, 'supports'),
+        rarity: gi('s-rarity').value,
         level: parseInt(gi('s-lvl').value, 10) || 1
     };
 }
@@ -421,6 +423,7 @@ function collectSupportFromForm() {
 async function saveSupport() {
     const s = collectSupportFromForm();
     if (!s.name) { showToast('請輸入名稱', true); return; }
+    if (!SUPPORT_RARITIES.includes(s.rarity)) { showToast('請選擇稀有度（UR／SSR／SR）', true); return; }
     const editingId = gi('s-id').value || null;
     if (editingId) {
         const old = (await getAll('supports')).find(x => x.id === editingId);

@@ -346,7 +346,7 @@ function clearC() {
 }
 function clearS() {
     gi('s-search').value = '';
-    ['fs-lvlstate','fs-image'].forEach(id => gi(id).value = '');
+    ['fs-lvlstate','fs-image','fs-rarity'].forEach(id => gi(id).value = '');
     gi('fs-sort').value = 'order'; gi('fs-order').value = 'desc'; // 預設：獲得順序降冪
     fc('supports');
 }

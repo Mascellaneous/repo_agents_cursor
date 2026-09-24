@@ -20,7 +20,7 @@ RENDER.supports = async function () {
         ? pg.map(s => `<div class="card">
             <div class="card-head">${thumbHtml(s.image)}
                 <div class="head-main"><h3 class="c-title">${esc(s.name)}</h3>
-                    <div class="badges">${ordBadge(s.acqOrder)}</div></div></div>
+                    <div class="badges">${ordBadge(s.acqOrder)}${rarityBadge(s.rarity)}</div></div></div>
             <div class="card-body">
                 <div class="kv">等級 <b class="${isMaxLevel(s, 'supports') ? 'lv-done' : ''}">${esc(s.level ?? '—')}${s.level != null ? `<span class="lv-cap">/${SUPPORT_MAX_LEVEL}</span>` : ''}</b>${isMaxLevel(s, 'supports') ? ' ✓滿級' : ''}</div>
             </div>

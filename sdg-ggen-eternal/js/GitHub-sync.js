@@ -232,6 +232,7 @@ function sanitizeRecords(arr, kind) {
         const r = { ...raw, id };
         if (!r.name) r.name = '(未命名)';
         if (kind === 'units') normalizeUnitRecord(r);
+        if (kind === 'supports') r.rarity = (typeof SUPPORT_RARITIES !== 'undefined' && SUPPORT_RARITIES.includes(r.rarity)) ? r.rarity : '';
         out.push(r);
     }
     return out;

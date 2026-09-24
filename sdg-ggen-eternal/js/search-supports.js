@@ -9,9 +9,12 @@ function applySupFilters(list) {
     const q      = fv('s-search').trim().toLowerCase();
     const fLvlSt = fv('fs-lvlstate');
     const fImg   = fv('fs-image');
+    const fRar   = fv('fs-rarity');
  
     const out = list.filter(s => {
         if (q && !String(s.name || '').toLowerCase().includes(q)) return false;
+        if (fRar === 'none' && s.rarity) return false;
+        if (fRar && fRar !== 'none' && s.rarity !== fRar) return false;
         if (fLvlSt === 'max'    && !isMaxLevel(s, 'supports')) return false;
         if (fLvlSt === 'notmax' &&  isMaxLevel(s, 'supports')) return false;
         if (!matchImageFilter(s, fImg)) return false;
@@ -25,6 +28,9 @@ function applySupFilters(list) {
         switch (sort) {
             case 'name':
                 r = String(a.name || '').localeCompare(String(b.name || ''), 'zh-Hant');
+                break;
+            case 'rarity':
+                r = (RARITY_ORD[a.rarity] || 0) - (RARITY_ORD[b.rarity] || 0);
                 break;
             case 'order': {
                 const oOf = x => (typeof x.acqOrder === 'number' && x.acqOrder > 0)

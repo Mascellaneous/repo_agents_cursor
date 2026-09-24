@@ -5,6 +5,8 @@ const TAB_SUPPORTS_HTML = `
         <div class="fsec">
             <div class="ttl">🔍 搜尋 — 支援單位</div>
             <input type="text" id="s-search" class="search-box" placeholder="搜尋名稱…" oninput="debouncedSearch('supports')">
+            <div class="fgroup"><label>稀有度</label><select id="fs-rarity" onchange="fc('supports')">
+                <option value="">全部</option><option>UR</option><option>SSR</option><option>SR</option><option value="none">未設定</option></select></div>
             <div class="fgroup"><label>圖片</label><select id="fs-image" onchange="fc('supports')">
                 <option value="">全部</option><option value="y">有圖片</option><option value="n">無圖片</option></select></div>
             <div class="fgroup"><label>等級</label>
@@ -16,7 +18,7 @@ const TAB_SUPPORTS_HTML = `
                 </select>
             </div>
             <div class="fgroup"><label>排序</label>
-                <select id="fs-sort" onchange="fc('supports')"><option value="date">加入日期</option><option value="order" selected>獲得順序</option><option value="name">名稱</option></select>
+                <select id="fs-sort" onchange="fc('supports')"><option value="date">加入日期</option><option value="order" selected>獲得順序</option><option value="name">名稱</option><option value="rarity">稀有度</option></select>
                 <select id="fs-order" onchange="fc('supports')"><option value="desc">降冪</option><option value="asc">升冪</option></select>
             </div>
             <button class="btn btn-clear" onclick="clearS()">清除</button>
@@ -48,6 +50,8 @@ const TAB_SUPPORTS_HTML = `
             <div class="frow">
                 <div class="fg"><label>名稱 *</label><input type="text" id="s-name" maxlength="100" required></div>
                 <div class="fg"><label>圖片 (URL)</label><input type="text" id="s-image" placeholder="https://…"></div>
+                <div class="fg slim"><label>稀有度 *</label><select id="s-rarity">
+                    <option value="">請選擇</option><option>UR</option><option>SSR</option><option>SR</option></select></div>
                 <div class="fg slim"><label>獲得順序</label><input type="number" id="s-acq" min="1" step="1" placeholder="自動"></div>
                 <div class="fg slim"><label>等級 (1–100)</label><input type="number" id="s-lvl" min="1" max="100" step="1" value="1"></div>
             </div>
