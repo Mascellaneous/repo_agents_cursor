@@ -147,7 +147,7 @@ Templates (js/templates/):
   range-thumb selector for Firefox.
 - Persistent per-question notes would require a write-back endpoint
   (e.g. Apps Script action saveComment) — not implemented.
-- statistics.js and googleSheets-sync.js must not reference the removed
+- statistics.js and storage-sync.js must not reference the removed
   metadata stores (publishers / topics / concepts / patterns) or the
   removed getAllMetadata() / updateMetadata() methods — verify before
   re-enabling the statistics tabs.

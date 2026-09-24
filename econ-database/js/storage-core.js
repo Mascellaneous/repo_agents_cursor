@@ -1,6 +1,6 @@
 // storage-core.js
 // IndexedDB wrapper (window.storage). Questions only — IndexedDB is a
-// disposable cache rebuilt from Google Sheets on every sync/login.
+// disposable cache rebuilt from data/questions.json on every load.
 //
 // v4: Removed the legacy metadata object stores (publishers / topics /
 // concepts / patterns) and their accessor methods (updateMetadata,

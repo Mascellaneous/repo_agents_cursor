@@ -229,7 +229,7 @@ function closeFeedbackModal() {
     }
 }
 
-// Submit feedback to Google Sheets via Apps Script
+// Submit feedback into localStorage. There is no remote sheet.
 async function submitFeedback() {
     const questionId = document.getElementById('feedback-question-id').textContent;
     const feedbackText = document.getElementById('feedback-text').value.trim();

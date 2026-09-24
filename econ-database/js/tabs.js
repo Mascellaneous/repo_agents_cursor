@@ -3,8 +3,8 @@
 //
 // REFACTORED: The old metadata-based renderers (with the "添加備註"
 // textareas) have been removed. Those comments were stored only in the
-// local IndexedDB, which is wiped and rebuilt from Google Sheets on every
-// sync/login — so they were never actually persisted. The tab functions
+// local IndexedDB, which is wiped and rebuilt from the JSON file on every
+// load — so they were never actually persisted. The tab functions
 // now simply delegate to the read-only stat renderers in statistics.js.
 //
 // Function names are kept identical (renderPublishers, renderTopics, ...)

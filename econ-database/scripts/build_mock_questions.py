@@ -365,6 +365,99 @@ FALLBACK = [
 ]
 
 
+# Specific concepts, separate from the chapter-level topic.
+CONCEPT_RULES = [
+    ("機會成本", ["機會成本", "最不重要的因素", "成本效益分析", "優先次序"]),
+    ("稀少性", ["稀少性", "稀少"]),
+    ("免費物品", ["免費物品"]),
+    ("經濟物品", ["經濟物品"]),
+    ("共用品", ["共用品"]),
+    ("利息", ["利息"]),
+    ("私有產權", ["私有產權"]),
+    ("三個基本經濟問題", ["生產甚麼", "怎樣生產", "為誰生產"]),
+    ("計劃經濟與市場經濟", ["計劃經濟", "市場經濟", "命令經濟"]),
+    ("實證性與規範性陳述", ["實證性", "規範性"]),
+    ("廠商所有權形式", ["獨資", "合夥", "有限公司", "無限債務責任", "有限債務", "公營", "私營"]),
+    ("股票與債券", ["股票", "債券"]),
+    ("分工", ["分工", "熟能生巧", "專責"]),
+    ("生產類別", ["初級生產", "二級生產", "三級生產", "類別的生產"]),
+    ("勞工生產力", ["勞工生產力", "平均勞工"]),
+    ("資本", ["的資本", "是資本", "屬於資本"]),
+    ("土地", ["土地"]),
+    ("均衡", ["均衡"]),
+    ("短缺與盈餘", ["短缺", "盈餘", "供過於求", "存貨未能售出"]),
+    ("供需", ["供需", "供應曲線", "需求曲線", "均衡數量"]),
+    ("勞工流動性", ["職業流動", "地域流動", "地理流動"]),
+    ("衍生需求", ["衍生需求"]),
+    ("工資差異", ["工資差異", "計件", "計時工資", "薪金"]),
+    ("邊際回報遞減", ["邊際回報", "邊際產量"]),
+    ("規模經濟", ["規模經濟", "規模不經濟"]),
+    ("成本", ["固定成本", "可變成本", "平均成本", "邊際成本"]),
+    ("固定與可變生產要素", ["固定生產要素", "可變生產要素"]),
+    ("利潤極大化", ["利潤極大"]),
+    ("結合與擴張", ["縱向", "橫向結合", "後向結合", "前向結合", "收購"]),
+    ("需求定律", ["需求定律"]),
+    ("供應定律", ["供應定律"]),
+    ("消費者盈餘", ["消費者剩餘", "消費者盈餘", "邊際利益"]),
+    ("價格的功能", ["分配功能", "配給", "價高者得", "價格的訊息"]),
+    ("需求與供應的變化", ["代替品", "互補品", "正常物品", "劣等物品", "需求上升", "供應上升", "需求下降", "供應下降"]),
+    ("彈性", ["需求彈性", "供應彈性", "價格彈性", "收入彈性", "交叉彈性", "總支出"]),
+    ("價格管制", ["價格上限", "價格下限", "最低工資", "租金管制", "有效價格"]),
+    ("稅項與津貼", ["從價稅", "從量稅", "從量銷售稅", "銷售稅", "從量津貼", "單位補貼", "津貼"]),
+    ("界外影響", ["界外影響", "外部效益", "外部成本", "界外效益", "界外成本", "私人與社會", "社會成本", "社會利益"]),
+    ("收入不均", ["堅尼", "基尼", "洛伦茨", "洛伦兹", "收入分配", "收入不均"]),
+    ("本地生產總值", ["本地生產總值", "國民生產總值", "GDP", "GNP"]),
+    ("物價指數", ["消費物價指數", "物價指數"]),
+    ("失業", ["失業"]),
+    ("通脹與通縮", ["通脹", "通縮"]),
+    ("貨幣的功能", ["交易媒介", "記帳單位", "價值儲藏", "延期支付", "貨幣形式"]),
+    ("銀行體系", ["商業銀行", "中央銀行", "有限制牌照銀行"]),
+    ("貨幣供應", ["貨幣供應", "存款創造", "貨幣基礎", "貨幣乘數", "資產負債表", "超額儲備"]),
+    ("財政政策與貨幣政策", ["財政政策", "貨幣政策", "貼現率", "公開市場"]),
+    ("總需求與總供應", ["總需求", "總供應"]),
+    ("比較優勢", ["比較優勢", "絕對優勢", "貿易得益", "貿易總得益", "貿易比率"]),
+    ("貿易障礙", ["關稅", "進口配額", "配額", "貿易障礙"]),
+    ("匯率", ["匯率", "升值", "貶值", "聯繫匯率"]),
+    ("國際收支", ["國際收支", "貿易盈餘", "經常帳", "貿易差額"]),
+    ("價格分歧", ["價格分歧"]),
+    ("反競爭行為", ["反競爭", "競爭政策", "掠奪性", "合謀"]),
+    ("經濟增長", ["經濟增長", "經濟發展"]),
+]
+
+
+def detect_concepts(text):
+    found = []
+    for label, keywords in CONCEPT_RULES:
+        if any(kw in text for kw in keywords):
+            found.append(label)
+    return found[:6]
+
+
+def detect_patterns(text):
+    """Question patterns. questionType already records MC vs written, so it is not repeated here."""
+    patterns = []
+    def add(name, ok):
+        if ok and name not in patterns:
+            patterns.append(name)
+
+    add("資料回應", "資料A" in text or "資料B" in text or "新聞" in text)
+    add("短文", "短文" in text)
+    add("以圖輔助", "以圖" in text or "毋須用圖" in text or "毋須運用圖" in text)
+    add("繪圖", "繪畫" in text or "繪圖" in text or "在圖中" in text)
+    add("圖表判讀", any(k in text for k in ("下圖", "細閱下圖", "哪幅圖", "供需圖")))
+    add("表格判讀", "下表" in text or "表顯示" in text)
+    add("計算", any(k in text for k in ("計算", "是多少", "找出", "百分")))
+    add("解釋", "解釋" in text)
+    add("舉例", "舉出" in text or "一個例子" in text or "例子" in text)
+    add("比較", any(k in text for k in ("相比", "比較", "優點", "缺點", "分別")))
+    add("複選組合", bool(re.search(r"\(1\)", text) and re.search(r"\(2\)", text)))
+    add("填空", "____" in text or "________" in text)
+    add("正誤判斷", "陳述是正確" in text or "哪些是正確" in text or "哪項是正確" in text)
+    if not patterns:
+        patterns.append("選擇最佳答案" if re.search(r"^[A-D][\.\t]", text, re.M) else "問答")
+    return patterns
+
+
 def classify(text):
     scores = score_topics(text)
     if not scores:
@@ -374,19 +467,17 @@ def classify(text):
                     "topic": name,
                     "curriculumClassification": [curr],
                     "AristochapterClassification": [f"Ch{ch}"],
-                    "concepts": [name],
                 }
     if not scores:
         return {
             "topic": "未分類",
             "curriculumClassification": ["未分類"],
             "AristochapterClassification": [],
-            "concepts": [],
         }
     top = scores[0]
     chapters = [f"Ch{top[1]}"]
     curricula = [top[3]]
-    concepts = [top[4]]
+    names = [top[4]]
     # Second topic if it is a clearly different chapter and almost as strong
     if len(scores) > 1:
         second = scores[1]
@@ -394,13 +485,11 @@ def classify(text):
             chapters.append(f"Ch{second[1]}")
             if second[3] not in curricula:
                 curricula.append(second[3])
-            concepts.append(second[4])
-    topic = "；".join(concepts)
+            names.append(second[4])
     return {
-        "topic": topic,
+        "topic": "；".join(names),
         "curriculumClassification": curricula,
         "AristochapterClassification": chapters,
-        "concepts": concepts,
     }
 
 
@@ -483,8 +572,8 @@ def build():
                 "answerChi": p1_expl.get(i, ""),
                 "curriculumClassification": topic["curriculumClassification"],
                 "AristochapterClassification": topic["AristochapterClassification"],
-                "concepts": topic["concepts"],
-                "patterns": ["多項選擇題"],
+                "concepts": detect_concepts(plain),
+                "patterns": detect_patterns(plain),
                 "graphType": graph,
                 "tableType": table,
                 "multipleSelectionType": multi,
@@ -519,8 +608,8 @@ def build():
                 "answerChi": p2_ans.get(n, ""),
                 "curriculumClassification": topic["curriculumClassification"],
                 "AristochapterClassification": topic["AristochapterClassification"],
-                "concepts": topic["concepts"],
-                "patterns": ["結構題"],
+                "concepts": detect_concepts(plain),
+                "patterns": detect_patterns(plain),
                 "graphType": graph,
                 "tableType": table,
                 "multipleSelectionType": multi,
@@ -531,7 +620,7 @@ def build():
     payload = {
         "version": "1.0",
         "source": "Aristo HKDSE Economics mock papers 35–44",
-        "description": "Each record is one question. topic is the identified syllabus topic; plainText is the question wording.",
+        "description": "Each record is one question. topic is the chapter; concepts are specific ideas such as 機會成本; patterns are question styles and do not repeat questionType; plainText is the wording.",
         "questionCount": len(questions),
         "questions": questions,
     }

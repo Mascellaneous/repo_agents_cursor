@@ -167,10 +167,8 @@ async function renderConceptStats() {
     const stats = {};
     
     questions.forEach(q => {
-        const topics = q.topic
-            ? String(q.topic).split('；').map(s => s.trim()).filter(Boolean)
-            : (Array.isArray(q.concepts) ? q.concepts : []);
-        topics.forEach(concept => {
+        const concepts = Array.isArray(q.concepts) ? q.concepts : [];
+        concepts.forEach(concept => {
             if (!stats[concept]) {
                 stats[concept] = { total: 0, mc: 0, text: 0 };
             }

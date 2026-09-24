@@ -1,5 +1,5 @@
-// admin.js - Secure Admin Mode with Server-Side Verification
-// Dependencies: config.js (CONFIG.GOOGLE_APPS_SCRIPT_URL), render.js (renderQuestions)
+// admin.js - Local admin mode. The question bank is a JSON file, not a remote sheet.
+// Dependencies: render.js (renderQuestions)
 
 // Admin mode state
 let isAdminMode = false;
@@ -14,36 +14,6 @@ async function hashPassword(password) {
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     return hashHex;
-}
-
-/**
- * Verify password with Google Apps Script
- * Dependencies: config.js (CONFIG.GOOGLE_APPS_SCRIPT_URL)
- */
-async function verifyPasswordWithServer(passwordHash) {
-    try {
-        if (!CONFIG.GOOGLE_APPS_SCRIPT_URL) return false;
-        const scriptUrl = CONFIG.GOOGLE_APPS_SCRIPT_URL;
-        // Use POST instead of GET
-        const response = await fetch(scriptUrl, {
-            method: 'POST',
-            body: JSON.stringify({
-                action: 'verify_admin',
-                hash: passwordHash
-            })
-        });
-        
-        if (!response.ok) {
-            throw new Error('Server verification failed');
-        }
-        
-        const result = await response.json();
-        return result.success;
-        
-    } catch (error) {
-        console.error('Password verification error:', error);
-        return false;
-    }
 }
 
 /**
