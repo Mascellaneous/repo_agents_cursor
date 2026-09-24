@@ -40,6 +40,18 @@ Read the `.docx` and the JSON row together. For each question:
 6. Copy the keyed answer from 參考答案 when it is missing. Do not invent an answer.
 7. Set `reviewedByAI` to `Y` and `lastReviewDate` to today only after that read.
 
+## Vocabulary for concepts, patterns, diagrams, and tables
+
+Read `econ-database/data/vocabulary.json` before you classify a new paper. It lists the concepts, question patterns, diagram types, and table types already used.
+
+- `concepts` are specific ideas such as 機會成本 and 勞工生產力. Do not put the chapter name there.
+- `patterns` describe how the question is asked. Do not repeat `questionType`.
+- `graphType` is a diagram type from `diagramTypes`, or `-` when there is no diagram. Do not leave it as 圖.
+- `tableType` is a table type from `tableTypes`, or `-` when there is no table. Do not leave it as 表格.
+- A figure labelled 下圖 that is only rows of numbers is a table, not a diagram.
+- 細閱以下 by itself is not a diagram. Use it only when the question actually shows or asks for a figure.
+- Add a new label only when none of the existing ones fits, and add that label to `vocabulary.json` in the same change.
+
 ## Adding another mock paper
 
 1. Put three files in `MockTests/`: 卷一, 卷二, and 參考答案. Keep the same filename style as the papers already there.

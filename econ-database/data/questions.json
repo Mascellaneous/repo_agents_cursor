@@ -405,7 +405,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "生產流程圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -591,7 +591,7 @@
         "正誤判斷"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "投入產出表",
       "multipleSelectionType": "複選",
       "calculationType": "計算",
       "source": "模擬試卷三十五 卷一",
@@ -814,7 +814,7 @@
         "複選組合"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "銷量表",
       "multipleSelectionType": "複選",
       "calculationType": "-",
       "source": "模擬試卷三十五 卷一",
@@ -924,7 +924,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -996,7 +996,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -1034,7 +1034,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "總支出表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷三十五 卷一",
@@ -1146,7 +1146,7 @@
         "解釋"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "喜好次序表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十五 卷二",
@@ -1221,7 +1221,7 @@
         "解釋"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "投入產出表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷三十五 卷二",
@@ -1260,7 +1260,7 @@
         "舉例",
         "比較"
       ],
-      "graphType": "圖",
+      "graphType": "考生繪圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -1383,7 +1383,7 @@
         "解釋"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "成本產出表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷三十五 卷二",
@@ -1790,7 +1790,7 @@
         "計算",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "供應曲線",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "計算",
@@ -1945,8 +1945,8 @@
         "表格判讀",
         "填空"
       ],
-      "graphType": "圖",
-      "tableType": "-",
+      "graphType": "-",
+      "tableType": "市場佔有率表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
@@ -1983,7 +1983,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -2023,7 +2023,7 @@
         "複選組合",
         "正誤判斷"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -2134,7 +2134,7 @@
         "複選組合"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "堅尼系數表",
       "multipleSelectionType": "複選",
       "calculationType": "計算",
       "source": "模擬試卷三十六 卷一",
@@ -2250,7 +2250,7 @@
         "計算",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "生產鏈",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "計算",
@@ -2326,8 +2326,8 @@
         "表格判讀",
         "正誤判斷"
       ],
-      "graphType": "圖",
-      "tableType": "-",
+      "graphType": "-",
+      "tableType": "本地生產總值表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十六 卷一",
@@ -2480,7 +2480,7 @@
         "圖表判讀",
         "複選組合"
       ],
-      "graphType": "-",
+      "graphType": "短期總供應曲線",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -2516,7 +2516,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -2554,7 +2554,7 @@
         "圖表判讀",
         "複選組合"
       ],
-      "graphType": "-",
+      "graphType": "總供需圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -2668,7 +2668,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -2817,7 +2817,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "貨幣供應定義圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -2931,7 +2931,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "貨幣市場圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -3124,7 +3124,7 @@
         "圖表判讀",
         "解釋"
       ],
-      "graphType": "圖",
+      "graphType": "總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -3164,7 +3164,7 @@
         "解釋"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "資產負債表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷三十六 卷二",
@@ -3504,7 +3504,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "生產流程圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -3543,7 +3543,7 @@
         "複選組合"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "貿易生產表",
       "multipleSelectionType": "複選",
       "calculationType": "計算",
       "source": "模擬試卷三十七 卷一",
@@ -3580,7 +3580,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "投入產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
@@ -3655,7 +3655,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "成本產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
@@ -3728,7 +3728,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -3883,7 +3883,7 @@
         "圖表判讀",
         "複選組合"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -4000,7 +4000,7 @@
         "複選組合",
         "填空"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -4039,7 +4039,7 @@
         "圖表判讀",
         "複選組合"
       ],
-      "graphType": "圖",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -4151,7 +4151,7 @@
         "圖表判讀",
         "正誤判斷"
       ],
-      "graphType": "圖",
+      "graphType": "洛倫茨曲線",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "計算",
@@ -4227,7 +4227,7 @@
         "正誤判斷"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "本地生產總值表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
@@ -4301,7 +4301,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "短期總供應曲線",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -4489,7 +4489,7 @@
         "正誤判斷"
       ],
       "graphType": "-",
-      "tableType": "-",
+      "tableType": "資產負債表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
@@ -4637,7 +4637,7 @@
         "表格判讀"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "就業與人口表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
@@ -4675,7 +4675,7 @@
         "複選組合",
         "正誤判斷"
       ],
-      "graphType": "圖",
+      "graphType": "稅制圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -4822,7 +4822,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "圖",
+      "graphType": "貨幣市場圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -4860,7 +4860,7 @@
         "計算"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "貿易生產表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十七 卷一",
@@ -4895,7 +4895,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "圖",
+      "graphType": "小型開放經濟貿易圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -4972,7 +4972,7 @@
         "計算"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "匯率表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷三十七 卷一",
@@ -5089,7 +5089,7 @@
         "圖表判讀",
         "解釋"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -5129,7 +5129,7 @@
         "解釋",
         "舉例"
       ],
-      "graphType": "-",
+      "graphType": "經濟周期圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -5173,7 +5173,7 @@
         "解釋"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "物價指數表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷三十七 卷二",
@@ -5252,7 +5252,7 @@
         "比較"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "貿易生產表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷三十七 卷二",
@@ -5377,7 +5377,7 @@
         "解釋",
         "短文"
       ],
-      "graphType": "-",
+      "graphType": "總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -5421,7 +5421,7 @@
         "舉例",
         "比較"
       ],
-      "graphType": "圖",
+      "graphType": "壟斷定價圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -5463,7 +5463,7 @@
         "解釋",
         "比較"
       ],
-      "graphType": "-",
+      "graphType": "生產可能線",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -5952,7 +5952,7 @@
         "正誤判斷"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "成本產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十八 卷一",
@@ -6134,7 +6134,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -6171,7 +6171,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -6428,7 +6428,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -6469,7 +6469,7 @@
         "複選組合",
         "正誤判斷"
       ],
-      "graphType": "圖",
+      "graphType": "壟斷定價圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -6541,7 +6541,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "圖",
+      "graphType": "洛倫茨曲線",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "計算",
@@ -6777,7 +6777,7 @@
         "圖表判讀",
         "解釋"
       ],
-      "graphType": "圖",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -6899,7 +6899,7 @@
         "解釋",
         "短文"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -7119,7 +7119,7 @@
         "表格判讀"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "本地生產總值表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
@@ -7269,7 +7269,7 @@
         "正誤判斷"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "成本產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
@@ -7415,7 +7415,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -7452,7 +7452,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -7493,7 +7493,7 @@
         "複選組合",
         "正誤判斷"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -7606,7 +7606,7 @@
         "圖表判讀",
         "複選組合"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -7724,7 +7724,7 @@
         "複選組合"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "工資表",
       "multipleSelectionType": "複選",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
@@ -7950,7 +7950,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "圖",
+      "graphType": "總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -8097,7 +8097,7 @@
         "正誤判斷"
       ],
       "graphType": "-",
-      "tableType": "-",
+      "tableType": "資產負債表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
@@ -8138,7 +8138,7 @@
         "表格判讀"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "政策比較表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
@@ -8174,7 +8174,7 @@
         "圖表判讀",
         "複選組合"
       ],
-      "graphType": "圖",
+      "graphType": "經濟周期圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "計算",
@@ -8250,8 +8250,8 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "圖",
-      "tableType": "-",
+      "graphType": "-",
+      "tableType": "物價指數表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
@@ -8405,7 +8405,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -8443,7 +8443,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -8555,7 +8555,7 @@
         "正誤判斷"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "投入產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
@@ -8591,7 +8591,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "圖",
+      "graphType": "小型開放經濟貿易圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -8629,8 +8629,8 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "圖",
-      "tableType": "-",
+      "graphType": "-",
+      "tableType": "貿易數據表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
@@ -8667,7 +8667,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "匯率表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷三十九 卷一",
@@ -8705,7 +8705,7 @@
         "解釋"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "投入產出表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷三十九 卷二",
@@ -8747,7 +8747,7 @@
         "圖表判讀",
         "解釋"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -8789,7 +8789,7 @@
         "圖表判讀",
         "解釋"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -8827,7 +8827,7 @@
         "圖表判讀",
         "解釋"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -8905,7 +8905,7 @@
         "舉例"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "資產負債表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷三十九 卷二",
@@ -8944,7 +8944,7 @@
         "比較"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "貿易生產表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷三十九 卷二",
@@ -8983,8 +8983,8 @@
         "解釋",
         "比較"
       ],
-      "graphType": "圖",
-      "tableType": "-",
+      "graphType": "-",
+      "tableType": "市場佔有率表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷三十九 卷二",
@@ -9028,7 +9028,7 @@
         "舉例",
         "比較"
       ],
-      "graphType": "圖",
+      "graphType": "總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -9151,7 +9151,7 @@
         "以圖輔助",
         "解釋"
       ],
-      "graphType": "圖",
+      "graphType": "壟斷定價圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -9191,7 +9191,7 @@
         "解釋",
         "舉例"
       ],
-      "graphType": "圖",
+      "graphType": "生產可能線",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -9336,7 +9336,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "循環流程圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -9593,7 +9593,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "生產流程圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -9813,7 +9813,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "投入產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十 卷一",
@@ -9851,7 +9851,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "投入產出表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷四十 卷一",
@@ -9890,7 +9890,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "成本產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十 卷一",
@@ -10037,7 +10037,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -10151,7 +10151,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -10188,7 +10188,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -10527,7 +10527,7 @@
         "圖表判讀",
         "解釋"
       ],
-      "graphType": "圖",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -10876,7 +10876,7 @@
         "正誤判斷"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "成本產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
@@ -11133,7 +11133,7 @@
         "圖表判讀",
         "正誤判斷"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -11208,8 +11208,8 @@
         "表格判讀",
         "填空"
       ],
-      "graphType": "圖",
-      "tableType": "-",
+      "graphType": "-",
+      "tableType": "市場佔有率表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷一",
@@ -11328,7 +11328,7 @@
         "複選組合",
         "正誤判斷"
       ],
-      "graphType": "-",
+      "graphType": "壟斷定價圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -11367,7 +11367,7 @@
         "複選組合",
         "正誤判斷"
       ],
-      "graphType": "圖",
+      "graphType": "洛倫茨曲線",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "計算",
@@ -11442,7 +11442,7 @@
         "計算",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "生產鏈",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "計算",
@@ -11596,7 +11596,7 @@
         "正誤判斷"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "物價指數表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷四十一 卷一",
@@ -11864,7 +11864,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "長期總供應曲線",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -12163,7 +12163,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "貨幣市場圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -12353,7 +12353,7 @@
         "圖表判讀",
         "解釋"
       ],
-      "graphType": "圖",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -12391,7 +12391,7 @@
         "解釋"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "本地生產總值表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十一 卷二",
@@ -12432,7 +12432,7 @@
         "以圖輔助",
         "解釋"
       ],
-      "graphType": "圖",
+      "graphType": "總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -12473,7 +12473,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "資產負債表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷四十一 卷二",
@@ -12886,7 +12886,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "成本產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
@@ -12923,7 +12923,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "結合示意圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -12995,7 +12995,7 @@
         "複選組合"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "銷量表",
       "multipleSelectionType": "複選",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
@@ -13220,7 +13220,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "-",
+      "graphType": "壟斷定價圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -13262,7 +13262,7 @@
         "圖表判讀",
         "正誤判斷"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -13340,7 +13340,7 @@
         "複選組合",
         "正誤判斷"
       ],
-      "graphType": "圖",
+      "graphType": "洛倫茨曲線",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "計算",
@@ -13416,7 +13416,7 @@
         "計算",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "生產鏈",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "計算",
@@ -13493,7 +13493,7 @@
         "正誤判斷"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "本地生產總值表",
       "multipleSelectionType": "複選",
       "calculationType": "計算",
       "source": "模擬試卷四十二 卷一",
@@ -13568,7 +13568,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "圖",
+      "graphType": "總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -13607,7 +13607,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -13646,7 +13646,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -13840,7 +13840,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "貨幣市場圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -13994,8 +13994,8 @@
         "圖表判讀",
         "表格判讀"
       ],
-      "graphType": "圖",
-      "tableType": "-",
+      "graphType": "-",
+      "tableType": "就業與人口表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
@@ -14068,7 +14068,7 @@
         "圖表判讀",
         "複選組合"
       ],
-      "graphType": "-",
+      "graphType": "稅制圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -14181,7 +14181,7 @@
         "複選組合"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "貿易生產表",
       "multipleSelectionType": "複選",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷一",
@@ -14413,7 +14413,7 @@
         "圖表判讀",
         "舉例"
       ],
-      "graphType": "圖",
+      "graphType": "經濟周期圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -14494,7 +14494,7 @@
         "圖表判讀",
         "解釋"
       ],
-      "graphType": "圖",
+      "graphType": "匯率走勢圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "計算",
@@ -14535,7 +14535,7 @@
         "舉例"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "資產負債表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷四十二 卷二",
@@ -14573,7 +14573,7 @@
         "計算"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "生產與消費表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷四十二 卷二",
@@ -14744,7 +14744,7 @@
         "解釋",
         "比較"
       ],
-      "graphType": "圖",
+      "graphType": "壟斷定價圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -14788,8 +14788,8 @@
         "舉例",
         "比較"
       ],
-      "graphType": "-",
-      "tableType": "表格",
+      "graphType": "生產可能線",
+      "tableType": "生產與消費表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十二 卷二",
@@ -15044,7 +15044,7 @@
         "比較",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "生產流程圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -15158,7 +15158,7 @@
         "解釋"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "貿易生產表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
@@ -15234,7 +15234,7 @@
         "正誤判斷"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "成本產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
@@ -15308,7 +15308,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "成本產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
@@ -15493,7 +15493,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -15531,7 +15531,7 @@
         "圖表判讀",
         "解釋"
       ],
-      "graphType": "-",
+      "graphType": "需求曲線",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -15569,7 +15569,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "需求表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
@@ -15720,7 +15720,7 @@
         "複選組合",
         "正誤判斷"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -15756,7 +15756,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "市場佔有率表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷一",
@@ -15869,7 +15869,7 @@
         "圖表判讀",
         "複選組合"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -15908,7 +15908,7 @@
         "比較"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "堅尼系數表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷四十三 卷一",
@@ -16056,7 +16056,7 @@
         "以圖輔助",
         "解釋"
       ],
-      "graphType": "圖",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -16132,7 +16132,7 @@
         "以圖輔助",
         "解釋"
       ],
-      "graphType": "圖",
+      "graphType": "考生繪圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -16173,7 +16173,7 @@
         "舉例"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "工資表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十三 卷二",
@@ -16593,7 +16593,7 @@
         "填空"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "投入產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
@@ -16668,7 +16668,7 @@
         "表格判讀"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "成本產出表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
@@ -16814,7 +16814,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -17009,7 +17009,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -17050,7 +17050,7 @@
         "複選組合",
         "正誤判斷"
       ],
-      "graphType": "-",
+      "graphType": "供需圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -17090,7 +17090,7 @@
         "解釋"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "堅尼系數表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷四十四 卷一",
@@ -17164,7 +17164,7 @@
         "計算",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "生產鏈",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "計算",
@@ -17281,7 +17281,7 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
+      "graphType": "貨幣市場圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -17361,7 +17361,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "圖",
+      "graphType": "總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -17398,7 +17398,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -17435,7 +17435,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "-",
+      "graphType": "多幅總供需圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -17621,7 +17621,7 @@
       "patterns": [
         "圖表判讀"
       ],
-      "graphType": "圖",
+      "graphType": "經濟周期圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "計算",
@@ -17732,7 +17732,7 @@
         "複選組合",
         "正誤判斷"
       ],
-      "graphType": "圖",
+      "graphType": "稅制圖",
       "tableType": "-",
       "multipleSelectionType": "複選",
       "calculationType": "-",
@@ -17924,7 +17924,7 @@
         "複選組合"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "貿易生產表",
       "multipleSelectionType": "複選",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
@@ -17964,7 +17964,7 @@
         "圖表判讀",
         "正誤判斷"
       ],
-      "graphType": "-",
+      "graphType": "小型開放經濟貿易圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -18002,8 +18002,8 @@
         "圖表判讀",
         "填空"
       ],
-      "graphType": "圖",
-      "tableType": "-",
+      "graphType": "-",
+      "tableType": "貿易數據表",
       "multipleSelectionType": "-",
       "calculationType": "-",
       "source": "模擬試卷四十四 卷一",
@@ -18159,7 +18159,7 @@
         "解釋"
       ],
       "graphType": "-",
-      "tableType": "表格",
+      "tableType": "物價指數表",
       "multipleSelectionType": "-",
       "calculationType": "計算",
       "source": "模擬試卷四十四 卷二",
@@ -18313,7 +18313,7 @@
       "patterns": [
         "以圖輔助"
       ],
-      "graphType": "-",
+      "graphType": "小型開放經濟貿易圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -18350,7 +18350,7 @@
         "以圖輔助",
         "解釋"
       ],
-      "graphType": "圖",
+      "graphType": "考生繪圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "計算",
@@ -18472,7 +18472,7 @@
         "解釋",
         "比較"
       ],
-      "graphType": "圖",
+      "graphType": "考生繪圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -18556,7 +18556,7 @@
         "解釋",
         "比較"
       ],
-      "graphType": "圖",
+      "graphType": "壟斷定價圖",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",
@@ -18595,7 +18595,7 @@
         "解釋",
         "比較"
       ],
-      "graphType": "-",
+      "graphType": "生產可能線",
       "tableType": "-",
       "multipleSelectionType": "-",
       "calculationType": "-",

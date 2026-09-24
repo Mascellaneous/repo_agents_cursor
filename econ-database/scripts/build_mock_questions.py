@@ -493,9 +493,172 @@ def classify(text):
     }
 
 
+DIAGRAM_TYPES = [
+    "供需圖",
+    "多幅供需圖",
+    "供應曲線",
+    "需求曲線",
+    "總供需圖",
+    "多幅總供需圖",
+    "短期總供應曲線",
+    "長期總供應曲線",
+    "貨幣市場圖",
+    "貨幣供應定義圖",
+    "洛倫茨曲線",
+    "稅制圖",
+    "生產流程圖",
+    "循環流程圖",
+    "生產鏈",
+    "結合示意圖",
+    "生產可能線",
+    "壟斷定價圖",
+    "小型開放經濟貿易圖",
+    "經濟周期圖",
+    "匯率走勢圖",
+    "考生繪圖",
+]
+
+TABLE_TYPES = [
+    "投入產出表",
+    "成本產出表",
+    "銷量表",
+    "總支出表",
+    "喜好次序表",
+    "需求表",
+    "堅尼系數表",
+    "資產負債表",
+    "就業與人口表",
+    "工資表",
+    "貿易生產表",
+    "生產與消費表",
+    "匯率表",
+    "本地生產總值表",
+    "物價指數表",
+    "國民收入帳表",
+    "市場佔有率表",
+    "貿易數據表",
+    "經濟數據表",
+    "政策比較表",
+    "收費表",
+]
+
+
+def _has_figure(text):
+    return any(k in text for k in ("[圖", "下圖", "細閱下圖", "圖一", "圖二", "圖三", "圖四", "以圖", "一幅供需", "參閱下圖", "參考下圖"))
+
+
+def _has_table(text):
+    return any(k in text for k in ("下表", "表顯示", "參閱下表", "參看下表", "下表顯示"))
+
+
+def classify_table(text):
+    if not _has_table(text):
+        return None
+    rules = [
+        ("資產負債表", ("資產負債表", "超額儲備")),
+        ("堅尼系數表", ("堅尼",)),
+        ("市場佔有率表", ("市場佔有率",)),
+        ("工資表", ("平均工資", "平均每月薪金")),
+        ("匯率表", ("匯率",)),
+        ("物價指數表", ("平減物價", "物價指數", "消費物價指數")),
+        ("本地生產總值表", ("本地生產總值",)),
+        ("就業與人口表", ("就業分布", "15歲", "失業人口", "勞動人口")),
+        ("國民收入帳表", ("間接稅", "直接稅")),
+        ("貿易生產表", ("工時", "所需的勞力", "工作時數", "資源數量", "可生產", "所需的工作")),
+        ("生產與消費表", ("沒有貿易", "貿易前")),
+        ("喜好次序表", ("喜好次序", "第一選項")),
+        ("總支出表", ("總支出",)),
+        ("銷量表", ("銷量",)),
+        ("需求表", ("需求表",)),
+        ("政策比較表", ("政策I", "政策II")),
+        ("收費表", ("落旗", "跳錶")),
+        ("成本產出表", ("平均成本", "邊際成本", "成本與產出", "總生產成本", "受價廠商", "固定成本")),
+        ("投入產出表", ("投入與產出", "生產計劃", "平均產出", "平均產量", "總產量", "工人數目")),
+        ("經濟數據表", ("物價水平的改變", "人口的改變")),
+    ]
+    for label, keys in rules:
+        if any(k in text for k in keys):
+            return label
+    return "其他表格"
+
+
+def classify_diagram(text):
+    """Return a diagram type, or 'TABLE:<table type>' when a '下圖' is really a table."""
+    if not _has_figure(text):
+        return None
+    if "[圖" not in text and "圖一" not in text and "圖二" not in text:
+        if "下圖" in text or "細閱下圖" in text:
+            if "市場佔有率" in text:
+                return "TABLE:市場佔有率表"
+            if "服務出口" in text or ("出口" in text and "進口" in text and "年份" in text):
+                return "TABLE:貿易數據表"
+            if "消費物價指數" in text:
+                return "TABLE:物價指數表"
+            if "失業" in text and "年份" in text:
+                return "TABLE:就業與人口表"
+            if "本地生產總值" in text and "年份" in text:
+                return "TABLE:本地生產總值表"
+    if "生產可能線" in text or "PPF" in text:
+        return "生產可能線"
+    if "洛倫茨" in text or "洛伦兹" in text:
+        return "洛倫茨曲線"
+    if "循環流程" in text:
+        return "循環流程圖"
+    if "生產鏈" in text:
+        return "生產鏈"
+    if "收購" in text and "結合" in text:
+        return "結合示意圖"
+    if "生產流程" in text or ("初級生產" in text and "二級生產" in text and "三級生產" in text):
+        return "生產流程圖"
+    if "貨幣供應定義" in text:
+        return "貨幣供應定義圖"
+    if "應課稅" in text or ("稅款" in text and "累進稅" in text):
+        return "稅制圖"
+    if "經濟周期" in text or ("平均增長率" in text and ("實質本地" in text or "轉變的百分率" in text or "變動百分率" in text)):
+        return "經濟周期圖"
+    if "匯率" in text and ("兌" in text or "走勢" in text) and "圖" in text and "下表" not in text.split("匯率")[0]:
+        if "需求" in text or "總支出" in text:
+            return "匯率走勢圖"
+        return "匯率走勢圖"
+    if "國際價格" in text or "小型開放" in text or ("進口配額" in text and "本地" in text):
+        return "小型開放經濟貿易圖"
+    if "貨幣需求" in text or "貨幣供應曲線" in text or ("Ms" in text and "Md" in text):
+        return "貨幣市場圖"
+    multi = "哪幅圖" in text or "四幅" in text or "下列哪圖" in text or "哪圖" in text
+    macro = "總供需" in text or "LRAS" in text or "SRAS" in text or ("物價水平" in text and "總產出" in text)
+    if multi and macro:
+        return "多幅總供需圖"
+    if multi and "供需" in text:
+        return "多幅供需圖"
+    if "SRAS" in text and "AD" not in text and "總需求" not in text and "LRAS" not in text:
+        return "短期總供應曲線"
+    if "長期總供應" in text and "總需求" not in text and "AD" not in text and "SRAS" not in text:
+        return "長期總供應曲線"
+    if any(k in text for k in ("總需求", "總供需", "AD", "SRAS", "LRAS")):
+        return "總供需圖"
+    if any(k in text for k in ("邊際成本", "邊際收入", "簡單壟斷", "QM", "PM")):
+        return "壟斷定價圖"
+    if "供應曲線" in text and "需求" not in text:
+        return "供應曲線"
+    if "需求曲線" in text and "供應" not in text and "供需" not in text:
+        return "需求曲線"
+    if "供需" in text or ("供應" in text and "需求" in text):
+        return "供需圖"
+    if "以圖" in text or "一幅" in text:
+        return "考生繪圖"
+    return "其他圖"
+
+
 def features(text):
-    graph = "圖" if ("下圖" in text or "細閱下圖" in text or "圖中" in text or "以圖" in text) else "-"
-    table = "表格" if ("下表" in text or "表顯示" in text or "下表顯示" in text) else "-"
+    diagram = classify_diagram(text)
+    table = classify_table(text)
+    if diagram and diagram.startswith("TABLE:"):
+        graph = "-"
+        table = diagram.split(":", 1)[1]
+    else:
+        graph = diagram or "-"
+    if not table:
+        table = "-"
     multi = "複選" if re.search(r"\(1\)", text) and re.search(r"\(2\)", text) else "-"
     calc = "計算" if re.search(r"計算|找出|百分率|彈性是|平均產量|邊際產量", text) else "-"
     return graph, table, multi, calc
