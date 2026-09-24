@@ -5,7 +5,7 @@
 ## 1. 設計目標
  
 - **單檔快照**：整份資料庫序列化為一個 JSON 檔存於 repo（`GitHub_Config.path`）。
-- **完全取代**：下載一律清空本地三個 store 再寫入（經去重與正規化），絕不合併、絕不重複。
+- **完全取代**：下載一律清空本地單位／角色／支援單位再寫入（經去重與正規化），絕不合併、絕不重複。`optionalParts` 與 `stages` 只有 payload 含該欄時才同樣完全取代；缺欄則保留本地。
 - **dirty 保護**：本地有未上傳變更時，啟動的自動下載會自動略過（或改為上傳），避免洗掉較新資料。
 - **防抖與互斥**：編輯後 1.5 秒防抖才上傳；`_ghBusy` 互斥鎖避免同時 PUT 造成 SHA 衝突。
 
@@ -42,8 +42,8 @@ const GitHub_Config = {
  
 | 來源 | reason | 檔案 |
 |---|---|---|
-| 新增／編輯儲存 | `save-units`／`save-characters`／`save-supports` | database.js `saveItem()` |
-| 刪除 | `delete-units`／`delete-characters`／`delete-supports` | database.js `deleteItem()` |
+| 新增／編輯儲存 | `save-units`／`save-characters`／`save-supports`／`save-optionalParts`／`save-stages` | database.js `saveItem()` |
+| 刪除 | `delete-units`／`delete-characters`／`delete-supports`／`delete-optionalParts`／`delete-stages` | database.js `deleteItem()` |
 | 刪除復原 | `undo-units`／… | ui.js `undoDelete()` |
 | 獲得順序儲存 | `reorder-units`／… | reorder.js `roSave()`（僅排程一次） |
 | 匯入 JSON | `import-json` | import-export.js |
@@ -56,7 +56,7 @@ const GitHub_Config = {
 
 ## 5. 上傳流程（pushToGitHub）
  
-1. `buildPayload()`：`gatherAll()`（三 store 全量）＋ `exportInfo`；**先** `db.putMeta('lastExportTime', Date.now())`。
+1. `buildPayload()`：`gatherAll()`（單位、角色、支援單位、選擇性零件、關卡）＋ `exportInfo`（`counts` 含五類筆數）；**先** `db.putMeta('lastExportTime', Date.now())`。
 2. JSON → UTF-8 安全 Base64（`encodeBase64`：`btoa(unescape(encodeURIComponent(s)))`）。
 3. `ghSha()`：GET 遠端檔案取 SHA（404 → `null` → 建立新檔；其他錯誤 → 拋出）。
 4. PUT Contents API：`message`／`content`／`branch`／（有 SHA 時）`sha`。
@@ -74,7 +74,7 @@ GET Contents API（`cache: 'no-store'`）。回應 404 → `null`（遠端尚無
  
 1. `ghValid()` 檢查 → 取得遠端 payload（無 → 提示「GitHub 上尚無資料檔」）。
 2. **新舊檢查**：`lastExportTime > remoteTs` → confirm 警告「雲端比本地上次匯出更舊」，可取消。
-3. `applyRemoteData(obj, { silent:false })`：confirm（顯示三類筆數＋完全取代說明）→ `sanitizeRecords()` → 清空三 store → `bulkPut` → `lastExportTime` 對齊遠端 `exportInfo.exportDate`（缺失用 now）→ `clearLocalDirty()` → `getAll` 重填快取（池函式讀快取，inv 清空會導致系列下拉被寫空）＋ `refreshSeriesOptions()` ＋三頁重繪＋`updateStorageStatus()`
+3. `applyRemoteData(obj, { silent:false })`：confirm（三類筆數；有選擇性零件／關卡欄時一併顯示筆數，缺欄則註明本地會保留）→ `sanitizeRecords()`／`sanitizeOptionalParts()`／`sanitizeStages()` → 清空並寫入單位／角色／支援單位 → 僅在欄位存在時清空並寫入零件與關卡 → `lastExportTime` 對齊遠端 `exportInfo.exportDate`（缺失用 now）→ `clearLocalDirty()` → `getAll` 重填快取＋ `refreshSeriesOptions()` ＋三頁重繪＋`updateStorageStatus()`。視窗若正開著，會重繪（`renderOptionalPartsIfOpen`／`renderStagesIfOpen`）。
 
 ### 6.3 啟動自動下載（autoDownloadFromGitHub，main.js 於初始化後呼叫）
  
@@ -91,10 +91,11 @@ GET Contents API（`cache: 'no-store'`）。回應 404 → `null`（遠端尚無
 
 ## 7. 資料檢查與正規化
  
-下載、匯入 JSON、還原 `.db` 共用 `sanitizeRecords()`（捨棄無 id、依 id 去重、補名稱、單位走 `normalizeUnitRecord`）。詳細欄位規則見 [DATA-MODEL.md](DATA-MODEL.md) §2／§5／§9。要點：
+下載、匯入 JSON、還原 `.db` 共用 `sanitizeRecords()`（捨棄無 id、依 id 去重、補名稱、單位走 `normalizeUnitRecord`、支援單位稀有度只留 `UR`／`SSR`／`SR`）。選擇性零件與關卡分別走 `sanitizeOptionalParts()`、`sanitizeStages()`。詳細欄位規則見 [DATA-MODEL.md](DATA-MODEL.md) §2／§4／§4.1／§4.2／§5／§9。要點：
  
 - `normalizeWeaponEntry()` 的**有效實作已被 `weapon-filters.js` 覆寫**（支援完整新格式：`ammo`、`rangeMin`／`rangeMax`、`effects`／`limits`；舊 `range` 自動轉 $1$–range）。修改時改 weapon-filters.js 內的版本；wrap 的 `applyUnitFilters` 定義於 search-units.js。
-- 套用前一律先清空三個 store → 完全取代、絕不產生重複記錄。
+- 單位／角色／支援單位套用前一律先清空 → 完全取代、絕不產生重複記錄。
+- 舊檔沒有 `optionalParts` 或 `stages` 時，不清除本地對應資料。欄位明示為空陣列則會清掉。
 
 ## 8. lastExportTime 語意整理
  

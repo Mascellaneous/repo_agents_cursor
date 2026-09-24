@@ -5,7 +5,7 @@
 
 ## 1. IndexedDB 結構
  
-- 資料庫名稱：`SDGGGenEternalDB`，版本 `1`。
+- 資料庫名稱：`SDGGGenEternalDB`，版本 `3`（版本 2 加入 `optionalParts`，版本 3 加入 `stages`；`onupgradeneeded` 只建立尚不存在的 store）。
 - Object stores：
  
 | Store | keyPath | 內容 |
@@ -13,9 +13,11 @@
 | `units` | `id` | 單位記錄（含舊版系統記錄 `__wkinds__`，見 §7） |
 | `characters` | `id` | 角色記錄 |
 | `supports` | `id` | 支援單位記錄 |
+| `optionalParts` | `id` | 選擇性零件（見 §4.1）。**不在** `TYPES` 內 |
+| `stages` | `id` | 關卡資料（見 §4.2）。**不在** `TYPES` 內 |
 | `metadata` | `key` | `{ key, data }`：`lastExportTime`、`localDirty` |
  
-- 三類記錄共用欄位：`id`（`uid(prefix)` 產生：`u_`／`c_`／`s_` 前綴＋時間戳 base36＋亂數）、`date_added`（ISO 字串）、`date_modified`（ISO 字串，`saveItem` 時更新）。
+- 單位／角色／支援單位共用欄位：`id`（`uid(prefix)` 產生：`u_`／`c_`／`s_` 前綴＋時間戳 base36＋亂數）、`date_added`（ISO 字串）、`date_modified`（ISO 字串，`saveItem` 時更新）。選擇性零件前綴 `op_`，關卡前綴 `st_`。
 
 ## 2. units（單位）
  
@@ -79,7 +81,39 @@
 | 欄位 | 型別 | 說明 |
 |---|---|---|
 | `name`／`image`／`acqOrder` | 同上 | `image` 純檔名自動補 `images/supports/` |
+| `rarity` | string | 表單必填：`UR`／`SSR`／`SR`（`SUPPORT_RARITIES`）。沒有 `R`／`N`，也沒有類型。舊資料或匯入值不在這三個之中 → `sanitizeRecords` 歸 `''`（卡片無徽章；篩選「未設定」用 `fs-rarity=none`） |
 | `level` | number | 等級 1–100（滿級判定用固定上限 `SUPPORT_MAX_LEVEL = 100`） |
+
+## 4.1 optionalParts（選擇性零件）
+
+獨立視窗，腳本 `js/optional-parts.js`。按鈕在工具列與單位分頁「操作」。效果句的組法與篩選條件寫在該檔頭註解；此處只列儲存形狀。
+
+| 欄位 | 型別 | 說明 |
+|---|---|---|
+| `id` | string | `op_…` |
+| `name` | string | 零件名稱，最長 100 |
+| `date_added`／`date_modified` | ISO string | 同其他記錄 |
+| `effects` | object[] | 最多 12 條。每條含 `clauses`（最多 8）、`tag`、`unit`、`rangeMin`、`rangeMax`（`''` 或 `'1'`～`'6'`）、`excludeMap` |
+| `effects[].clauses[]` | object | `stat`：`maxEn`／`mobility`／`maxHp`／`defense`／`attack`／`terrain`；`dir`：`up`／`down`；`amount` 為非負數；`mode`：`flat`／`percent`／`rank`（地形一律 `rank`）；`scope`：`always`／`cond`；`terrain` 僅 `stat==='terrain'` |
+
+`sanitizeOptionalParts()` 丟棄無 id、依 id 去重，並經 `normalizeOptionalPart()`（無有效能力句的效果會被丟掉）。
+
+## 4.2 stages（關卡資料）
+
+獨立視窗，腳本 `js/stage-data.js`。按鈕在工具列，以及單位／角色／支援單位分頁「操作」。
+
+| 欄位 | 型別 | 說明 |
+|---|---|---|
+| `id` | string | `st_…` |
+| `name` | string | 關卡名稱，最長 100。正規化時空白名稱補 `(未命名)` |
+| `date_added`／`date_modified` | ISO string | 同其他記錄 |
+| `clears` | object[] | 通關隊伍，最多 20 組。每組 `process`、`comments`（各最長 4000）與固定兩隊 `teams` |
+| `clears[].teams[]` | object | `units` 1～5 格；`supportId`／`supportName` 空字串＝沒有支援單位 |
+| `teams[].units[]` | object | `unitId`＋`unitName`、`characterId`＋`characterName`（兩者都要有，否則該格丟棄）、`optionalPartId`＋`optionalPartName`（可空） |
+
+名稱是快照；視窗顯示時若 id 仍在快取中，改顯示現名。單位／角色選項文字為「名稱（稀有度・類型・Lv.等級）」；支援單位為「名稱（稀有度・Lv.等級）」。三欄都可打字篩選。`__wkinds__` 不會出現在單位選單。任一隊正規化後少於 1 格，整組通關隊伍丟棄。
+
+`sanitizeStages()` 丟棄無 id、依 id 去重，並經 `normalizeStage()`。
 
 ## 5. weapons（武裝，單位專屬）
  
@@ -196,11 +230,13 @@ weapons: {
   "exportInfo": {
     "exportDate": "2024-01-01T00:00:00.000Z",
     "source": "SD高達G世代永恆 收藏管理庫 — GitHub Sync",
-    "counts": { "units": 0, "characters": 0, "supports": 0 }
+    "counts": { "units": 0, "characters": 0, "supports": 0, "optionalParts": 0, "stages": 0 }
   },
   "units": [ /* §2 記錄陣列 */ ],
   "characters": [ /* §3 */ ],
-  "supports": [ /* §4 */ ]
+  "supports": [ /* §4 */ ],
+  "optionalParts": [ /* §4.1 */ ],
+  "stages": [ /* §4.2 */ ]
 }
 ```
  
@@ -212,4 +248,6 @@ weapons: {
 2. 依 `id` 去重（僅保留第一筆）→ **絕不產生重複記錄**。
 3. 缺 `name` → 補 `(未命名)`。
 4. `units` → 執行 `normalizeUnitRecord`（§2；其中 `weapons` 走 `normalizeWeaponEntry` — **有效實作在 weapon-filters.js**，見 README §9）。
-5. 套用時**先清空三個 store 再 `bulkPut`** → 完全取代。
+5. `supports` → `rarity` 不在 `UR`／`SSR`／`SR` 則歸 `''`。
+6. 套用時**先清空單位／角色／支援單位三個 store 再 `bulkPut`** → 這三類完全取代。
+7. `optionalParts` 改走 `sanitizeOptionalParts()`，`stages` 改走 `sanitizeStages()`。payload **沒有**該欄時不碰本地；欄位存在（含空陣列）才清空並寫入。

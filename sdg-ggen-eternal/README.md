@@ -2,8 +2,8 @@
  
 > **本文件的主要讀者是 AI（程式助理）**，目標是讓你在最短時間內理解本專案的架構、慣例與陷阱。
 > 所有描述以程式碼現況（含各檔頭註解）為準。深入規格請另見：
-> - [docs/DATA-MODEL.md](docs/DATA-MODEL.md) — 資料欄位、武裝格式、效果／限制類型代碼表
-> - [docs/GITHUB-SYNC.md](docs/GITHUB-SYNC.md) — 雲端同步完整機制與決策邏輯
+> - [DATA-MODEL.md](DATA-MODEL.md) — 資料欄位、武裝格式、效果／限制類型代碼表、選擇性零件與關卡
+> - [GITHUB-SYNC.md](GITHUB-SYNC.md) — 雲端同步完整機制與決策邏輯
  
 ---
 
@@ -13,20 +13,20 @@
 |---|---|
 | 形態 | 單一 HTML 頁面的純前端應用：Vanilla JS、無框架、無模組系統、無建置流程、無外部套件 |
 | 函式組織 | 所有 JS 以 `<script>` 依**固定順序**載入，全部是**全域函式／變數**（載入順序敏感，見 §6） |
-| 儲存 | IndexedDB `SDGGGenEternalDB`（object stores：`units`／`characters`／`supports`／`metadata`）＋一層記憶體快取 |
+| 儲存 | IndexedDB `SDGGGenEternalDB` 版本 3（object stores：`units`／`characters`／`supports`／`optionalParts`／`stages`／`metadata`）＋一層記憶體快取 |
 | 雲端 | GitHub Contents API 單檔 JSON 同步；**必須自行建立根目錄 `api.js`**（見 §3.1），缺少時儲存流程會中斷 |
-| 同步語意 | 上傳＝全量快照；下載／匯入／還原＝**完全取代**本地（先清空三個 store 再寫入，經去重與正規化，絕不產生重複記錄） |
+| 同步語意 | 上傳＝全量快照；下載／匯入／還原＝**完全取代**本地單位／角色／支援單位（先清空再寫入，經去重與正規化）。`optionalParts`／`stages` 僅在 payload **有該欄**時才取代；缺欄保留本地 |
 | 命名鐵律 | 篩選面板控制項 ID：`fu-*`／`fc-*`／`fs-*`；表單控制項 ID：`u-*`／`c-*`／`s-*`。**兩者嚴禁混用**（`search-units.js`／`search-characters.js`／`search-supports.js` 檔頭明文規定） |
 | 擴充模式 | `weapon-filters.js` 在載入時以 wrap（包裝）方式擴充 `applyUnitFilters`／`clearU`／`normalizeWeaponEntry` 三個既有函式（`_wf` 旗標防重複），見 §9 |
 | 特殊記錄 | `units` store 內 id 為 `__wkinds__` 的舊版系統記錄：現已無作用但**必須從渲染與統計中排除**，見 §8.12 |
-| 等級上限 | UR 100；SSR／SR／R／N 為 90／80／70／60；SP 化後一律 100（UR 不適用 SP）；支援單位固定 100（`SUPPORT_MAX_LEVEL`） |
+| 等級上限 | UR 100；SSR／SR／R／N 為 90／80／70／60；SP 化後一律 100（UR 不適用 SP）；支援單位固定 100（`SUPPORT_MAX_LEVEL`）。支援單位稀有度只有 `UR`／`SSR`／`SR`（`SUPPORT_RARITIES`） |
 | XSS 防護 | 所有動態插入 HTML 的插值一律經 `esc()`；輸入清理用 `sanitizeText()`／`wdCleanStr()` |
  
 ---
 
 ## 1. 專案簡介
  
-《SD高達G世代永恆》的收藏管理工具，管理三類資料：**單位**、**角色**、**支援單位**。功能含：
+《SD高達G世代永恆》的收藏管理工具，管理三類收藏：**單位**、**角色**、**支援單位**，另有兩個獨立視窗資料：**選擇性零件 (OP)**、**關卡資料**（不進 `TYPES`，沒有自己的分頁）。功能含：
  
 - 完整 CRUD 表單（單位含五組武裝等級＋武裝詳細：MAP兵器、射程、MP要求、屬性、效果／限制等）
 - 完整篩選（系列／稀有度／類型／突破界限／地形／標籤 AND-OR-排除／武裝七項篩選等）、多鍵排序、分頁（20／50／100／全部）；卡片武裝詳細可一鍵隱藏
@@ -38,6 +38,8 @@
 - 角色能力觸發需求：每能力可多選系列／標籤＋AND/OR 邏輯（`ab*Series[]`／`ab*Tag[]`／`ab*Logic`）；
   契合度需求同架構（`tagBonusSeries[]`／`tagBonusTag[]`／`tagBonusLogic`）；
   對應篩選（角色能力／角色技能／能力觸發需求系列／標籤／契合度需求系列／標籤）
+- 選擇性零件視窗（`optional-parts.js`）：名稱與多條效果（數值／百分比／地形級、標籤或指定單位、射程、MAP 除外），可依條件篩選
+- 關卡資料視窗（`stage-data.js`）：關卡名稱、多組通關隊伍（通關過程、Comments、固定兩隊）。每隊 1～5 個單位（各配一名角色、最多一個選擇性零件）與 0 或 1 個支援單位。單位／角色／支援單位為可打字搜尋的下拉，選項附稀有度與等級
 - 深色模式、Toast（含刪除復原）、自動完成、可搜尋下拉
 
 ## 2. 技術棧
@@ -79,9 +81,8 @@ sdg-ggen-eternal/
 ├── sdg-ggen-eternal.html      # 唯一頁面：工具列／三分頁／篩選面板／表單
 ├── api.js                     # ★ 使用者自建：GitHub_Config（同步憑證）
 ├── README.md
-├── docs/
-│   ├── DATA-MODEL.md          # 資料欄位與武裝格式規格
-│   └── GITHUB-SYNC.md         # 同步機制詳解
+├── DATA-MODEL.md              # 資料欄位與武裝格式規格
+├── GITHUB-SYNC.md             # 同步機制詳解
 ├── css/                       # 樣式（依功能分檔）
 │   ├── base.css  layout.css  buttons.css  filters.css  cards.css
 │   ├── forms.css  autocomplete.css  toast.css  reorder.css
@@ -111,6 +112,8 @@ sdg-ggen-eternal/
 │   ├── forms.js               # 表單開關／填充／收集／驗證／儲存
 │   ├── import-export.js       # 匯出 JSON／.db 備份／匯入／還原／清空
 │   ├── reorder.js             # 獲得順序調整視窗（拖曳＋按鈕＋跳號）
+│   ├── optional-parts.js      # 選擇性零件視窗（store: optionalParts）
+│   ├── stage-data.js          # 關卡資料視窗（store: stages）
 │   └── main.js                # 進入點（DOMContentLoaded → initApp）
 └── images/                    # 本地圖片（依類型分三個子資料夾）
     ├── units/                 # 單位圖片；表單填純檔名 → 自動補 images/units/
@@ -185,9 +188,9 @@ HTML 內的載入順序即下表；**不可調換**：
  
 | # | 檔案 | 關鍵相依 |
 |---|---|---|
-| 1 | `js/tab-units.js` | 定義 `TAB_UNITS_HTML` 並立即注入 `#tab-units`（載入即執行，須先於 weapon-filters.js 的 DOM 存取） |
-| 2 | `js/tab-characters.js` | 定義 `TAB_CHARACTERS_HTML` 並立即注入 `#tab-characters` |
-| 3 | `js/tab-supports.js` | 定義 `TAB_SUPPORTS_HTML` 並立即注入 `#tab-supports` |
+| 1 | `js/tab-units.js` | 定義 `TAB_UNITS_HTML`；`injectTabUnits()` 由 `initApp()` 呼叫 |
+| 2 | `js/tab-characters.js` | 定義 `TAB_CHARACTERS_HTML`；注入由 `initApp()` 呼叫 |
+| 3 | `js/tab-supports.js` | 定義 `TAB_SUPPORTS_HTML`；注入由 `initApp()` 呼叫 |
 | 4 | `api.js` | 定義 `GitHub_Config`（其他檔案的函式執行期才取用） |
 | 5 | `js/GitHub-sync.js` | 同步全部邏輯；用到 `db`／`gatherAll` 等執行期才存在 |
 | 6 | `js/storage.js` | 定義全域 `db` |
@@ -209,7 +212,9 @@ HTML 內的載入順序即下表；**不可調換**：
 | 23 | `js/forms.js` | 依賴 combo／weapon-details |
 | 24 | `js/import-export.js` | |
 | 25 | `js/reorder.js` | |
-| 26 | `js/main.js` | 進入點，必須最後 |
+| 26 | `js/optional-parts.js` | 選擇性零件視窗；`sanitizeOptionalParts` 供匯入／同步使用 |
+| 27 | `js/stage-data.js` | 關卡資料視窗；須晚於 optional-parts.js（選單讀零件快取）。`sanitizeStages` 供匯入／同步使用 |
+| 28 | `js/main.js` | 進入點，必須最後 |
 
 ## 7. 命名慣例（★ 鐵律）
  
@@ -217,8 +222,8 @@ HTML 內的載入順序即下表；**不可調換**：
 |---|---|---|
 | 篩選面板（角色） | `fc-*` | `fc-series`、`fc-lvlstate`、`fc-ab`、`fc-sk`、`fc-abreq-series`、`fc-abreq-tag`、`fc-tbseries`、`fc-tbtag` |
 | 表單（單位／角色／支援） | `u-*`／`c-*`／`s-*` | `u-name`、`c-shoot`、`c-ab1logic`、`c-ab1req-chips`、`c-tblogic`、`c-tbreq-chips`、`s-lvl` |
-| 篩選面板（支援） | `fs-*` | `fs-sort` |
-| 表單（單位／角色／支援） | `u-*`／`c-*`／`s-*` | `u-name`、`c-shoot`、`s-lvl` |
+| 篩選面板（支援） | `fs-*` | `fs-sort`、`fs-rarity`（`none`＝未設定）、`fs-lvlstate`、`fs-image` |
+| 表單（單位／角色／支援） | `u-*`／`c-*`／`s-*` | `u-name`、`c-shoot`、`s-lvl`、`s-rarity`（UR／SSR／SR） |
 | 隱藏 ID 欄 | `<前綴>-id` | `u-id` |
 | 表單區塊／標題／表單本體 | `sec-<type>`／`ft-<type>`／`form-<type>` | `sec-units` |
 | 分頁按鈕／內容 | `tabbtn-<type>`／`tab-<type>` | `tabbtn-units` |
@@ -265,7 +270,7 @@ HTML 內的載入順序即下表；**不可調換**：
 
 ### 8.4 武裝資料格式
  
-`weapons` 物件鍵 `'1'..'5'`；值為 `'-'`（無武裝）或物件（完整規格見 [docs/DATA-MODEL.md](docs/DATA-MODEL.md)）。要點：
+`weapons` 物件鍵 `'1'..'5'`；值為 `'-'`（無武裝）或物件（完整規格見 [DATA-MODEL.md](DATA-MODEL.md)）。要點：
  
 - `map:'Y'`（MAP兵器）→ 使用 `shape`（形狀）＋`ammo`（彈藥量），**射程欄為空**；非 MAP → 使用 `rangeMin`／`rangeMax`。
 - 效果／限制只存 `{ type, pct }`；**顯示名稱由 `weapon-effect-types.js` 的對照表統一提供**（同類效果跨單位自動同名），格式如「防禦力debuff(30%)(1回合)」。
@@ -315,7 +320,7 @@ HTML 內的載入順序即下表；**不可調換**：
 - 任何「編輯性操作」（儲存／刪除／復原／排序／匯入／還原／清空）→ `scheduleAutoSync(reason)` → `markLocalDirty()` →（Auto-sync 開且設定有效）1.5 秒防抖後自動上傳。
 - 頁面載入 → `autoDownloadFromGitHub()`：本地 dirty → 改為自動上傳（或略過）；遠端較舊且本地非空 → 略過；否則**靜默完全取代**本地。
 - 上傳互斥鎖 `_ghBusy`（避免手動＋自動同時 PUT 造成 SHA 衝突）；遠端檔大於 1MB 時改走 Blob API。
-- 詳細流程、決策表與 reason 清單：[docs/GITHUB-SYNC.md](docs/GITHUB-SYNC.md)。
+- 詳細流程、決策表與 reason 清單：[GITHUB-SYNC.md](GITHUB-SYNC.md)。
 
 ### 8.9 匯入／匯出／備份／清空（import-export.js）
  
@@ -323,11 +328,11 @@ HTML 內的載入順序即下表；**不可調換**：
 |---|---|---|
 | 匯出 JSON | `exportData()` | `sdg-ggen-export_YYYYMMDD_HHMM.json`（僅下載，不動 DB） |
 | 整庫備份 | `saveDbFile()` | `sdg-ggen-db_….db`（內容同 JSON，副檔名不同） |
-| 匯入 JSON | `importData()` | `applyExternalData()`：`sanitizeRecords()` → confirm → **完全取代** → `scheduleAutoSync('import-json')` |
+| 匯入 JSON | `importData()` | `applyExternalData()`：檢查 → confirm → **完全取代**單位／角色／支援單位；零件與關卡僅在檔案有該欄時取代 → `scheduleAutoSync('import-json')` |
 | 還原 .db | `loadDbFile()` | 同上（accept `.db,.json`；兩者內容皆為 JSON），reason `'restore-db'` |
-| 清空 | `clearAllData()` | 兩次 confirm；清空三 store；reason `'clear-all'`（Auto-sync 開啟時會自動上傳空庫覆蓋遠端，確認對話已警告） |
+| 清空 | `clearAllData()` | 兩次 confirm；清空單位／角色／支援單位／選擇性零件／關卡；reason `'clear-all'`（Auto-sync 開啟時會自動上傳空庫覆蓋遠端，確認對話已警告） |
  
-`gatherAll()` 是三 store 全量收集的共用入口（同步 payload 也用它）。
+`gatherAll()` 收集單位、角色、支援單位、選擇性零件、關卡（同步 payload 也用它）。
 
 ### 8.10 刪除與復原（ui.js）
  
@@ -386,7 +391,7 @@ localStorage：`sdg-dark`（`'1'`／`'0'`，深色模式）、`sdg-autosync-enab
  
 **新增武裝效果／限制類型**：只改 `weapon-effect-types.js` 兩處（類型陣列 `WEAPON_EFFECT_TYPES`／`WEAPON_LIMIT_TYPES` ＋名稱對照表 `WKIND_DEFAULT_*_NAMES`）；表單下拉、篩選下拉、正規化（`normalizeWeaponKindList`）自動跟上。
  
-**新增資料類型（第四種）**：屬大工程 — 需動 `globals.js`（`TYPES`／`LABEL`／`PAG`／`EDIT`）、`storage.js`（store 建立＋DB 版本升級）、HTML 分頁與表單、`search-common.js`＋新的 search 檔、新 render 檔、`forms.js`、`import-export.js`、`GitHub-sync.js sanitizeRecords()`。
+**新增資料類型（第四種分頁）**：屬大工程 — 需動 `globals.js`（`TYPES`／`LABEL`／`PAG`／`EDIT`）、`storage.js`（store 建立＋DB 版本升級）、HTML 分頁與表單、`search-common.js`＋新的 search 檔、新 render 檔、`forms.js`、`import-export.js`、`GitHub-sync.js sanitizeRecords()`。選擇性零件與關卡**不是**第四種分頁：它們有自己的 store 與視窗腳本，不加入 `TYPES`。新的同類視窗資料比照 `optional-parts.js`／`stage-data.js`：獨立腳本、`storage.js` 升版建 store、`gatherAll`／匯入／同步缺欄保留本地、`updateStorageStatus()`。
 
 ## 12. 常見陷阱
  
@@ -415,5 +420,5 @@ localStorage：`sdg-dark`（`'1'`／`'0'`，深色模式）、`sdg-autosync-enab
 | 文件 | 內容 |
 |---|---|
 | `README.md`（本文件） | 架構、慣例、機制摘要、擴充與陷阱 |
-| `docs/DATA-MODEL.md` | units／characters／supports 完整欄位表、weapons 格式、效果／限制類型代碼表、同步 payload、正規化規則 |
-| `docs/GITHUB-SYNC.md` | 同步設定、上傳／下載流程、auto-download 決策表、reason 清單、安全建議 |
+| `DATA-MODEL.md` | units／characters／supports／optionalParts／stages 欄位、weapons 格式、效果／限制類型代碼表、同步 payload、正規化規則 |
+| `GITHUB-SYNC.md` | 同步設定、上傳／下載流程、auto-download 決策表、reason 清單、安全建議 |
