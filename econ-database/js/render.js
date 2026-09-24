@@ -123,19 +123,52 @@ async function renderQuestions() {
     };
 
     // Helper function to render collapsible text sections (Answers/Reports)
-    const renderCollapsibleSection = (label, content) => {
+    const diagramSrcs = (q) => (q.inlineDiagrams || '')
+        .split(',')
+        .map(s => s.trim())
+        .filter(s => s && !s.includes('..') && !/^[a-z]+:/i.test(s));
+
+    const renderInlineText = (content, images) => {
+        const parts = content.split(/\[圖：[^\]]*\]/);
+        const marks = content.match(/\[圖：[^\]]*\]/g) || [];
+        let html = '';
+        let used = 0;
+        parts.forEach((part, i) => {
+            html += escapeHTML(part);
+            if (i < marks.length) {
+                const src = images[used];
+                if (src) {
+                    const alt = marks[i].slice(2, -1);
+                    html += `<img class="inline-diagram" src="${escapeHTML(src)}" alt="${escapeHTML(alt)}">`;
+                    used += 1;
+                } else {
+                    html += escapeHTML(marks[i]);
+                }
+            }
+        });
+        while (used < images.length) {
+            html += `<img class="inline-diagram" src="${escapeHTML(images[used])}" alt="圖">`;
+            used += 1;
+        }
+        return html;
+    };
+
+    const renderCollapsibleSection = (label, content, images) => {
         if (!content || content.trim() === '' || content === '-') return '';
 
+        const pics = images || [];
         const escapedContent = escapeHTML(content.trim());
+        const body = pics.length ? renderInlineText(content.trim(), pics) : escapedContent;
+        const open = pics.length > 0;
 
         return `
             <div class="question-text">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 5px;">
-                    <button class="expand-btn" title="展開/收起">▶</button>
+                    <button class="expand-btn" title="${open ? '收起' : '展開/收起'}">${open ? '▼' : '▶'}</button>
                     <strong style="flex: 1;">${label}</strong>
                     <button class="copy-btn" data-action="copy" title="複製" data-content="${escapedContent}">📋</button>
                 </div>
-                <div class="question-text-content collapsed">${escapedContent}</div>
+                <div class="question-text-content ${open ? 'expanded' : 'collapsed'}">${body}</div>
             </div>
         `;
     };
@@ -276,7 +309,7 @@ async function renderQuestions() {
                         <span class="tag">${escapeHTML(q.topic)}</span>
                     </div>
                 ` : ''}
-                ${renderCollapsibleSection('純文字：', q.plainText || q.questionTextChi)}
+                ${renderCollapsibleSection('純文字：', q.plainText || q.questionTextChi, diagramSrcs(q))}
                 ${renderCollapsibleSection('Question:', q.questionTextEng)}
 
                 ${(q.answerMC && q.answerMC !== '-') ? `

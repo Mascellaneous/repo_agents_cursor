@@ -40,6 +40,14 @@
     max-height: none;
 }
 
+.inline-diagram {
+    display: block;
+    max-width: min(100%, 520px);
+    height: auto;
+    margin: 8px 0;
+    background: #fff;
+}
+
 /* Copy Button (existing, but ensuring consistency) */
 .copy-btn {
     background-color: #ecf0f1;
