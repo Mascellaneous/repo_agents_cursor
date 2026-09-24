@@ -689,20 +689,28 @@ function openSupCapPicker(kind) {
                 <h3>隊長技能${key === 'series' ? '系列' : '標籤'}</h3>
                 <button type="button" class="btn btn-warning btn-sm" onclick="closeSupCapPicker()">✕</button>
             </div>
-            <p class="ro-hint">可複選單位的系列或標籤。多個條件用表單上的 AND／OR。</p>
-            <div class="ro-list" style="max-height:55vh;overflow:auto;">
-                ${pool.length ? pool.map(s => `
-                    <label class="abreq-pick" style="display:block;padding:3px 6px;cursor:pointer;">
-                        <input type="checkbox" value="${esc(s)}"${draft.has(s) ? ' checked' : ''}> ${esc(s)}
-                    </label>`).join('')
-                : '<p class="empty-msg" style="width:100%;">沒有可選項目。請先在單位加上系列或標籤。</p>'}
-            </div>
+            <p class="ro-hint">可複選，也可直接打字搜尋名稱。多個條件用表單上的 AND／OR。</p>
+            <input type="text" id="supcap-q" placeholder="輸入名稱搜尋" autocomplete="off" style="width:100%;margin-bottom:6px;">
+            <div class="ro-list" id="supcap-list" style="max-height:55vh;overflow:auto;"></div>
             <div class="ro-foot">
                 <button type="button" class="btn btn-warning" onclick="closeSupCapPicker()">取消</button>
                 <button type="button" class="btn btn-success" id="supcap-apply">💾 套用</button>
             </div>
         </div>`;
     document.body.appendChild(ov);
+    const list = gi('supcap-list');
+    const paint = () => {
+        const q = (gi('supcap-q').value || '').trim().toLowerCase();
+        const shown = q ? pool.filter(s => String(s).toLowerCase().includes(q)) : pool;
+        list.innerHTML = shown.length ? shown.map(s => `
+            <label class="abreq-pick" style="display:block;padding:3px 6px;cursor:pointer;">
+                <input type="checkbox" value="${esc(s)}"${draft.has(s) ? ' checked' : ''}> ${esc(s)}
+            </label>`).join('')
+            : `<p class="empty-msg" style="width:100%;">${pool.length ? '沒有符合的名稱。' : '沒有可選項目。請先在單位加上系列或標籤。'}</p>`;
+    };
+    paint();
+    gi('supcap-q').addEventListener('input', paint);
+    gi('supcap-q').focus();
     ov.addEventListener('change', e => {
         const cb = e.target.closest('input[type=checkbox]');
         if (!cb) return;
