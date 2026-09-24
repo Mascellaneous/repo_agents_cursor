@@ -4,20 +4,6 @@
 
 function renderModalsTemplate() {
     return `
-    <!-- Feedback Modal -->
-    <div id="feedback-modal" class="hidden" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center;">
-        <div style="background: white; border-radius: 12px; width: 90%; max-width: 480px; padding: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
-            <h3 style="margin: 0 0 15px 0;">📝 題目回報 / 建議</h3>
-            <p style="margin: 0 0 10px 0;">題目 ID: <strong id="feedback-question-id"></strong></p>
-            <label style="font-weight: 600; font-size: 14px;">回報內容:</label>
-            <textarea id="feedback-text" style="width: 100%; min-height: 100px; margin-top: 8px; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-family: inherit;"></textarea>
-            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px;">
-                <button class="btn btn-cancel" onclick="closeFeedbackModal()">取消</button>
-                <button class="btn btn-success" onclick="submitFeedback()">送出回報</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Shared Filter Modal (used by filter-modal.js, mainly on mobile) -->
     <div id="filter-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center;">
         <div style="background: white; border-radius: 12px; width: 90%; max-width: 480px; max-height: 80vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">

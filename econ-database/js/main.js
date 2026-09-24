@@ -320,10 +320,9 @@ function setupEventListeners() {
                 return;
             }
             
-            const feedbackBtn = target.closest('[data-action="feedback"]');
-            if (feedbackBtn) {
-                const id = feedbackBtn.getAttribute('data-id');
-                openFeedbackModal(id);
+            const originalBtn = target.closest('[data-action="original"]');
+            if (originalBtn) {
+                openOriginalImages(originalBtn.getAttribute('data-images') || '');
                 return;
             }
         });

@@ -25,6 +25,33 @@ window.toggleTags = function(checkbox) {
 // ==========================================
 
 // Only allow http/https URLs from the Sheet (blocks javascript: etc.)
+function renderOriginalBadge(paths, label) {
+    if (!paths || paths === '-' || typeof paths !== 'string') return '';
+    const list = paths.split(',').map(p => p.trim()).filter(p => p && !/^[a-z]+:/i.test(p) && !p.includes('..'));
+    if (!list.length) return '';
+    const encoded = encodeURIComponent(list.join(','));
+    return `<button type="button" class="ai-btn" data-action="original" data-images="${encoded}" title="開啟${label}原卷圖片" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 30px; height: 30px; padding: 0 8px; border-radius: 15px; background-color: #eff6ff; border: 1px solid #93c5fd; margin-left: 8px; font-size: 0.85em; cursor: pointer; color: #2563eb; font-weight: bold;">${label}</button>`;
+}
+
+function openOriginalImages(encoded) {
+    const list = decodeURIComponent(encoded).split(',').filter(Boolean);
+    let overlay = document.getElementById('original-image-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'original-image-overlay';
+        overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:3000;overflow:auto;padding:24px;';
+        overlay.addEventListener('click', (event) => {
+            if (event.target === overlay) overlay.remove();
+        });
+        document.body.appendChild(overlay);
+    }
+    overlay.innerHTML = `<div style="max-width:920px;margin:0 auto;background:#fff;border-radius:12px;padding:16px;">
+        <div style="text-align:right;margin-bottom:8px;"><button type="button" id="original-image-close" class="btn btn-cancel">關閉</button></div>
+        ${list.map(src => `<img src="${escapeHTML(src)}" alt="" style="width:100%;margin-bottom:12px;border:1px solid #e5e7eb;">`).join('')}
+    </div>`;
+    document.getElementById('original-image-close').onclick = () => overlay.remove();
+}
+
 function safeHttpUrl(url) {
     if (typeof url !== 'string') return '';
     const trimmed = url.trim();
@@ -224,15 +251,14 @@ async function renderQuestions() {
                 <div class="question-title">
                     ${escapeHTML(q.id)}
                     ${renderImageButtons(q.imageChi, 'chi')}
-                    ${renderImageButtons(q.imageEng, 'eng')}              
+                    ${renderImageButtons(q.imageEng, 'eng')}
+                    ${renderOriginalBadge(q.originalQuestionImage, '原題')}
+                    ${renderOriginalBadge(q.originalAnswerImage, '答案')}
                     ${aiUrl ? `
                         <a href="${escapeHTML(aiUrl)}" target="_blank" rel="noopener noreferrer" class="ai-btn" title="AI 詳解" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background-color: #e3f2fd; border: 1px solid #90caf9; margin-left: 8px; font-size: 1.2em; transition: all 0.2s; cursor: pointer;">
                             🤖
                         </a>
-                    ` : ''}                    
-                    <button class="feedback-btn" data-action="feedback" data-id="${escapeHTML(q.id)}" title="回報問題" style="background: none; border: none; cursor: pointer; font-size: 1.2em; opacity: 0.6; transition: opacity 0.2s; padding: 0; margin-left: 8px;">
-                        📢
-                    </button>                   
+                    ` : ''} 
                 </div>
                 <div class="question-badges">
                     ${q.reviewedByAI === 'Y' ? `<span class="badge" title="上次覆核 ${escapeHTML(q.lastReviewDate || '')}">AI已覆核</span>` : `<span class="badge" title="尚未人工覆核">未覆核</span>`}

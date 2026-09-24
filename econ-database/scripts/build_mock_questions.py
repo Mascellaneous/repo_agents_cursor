@@ -1053,6 +1053,11 @@ def build():
     with open(OUT_PATH, "w", encoding="utf-8") as fh:
         json.dump(payload, fh, ensure_ascii=False, indent=2)
         fh.write("\n")
+    js_path = os.path.join(DATA_DIR, "database.js")
+    with open(js_path, "w", encoding="utf-8") as fh:
+        fh.write("window.QUESTION_DATABASE = ")
+        fh.write(open(OUT_PATH, encoding="utf-8").read().strip())
+        fh.write(";\n")
     vocab = write_vocabulary(merged)
     print(
         "vocabulary",

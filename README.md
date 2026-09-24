@@ -1,6 +1,6 @@
 # Mock-paper question bank: notes for a future agent
 
-This repository holds Aristo HKDSE Economics mock papers and the `econ-database` app that browses them. Opening `econ-database/index.html` starts a fetch of `econ-database/data/database.json`. The app does not fetch Google Sheets.
+This repository holds Aristo HKDSE Economics mock papers and the `econ-database` app that browses them. Opening `econ-database/index.html` through a web server fetches `econ-database/data/database.json`. Opening that file directly (`file://`) cannot fetch a neighbour file, so the page loads `econ-database/data/database.js` instead. The builder writes both files together. The app does not fetch Google Sheets.
 
 ## What the Python script is for
 

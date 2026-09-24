@@ -1,4 +1,4 @@
-{
+window.QUESTION_DATABASE = {
   "version": "1.0",
   "source": "Aristo HKDSE Economics mock papers 27–44",
   "description": "Each record is one question. topic is the chapter; concepts are specific ideas such as 機會成本; patterns are question styles and do not repeat questionType; plainText is the wording. reviewedByAI is Y or N. lastReviewDate is YYYY-MM-DD when reviewed. The builder does not overwrite records with reviewedByAI Y.",
@@ -34159,3 +34159,4 @@
     }
   ]
 }
+;

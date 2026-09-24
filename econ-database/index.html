@@ -5,13 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HKDSE Economics Questions Database</title>
     <script>
-        // Start reading the question bank as soon as the page loads.
-        window.databaseReady = fetch('data/database.json', { cache: 'no-cache' }).then(function (response) {
-            if (!response.ok) {
-                throw new Error('HTTP ' + response.status + ': 無法讀取 database.json');
+        // file:// pages cannot fetch a neighbour JSON file. database.js sets
+        // window.QUESTION_DATABASE and is what a locally opened page uses.
+        // A served page (including GitHub Pages) fetches database.json.
+        (function () {
+            function loadScript() {
+                return new Promise(function (resolve, reject) {
+                    var script = document.createElement('script');
+                    script.src = 'data/database.js';
+                    script.onload = function () {
+                        if (window.QUESTION_DATABASE) resolve(window.QUESTION_DATABASE);
+                        else reject(new Error('database.js 沒有題目資料'));
+                    };
+                    script.onerror = function () {
+                        reject(new Error('無法讀取 data/database.js'));
+                    };
+                    document.head.appendChild(script);
+                });
             }
-            return response.json();
-        });
+            if (location.protocol === 'file:') {
+                window.databaseReady = loadScript();
+            } else {
+                window.databaseReady = fetch('data/database.json', { cache: 'no-cache' }).then(function (response) {
+                    if (!response.ok) {
+                        throw new Error('HTTP ' + response.status + ': 無法讀取 database.json');
+                    }
+                    return response.json();
+                }).catch(function () {
+                    return loadScript();
+                });
+            }
+        })();
     </script>
     <!-- Standard Favicon (Fallback for older browsers) -->
     <link rel="icon" href="favicon.ico?v3" sizes="any">
