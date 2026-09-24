@@ -29,28 +29,26 @@ body.dark-mode .ac-item{color:#e0e0e0;border-bottom-color:#4a4a4a}
 body.dark-mode .ac-item:hover,body.dark-mode .ac-item.hl{background:#1976d2;color:#fff}
 @media (max-width:640px){.grid{grid-template-columns:1fr}}
  
-/* 標籤篩選視窗（深色模式） */
-body.dark-mode .tag-modal{background:#2c2c2c;color:#e0e0e0}
-body.dark-mode .tag-toolbar input{background:#454545;color:#e0e0e0;border-color:#666}
-body.dark-mode .tag-list{border-color:#666;background:#333}
-body.dark-mode .tagpick{background:#4a4a4a;color:#ddd}
-body.dark-mode .tagpick:hover{background:#5a5a5a}
-body.dark-mode .tagpick.on{background:#1976d2;color:#fff}
-body.dark-mode .tag-summary{color:#bbb}
-
 /* 標籤篩選視窗＋摘要（深色模式） */
 body.dark-mode .tag-modal{background:#2c2c2c;color:#e0e0e0}
 body.dark-mode .tag-toolbar input{background:#454545;color:#e0e0e0;border-color:#666}
-body.dark-mode .tag-list{border-color:#666;background:#333}
-body.dark-mode .tagpick{background:#4a4a4a;color:#ddd}
-body.dark-mode .tagpick:hover{background:#5a5a5a}
-body.dark-mode .tagpick.on{background:#1976d2;color:#fff}
+body.dark-mode .tag-list{border-color:#555;background:#333}
+body.dark-mode .tag-colhead{color:#aaa}
+body.dark-mode .tagrow{border-bottom-color:#444}
+body.dark-mode .tagrow:hover{background:#3a4550}
+body.dark-mode .tagrow.is-inc{background:#1b3a52}
+body.dark-mode .tagrow.is-exc{background:#4a2420}
+body.dark-mode .tagrow-use,.tag-empty{color:#aaa}
+body.dark-mode .tag-exc{background:#3a3a3a;border-color:#666;color:#ccc}
+body.dark-mode .tag-exc.on{background:#c0392b;border-color:#c0392b;color:#fff}
 body.dark-mode .tag-summary{color:#bbb}
-body.dark-mode .tm-label,body.dark-mode .tr-head{color:#e0e0e0}
+body.dark-mode .tm-label,body.dark-mode .tb-title{color:#e0e0e0}
 body.dark-mode .tm-hint{color:#999}
 body.dark-mode .tag-modeswitch{border-color:#666}
 body.dark-mode .tag-modeswitch button{background:#3a3a3a;color:#ccc}
 body.dark-mode .tag-modeswitch button.active{background:#1976d2;color:#fff}
-body.dark-mode .tag-right{border-left-color:#555}
-body.dark-mode .tr-head{border-bottom-color:#555}
+body.dark-mode .tag-bucket{background:#2a2a2a;border-color:#555}
+body.dark-mode .tag-bucket header{background:#333;border-bottom-color:#555}
+body.dark-mode .tb-item{background:#3a3a3a;border-color:#555;color:#e0e0e0}
+body.dark-mode .tag-bucket-exc .tb-item{background:#3d2a28;border-color:#6b3a34}
 body.dark-mode .ts-mode{background:#1976d2;color:#fff}

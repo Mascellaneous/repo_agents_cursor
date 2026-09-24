@@ -106,9 +106,9 @@ function clearTagFilter(t) {
 /* =========================================================
  * ★ 標籤篩選視窗（雙欄版面、暫存 → 套用制；支援排除標籤）
  * ---------------------------------------------------------------------
- * 左欄：搜尋＋全選（符合）＋清空，標籤清單（附使用筆數）
- *       每個標籤：☐ 勾選（包含）＋ ⊘ 切換（排除；同一標籤不可同時包含與排除）
- * 右欄：已選預覽（包含／排除分區，各可 ✕ 移除，僅改暫存）
+ * 左欄：搜尋＋全選（符合）＋清空，標籤為對齊列（名稱／筆數／排除）
+ *       勾選＝包含；「排除」鈕＝隱藏具備該標籤的資料（不可同時包含與排除）
+ * 右欄：上下兩區「包含」「排除」，各有筆數與空狀態；列上可移除（僅改暫存）
  * 底部上方：AND／OR 邏輯分段按鈕＋動態說明
  * 「💾 套用」寫回；關閉／取消／Esc／點背景捨棄暫存。
  * ========================================================= */
@@ -139,15 +139,30 @@ function ensureTagModal() {
                 <div class="tag-body">
                     <div class="tag-left">
                         <div class="tag-toolbar">
-                            <input type="text" id="__tag-search" placeholder="🔍 搜尋標籤…" oninput="renderTagList()">
-                            <button type="button" class="btn btn-info btn-sm" onclick="tagSelectVisible()" title="勾選目前搜尋結果中的所有標籤">全選（符合）</button>
+                            <input type="text" id="__tag-search" placeholder="搜尋標籤名稱…" oninput="renderTagList()">
+                            <button type="button" class="btn btn-info btn-sm" onclick="tagSelectVisible()" title="勾選目前搜尋結果中的所有標籤">全選符合</button>
                             <button type="button" class="btn btn-warning btn-sm" onclick="tagDraftClear()" title="取消所有勾選與排除（尚未套用）">清空</button>
+                        </div>
+                        <div class="tag-colhead" aria-hidden="true">
+                            <span>標籤</span><span>筆數</span><span>排除</span>
                         </div>
                         <div class="tag-list" id="__tag-list"></div>
                     </div>
                     <aside class="tag-right">
-                        <div class="tr-head">已選（<span id="__tag-selcount">0</span>）／排除（<span id="__tag-exccount">0</span>）</div>
-                        <div class="tag-selbox" id="__tag-selbox"></div>
+                        <section class="tag-bucket tag-bucket-inc">
+                            <header>
+                                <span class="tb-title">包含</span>
+                                <span class="tb-count" id="__tag-selcount">0</span>
+                            </header>
+                            <div class="tag-bucket-body" id="__tag-incbox"></div>
+                        </section>
+                        <section class="tag-bucket tag-bucket-exc">
+                            <header>
+                                <span class="tb-title">排除</span>
+                                <span class="tb-count" id="__tag-exccount">0</span>
+                            </header>
+                            <div class="tag-bucket-body" id="__tag-excbox"></div>
+                        </section>
                     </aside>
                 </div>
  
@@ -174,7 +189,15 @@ function ensureTagModal() {
             } else {
                 TAG_MODAL.draftInc.delete(cb.value);
             }
-            cb.closest('.tagpick').classList.toggle('on', cb.checked);
+            const row = cb.closest('.tagrow');
+            if (row) {
+                row.classList.toggle('is-inc', cb.checked);
+                if (cb.checked) {
+                    row.classList.remove('is-exc');
+                    const xb = row.querySelector('.tag-exc');
+                    if (xb) { xb.classList.remove('on'); xb.textContent = '排除'; }
+                }
+            }
             updateTagSelBox();
         });
         /* 左欄 ⊘ 排除切換 → 只改暫存，同步右欄預覽 */
@@ -187,8 +210,8 @@ function ensureTagModal() {
             renderTagList();
             updateTagSelBox();
         });
-        /* 右欄 ✕ → 自暫存移除（包含／排除），並同步左欄狀態 */
-        ov.querySelector('#__tag-selbox').addEventListener('click', e => {
+        /* 右欄「移除」→ 自暫存移除（包含／排除），並同步左欄狀態 */
+        ov.querySelector('.tag-right').addEventListener('click', e => {
             const b = e.target.closest('.tsel-rm, .tsel-rm-exc');
             if (!b || !TAG_MODAL.draftInc) return;
             const tag = b.dataset.tag;
@@ -196,7 +219,7 @@ function ensureTagModal() {
             else TAG_MODAL.draftExc.delete(tag);
             const cb = [...ov.querySelectorAll('#__tag-list input')]
                        .find(c => c.value === tag);
-            if (cb) { cb.checked = false; cb.closest('.tagpick').classList.remove('on'); }
+            if (cb) cb.checked = false;
             renderTagList();
             updateTagSelBox();
         });
@@ -235,8 +258,8 @@ function setTagMode(m) {
     if (a) a.classList.toggle('active', m === 'AND');
     if (o) o.classList.toggle('active', m === 'OR');
     if (h) h.textContent = (m === 'AND')
-        ? '資料必須具備【所有】勾選標籤才會顯示（⊘ 排除標籤優先：具備任一排除標籤即隱藏）'
-        : '資料只要具備【任一】勾選標籤即會顯示（⊘ 排除標籤優先：具備任一排除標籤即隱藏）';
+        ? '必須同時具備所有「包含」標籤。具備任一「排除」標籤的資料會隱藏。'
+        : '具備任一「包含」標籤即可顯示。具備任一「排除」標籤的資料會隱藏。';
 }
  
 function tagUsageMap(t) {
@@ -252,44 +275,43 @@ function renderTagList() {
     let tags = poolTags(TAG_MODAL.type);
     if (q) tags = tags.filter(t => t.toLowerCase().includes(q));
  
-    gi('__tag-list').innerHTML = tags.length
+    const list = gi('__tag-list');
+    const keep = list.scrollTop;
+    list.innerHTML = tags.length
         ? tags.map(t => {
             const on  = TAG_MODAL.draftInc.has(t);
             const exc = TAG_MODAL.draftExc.has(t);
-            return `<span class="tagwrap" style="display:inline-flex;align-items:center;gap:2px;">` +
-                   `<label class="tagpick${on ? ' on' : ''}" title="${usage[t] || 0} 筆資料使用此標籤">` +
-                   `<input type="checkbox" value="${esc(t)}"${on ? ' checked' : ''}>${esc(t)}` +
-                   `<span class="tag-use">${usage[t] || 0}</span></label>` +
+            const n = usage[t] || 0;
+            return `<div class="tagrow${on ? ' is-inc' : ''}${exc ? ' is-exc' : ''}">` +
+                   `<label class="tagrow-main" title="${n} 筆資料使用此標籤">` +
+                   `<input type="checkbox" value="${esc(t)}"${on ? ' checked' : ''}>` +
+                   `<span class="tagrow-name">${esc(t)}</span></label>` +
+                   `<span class="tagrow-use">${n}</span>` +
                    `<button type="button" class="tag-exc${exc ? ' on' : ''}" data-tag="${esc(t)}" ` +
-                   `title="${exc ? '取消排除此標籤' : '排除此標籤（具備此標籤的資料將被隱藏）'}">⊘</button>` +
-                   `</span>`;
+                   `title="${exc ? '取消排除此標籤' : '排除此標籤（具備此標籤的資料將被隱藏）'}">${exc ? '已排除' : '排除'}</button>` +
+                   `</div>`;
           }).join('')
-        : `<p class="empty-msg" style="width:100%;">沒有符合的標籤。</p>`;
+        : `<p class="tag-empty">沒有符合的標籤。</p>`;
+    list.scrollTop = keep;
     gi('__tag-total').textContent = `標籤池共 ${poolTags(TAG_MODAL.type).length} 種`;
 }
  
-/* 右欄：已選預覽（包含／排除分區；每個 chip 附 ✕，僅改暫存） */
+/* 右欄：包含／排除各一區（每列可移除，僅改暫存） */
+function tagBucketHtml(tags, rmClass, emptyText) {
+    if (!tags.length) return `<p class="tb-empty">${emptyText}</p>`;
+    return tags.map(t =>
+        `<div class="tb-item"><span class="tb-name">${esc(t)}</span>` +
+        `<button type="button" class="${rmClass}" data-tag="${esc(t)}" title="自暫存移除">移除</button></div>`
+    ).join('');
+}
 function updateTagSelBox() {
-    const box = gi('__tag-selbox'); if (!box || !TAG_MODAL.draftInc) return;
+    const incBox = gi('__tag-incbox');
+    const excBox = gi('__tag-excbox');
+    if (!incBox || !excBox || !TAG_MODAL.draftInc) return;
     const inc = [...TAG_MODAL.draftInc];
     const exc = [...TAG_MODAL.draftExc];
-    let html = '';
-    html += inc.length
-        ? `<div class="tr-sub">包含</div>` +
-          inc.map(t =>
-            `<span class="tagpick on tsel">${esc(t)}` +
-            `<button type="button" class="tsel-rm" data-tag="${esc(t)}" title="自暫存移除">✕</button></span>`
-          ).join('')
-        : '';
-    html += exc.length
-        ? `<div class="tr-sub tr-sub-exc">排除</div>` +
-          exc.map(t =>
-            `<span class="tagpick on tsel tsel-exc">⊘${esc(t)}` +
-            `<button type="button" class="tsel-rm-exc" data-tag="${esc(t)}" title="自暫存移除">✕</button></span>`
-          ).join('')
-        : '';
-    if (!html) html = '<span class="empty-msg" style="font-size:11px;">尚未選擇標籤</span>';
-    box.innerHTML = html;
+    incBox.innerHTML = tagBucketHtml(inc, 'tsel-rm', '尚未選擇。在左欄勾選標籤。');
+    excBox.innerHTML = tagBucketHtml(exc, 'tsel-rm-exc', '尚未排除。在左欄按「排除」。');
     gi('__tag-selcount').textContent = inc.length;
     gi('__tag-exccount').textContent = exc.length;
 }

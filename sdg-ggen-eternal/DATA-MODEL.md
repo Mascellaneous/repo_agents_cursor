@@ -26,7 +26,7 @@
 | `name` | string | 名稱（必填，最長 100；正規化時缺補 `(未命名)`） |
 | `image` | string | 圖片路徑（表單儲存時經 `normalizeImagePath()` 正規化；空＝無圖；單位純檔名自動補 `images/units/`） |
 | `series` | string[] | 系列（單位＋角色共用建議池；輸入僅以逗號類分隔） |
-| `tags` | string[] | 標籤（**單位專屬池**；逗號或空格分隔） |
+| `tags` | string[] | 標籤（**單位專屬池**；逗號或空格分隔）。篩選視窗的包含／排除只存在記憶體（`TAG_FILTER_STATE`／`TAG_FILTER_EXCLUDE`），不寫入本欄、也不進同步 payload |
 | `rarity` | string | 必填：`UR`／`SSR`／`SR`／`R`／`N` |
 | `type` | string | 必填：`攻擊`／`防禦`／`支援` |
 | `mobility` | number | 移動力 0–10 |
