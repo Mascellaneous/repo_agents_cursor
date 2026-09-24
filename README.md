@@ -12,7 +12,8 @@ That parse is rough. Word files repeat text boxes, glue diagram labels into the 
 
 Each question object includes:
 
-- `id`: stable key, `M{paper}-P{1|2}-Q{nn}`, for example `M35-P1-Q01`. Paper numbers are 35–44 today.
+- `id`: stable key, `M{paper}-P{1|2}-Q{nn}`, for example `M35-P1-Q01`. Paper numbers are 27–44 today.
+- Do not put that question number at the start of `plainText`, `questionTextChi`, or `answerChi`. The id already has it.
 - `topic`: chapter name. This is the broad classification.
 - `concepts`: specific ideas such as 機會成本 or 勞工生產力. Not the chapter name.
 - `patterns`: how the question is asked (解釋, 計算, 圖表判讀, …). Do not put 多項選擇題 or 結構題 here. That distinction is `questionType`.

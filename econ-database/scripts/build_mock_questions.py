@@ -17,6 +17,14 @@ VOCAB_PATH = os.path.join(DATA_DIR, "vocabulary.json")
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 
 PAPER_NUM = {
+    "二十七": 27,
+    "二十八": 28,
+    "二十九": 29,
+    "三十": 30,
+    "三十一": 31,
+    "三十二": 32,
+    "三十三": 33,
+    "三十四": 34,
     "三十五": 35,
     "三十六": 36,
     "三十七": 37,
@@ -780,6 +788,16 @@ def sum_marks(text):
     return sum(nums) if nums else None
 
 
+def strip_question_number(text, number):
+    """Drop a leading question number. The id already stores it."""
+    if not text or number in (None, "", "-"):
+        return text
+    n = str(int(number))
+    lines = str(text).split("\n")
+    lines[0] = re.sub(rf"^{n}\.(?:\t| )", "", lines[0], count=1)
+    return "\n".join(lines).strip()
+
+
 def join_plain(lines):
     junk = (
         "考試結束前不可將試卷攜離試場",
@@ -906,12 +924,13 @@ def build():
     for name in files:
         num, label = paper_number(name)
         by_num.setdefault(num, {"label": label})
-        if "卷一" in name:
-            by_num[num]["p1"] = os.path.join(MOCK_DIR, name)
-        elif "卷二" in name:
-            by_num[num]["p2"] = os.path.join(MOCK_DIR, name)
-        elif "參考答案" in name:
+        # 試卷二十七 contains the letters 卷二, so match the paper slot, not that substring.
+        if "參考答案" in name:
             by_num[num]["ans"] = os.path.join(MOCK_DIR, name)
+        elif re.search(r"卷一(?!十)", name):
+            by_num[num]["p1"] = os.path.join(MOCK_DIR, name)
+        elif re.search(r"卷二(?!十)", name):
+            by_num[num]["p2"] = os.path.join(MOCK_DIR, name)
 
     questions = []
     report = []
@@ -1017,9 +1036,15 @@ def build():
         if qid not in seen:
             merged.append(old)
 
+    for question in merged:
+        number = question.get("questionNumber")
+        for field in ("plainText", "questionTextChi", "answerChi"):
+            if question.get(field):
+                question[field] = strip_question_number(question[field], number)
+
     payload = {
         "version": "1.0",
-        "source": "Aristo HKDSE Economics mock papers 35–44",
+        "source": "Aristo HKDSE Economics mock papers 27–44",
         "description": "Each record is one question. topic is the chapter; concepts are specific ideas such as 機會成本; patterns are question styles and do not repeat questionType; plainText is the wording. reviewedByAI is Y or N. lastReviewDate is YYYY-MM-DD when reviewed. The builder does not overwrite records with reviewedByAI Y.",
         "questionCount": len(merged),
         "questions": merged,
