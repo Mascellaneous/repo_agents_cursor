@@ -67566,7 +67566,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "Mr Chan lives in his own apartment which is worth $8 000 000. He can sell the apartment and deposit the $8 000 000 in a bank at an interest rate of 5% per year. He can also rent out the apartment at $25 000 a month.\n\nBased on the above information, which of the following statements are correct?\n\n(1) When the market value of his apartment increases, the opportunity cost for Mr Chan to live in his own apartment will not be affected.\n(2) When the deposit interest rate increases, the opportunity cost for Mr Chan to live in his own apartment will increase.\n(3) When the rental value of his apartment increases, the opportunity cost for Mr Chan to live in his own apartment may increase.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
       "correctPercentage": 64,
-      "imageChi": "https://drive.google.com/file/d/19Nc-kQa8t0UBHR5fd_tZXJTqpnwivKKN/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/19Nc-kQa8t0UBHR5fd_tZXJTqpnwivKKN/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2024/re-p1-01.jpg"
     },
     {
       "id": "DSE-2024-P1-02",
@@ -67731,7 +67732,9 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "ABC Studio Limited is a video production company in Hong Kong. Its financial status is not required to be disclosed to the general public by law.\n\nWhich of the following statements about the company is correct?\n\nA. The admission of new shareholders does not require a consent from existing shareholders.\nB. The company can own assets under its name.\nC. The company may raise capital by issuing bonds to the general public.\nD. There is no upper limit on the number of shareholders.",
       "correctPercentage": 72,
-      "imageChi": "https://drive.google.com/file/d/1B-h0zgP9Xs5gQdBWKuoYe_rkQQAoVaWO/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1B-h0zgP9Xs5gQdBWKuoYe_rkQQAoVaWO/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2024/re-p1-05.jpg",
+      "originalQuestionImage": "originals/dse/2024/q-p1-05.jpg"
     },
     {
       "id": "DSE-2024-P1-06",
@@ -67771,7 +67774,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "Refer to the following diagram.\n\nHouseholds\nPrimary Production\nSecondary Production\nTertiary Production\nP Q\n\nWhat do P and Q stand for respectively?\n\nA.\tconsumer goods; services\nB.\tconsumer goods; raw materials \nC.\tproducer goods; services\nD.\tproducer goods; raw materials",
       "correctPercentage": 68,
-      "imageChi": "https://drive.google.com/file/d/1pB1uKZ-xtdXE0z3akRYXtCI8N4pEtDvb/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1pB1uKZ-xtdXE0z3akRYXtCI8N4pEtDvb/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2024/re-p1-06.jpg"
     },
     {
       "id": "DSE-2024-P1-07",
@@ -67811,7 +67815,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "A supermarket chain located in Japan took over a Japanese grocery chain in Hong Kong.\n\nWhich of the following is the LEAST likely motive of the above takeover?\n\nA. to enjoy economies of scale\nB. to spread its business risk through market diversification\nC. to utilise its resources more efficiently\nD. to ensure a steady supply of raw materials",
       "correctPercentage": 77,
-      "imageChi": "https://drive.google.com/file/d/19QJ9ec0kmtCAot89ODiitsoWa-haPv4V/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/19QJ9ec0kmtCAot89ODiitsoWa-haPv4V/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-07.jpg"
     },
     {
       "id": "DSE-2024-P1-08",
@@ -67932,7 +67937,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "The table below shows the production costs of a price-taking firm.\n\nTotal output (units) Average cost ($)\n1 20\n2 25\n3 30\n4 35\n\nSuppose the fixed cost of the firm is $5 and the product price is $30. The firms’ maximum producer surplus is _____________.\n\nA. $0\nB. $5\nC. $10\nD. $15",
       "correctPercentage": 40,
-      "imageChi": "https://drive.google.com/file/d/1SOrG92JJ8p86bmLGVxlHMzsiROQM5X_-/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1SOrG92JJ8p86bmLGVxlHMzsiROQM5X_-/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2024/re-p1-10.jpg"
     },
     {
       "id": "DSE-2024-P1-11",
@@ -68004,7 +68010,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "As part of the ‘Happy Hong Kong’ campaign, the ‘Hong Kong Cinema Day’ was held in April 2023, with tickets priced at HK$30 across all participating cinemas. It was reported that many people failed to buy any discounted film ticket even after queuing up for hours.\n\nFrom the information above, we can infer that the quantity transacted of the discounted film tickets is __________.\n\nA. equal to the quantity supplied and smaller than the quantity demanded\nB. equal to the quantity supplied and larger than the quantity demanded\nC. equal to the quantity demanded and smaller than the quantity supplied\nD. equal to the quantity demanded and larger than the quantity supplied",
       "correctPercentage": 77,
-      "imageChi": "https://drive.google.com/file/d/1J2HbQSdhLbkhOJOPgb_leRBTV9RwT5i0/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1J2HbQSdhLbkhOJOPgb_leRBTV9RwT5i0/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-12.jpg"
     },
     {
       "id": "DSE-2024-P1-13",
@@ -68250,7 +68257,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "Which of the following statements about perfect competition is INCORRECT?\n\nA. The market price tends to be stable as no firm can affect the market price.\nB. Price is the only competitive criterion in determining the distribution of goods.\nC. The marginal cost of the last unit of all firms is equal when the firms maximise their profits.\nD. Firms sell homogeneous products.",
       "correctPercentage": 19,
-      "imageChi": "https://drive.google.com/file/d/1hnfusTY0fLUKTUok7875iBSU85ohXPsB/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1hnfusTY0fLUKTUok7875iBSU85ohXPsB/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-18.jpg"
     },
     {
       "id": "DSE-2024-P1-19",
@@ -68418,7 +68426,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "In recent years, more and more people play videos loudly with their smartphones on public transport, disturbing other passengers.\n\nBased on the above information, which of the following statements are correct?\n\n(1) Total social surplus may decrease if playing videos loudly with smartphones on public transport is banned by the government.\n(2) Economic efficiency may improve if suppliers of public transportation services designate quiet zones in their vehicles where passengers are not allowed to play videos loudly with their smartphones.\n(3) The divergence between private and social costs may decrease if people playing videos loudly with their smartphones on public transport are fined.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
       "correctPercentage": 27,
-      "imageChi": "https://drive.google.com/file/d/17rPfYv4A9BMYd8EZp01iOwgEUGmfMPX2/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/17rPfYv4A9BMYd8EZp01iOwgEUGmfMPX2/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-22.jpg"
     },
     {
       "id": "DSE-2024-P1-23",
@@ -68463,7 +68472,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "The table below shows the Gini coefficients by industry of an economy.\n\n Gini coefficient\nAccommodation and food services 0.34\nFinance and insurance 0.51\n\nWhich of the following are possible explanations for the above difference in the Gini coefficient?\n\n(1) The salaries of workers in the accommodation and food services industry are lower than that of professionals in the finance and insurance industry.\n(2) Compared to professionals in the finance and insurance industry, the levels of human capital tend to be more homogeneous among workers in the accommodation and food services industry.\n(3) The wage payment method for professionals in the finance and insurance industry is mostly basic salary plus commission while that for workers in the accommodation and food services industry is mostly time rate.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
       "correctPercentage": 70,
-      "imageChi": "https://drive.google.com/file/d/1ik1e5Irb3IhAxpsskSpoXm9n4dpyT2E2/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1ik1e5Irb3IhAxpsskSpoXm9n4dpyT2E2/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-23.jpg"
     },
     {
       "id": "DSE-2024-P1-24",
@@ -68584,7 +68594,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "Suppose the unemployment rate of an economy is 5%. Which of the following situations would lead to decrease in the unemployment rate of the economy?\n\n(1) Foreign workers are imported to fill the vacancies in various industries.\n(2) 96% of the new university graduates who enter the labour market are employed.\n(3) Some underemployed workers work for more hours.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
       "correctPercentage": 72,
-      "imageChi": "https://drive.google.com/file/d/1cL6KJPZPEcio4NUKxEALnok7BKqFTtXH/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1cL6KJPZPEcio4NUKxEALnok7BKqFTtXH/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-26.jpg"
     },
     {
       "id": "DSE-2024-P1-27",
@@ -68666,7 +68677,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "Suppose the central bank of Country A lowers the discount rate. Which of the following situations would weaken the effect of the above policy on the aggregate output of Country A in the short run?\n\nA. The use of digital money becomes more popular in Country А.\nB. Some major trading partners of Country A experience an economic recession.\nC. The government of Country A relaxes the restrictions on the importation of foreign workers.\nD. The government of Country A increases its investment on local infrastructure.",
       "correctPercentage": 69,
-      "imageChi": "https://drive.google.com/file/d/15L7gOvWDU4yKXlLGmBnl4l4i-ZtV0j7u/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/15L7gOvWDU4yKXlLGmBnl4l4i-ZtV0j7u/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-28.jpg"
     },
     {
       "id": "DSE-2024-P1-29",
@@ -68788,7 +68800,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "9999 gold is better than diamond in performing the __________ function of money because the former has a higher __________.\n\n(1) medium of exchange …… divisibility\n(2) unit of account …… homogeneity \n(3) store of value …… portability\n\nA. (1) only\nB. (3) only\nC. (1) and (2) only\nD. (2) and (3) only",
       "correctPercentage": 61,
-      "imageChi": "https://drive.google.com/file/d/1zeJomRxkmHF9MNv3Iw6_cGMISYSmTKVC/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1zeJomRxkmHF9MNv3Iw6_cGMISYSmTKVC/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-31.jpg"
     },
     {
       "id": "DSE-2024-P1-32",
@@ -68827,7 +68840,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "Which of the following are functions of the Hong Kong Monetary Authority?\n\n(1) acting as the lender of last resort for commercial banks\n(2) setting the prime rate (最優惠利率) of bank loans\n(3) issuing Hong Kong dollar coins\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
       "correctPercentage": 61,
-      "imageChi": "https://drive.google.com/file/d/1AwfWOqTT7KZKhhOZzx-JfxM7F9ey6ZZ4/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1AwfWOqTT7KZKhhOZzx-JfxM7F9ey6ZZ4/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-32.jpg"
     },
     {
       "id": "DSE-2024-P1-33",
@@ -68867,7 +68881,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "The following diagram shows the relationship between money supply M1 and M2 in Hong Kong.\n\nM1 = currency in public circulation + demand deposits\nM2 = + K\n\nIn the above diagram, M2 = M1 + K. Which of the following are components of K?\n\nA.\tall types of deposits with licensed banks, restricted licence banks and deposit-taking companies\nB.\ttime deposits with restricted licence banks and negotiable certificates of deposit issued by restricted licence banks held by non-bank public\nC.\tsavings deposits and time deposits with licensed banks and negotiable certificates of deposits issued by licensed banks held by non-bank public\nD.\treserves of licensed banks, restricted licence banks and deposit-taking companies",
       "correctPercentage": 79,
-      "imageChi": "https://drive.google.com/file/d/1g9gKt7pSZ1eQCbdX6HYIerN6HglGMvXE/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1g9gKt7pSZ1eQCbdX6HYIerN6HglGMvXE/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-33.jpg"
     },
     {
       "id": "DSE-2024-P1-34",
@@ -69030,7 +69045,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "Which of the following about the quantity theory of money is correct?\n\nA. An increase in money supply will not affect the nominal output in the long run.\nB. If the money supply growth rate is constant, the price level will also be constant in the long run.\nC. If the price level is constant, a decrease in real output will lead to a decrease in money supply.\nD. If the real output growth rate is zero, the price level growth rate will be equal to the money supply growth rate.",
       "correctPercentage": 50,
-      "imageChi": "https://drive.google.com/file/d/1p0HbVp4Ke9AVGk6uRjHJIF4P8B-tWn8X/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1p0HbVp4Ke9AVGk6uRjHJIF4P8B-tWn8X/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-37.jpg"
     },
     {
       "id": "DSE-2024-P1-38",
@@ -69069,7 +69085,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "Which of the following tax systems tend to raise the post-tax Gini coefficient of an economy?\n \n(1) Average tax rate Taxable income 0\n(2) Average tax rate Taxable income 0\n(3) Tax payment Taxable income 0\n(4) Tax payment Taxable income 0\n\nA. (1) and (3) only\nB. (1) and (4) only\nC. (2) and (3) only\nD. (2) and (4) only",
       "correctPercentage": 64,
-      "imageChi": "https://drive.google.com/file/d/1Iaa7XBQjhIATbxinIjZQfcmZmP0i3mPl/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1Iaa7XBQjhIATbxinIjZQfcmZmP0i3mPl/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-38.jpg"
     },
     {
       "id": "DSE-2024-P1-39",
@@ -69265,7 +69282,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "The diagram below shows the market of Good X in a small open economy. A per-unit tariff is imposed on Good X in the economy.\n \nPrice\nPw + t\nPw\n0 D S Quantity\nPw = world price\nt = per-unit tariff\n\nIf the world price of Good X increases, ___________.\n\nA. the domestic price of Good X will remain unchanged\nB. the import value net of tariff of Good X will increase\nC. the quantity of Good X produced domestically will increase\nD. the tariff revenue of Good X may increase",
       "correctPercentage": 54,
-      "imageChi": "https://drive.google.com/file/d/1sWAQxBy7LP4z0_0YR3ejCepCw78HK9-u/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1sWAQxBy7LP4z0_0YR3ejCepCw78HK9-u/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-43.jpg"
     },
     {
       "id": "DSE-2024-P1-44",
@@ -69304,7 +69322,8 @@ window.QUESTION_DATABASE = {
       "marks": 1,
       "questionTextEng": "Refer to the following balance of payments data of an economy.\n\nYear\tBalance on goods\n($ million)\tBalance on services\n($ million)\n2020\t–41 135\t92 948\n2021\t24 671\t135 042\n\nBased on the above data, we can conclude that ________________.\n\nA.\tthe total value of exports of goods in 2021 was larger than that in 2020\nB.\tthere was a current account surplus in 2020\nC.\tthere was a balance of payments surplus in 2021\nD.\tthe value of exports of services was larger than the value of imports of services in both 2020 and 2021",
       "correctPercentage": 61,
-      "imageChi": "https://drive.google.com/file/d/1Q-PTku-Ez6Tn1Me7dK9KaIxUJxOK9lCM/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1Q-PTku-Ez6Tn1Me7dK9KaIxUJxOK9lCM/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2024/q-p1-44.jpg"
     },
     {
       "id": "DSE-2024-P1-45",
@@ -69390,7 +69409,8 @@ window.QUESTION_DATABASE = {
       "answerEng": "(a)(i)        Public limited company / Listed company        (1)\n(ii)        Advantages\n–        no interest burden\n–        no redemption obligation\n[Mark the FIRST point ONLY.]        1@;max: 1\n\nDisadvantages:\n–        dilution of ownership and reduction in control power over the firm\n–        higher risk of being taken over\n[Mark the FIRST point ONLY.]        1@;max: 1\n\n(b)        Oligopoly        (1)\nFeatures:\n–        a few dominant sellers\n–        sellers are interdependent in pricing strategy\n–        price rigidity/stickness\n[Mark the FIRST TWO points ONLY.]        1@;max: 2        \n\n(c)        Possible sources of monopoly power:\n–        government franchise\n–        high set-up costs and natural monopoly\n–        government ownership\n[Mark the FIRST point ONLY.]        1@;max: 1",
       "markersReportChi": "1(a)(i)        優良。絕大多數考生均能正確寫出有關的商業擁有權種類。\n1(a)(ii)        令人滿意。超過一半考生能正確寫出發行股票相比發行債券的優點和缺點。然而，部分考生錯誤地寫出對金融投資者而言的優點和缺點，而非從公司擁有人的角度出發。\n1(b)        尚可。大多數考生能正確寫出有關的市場結構。然而，不少考生未能細心 閱讀題目，列出了一些不完全競爭的一般特點（例如資訊不完全），而非題目所要求的寡頭壟斷的獨有特點。\n1(c)        令人滿意。",
       "markersReportEng": "1(a)(i)        Very good. A very high proportion of candidates were able to correctly identify the type of business ownership.\n1(a)(ii)        Satisfactory. More than half of the candidates were able to correctly state an advantage and a disadvantage of issuing shares over bonds. However, some candidates mistakenly stated advantages and disadvantages from the perspective of financial investors instead of that of the owners of the company.\n1(b)        Fair. A high percentage of candidates were able to correctly identify the market structure. However, quite a number of candidates did not read the question carefully and listed some general features of imperfect competition (e.g., imperfect information) instead of features that were unique for oligopoly as required by the question.\n1(c)        Satisfactory.",
-      "imageChi": "https://drive.google.com/file/d/1UXdm08em2mS4wxWIZnvZANCi_oH-EtUY/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1UXdm08em2mS4wxWIZnvZANCi_oH-EtUY/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2024/re-p2-01.jpg"
     },
     {
       "id": "DSE-2024-P2-02",
@@ -69427,7 +69447,8 @@ window.QUESTION_DATABASE = {
       "answerEng": "(a) Negative externality may be involved when producers engaged in industrial activities which emit carbon dioxide do not have to pay compensation for the harm inflicted on others. (2)\nAs a result, equilibrium output determined by equality between marginal private (= social) benefit and marginal private (< social) cost would be higher than the socially efficient level (where marginal social benefit = marginal social cost). Such over- production resulting from the divergence between marginal private cost and marginal social cost implies economic inefficiency (i.e., inefficient allocation of the society’s resources in producing such products). (2)\n(b) Payment for carbon credits to engage in production activities that emit carbon dioxide would raise the producers’ marginal private cost and thus lower equilibrium output towards the efficient level. At this lower level of output, the gap between marginal private cost and marginal social cost is reduced and economic efficiency is improved. (2)",
       "markersReportChi": "2(a)        令人滿意。許多考生能正確辨識到有關情境中的負面界外效應。然而，部分考生未能準確地套用負面界外效應的定義，就題目中的情境加以闡釋。 \n2(b)        尚可。",
       "markersReportEng": "2(a)        Satisfactory. Many candidates were able to correctly identify the negative externality in the given situation. However, some candidates failed to accurately apply the definition of negative externality to the given scenario in their elaborations.\n2(b)        Fair.",
-      "imageChi": "https://drive.google.com/file/d/1ExfcK9AoQ09_Rz1DtY4WbwHoMqZIg0QB/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1ExfcK9AoQ09_Rz1DtY4WbwHoMqZIg0QB/view?usp=drivesdk",
+      "originalAnswerImageEng": "originals/dse/2024/ae-p2-02.jpg"
     },
     {
       "id": "DSE-2024-P2-03",
@@ -69472,7 +69493,8 @@ window.QUESTION_DATABASE = {
       "answerEng": "Verbal elaboration:\n–        Economic growth implies an increase in income, which would raise the demand for automobiles, given that automobiles are normal goods. (1)\n–        The gap between marginal benefit and marginal cost increases. / The efficient quantity increases from Q1 to Q2 and diverges further from the quantity transacted (Q0). (1)\n–        The deadweight loss increases. (1)\nIndicate in the diagram:\n–        Kinked supply curve under quota (1)\n–        Rightward shift of demand curve (1)\n–        Increase in deadweight loss (1)",
       "markersReportChi": "尚可。大部分考生能在圖表中顯示有效的配額，並解釋汽車需求的上升。然而，不少考生未能指出淨損失上升的部分。",
       "markersReportEng": "Fair. Most candidates were able to illustrate in the diagram the effective quota and explain the increase in automobile demand. However, quite a number of candidates were unable to identify the increase in deadweight loss.",
-      "imageChi": "https://drive.google.com/file/d/1AGBFd-8bsuHluXI53y4xagl83ZtaM3K_/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1AGBFd-8bsuHluXI53y4xagl83ZtaM3K_/view?usp=drivesdk",
+      "originalAnswerImageEng": "originals/dse/2024/ae-p2-03.jpg"
     },
     {
       "id": "DSE-2024-P2-04",
@@ -69554,7 +69576,8 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Refer to the following statistical information of an economy.\nYear        Nominal GDP ($ million)        Year-on-year percentage change in implicit price deflator of GDP\n2022        2 850 000        +3.8%\n2023        2 800 000        +0.7%\n\n(a)        Based on the above information, how did the real output of the economy change from 2022 to 2023? Explain your answer.        (2 marks)\n(b)        ‘As the nominal GDP in 2023 decreased, the general living standard in the economy deteriorated during that period.’ Suggest TWO reasons why this statement may be incorrect.        (2 marks)\n(c)        Suppose people did not expect any change in the general price level in 2023. A tenant signed a rental contract with a landlord in 2022 for a fixed monthly rental over a 3-year contractual period. Who, the tenant or the landlord, would gain when the above change in the general price level occurred in 20237 Explain.        (2 marks)",
       "markersReportChi": "5(a)        尚可。約三分之一考生未能透過比較名義本地生產總值和物價水平的變動以得出實質產出變動的方向。\n5(b)        欠佳。題目要求寫出兩個原因為什麼名義本地生產總值下降未必代表一般生活水平下降。然而，不少考生僅寫出名義本地生產總值低估／高估一般生活水平的原因。\n5(c)        尚可。大部分考生能正確辨識情境中有得益的一方。然而，部分考生解釋時未能比較固定月租的預期與實際實質價值。",
       "markersReportEng": "5(a)        Fair. About a third of the candidates were unable to correctly identify the direction of the change in real output based on a comparison of the change in nominal GDP and that in the price level.\n5(b)       Poor. The question asked for two reasons why a decrease in nominal GDP did not necessarily mean a decrease in general living standard. However, quite a number of candidates simply provided reasons why nominal GDP might understate/overstate the general living standard.\n5(c)        Fair. A high percentage of candidates were able to correctly identity the party who gained in the given scenario. However, some candidates failed to explain the gain with reference to the actual change in the real value of the fixed monthly rental relative to the expected change.",
-      "imageChi": "https://drive.google.com/file/d/13pi4kY5oOAwn6hd4TOCSYYosABBt3NyJ/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/13pi4kY5oOAwn6hd4TOCSYYosABBt3NyJ/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2024/re-p2-05.jpg"
     },
     {
       "id": "DSE-2024-P2-06",
@@ -69589,7 +69612,8 @@ window.QUESTION_DATABASE = {
       "marks": 4,
       "questionTextEng": "Refer to the following conversation between two villagers in a barter economy.\nVillager A: I want to exchange my beans for your pork.\nVillager B: But what I want now is rice.\n(a)        A problem that hinders exchanges in a barter economy is revealed in the above situation. Identify the problem.        (1 mark)\n(b)        (i)        What is money?        (1 mark)\n(ii)        Explain how the use of money can facilitate exchanges.        (2 marks)",
       "markersReportChi": "6(a)        欠佳。約三分之二考生未能正確指出題目情境中阻礙交易的問題。\n6(b)(i)        尚可。約一半考生能正確寫出貨幣的定義\n6(b)(ii)        欠佳。約一半考生能寫出一些相關的解釋。然而，只有少數考生能清楚闡釋。不少考生僅僅寫出一些貨幣的功能，而未有闡明其所提及的貨幣功能如何促進交易。",
-      "imageChi": "https://drive.google.com/file/d/1iE7HvJcBDdBvjLZzjupzcRRRKk0Xs7CG/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1iE7HvJcBDdBvjLZzjupzcRRRKk0Xs7CG/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2024/re-p2-06.jpg"
     },
     {
       "id": "DSE-2024-P2-07",
@@ -69672,7 +69696,8 @@ window.QUESTION_DATABASE = {
       "marks": 4,
       "questionTextEng": "Suppose in an economy, the public increases their cash holding by withdrawing bank deposits. Immediately after the withdrawal, the banking system of the economy faces a reserve shortage of $100 million.\nThe following table shows the balance sheet of the banking system immediately after the withdrawal.\nAssets ($ million)        Liabilities ($ million)\nReserves        600        Deposits        3 500\nLoans        2 900                \n(a)        Find the required reserve ratio.        (1 mark)\n(b)        Suppose the required reserve ratio is reduced by 5 percentage points. Calculate the maximum possible change in deposits after deposit creation/contraction. Show your workings.        (3 marks)",
       "markersReportChi": "8(a)        優良。\n8(b)        令人滿意。有極少數考生將法定儲備比率「下調5個百分點」誤解為乘以0.95。",
-      "imageChi": "https://drive.google.com/file/d/1547lPqYZQekXL-0n30iFfDgY7kbQskEp/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1547lPqYZQekXL-0n30iFfDgY7kbQskEp/view?usp=drivesdk",
+      "originalAnswerImageEng": "originals/dse/2024/ae-p2-08.jpg"
     },
     {
       "id": "DSE-2024-P2-09",
@@ -69713,7 +69738,8 @@ window.QUESTION_DATABASE = {
       "marks": 6,
       "questionTextEng": "The table below shows the total output of Country X and Country Y. Each country allocates 25% of its resources to produce bread and 75% of its resources to produce clothing.\n        Bread (units)                Clothing (units)\nCountry X        100        AND        75\nCountry Y        80        AND        240\n(a)        Explain whether Country X has an absolute advantage in the production of bread.        (2 marks)\n(b)        Suppose Country X and Country Y trade at an exchange ratio of 10 units of bread to 7 units of clothing. Calculate the gain from trade for the bread-exporting country from exporting 30 units of bread. Show your workings.        (4 marks)",
       "markersReportChi": "9(a)        尚可。\n9(b)        尚可。約一半考生能正確計算貿易得益。然而，不少考生未能留意到題目中兩個國家並非將生產資源平均分配到兩種物品，因而計算錯誤。",
-      "imageChi": "https://drive.google.com/file/d/1IqibegQof5kV1jNJ7Nghww_4rJ5ZEuOx/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1IqibegQof5kV1jNJ7Nghww_4rJ5ZEuOx/view?usp=drivesdk",
+      "originalAnswerImageEng": "originals/dse/2024/ae-p2-09.jpg"
     },
     {
       "id": "DSE-2024-P2-10",
@@ -69757,7 +69783,8 @@ window.QUESTION_DATABASE = {
       "marks": 13,
       "questionTextEng": "The government of City B actively promotes the development of tourism industry.\nSuppose some airlines in City B hold promotion campaigns that a total of 20 000 flight tickets to City B are given out for free.\n(a)        Explain whether the free flight tickets are\n(i)        free goods.        (2 marks)\n(ii)        public goods.        (3 marks)\n(b)        To which type of production do airlines belong? Explain your answer.        (2 marks)\nFollowing the promotion effort of the government, many people travel to City B. As a result, flight ticket price is doubled, while the quantity transacted of flight tickets changes by 50%.\n(c)        Based on the above information, what can we conclude about the price elasticity of demand and/or supply of flight tickets? Explain.        (3 marks)\n(d)        To further stimulate the tourism industry, the government of City B abolishes the lump-sum fuel surcharge on flight tickets. Explain how the average flight distance would be affected.        (3 marks)",
       "markersReportChi": "10(a)(i)        優異。\n10(a)(ii)        令人滿意。\n10(b)        優異。\n10(c)        尚可。只有約四分之一考生能從題目的資料中正確推論出機票的供應是低彈性的，並加以解釋。不少考生錯誤得出機票的需求是低彈性的這項結論。\n10(d)        尚可。大部分考生能運用相對價格和需求定律的概念加以解釋。然而，約三分之一考生未能得出正確結論，而只有少於四分之一考生能提供充分闡釋。",
-      "imageChi": "https://drive.google.com/file/d/1bKpeE8iNSL8YxdlgzE_k-r7r5KmrR0Ic/view?usp=drivesdk"
+      "imageChi": "https://drive.google.com/file/d/1bKpeE8iNSL8YxdlgzE_k-r7r5KmrR0Ic/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2024/re-p2-10.jpg"
     },
     {
       "id": "DSE-2024-P2-11",
@@ -69801,7 +69828,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 15,
       "questionTextEng": "Ann is the owner of a coffee shop in Hong Kong.\n(a)\tAnn is recruiting a new barista to prepare beverages for customers in her coffee shop. She is considering the following two wage payment methods.\nWage Payment Method A\tWage Payment Method B\n-\t$14 000 per month\n-\tThe barista is allowed to receive tip from customers\t-\t$15 000 per month\n-\tThe barista is NOT allowed to receive tips from customers\nFrom the viewpoint of the barista, state ONE advantage and ONE disadvantage of wage payment method A over wage payment method B.\t(2 marks)\n(b)\tThe landlord of Ann’s coffee shop premises raised the monthly rental from $70 000 to $85 000. Ann said, ‘Despite the increase in the monthly rental, the quantity of daily output of my coffee shop remains unchanged.’ \nExplain Ann's output decision with reference to the profit-maximising condition under perfect competition.\t(3 marks)\n(c)\tAnn invited a famous barista from Japan to provide a workshop for her customers. The barista received a remuneration of $30 000 from Ann’s coffee shop and stayed in Hong Kong for a week. Explain how this $30 000 would affect Hong Kong's net factor income from abroad.\t(3 marks)\n(d)\tSuppose more and more Mainland visitors consume at Ann's coffee shop. Thus, Ann purchases more coffee beans from Brazil to cater for the increased business. Explain why these transactions may increase the current account balance of Hong Kong's balance of payments.\t(3 marks)\n(e)\tAnn has been operating her business in the form of a sole proprietorship. Give TWO economic reasons why she does not choose to change the form of business ownership of her coffee shop to a partnership.\t(2 marks)\n(f)\tAfter opening several new coffee shops, Ann found that the average cost of production of her business had decreased. Give TWO reasons for the above change in average cost.\t(2 marks)",
-      "markersReportChi": "11(a)        良好。\n11(b)        差劣。約一半考生或放棄這道題目，或未能提供任何相關答案。許多考生未能妥善運用在完全競爭下利潤極大化的條件加以解釋。不少考生混淆了利潤極大化的條件和達致經濟效率的條件。\n11(c)        尚可。儘管大部分考生能至少提供部分解釋，只有約四分之一考生能加以闡釋。部分考生未能辨識到咖啡師從欣欣的咖啡店收取的酬金對香港而言屬於海外要素收益流出。\n11(d)        尚可。大部分考生能指出題目情境中的物品入口或服務出口。然而，只有少數考生能解釋為什麼服務出口的上升會大於物品入口的上升。\n11(e)        令人滿意。\n11(f)        尚可。"
+      "markersReportChi": "11(a)        良好。\n11(b)        差劣。約一半考生或放棄這道題目，或未能提供任何相關答案。許多考生未能妥善運用在完全競爭下利潤極大化的條件加以解釋。不少考生混淆了利潤極大化的條件和達致經濟效率的條件。\n11(c)        尚可。儘管大部分考生能至少提供部分解釋，只有約四分之一考生能加以闡釋。部分考生未能辨識到咖啡師從欣欣的咖啡店收取的酬金對香港而言屬於海外要素收益流出。\n11(d)        尚可。大部分考生能指出題目情境中的物品入口或服務出口。然而，只有少數考生能解釋為什麼服務出口的上升會大於物品入口的上升。\n11(e)        令人滿意。\n11(f)        尚可。",
+      "originalAnswerImageEng": "originals/dse/2024/ae-p2-11.jpg"
     },
     {
       "id": "DSE-2024-P2-12",
@@ -69891,7 +69919,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 26,
       "questionTextEng": "Hong Kong experienced an economic downturn because of the Covid-19 pandemic. It still faces various challenges on its path to resumption of normalcy after the pandemic.\nSource A: Fiscal balance of the Hong Kong Government\n$ million\n100 000 50 000 0 -50 000 -100 000 -150 000 -200 000 -250 000\nFiscal Year 2018-2019 2022-2023\n\nSource B: Exchange rate of US dollar (USD) to Renminbi (RMB) before and after the pandemic\nDate\tExchange Rate\n1 April 2019\tUSD 1 = RMB 6.71\n1 November 2023\tUSD 1 = RMB 7.32\n\nSource C: News extract about the catering industry in Hong Kong in 2023\nAccording to a representative of the catering industry in Hong Kong, local restaurants are unable to recruit enough waiters even though they are offering wages that are more than 50% above the statutory minimum.\n\nSource D: Wage rates of waiters in Hong Kong in 2023\nStatutory minimum wage rate\t$40 per hour\nAverage wage rate of waiters\t$62.4 per hour\n\n \nSource E: Some data and views on the Hong Kong economy\nA banker\n \tInfluenced by the contractionary monetary policy in the US, the interest rate in Hong Kong rose drastically from mostly below 2% in 2018 to over 5% by the end of 2023.\nAn economist\n \tThe inflation rate in the Mainland remained lower than that in Hong Kong throughout 2023. Negative growth in the general price level was recorded in October and November in the Mainland.\nA government official\n \tReviving the night-time economy is essential in facilitating the economic recovery in the short term, whereas innovation and technology development is a significant engine for driving high-quality economic growth in the medium- to-long term.\n\n(a)\tRefer to Source A. How may an economic downturn affect the fiscal balance of the Hong Kong Government? Explain your answer with reference to the possible effects of an economic downturn on the government's revenue and expenditure.\t(4 marks)\n(b)\tRefer to Source B. Under the Linked Exchange Rate System of Hong Kong, how would the change in the exchange rate shown in Source B affect the number of Hong Kong residents visiting the Mainland during the period? Explain your answer.\t(3 marks)\n(c)\tRefer to Sources C and D.\n(i)\tIllustrate the economic phenomenon revealed by Source C with a supply-demand diagram.\n(ii)\tWith the aid of the same diagram in (c)(i), explain whether the minimum wage was effective in the labour market of waiters in 2023.\t(5 marks)\n \nFor part (d), candidates are required to present their answers in an essay form. Criteria for marking will include the use of sources and economic theories, relevant content, logical presentation and clarity of expression.\n(d)\tSuppose there are two suggestions to stimulate Hong Kong's economic recovery and growth:\nSuggestions\tObjectives\nI.\tImporting a large number of low-skilled workers for the catering industry and organising more night-time events to attract citizens and tourists to stay out at night for leisure\tTo facilitate the revival of the catering industry by boosting their revenue\nII.\tProviding tax deductions for firms’ expenses on innovation and technology projects to attract local and foreign investors to invest in the innovation and technology industry in Hong Kong\tTo enhance labour productivity and potential output\nWith reference to the above sources and your own knowledge in Economics, discuss\n-\thow each of the above two suggestions may achieve its objective, and\n-\tsome possible factors that may limit the effectiveness of the two suggestions in achieving their corresponding objective. (Hint: You may consider some macroeconomic variables shown in the above sources, e.g. the exchange rate and the interest rate.)\n(14 marks)",
-      "markersReportChi": "13(a)        尚可。只有少數考生能準確解釋經濟下行對政府收入和開支的影響。不少考生只能提供含糊的解釋，或其解釋與經濟下行無關。\n13(b)        令人滿意。\n13(c)        尚可。大部分考生能正確指出該經濟現象為勞力短缺（對勞力有超額需求）。然而，部分考生未能在圖表上展示為什麼該最低工資是無效的。\n13(d)        欠佳。這道題目的形式與往年略有不同，加上時限較過去幾年緊迫，令不少考生未能有系統及有邏輯地組織答案。\n\n建議I如何可能達成其目標：\n建議的目標是「增加餐飲業的收入，以促進餐飲業復甦」。題目這部分聚焦於個別行業（餐飲業，應運用微觀經濟學中的供需模型進行分析。\n然而，大部分考生錯誤運用宏觀經濟學中的總供需模型，該模型應用於分析對宏觀經濟變量（如總產出等）的影響。結果，考生在此部分的表現令人失望。\n\n建議II如何可能達成其目標：\n大部分考生在這部分表現頗佳。\n\n一些可能限制兩項建議有效性的因素：\n一般而言，考生能善用提示和資料，解釋港元兌人民幣升值以及利率上升如何可能限制兩項建議的有效性。"
+      "markersReportChi": "13(a)        尚可。只有少數考生能準確解釋經濟下行對政府收入和開支的影響。不少考生只能提供含糊的解釋，或其解釋與經濟下行無關。\n13(b)        令人滿意。\n13(c)        尚可。大部分考生能正確指出該經濟現象為勞力短缺（對勞力有超額需求）。然而，部分考生未能在圖表上展示為什麼該最低工資是無效的。\n13(d)        欠佳。這道題目的形式與往年略有不同，加上時限較過去幾年緊迫，令不少考生未能有系統及有邏輯地組織答案。\n\n建議I如何可能達成其目標：\n建議的目標是「增加餐飲業的收入，以促進餐飲業復甦」。題目這部分聚焦於個別行業（餐飲業，應運用微觀經濟學中的供需模型進行分析。\n然而，大部分考生錯誤運用宏觀經濟學中的總供需模型，該模型應用於分析對宏觀經濟變量（如總產出等）的影響。結果，考生在此部分的表現令人失望。\n\n建議II如何可能達成其目標：\n大部分考生在這部分表現頗佳。\n\n一些可能限制兩項建議有效性的因素：\n一般而言，考生能善用提示和資料，解釋港元兌人民幣升值以及利率上升如何可能限制兩項建議的有效性。",
+      "originalAnswerImageEng": "originals/dse/2024/ae-p2-13.jpg"
     },
     {
       "id": "DSE-2025-P1-01",
