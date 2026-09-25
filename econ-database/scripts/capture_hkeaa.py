@@ -324,7 +324,7 @@ def main():
     db = json.loads(DB_PATH.read_text())
     by_id = {q["id"]: q for q in db["questions"]}
     saved = {"q": 0, "a": 0, "r": 0}
-    # 2013 scans do not OCR reliably; see HKEAA-2013-待補.md.
+    # 2013 scans do not OCR reliably; see HKEAA-待補圖片.md.
     skip = {2013}
     for year in range(2012, 2026):
         if year in skip or (only and str(year) not in only):

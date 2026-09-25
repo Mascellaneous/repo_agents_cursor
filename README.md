@@ -77,7 +77,7 @@ Multiple-choice answer images are the「答案解釋」block in the Chinese solu
 
 HKDSE papers for 2012–2025 live in `PastPaper/` as one Chinese file and one English file per year. Each file contains the question papers, the marking scheme, and the markers’ comments. `python3 econ-database/scripts/capture_hkeaa.py` cuts question images, written-answer images, and the exam-report image for a question. A crop is kept only when its wording agrees with the Chinese plain text or the English question text already stored for that question. Multiple-choice answer keys are not cropped. Report images use the 報告 and 英報告 buttons.
 
-2013 is skipped. Those two PDFs are scans, and OCR does not finish reliably, so the crops cannot be matched to the stored questions. The images still needed, and the filenames to use, are listed in `econ-database/HKEAA-2013-待補.md`.
+Crops that do not match the stored wording are left out. `econ-database/HKEAA-待補圖片.md` lists every year from 2012 to 2025 that still needs a picture, and the filenames to use. 2013 was not cropped at all. The other years include only the crops that matched.
 
 ## Adding another mock paper
 

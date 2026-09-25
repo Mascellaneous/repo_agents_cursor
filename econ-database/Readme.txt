@@ -146,6 +146,12 @@ Templates (js/templates/):
 
 ## 4. Known Limitations / TODO
 
+- HKDSE question, written-answer, and report images that could not be
+  matched to the stored wording are listed in HKEAA-待補圖片.md in this
+  folder. 2013 has no crops yet. Other years from 2012 to 2025 include
+  only the crops that matched. Add missing files under
+  originals/dse/year/ using the names in that note.
+
 - Topic, curriculum, chapter, and pattern statistics tabs are published
   so the mock-paper topic distribution can be reviewed.
 - Range slider thumbs are styled for WebKit only; add the -moz
