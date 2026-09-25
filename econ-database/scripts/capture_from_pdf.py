@@ -203,9 +203,25 @@ def save_crop(image, box, dest):
     return dest
 
 
-def crop_span(pages, start, end, dest):
+def footer_limits(pages):
+    """Y of the copyright line on each PDF page, so crops stop above it."""
+    limits = {}
+    for page in pages:
+        ys = [
+            y for x, y, label in page["words"]
+            if y > page["height"] * 0.8 and (
+                "©" in label or "HKDSE" in label or label.startswith("參考答案") or "Suggested" in label
+            )
+        ]
+        if ys:
+            limits[page["page"]] = min(ys) - 4
+    return limits
+
+
+def crop_span(pages, start, end, dest, footers=None):
     """Cut from one question number to the next, across a page break if needed."""
     scale = DPI / 72
+    footers = footers or {}
     pieces = []
     page = start["page"]
     y0 = start["y"]
@@ -217,9 +233,10 @@ def crop_span(pages, start, end, dest):
             image = Image.open(image_path)
             top = int((y0 - 4) * image.height / start["height"]) if page == start["page"] else 48
             if page == last_page and end and end["page"] == page:
-                bottom = int((end["y"] - 2) * image.height / end["height"])
+                limit = end["y"] - 2
             else:
-                bottom = int(image.height * (start["height"] - 36) / start["height"])
+                limit = footers.get(page, start["height"] - 36)
+            bottom = int(limit * image.height / (end["height"] if end and end["page"] == page else start["height"]))
             left = int(36 * scale)
             right = image.width - int(24 * scale)
             piece = image.crop((max(0, left), max(0, top), right, min(image.height, bottom)))
@@ -383,34 +400,7 @@ def english_explanation_text(pdf):
         return {}
     paper2 = re.search(r"(?:^|\n|\f)\s*Paper 2\s*(?:\n|\f)", text[exp.end():])
     body = text[exp.end(): exp.end() + paper2.start()] if paper2 else text[exp.end():]
-    found = split_numbered(body)
-    nums = sorted(found)
-    for i, num in enumerate(nums):
-        chunk = found[num].strip()
-        if not re.fullmatch(r"Answer:\s*[A-D]\s*", chunk):
-            continue
-        for later in nums[i + 1:]:
-            later_chunk = found[later].strip()
-            if re.fullmatch(r"Answer:\s*[A-D]\s*", later_chunk):
-                continue
-            between = [k for k in nums[i + 1: nums.index(later)] if not re.fullmatch(r"Answer:\s*[A-D]\s*", found[k].strip())]
-            if not between:
-                rest = re.sub(r"^Answer:\s*[A-D]\s*", "", later_chunk).strip()
-                found[num] = chunk + ("\n" + rest if rest else "")
-            break
-    return found
-
-
-def cluster_end(group, index):
-    """Shared explanations sit under the last letter of a tight run of question numbers."""
-    j = index + 1
-    while j < len(group):
-        prev, cur = group[j - 1], group[j]
-        gap = cur["y"] - prev["y"] if cur["page"] == prev["page"] else 999
-        if gap >= 40:
-            return cur
-        j += 1
-    return None
+    return split_numbered(body)
 
 
 def recrop_mc_answers():
@@ -422,14 +412,16 @@ def recrop_mc_answers():
     for num in range(27, 45):
         chi = chi_pdf(num, "參考答案")
         eng = eng_pdf(num, "Suggested Solution")
+        chi_words = page_words(chi) if chi else []
+        eng_words = page_words(eng) if eng else []
         chi_pages = render_pages(chi, Path(f"/tmp/mt-render/{num}-ans")) if chi else {}
         eng_pages = render_pages(eng, Path(f"/tmp/mt-render/{num}-eng-ans")) if eng else {}
-        chi_starts = explanation_starts(page_words(chi), "chi") if chi else []
-        eng_starts = explanation_starts(page_words(eng), "eng") if eng else []
+        chi_starts = explanation_starts(chi_words, "chi") if chi else []
+        eng_starts = explanation_starts(eng_words, "eng") if eng else []
         eng_text = english_explanation_text(eng) if eng else {}
-        for group, pages, prefix, field in (
-            (chi_starts, chi_pages, "a", "originalAnswerImage"),
-            (eng_starts, eng_pages, "ae", "originalAnswerImageEng"),
+        for group, pages, prefix, field, words in (
+            (chi_starts, chi_pages, "a", "originalAnswerImage", chi_words),
+            (eng_starts, eng_pages, "ae", "originalAnswerImageEng", eng_words),
         ):
             for i, mark in enumerate(group):
                 qid = f"M{num}-P1-Q{mark['num']:02d}"
@@ -437,8 +429,9 @@ def recrop_mc_answers():
                 if not question or question.get("questionType") != "MC":
                     continue
                 dest = ORIG / str(num) / f"{prefix}-p1-{mark['num']:02d}.jpg"
-                end = cluster_end(group, i)
-                saved = crop_span(pages, mark, end, dest)
+                # Stop at the next question. A paragraph belongs to the question it is printed under.
+                end = group[i + 1] if i + 1 < len(group) else None
+                saved = crop_span(pages, mark, end, dest, footer_limits(words))
                 if not saved:
                     short.append((qid, prefix, "missing"))
                     continue
