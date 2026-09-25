@@ -58762,7 +58762,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "If a command economy turns into a market-oriented economy,\n\n(1) the income distribution of the economy will be more uneven.\n(2) more resources will be allocated by price mechanism.\n(3) people will have private property rights over all resources.\n\nA. (1) only\nB. (2) only\nC. (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 77
+      "correctPercentage": 77,
+      "originalQuestionImage": "originals/dse/2020/q-p1-01.jpg"
     },
     {
       "id": "DSE-2020-P1-02",
@@ -58800,7 +58801,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "In Lunar New Year, tourists reserve tables in waterfront restaurants to enjoy firework display. The firework display is a ____________ because ______________.\n\nA. public good ...... the government pays for the firework display\nB. public good ...... one individual's consumption will not reduce its availability to others\nC. private good ...... private firms have to use resources to produce the firework display\nD. private good ...... the seats in waterfront restaurants are excludable in consumption",
-      "correctPercentage": 80
+      "correctPercentage": 80,
+      "originalReportImageEng": "originals/dse/2020/re-p1-02.jpg",
+      "originalQuestionImage": "originals/dse/2020/q-p1-02.jpg"
     },
     {
       "id": "DSE-2020-P1-03",
@@ -58841,7 +58844,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following may exist in a barter economy?\n\n(1) specialisation\n(2) inflation\n(3) interest\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 49
+      "correctPercentage": 49,
+      "originalQuestionImage": "originals/dse/2020/q-p1-03.jpg"
     },
     {
       "id": "DSE-2020-P1-04",
@@ -58879,7 +58883,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Some small investors prefer debentures to shares. Which of the following is a possible reason for that?\n\nA. The return of debentures is generally higher than that of shares.\nB. The price of shares may rise while that of debentures is fixed.\nC. Shareholders need to spend time managing the company but debenture holders do not.\nD. Companies have obligation to redeem debentures but they have no such obligation for shares.",
-      "correctPercentage": 64
+      "correctPercentage": 64,
+      "originalQuestionImage": "originals/dse/2020/q-p1-04.jpg"
     },
     {
       "id": "DSE-2020-P1-05",
@@ -58919,7 +58924,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "If a public limited company in Hong Kong gets listed on the stock exchange,\n\nA. it will face a higher profits tax rate.\nB. it can no longer keep its accounting information confidential.\nC. its shareholders will enjoy higher liquidity of their assets.\nD. it will enjoy economies of scale.",
-      "correctPercentage": 40
+      "correctPercentage": 40,
+      "originalReportImageEng": "originals/dse/2020/re-p1-05.jpg"
     },
     {
       "id": "DSE-2020-P1-06",
@@ -59075,7 +59081,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following table about the cost-output relationship of a profit-maximising firm.\n\nQuantity (units) 1 2 3 4 5\nAverage cost ($) 5 6 7 8 9\n\nIf the average cost of every unit of output decreases by $1 and the market price is $8,\n\nA. the minimum cost of production is $18.\nB. the profit maximising output is 3 units.\nC. the maximum profit is $10.\nD. the marginal cost of every unit of output will remain unchanged.",
-      "correctPercentage": 68
+      "correctPercentage": 68,
+      "originalReportImageEng": "originals/dse/2020/re-p1-09.jpg"
     },
     {
       "id": "DSE-2020-P1-10",
@@ -59111,7 +59118,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Alfred booked a room in a resort hotel. Later he found that Betty had booked a room in the same hotel at a lower price. Which of the following are possible reasons for such a price difference?\n\n(1) Alfred's booking was non-refundable while Betty's booking was with free cancellation.\n(2) Alfred booked the room in a weekend while Betty booked the room in a weekday.\n(3) Alfred booked the room with sea view while Betty booked the room with street view.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 85
+      "correctPercentage": 85,
+      "originalReportImageEng": "originals/dse/2020/re-p1-10.jpg"
     },
     {
       "id": "DSE-2020-P1-11",
@@ -59145,7 +59153,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "When the price of Australia's red wine decreases from $70 to $50, the quantity demanded increases from 100 units to 122 units. What is the arc elasticity of demand for Australia's red wine within the above price range?\n\nA. 0.59\nB. 0.77\nC. 1.30\nD. 1.68",
-      "correctPercentage": 34
+      "correctPercentage": 34,
+      "originalReportImageEng": "originals/dse/2020/re-p1-11.jpg"
     },
     {
       "id": "DSE-2020-P1-12",
@@ -59183,7 +59192,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "When the market supply curve of a good is derived, which of the following is/are assumed to be constant?\n\n(1) the market price of the good\n(2) the prices of factors of production of the good\n(3) the expected future price of the good\n\nA. (1) only\nB. (2) only\nC. (3) only\nD. (2) and (3) only",
-      "correctPercentage": 39
+      "correctPercentage": 39,
+      "originalReportImageEng": "originals/dse/2020/re-p1-12.jpg"
     },
     {
       "id": "DSE-2020-P1-13",
@@ -59222,7 +59232,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "In recent years, the rise in demand for private cars in China has attracted Volkswagen, a German car manufacturer, to set up car manufacturing factories in China.\n\nThe above case illustrates the ___________ function of price because _________.\n\nA. rationing …… private cars are sold to the highest-valued users in China\nB. rationing …… fewer buyers are willing to buy private cars in Germany\nC. allocative …… the supply of private cars falls in Germany\nD. allocative …… more resources are allocated to the production of private cars in China",
-      "correctPercentage": 79
+      "correctPercentage": 79,
+      "originalReportImageEng": "originals/dse/2020/re-p1-13.jpg"
     },
     {
       "id": "DSE-2020-P1-14",
@@ -59977,7 +59988,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following is a contractionary monetary policy?\n\nA. an increase in the discount rate\nB. an increase in the salaries tax rate\nC. a decrease in the required reserve ratio\nD. a decrease in the quota for migration",
-      "correctPercentage": 66
+      "correctPercentage": 66,
+      "originalQuestionImage": "originals/dse/2020/q-p1-32.jpg"
     },
     {
       "id": "DSE-2020-P1-33",
@@ -60548,7 +60560,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2020 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2020/re-p2-02.jpg"
     },
     {
       "id": "DSE-2020-P2-03",
@@ -60641,7 +60654,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2020 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2020/re-p2-05.jpg"
     },
     {
       "id": "DSE-2020-P2-06",
@@ -60765,7 +60779,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2020 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2020/re-p2-09.jpg"
     },
     {
       "id": "DSE-2020-P2-10",
@@ -60796,7 +60811,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2020 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2020/re-p2-10.jpg"
     },
     {
       "id": "DSE-2020-P2-11",
@@ -60840,7 +60856,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2020 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2020/ae-p2-11.jpg",
+      "originalReportImageEng": "originals/dse/2020/re-p2-11.jpg"
     },
     {
       "id": "DSE-2020-P2-12",
@@ -60872,7 +60890,8 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2020 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "marks": 16
+      "marks": 16,
+      "originalReportImageEng": "originals/dse/2020/re-p2-12.jpg"
     },
     {
       "id": "DSE-2020-P2-13",
@@ -60904,7 +60923,8 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2020 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "marks": 16
+      "marks": 16,
+      "originalReportImageEng": "originals/dse/2020/re-p2-13.jpg"
     },
     {
       "id": "DSE-2021-P1-01",
