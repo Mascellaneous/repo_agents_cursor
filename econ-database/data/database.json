@@ -56534,7 +56534,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements are related to the problem of ‘for whom to produce’?\n\n(1) Only the elderly and eligible persons with disabilities can enjoy a concessionary fare of $2 per trip under the Public Transport Fare Concession Scheme.\n(2) Public rental housing (RPH) households whose family income exceeds 5 times the PRH income limits should vacate their PRH flats.\n(3) The e-Sports & Music Festival moved from Hong Kong Convention and Exhibition Centre to Hong Kong Coliseum to house more fans from all over the world.\n\nA. (1) and (2) only \nB. (1) and (3) only\nC. (2) and (3) only \nD. (1), (2) and (3)",
-      "correctPercentage": 45
+      "correctPercentage": 45,
+      "originalReportImageEng": "originals/dse/2019/re-p1-02.jpg"
     },
     {
       "id": "DSE-2019-P1-03",
@@ -56568,7 +56569,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Mr Lo spent $60 000 on buying a second hand car three years ago. Suppose he can resell the car at $2 000. Alternatively, he needs to spend $5 000 on repairing the car before he can continue to use it. What is his cost of continuing to use the car?\nA. $2 000\nB. $5 000\nC. $7 000\nD. $60 000",
-      "correctPercentage": 55
+      "correctPercentage": 55,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-03.jpg",
+      "originalReportImageEng": "originals/dse/2019/re-p1-03.jpg"
     },
     {
       "id": "DSE-2019-P1-04",
@@ -56607,7 +56610,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "If the fixed cost of a price-taking firm decreases by $200 and the marginal cost of each unit of output increases by $10, the profit-maximising output will __________ and the profit _________.\n\nA. increase …… will decrease\nB. increase …… may increase or decrease\nC. decrease …… will increase\nD. decrease …… may increase or decrease",
-      "correctPercentage": 49
+      "correctPercentage": 49,
+      "originalReportImageEng": "originals/dse/2019/re-p1-04.jpg"
     },
     {
       "id": "DSE-2019-P1-05",
@@ -56647,7 +56651,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the production data of a firm. The only inputs required are capital and labour.\n\nCapital (units) Labour (units) Total product (units) Total cost of production ($)\n2 2 10 100\n3 3 30 270\n4 4 45 360\n5 5 55 385\n\nBased on the above table, we can conclude that\n\nA. the law of diminishing returns applies to the firm.\nB. the total fixed cost is $100.\nC. the optimal scale is 45 units.\nD. the firm enjoys economies of scale.",
-      "correctPercentage": 71
+      "correctPercentage": 71,
+      "originalReportImageEng": "originals/dse/2019/re-p1-05.jpg"
     },
     {
       "id": "DSE-2019-P1-06",
@@ -56686,7 +56691,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "In the 2018-19 Budget, the Hong Kong Government raised the subsidy ceiling of the Continuing Education Fund from $10 000 to $20 000 per applicant to encourage members of the public to pursur further education.\n\nThis policy will lead to a rise in _________ and _________ in the future.\n\nA. labour supply …… geographical mobility\nB. labour supply …… occupational mobility\nC. labour productivity …… geographical mobility\nD. labour productivity…… occupational mobility",
-      "correctPercentage": 81
+      "correctPercentage": 81,
+      "originalReportImageEng": "originals/dse/2019/re-p1-06.jpg"
     },
     {
       "id": "DSE-2019-P1-07",
@@ -56764,7 +56770,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following are capital of a café?\n\n(1) coffee machines\n(2) coffee beans\n(3) video game consoles brought by its customers for party\n(4) comic books which can be borrowed by its customers free of charge\n\nA. (1) and (2) only\nB. (1), (2) and (4) only\nC. (1), (3) and (4) only\nD. (2), (3) and (4) only",
-      "correctPercentage": 77
+      "correctPercentage": 77,
+      "originalReportImageEng": "originals/dse/2019/re-p1-08.jpg"
     },
     {
       "id": "DSE-2019-P1-09",
@@ -56798,7 +56805,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "A Hong Kong travel company offers package tours to Japan. It invested in building a hotel, which provides accommodation services to its tour members visiting Japan.\n\nWhich of the following is most likely the motive behind the expansion?\n\nA. to increase the market share\nB. to secure the supply of factor inputs\nC. to ensure a market outlet of its services\nD. to reduce competition",
-      "correctPercentage": 31
+      "correctPercentage": 31,
+      "originalReportImageEng": "originals/dse/2019/re-p1-09.jpg"
     },
     {
       "id": "DSE-2019-P1-10",
@@ -56839,7 +56847,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the cost-output relationship of a price-taking firm.\n\nTotal output (units) Average cost ($)\n3 10\n4 15\n5 20\n6 25\n7 30\n\nIf the profit-maximising output is 6 units, the market price will be ___________.\n\nA. $5\nB. $25\nC. $30\nD. $50",
-      "correctPercentage": 72
+      "correctPercentage": 72,
+      "originalReportImageEng": "originals/dse/2019/re-p1-10.jpg"
     },
     {
       "id": "DSE-2019-P1-11",
@@ -56958,7 +56967,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following is the supply-demand diagram of e-sports equipment. The initial equilibrium point is E0.\n \nPrice ($) Quantity 0\nE0 E1 E2 E3 E4\nS0 S1 S2\nD0 D1 D2\n\nSuppose the government promotes e-sports by subsidising e-sports equipment manufacturers as well as the e-sports training programmes. The new equilibrium point will be ____________.\n\nA. E1\nB. E2\nC. E3\nD. E4",
-      "correctPercentage": 93
+      "correctPercentage": 93,
+      "originalReportImageEng": "originals/dse/2019/re-p1-13.jpg"
     },
     {
       "id": "DSE-2019-P1-14",
@@ -57157,7 +57167,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements about a perfectly competitive market are correct?\n\n(1) Firms cannot survive if they ask a price higher than the market price.\n(2) There is no entry barrier to the market.\n(3) The profit-maximising condition of the firms is that price equals marginal cost.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 52
+      "correctPercentage": 52,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-18.jpg"
     },
     {
       "id": "DSE-2019-P1-19",
@@ -57193,7 +57204,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Cumulative percentage of post-tax income\nCumulative percentage of households\n0 20 40 60 80 100\nOld Lorenz curve\nNew Lorenz curve\n\nWhich of the following policies would result in the above change in the Lorenz curve in Hong Kong?\n\nA. lowering the profits tax rates\nB. reducing the salaries tax allowance\nC. increasing the progressivity of the salaries tax\nD. raising the air passenger departure tax",
-      "correctPercentage": 75
+      "correctPercentage": 75,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-19.jpg"
     },
     {
       "id": "DSE-2019-P1-20",
@@ -57391,7 +57403,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the data of an economy.\n\nPopulation aged 15 or above 6 500 000\nLabour force participation rate* 60%\nEmployed population 3 780 000\nUnderemployed population 100 000\n*Labour force participation rate = proportion of labour force in population aged 15 or above\n\nBased on the above data, the unemployment rate of the economy is ____________.\n\nA. 1.85%\nB. 3.08%\nC. 3.38%\nD. 5.64%",
-      "correctPercentage": 74
+      "correctPercentage": 74,
+      "originalQuestionImage": "originals/dse/2019/q-p1-24.jpg"
     },
     {
       "id": "DSE-2019-P1-25",
@@ -57430,7 +57443,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "To calculate the gross national income of Hong Kong, which of the following should be added to the GDP of Hong Kong?\n\nA. the income earned by a Japanese chef who has worked in a Hong Kong restaurant for two months\nB. the rental received by a Hong Kong resident from leasing his house in Japan to a Japanese\nC. the salary earned by a Hong Kong resident from working as a secretary at the Hong Kong branch office of an Australian company\nD. the money received from selling an apartment in Australia by a Hong Kong resident",
-      "correctPercentage": 40
+      "correctPercentage": 40,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-25.jpg",
+      "originalQuestionImage": "originals/dse/2019/q-p1-25.jpg"
     },
     {
       "id": "DSE-2019-P1-26",
@@ -57468,7 +57483,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following production chain in Country A and answer the question.\n \nfruits $800 Local fruit importers\nfruits $500 Domestic consumers\nfruits $600 Jam manufacturers\njam $1 500 Wholesalers\njam $1 000 Domestic consumers\njam $1 300 Foreign consumers\n\nSuppose the above production chain has included a subsidy of $300 that is given to the jam manufacturers. What is the contribution of the above production chain to Country A’s GDP at factor cost?\n\nA. $1 700\nB. $1 800\nC. $2 000\nD. $2 300",
-      "correctPercentage": 43
+      "correctPercentage": 43,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-26.jpg",
+      "originalQuestionImage": "originals/dse/2019/q-p1-26.jpg"
     },
     {
       "id": "DSE-2019-P1-27",
@@ -57509,7 +57526,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Country A is an oil-importing country. Which of the following will result in a rightward shift of its short-run aggregate supply curve?\n\nA. All oil-exporting countries decide to increase the daily production of oil.\nB. Extreme cold weather sharply raises the consumption of oil for heating in Country A.\nC. The government of Country A provides tax relief for research in new energy aiming to lessen the reliance on oil.\nD. An earthquake destroys an oil refinery factory in Country A.",
-      "correctPercentage": 55
+      "correctPercentage": 55,
+      "originalQuestionImage": "originals/dse/2019/q-p1-27.jpg"
     },
     {
       "id": "DSE-2019-P1-28",
@@ -57625,7 +57643,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following hypothetical case.\n\nThe currency of Country T, T-Dollar, has depreciated by 40 percent from the beginning of 2018 after the US announced a series of trade sanctions against Country T. As a result, some shops in Country T quoted prices in US Dollar instead of T-Dollar. Shops in black markets refused to accept T-Dollar. Some citizens bought foreign currencies to safeguard their assets.\n\nWhich functions of money of the T-Dollar were weakened?\n\n(1) medium of exchange\n(2) unit of account\n(3) store of value\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 68
+      "correctPercentage": 68,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-30.jpg",
+      "originalQuestionImage": "originals/dse/2019/q-p1-30.jpg"
     },
     {
       "id": "DSE-2019-P1-31",
@@ -57664,7 +57684,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "When a Hong Kong citizen transfers $500 000 from her time deposit account with a restricted licence bank to her savings account with a licensed bank,\n\n(1) month supply (M1) will increase.\n(2) money supply (M2) will increase.\n(3) money supply (M3) will increase.\n\nA. (1) only\nB. (2) only\nC. (3) only\nD. (2) and (3) only",
-      "correctPercentage": 72
+      "correctPercentage": 72,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-31.jpg",
+      "originalQuestionImage": "originals/dse/2019/q-p1-31.jpg"
     },
     {
       "id": "DSE-2019-P1-32",
@@ -57705,7 +57727,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "In times of inflation, suppose the nominal interest rate of a bond is higher than the expected inflation rate. If the actual inflation rate turns out to be higher than the expected inflation rate,\n\n(1) the actual inflation rate will be higher than the nominal interest rate of the bond.\n(2) the expected real rate of return of the bond will be greater than the actual real rate of return.\n(3) the actual real rate of return of the bond may be negative.\n(4) the real rate of return of holding cash will be higher than zero.\n\nA. (1) and (2) only\nB. (1) and (4) only\nC. (2) and (3) only\nD. (3) and (4) only",
-      "correctPercentage": 62
+      "correctPercentage": 62,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-32.jpg"
     },
     {
       "id": "DSE-2019-P1-33",
@@ -57749,7 +57772,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below shows the money supply and money demand curves of an economy. The original equilibrium point is at E.\n \nNominal interest rate\nQuantity of money 0\nMs0 Ms1 Ms2 Md0 Md1 Md2 A B C D E\n\nSuppose electronic payments become more common, and the central bank increases the legal reserve ratio of the commercial banks. The new equilibrium point will be at __________.\n\nA. A\nB. B\nC. C\nD. D",
-      "correctPercentage": 75
+      "correctPercentage": 75,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-33.jpg"
     },
     {
       "id": "DSE-2019-P1-34",
@@ -57787,7 +57811,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Both the wage rate and general price level increase by 8% in a certain year. If the government increases the salaries tax allowance by 5%,\n\nA. more people will fall into the tax net.\nB. income distribution will become more even.\nC. government’s tax revenue will decrease.\nD. people’s real income after tax will increase.",
-      "correctPercentage": 28
+      "correctPercentage": 28,
+      "originalQuestionImage": "originals/dse/2019/q-p1-34.jpg"
     },
     {
       "id": "DSE-2019-P1-35",
@@ -57830,7 +57855,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements about quantity theory of money are correct?\n\n(1) If money supply is growing too fast relative to the supply of goods in the economy, inflation will occur.\n(2) If money supply increases, nominal output will increase by the same percentage.\n(3) If inflation rate is constant, real output will grow at the same percentage as money supply.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 31
+      "correctPercentage": 31,
+      "originalQuestionImage": "originals/dse/2019/q-p1-35.jpg"
     },
     {
       "id": "DSE-2019-P1-36",
@@ -57868,7 +57894,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following diagram shows the relationship between taxable income and tax payment in a tax system.\n \nTax payment\nTaxable income 0\n\nWhich of the following statements about the above tax system is correct?\n\nA. The lower income group pays a smaller percentage of their taxable income as tax payment.\nB. It violates the tax principle of equity put forward by Adam Smith.\nC. It is a proportional tax.\nD. It leads to a more even income distribution.",
-      "correctPercentage": 77
+      "correctPercentage": 77,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-36.jpg",
+      "originalQuestionImage": "originals/dse/2019/q-p1-36.jpg"
     },
     {
       "id": "DSE-2019-P1-37",
@@ -57910,7 +57938,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Under unexpected deflation, which of the following persons will lose?\n\n(1) Ms Mok holds a time deposit of one million dollars in a deposit taking company.\n(2) Mr Lo receives interest from Silver Bond of which the rate of return is linked to the inflation, subject to a minimum return of 3%.\n(3) Mr Chan signs a two-year contract with an online TV company to subscribe to its service by a fixed monthly payment.\n\nA. (1) only\nB. (2) only\nC. (3) only\nD. (2) and (3) only",
-      "correctPercentage": 64
+      "correctPercentage": 64,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-37.jpg",
+      "originalQuestionImage": "originals/dse/2019/q-p1-37.jpg"
     },
     {
       "id": "DSE-2019-P1-38",
@@ -58030,7 +58060,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose an inflationary (output) gap and a fiscal surplus exist in an economy. Which of the following measures would help narrow the inflation (output) gap and attain a balanced fiscal condition at the same time?\n\nA. reducing quota for inbound tourists\nB. raising income tax rate\nC. adopting a universal retirement protection scheme for all elderly aged 65 or above\nD. increasing government spending on infrastructure",
-      "correctPercentage": 32
+      "correctPercentage": 32,
+      "originalQuestionImageEng": "originals/dse/2019/qe-p1-40.jpg"
     },
     {
       "id": "DSE-2019-P1-41",
@@ -58071,7 +58102,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Study the following table.\n\nPolicy I\n an open market operation of government bonds\n a rise in the discount rate \n\nPolicy II\n an open market operation of government bonds\n a rise in the salaries tax allowance\n\nPolicy III\n a rise in the salaries tax allowance\n a rise in the discount rate\n\nWhich of the policies in the above table is/are expansionary?\n\nA. Policy I only\nB. Policy II only\nC. Policy III only\nD. Policy I and Policy III only",
-      "correctPercentage": 65
+      "correctPercentage": 65,
+      "originalQuestionImage": "originals/dse/2019/q-p1-41.jpg"
     },
     {
       "id": "DSE-2019-P1-42",
@@ -58151,7 +58183,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following is the supply-demand diagram of Good X in a small open economy.\n \n$ Q 0 Q1 Q2 Pw S Import quota\n\nInitially the economy imports Good X at the world price (Pw) and the government imposes an import quota of (Q2 – Q1) units. Suppose the world price of Good X drops. Which of the following statements is correct?\n\nA. The domestic price of Good X will remain at Pw.\nB. The domestic price of Good X will fall.\nC. The domestic supply curve will shift to the right.\nD. The quantity of domestically produced Good X will increase.",
-      "correctPercentage": 30
+      "correctPercentage": 30,
+      "originalQuestionImage": "originals/dse/2019/q-p1-43.jpg"
     },
     {
       "id": "DSE-2019-P1-44",
@@ -58232,7 +58265,8 @@
       "marks": 1,
       "questionTextEng": "Study the prices of iPhone X in Hong Kong in terms of Hong Kong dollar (HKD) and in the Mainland in terms of Renminbi (RMB).\n\nHong Kong The Mainland\nHKD 8 588 RMB 8 316\n\nGiven the exchange rate of HKD 1 = RMB 0.875, which of the following statements is correct?\n\nA. Travellers tend to buy an iPhone X in the Mainland instead of in Hong Kong.\nB. RMB is under-valued as the price of an iPhone X in the Mainland is lower than that in Hong Kong.\nC. If the transportation cost is HKD 950, buying an iPhone X in Hong Kong and re-selling it in the Mainland will no longer gain.\nD. The potential gain from ‘buy low, sell high’ will disappear when the price of iPhone X in Hong Kong is higher than HKD 9 504.",
       "correctPercentage": 45,
-      "markersReportChi": "大部分考生都能應用他們對匯率的知識去排除選項A及B。很多考生運用計算貿易得益的技巧，揀選了選項C做答案:當運費高於潛在得益(即950>8.316/0.875-8588)，貿易不再獲利。部分考生未能注意到，貿易的潛在得益和貿易的方向可以因(其中一地方/兩地的)價格/成本的轉變而逆轉：若iPhone X在香港的價格高於港幣9504元，貿易商可以從內地購入一部iPhone X(以8316/0.875-9504)並在香港以高於港幣9504元的價格出售獲利，因此選項D並不正確。"
+      "markersReportChi": "大部分考生都能應用他們對匯率的知識去排除選項A及B。很多考生運用計算貿易得益的技巧，揀選了選項C做答案:當運費高於潛在得益(即950>8.316/0.875-8588)，貿易不再獲利。部分考生未能注意到，貿易的潛在得益和貿易的方向可以因(其中一地方/兩地的)價格/成本的轉變而逆轉：若iPhone X在香港的價格高於港幣9504元，貿易商可以從內地購入一部iPhone X(以8316/0.875-9504)並在香港以高於港幣9504元的價格出售獲利，因此選項D並不正確。",
+      "originalQuestionImage": "originals/dse/2019/q-p1-45.jpg"
     },
     {
       "id": "DSE-2019-P2-01",
@@ -58294,7 +58328,8 @@
       "calculationType": "-",
       "source": "HKDSE 2019 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2019/re-p2-02.jpg"
     },
     {
       "id": "DSE-2019-P2-03",
@@ -58325,7 +58360,8 @@
       "calculationType": "-",
       "source": "HKDSE 2019 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2019/re-p2-03.jpg"
     },
     {
       "id": "DSE-2019-P2-04",
@@ -58356,7 +58392,8 @@
       "calculationType": "-",
       "source": "HKDSE 2019 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2019/re-p2-04.jpg"
     },
     {
       "id": "DSE-2019-P2-05",
@@ -58387,7 +58424,8 @@
       "calculationType": "-",
       "source": "HKDSE 2019 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2019/re-p2-05.jpg"
     },
     {
       "id": "DSE-2019-P2-06",
@@ -58418,7 +58456,8 @@
       "calculationType": "-",
       "source": "HKDSE 2019 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2019/re-p2-06.jpg"
     },
     {
       "id": "DSE-2019-P2-07",
@@ -58480,7 +58519,8 @@
       "calculationType": "-",
       "source": "HKDSE 2019 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2019/re-p2-08.jpg"
     },
     {
       "id": "DSE-2019-P2-09",
@@ -58511,7 +58551,8 @@
       "calculationType": "-",
       "source": "HKDSE 2019 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2019/re-p2-09.jpg"
     },
     {
       "id": "DSE-2019-P2-10",
@@ -58542,7 +58583,8 @@
       "calculationType": "-",
       "source": "HKDSE 2019 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2019/re-p2-10.jpg"
     },
     {
       "id": "DSE-2019-P2-11",
@@ -58648,7 +58690,8 @@
       "source": "HKDSE 2019 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "marks": 16
+      "marks": 16,
+      "originalReportImageEng": "originals/dse/2019/re-p2-13.jpg"
     },
     {
       "id": "DSE-2019-P2-14",
