@@ -94,33 +94,39 @@ def ocr_page(image_path, width, height, lang="chi_tra+eng"):
     return words
 
 
+def page_image(cache_dir, number):
+    """pdftoppm pads names (p-01.jpg); accept either padded or plain names."""
+    for path in cache_dir.glob("p-*.jpg"):
+        stem = path.stem.split("-")[-1]
+        if stem.isdigit() and int(stem) == number:
+            return path
+    return None
+
+
 def load_pages(pdf, cache_dir, ocr_lang="chi_tra+eng"):
     pages = bbox_pages(pdf)
     need = [p for p in pages if len(p["words"]) == 0]
     if not need:
         return pages
     cache_dir.mkdir(parents=True, exist_ok=True)
-    missing = [p["page"] for p in need if not list(cache_dir.glob(f"p-{p['page']}.jpg"))]
+    missing = [p["page"] for p in need if page_image(cache_dir, p["page"]) is None]
     if missing:
-        for start in range(min(missing), max(missing) + 1):
-            if not (cache_dir / f"p-{start}.jpg").is_file():
-                subprocess.check_call(
-                    ["pdftoppm", "-jpeg", "-r", str(DPI), "-f", str(min(missing)), "-l", str(max(missing)),
-                     "-jpegopt", "quality=70", str(pdf), str(cache_dir / "p")],
-                    stdout=subprocess.DEVNULL,
-                )
-                break
+        subprocess.check_call(
+            ["pdftoppm", "-jpeg", "-r", str(DPI), "-f", str(min(missing)), "-l", str(max(missing)),
+             "-jpegopt", "quality=70", str(pdf), str(cache_dir / "p")],
+            stdout=subprocess.DEVNULL,
+        )
     jobs = []
     for page in need:
-        image = cache_dir / f"p-{page['page']}.jpg"
-        if image.is_file():
-            jobs.append(page)
-    with ThreadPoolExecutor(max_workers=2) as pool:
+        image = page_image(cache_dir, page["page"])
+        if image is not None:
+            jobs.append((page, image))
+    with ThreadPoolExecutor(max_workers=1) as pool:
         words = list(pool.map(
-            lambda page: ocr_page(cache_dir / f"p-{page['page']}.jpg", page["width"], page["height"], ocr_lang),
+            lambda item: ocr_page(item[1], item[0]["width"], item[0]["height"], ocr_lang),
             jobs,
         ))
-    for page, found in zip(jobs, words):
+    for (page, _image), found in zip(jobs, words):
         page["words"] = found
         fit_box(page)
     return pages

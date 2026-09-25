@@ -44595,7 +44595,8 @@ window.QUESTION_DATABASE = {
       "markersReportChi": "這道題目旨在考核機會成本的概念。很多考生忽略了曼聯的關注點：若他們在差劣（而不是正常）的場地比賽，他們的球員受傷機會較大。這會令醫療開支大增，亦可能增加在英超聯和歐聯以後比賽輸球的機會。若他們選擇不比賽，這些額外成本（減去違反合約的罰款）是可避免的。\n\n*A. (32%)\nB. (4%)\nC. (23%)\nD. (41%)",
       "markersReportEng": "This question examines the concept of opportunity cost. Many candidates overlooked ManU's concern about the higher probability of its players getting injured if they played on the poor (rather than a normal) pitch, which would cost them higher medical expenses and may increase their chances of losing in subsequent games in the Premier League and the UEFA Champions League. These extra costs (net of the penalty due to breach of contract) could be avoided if they chose not to play.\n\n*A. (32%)\nB. (4%)\nC. (23%)\nD. (41%)",
       "imageChi": "https://drive.google.com/file/d/19lJvIzZjHeBxl21zlB4jZ_T0dWWQWNo2/view?usp=drivesdk,https://drive.google.com/file/d/1vm6hWq6tWB6y4fE5TQL7N1La_FcV9n5z/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1f-kYvC-o-bJoPt4t4EC7k6EpBV498RJS/view?usp=drivesdk,https://drive.google.com/file/d/1dKlf_M8JZcaTrF9Y5tvwjoeH8leDxRQN/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1f-kYvC-o-bJoPt4t4EC7k6EpBV498RJS/view?usp=drivesdk,https://drive.google.com/file/d/1dKlf_M8JZcaTrF9Y5tvwjoeH8leDxRQN/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-01.jpg"
     },
     {
       "id": "DSE-2014-P1-02",
@@ -44640,7 +44641,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Which of the following do(es) NOT exist in a barter economy?\n\n(1)\tinflation\n(2)\tinterest\n(3)\tcomparative advantage\n\nA.\t(1) only\nB.\t(1) and (2) only\nC.\t(2) and (3) only\nD.\t(1), (2) and (3)",
       "correctPercentage": 70,
       "imageChi": "https://drive.google.com/file/d/14PdZE7tsjZAQOCSn8jxt6tXEfoejWpjk/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/12O0e4K4DwI1Do8CoGw5fLIlIfxj4YC5b/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/12O0e4K4DwI1Do8CoGw5fLIlIfxj4YC5b/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-02.jpg",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-02.jpg"
     },
     {
       "id": "DSE-2014-P1-03",
@@ -44682,7 +44685,8 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "An economic good\n\nA. is a good with its demand greater than its supply.\nB. brings us more satisfaction than a free good.\nC. is a good whose quantity available cannot satisfy human wants at zero price.\nD. cannot be found free of charge in any economy.",
       "correctPercentage": 59,
       "imageChi": "https://drive.google.com/file/d/1B_-r-4yfuNP7zZptQ33L-3oPowtu7ITJ/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1g3LN5YqvYnCXmMza4rOkyCS3YrJ8DTxf/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1g3LN5YqvYnCXmMza4rOkyCS3YrJ8DTxf/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-03.jpg"
     },
     {
       "id": "DSE-2014-P1-04",
@@ -44722,7 +44726,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Mei Ho House (美荷樓), a public housing block built in the 1950s, was recently graded as a historic building in Hong Kong. The building was then turned into a hostel which provides double rooms, family rooms and disabled rooms. The above case is related to the _______ question(s) in Economics.\n\nA.\t\"how to produce\"\nB.\t\"for whom to produce\"\nC.\t\"what to produce\" and \"how to produce\"\nD.\t\"what to produce\" and \"for whom to produce\"",
       "correctPercentage": 75,
       "imageChi": "https://drive.google.com/file/d/11uiBRbVD5-2o_bz5OC0e8Xtbwa2nnR9R/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1u8KwlZVp4G6yZckpV7zjliIkZh8s3xZ7/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1u8KwlZVp4G6yZckpV7zjliIkZh8s3xZ7/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-04.jpg",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-04.jpg"
     },
     {
       "id": "DSE-2014-P1-05",
@@ -44763,7 +44769,8 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "The following table shows a production plan of a firm which employs two factors only, namely labour and machinery.\nLabour (unit) Machinery (unit) Total product (unit)\n1 4 100\n2 4 120\n3 4 150\n4 4 170\n5 4 165\n\nThe marginal product of labour will start to diminish when the _______ unit of labour is put to work.\n\nA. second\nB. third\nC. fourth\nD. fifth",
       "correctPercentage": 79,
       "imageChi": "https://drive.google.com/file/d/1h3vqV-Gt8KA4mJJAinUECCoaYSYTkHKm/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1N9ZRw7h7OqDLgSmB6kWHFmpCyHiVcy_l/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1N9ZRw7h7OqDLgSmB6kWHFmpCyHiVcy_l/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-05.jpg"
     },
     {
       "id": "DSE-2014-P1-06",
@@ -44807,7 +44814,8 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "The following table shows the cost-output relationship of a price taker.\n\nOutput (unit) Total cost ($)\n1 20\n2 45\n3 75\n4 110\n5 150\n\nGiven that the profit maximizing output of the firm is 3 units. If the fixed cost increases by $5, the price of the good and the output will be _______ and _______ respectively.\n\nA. $25 …… 2 units\nB. $30 …… 2 units\nC. $30 …… 3 units\nD. $75 …… 3 units",
       "correctPercentage": 56,
       "imageChi": "https://drive.google.com/file/d/17V-3JwkqDMZbu89kC7va8PN3AK_gtfdq/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1hCmty761qNXvzJBwvstjvXCcdX8KJVrI/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1hCmty761qNXvzJBwvstjvXCcdX8KJVrI/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-06.jpg"
     },
     {
       "id": "DSE-2014-P1-07",
@@ -44850,7 +44858,8 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "A public limited company plans to issue new bonds for expansion. For the existing shareholders, which of the following is an advantage of issuing bonds instead of shares?\n\nA. The accounts of the company need not be disclosed to the public.\nB. They have priority in getting back their capital if the company liquidates.\nC. The interest paid to the bondholders is lower than the dividend paid to the shareholders.\nD. Their power of control over the company will not be diluted.",
       "correctPercentage": 71,
       "imageChi": "https://drive.google.com/file/d/1t203OFUNcM2sj_0dKY9Q7FwMmxl5cWV_/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1LYFnlmtCMzc2mOKhl-rB-cTigKzbcXTG/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1LYFnlmtCMzc2mOKhl-rB-cTigKzbcXTG/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-07.jpg"
     },
     {
       "id": "DSE-2014-P1-08",
@@ -44892,7 +44901,10 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Which of the following statements about partnership and sole proprietorship is correct?\n\nA. Partnership has better continuity than sole proprietorship.\nB. Partnership has less flexibility in decision making than sole proprietorship.\nC. Partnership has more capital than sole proprietorship.\nD. Partnership enjoys more economies of scale than sole proprietorship.",
       "correctPercentage": 74,
       "imageChi": "https://drive.google.com/file/d/1o511S8IbjAPDtlouMF-0dJIDMaU_PLb4/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1WWsMKCIQNpzQdmDz4NKBkDvlP_f1C4HZ/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1WWsMKCIQNpzQdmDz4NKBkDvlP_f1C4HZ/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-08.jpg",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-08.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-08.jpg"
     },
     {
       "id": "DSE-2014-P1-09",
@@ -44930,7 +44942,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Which of the following will increase the labour supply of an economy?\n\nA. More firms allow male employees to take paternity leave.\nB. More companies offer free transport to employees working overtime.\nC. Universities provide more full-time associate degree programmes for secondary school graduates.\nD. The government adopts maximum working hours for the civil servants.",
       "correctPercentage": 79,
       "imageChi": "https://drive.google.com/file/d/1z37hD87emGzzn_eGxIW3PlAwSMbQK6Ym/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/18m1TfbxgQrkmuVKC4em5LioH8VC61ZmP/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/18m1TfbxgQrkmuVKC4em5LioH8VC61ZmP/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-09.jpg",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-09.jpg"
     },
     {
       "id": "DSE-2014-P1-10",
@@ -44971,7 +44985,10 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "The following graph shows the relationship of the three stages of production. What do E and F stand for respectively?\n\nPrimary Production\nSecondary Production\nTertiary Production\nE F\n\nA.\tconsumer goods; raw materials\nB.\tproducer goods; services\nC.\traw materials; services\nD.\tproducer goods; raw materials",
       "correctPercentage": 67,
       "imageChi": "https://drive.google.com/file/d/1s-Ra93D4jSaBwr-8yNTPJeg0KN3npLLI/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1CG5RFz4FMpIk_Zou7O8HNhEFBWlaJTyE/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1CG5RFz4FMpIk_Zou7O8HNhEFBWlaJTyE/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-10.jpg",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-10.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-10.jpg"
     },
     {
       "id": "DSE-2014-P1-11",
@@ -45011,7 +45028,10 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Which of the following would most likely increase the occupational mobility of labour in an economy?\n\nA. The labour unions have stronger bargaining power for the welfare of their members.\nB. The labour department provides tuition fee rebates for participants of retraining programmes.\nC. The transport network is improved by the extension of highways.\nD. The government stops granting funding for an online data system about job vacancies.",
       "correctPercentage": 83,
       "imageChi": "https://drive.google.com/file/d/1knr05Sp2W3aSj3j1G5XOEYn9a-XV85MX/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1tRWbBny7wJ0fj_MldPpicfHlKZEv9TLh/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1tRWbBny7wJ0fj_MldPpicfHlKZEv9TLh/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-11.jpg",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-11.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-11.jpg"
     },
     {
       "id": "DSE-2014-P1-12",
@@ -45047,7 +45067,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "In which of the following pairs does the demand for the first good create a derived demand for the second one?\n\nA. Aviation service and pilots\nB. West Rail Line train service and Light Rail train service\nC. Blu-ray discs and Blu-ray disc players\nD. Hong Kong Disneyland and Ocean Park Hong Kong",
       "correctPercentage": 53,
       "imageChi": "https://drive.google.com/file/d/10pOio6hIWg6u0RwKE8Yny2xxEIo5tCOp/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1UzIFy5UNsFuVjRpCtGVtDfz5zBBJDt79/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1UzIFy5UNsFuVjRpCtGVtDfz5zBBJDt79/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-12.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-12.jpg"
     },
     {
       "id": "DSE-2014-P1-13",
@@ -45087,7 +45109,8 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Which of the following would reduce the elasticity of demand for the transport service of the Airport Express?\n\nA. There are more airport bus routes to different districts.\nB. Vans are not allowed to pick up passengers at the airports.\nC. The fare of the Airport Express is raised.\nD. The maintenance cost of the Airport Express trains increases.",
       "correctPercentage": 60,
       "imageChi": "https://drive.google.com/file/d/1Tr1Xi9_lVmo4yZWwN7VKnJR5KFL57yD3/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1HYG0TDmTzO0Bmv6LJTPWWAVOiGuWWwDq/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1HYG0TDmTzO0Bmv6LJTPWWAVOiGuWWwDq/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-13.jpg"
     },
     {
       "id": "DSE-2014-P1-14",
@@ -45127,7 +45150,8 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Suppose the equilibrium point of the cosmetic surgery market in Hong Kong is originally at E0. If people become open-minded to cosmetic surgery while more regulations are imposed on the cosmetic surgery industry, the new equilibrium point will be at _______.\n\nPrice ($)\nQuantity 0\nE0 E1 E2 E3 E4 S0 S1 S2 D0 D1 D2\n\nA.\tE1\nB.\tE2\nC.\tE3\nD.\tE4",
       "correctPercentage": 84,
       "imageChi": "https://drive.google.com/file/d/1UKkdVxAXmk6yFk6aTNDH4XHbozLxblls/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1mljzhExyv1b7fdHz6YzNTjj54MvXjiEM/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1mljzhExyv1b7fdHz6YzNTjj54MvXjiEM/view?usp=drivesdk",
+      "originalReportImageEng": "originals/dse/2014/re-p1-14.jpg"
     },
     {
       "id": "DSE-2014-P1-15",
@@ -45170,7 +45194,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Refer to the following supply-demand diagram for the Cross-Harbour Tunnel.\n\nToll\nExisting toll\n0\nNumber of cars\nD S\n\nThe government proposed to raise the toll for the Cross-Harbour Tunnel so as to lessen the traffic congestion during rush hours. Suppose the maximum vehicular volume of the tunnel is fixed. Which of the following statements are correct?\n\n(1) The demand for the service of the Cross-Harbour Tunnel will decrease.\n(2) The total revenue of the Cross-Harbour Tunnel will increase.\n(3) The deadweight loss caused by traffic congestion will decrease.\n(4) The opportunity cost of the drivers using the tunnel will increase.\n\nA. (1) and (3) only\nB. (1) and (4) only\nC. (2) and (3) only\nD. (2) and (4) only",
       "correctPercentage": 54,
       "imageChi": "https://drive.google.com/file/d/1GD29vxpx1CKHlvCbJhFjb7vW24rURU5Z/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/11CLJLWi-meD-jJN-DhXHNWBRh2C2Kx_r/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/11CLJLWi-meD-jJN-DhXHNWBRh2C2Kx_r/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-15.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-15.jpg"
     },
     {
       "id": "DSE-2014-P1-16",
@@ -45370,7 +45396,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Which of the following policies can reduce the Gini coefficient based on post-tax post-social transfer monthly household income in Hong Kong?\n\nA. to raise the standard tax rate on salaries tax\nB. to reduce the marginal tax rate on salaries tax\nC. to reduce the amount of Comprehensive Social Assistance Schemes (綜合社會保障援助計劃)\nD. to grant an equal sum of money to the Mandatory Provident Fund accounts of every employee",
       "correctPercentage": 73,
       "imageChi": "https://drive.google.com/file/d/14V2qLt5-zHH8nB5A3jWIpdxaSSWftmHG/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1PBh1D_MBP2Lg7DImpCyVjYYEgplfx3yR/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1PBh1D_MBP2Lg7DImpCyVjYYEgplfx3yR/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-20.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-20.jpg"
     },
     {
       "id": "DSE-2014-P1-21",
@@ -45413,7 +45441,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Which of the following are results of the government lowering an effective price ceiling on a good?\n\n(1) a reduction in the producer surplus\n(2) an increase in excess demand\n(3) an increase in the total sales revenue if the demand is elastic\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
       "correctPercentage": 65,
       "imageChi": "https://drive.google.com/file/d/1OXqGczcaVZcRqtfkWs8aNPFOprEBXsPt/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1BqLsJURT-P-KjC6IMAmJeQANrfjQD0Ih/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1BqLsJURT-P-KjC6IMAmJeQANrfjQD0Ih/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-21.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-21.jpg"
     },
     {
       "id": "DSE-2014-P1-22",
@@ -45455,7 +45485,8 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "The imposition of a per-unit sales tax on cosmetics will\n\nA. reduce the total expenditure on cosmetics.\nB. reduce the total sales revenue (net-of-the-tax).\nC. increase the total social surplus in the cosmetics market.\nD. increase in producer surplus in the cosmetics market.",
       "correctPercentage": 72,
       "imageChi": "https://drive.google.com/file/d/147qcfmH-tk4VSlVoatkFOytWeyhZRUiY/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1OBEkKnxI2iW3hAfPhGJf_S4lOUp5LCLG/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1OBEkKnxI2iW3hAfPhGJf_S4lOUp5LCLG/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2014/q-p1-22.jpg"
     },
     {
       "id": "DSE-2014-P1-23",
@@ -45498,7 +45529,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Suppose the supply curves of cars and petrol are upward-sloping. If the government imposes an effective quota on the production of cars,\n\nA. the total social surplus in the car market will increase.\nB. the producer surplus in the car market will decrease.\nC. the total social surplus in the petrol market will decrease.\nD. the consumer surplus in the petrol market will increase.",
       "correctPercentage": 66,
       "imageChi": "https://drive.google.com/file/d/1OMiR09_R2bss9cLXytGmZZAuKRtPszZo/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1g_JPatNwxOMWfrvyaT4zRA27-wB6eBPE/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1g_JPatNwxOMWfrvyaT4zRA27-wB6eBPE/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-23.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-23.jpg"
     },
     {
       "id": "DSE-2014-P1-24",
@@ -45623,7 +45656,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Suppose a closed economy produces food and clothing only. The output of Year 1 and Year 2 are as follows:\nYear Quantity of food (unit) Unit price of \nfood ($) Quantity of \nclothing (unit) Unit price of clothing ($)\n1 44 5 25 10\n2 36 6 22 9\n\nWhich of the following statements about the economy are correct?\n\n(1) The nominal GDP in Year 1 is higher than that in Year 2.\n(2) The real GDP in Year 1 is higher than that in Year 2.\n(3) The cost of living in Year 1 is higher than that in Year 2.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
       "correctPercentage": 51,
       "imageChi": "https://drive.google.com/file/d/1kViL_5vXlxcWjbo1onUPZoS3yCu5B_GU/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1jbDvebW36Rs1GLB0OFJPcAwwmmMa8NFU/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1jbDvebW36Rs1GLB0OFJPcAwwmmMa8NFU/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-26.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-26.jpg"
     },
     {
       "id": "DSE-2014-P1-27",
@@ -45667,7 +45702,8 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Price level Aggregate output 0 SRAS0 SRAS1\n\nRefer to the above diagram. Which of the following would most likely lead to the shift of the short run aggregate supply curve from SRAS0 to SRAS1?\n\nA. to relax the quota for foreign domestic helpers\nB. to reduce the subsidy in research and development\nC. to increase the profits tax rate\nD. to increase the number of places in tertiary education",
       "correctPercentage": 61,
       "imageChi": "https://drive.google.com/file/d/1_xvnpjnmGfj9KoC8tBVc-JurJJyEL-KF/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1775PArwBKfEW_-BiCqLT5_5eeZ-zf6dM/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1775PArwBKfEW_-BiCqLT5_5eeZ-zf6dM/view?usp=drivesdk",
+      "originalQuestionImage": "originals/dse/2014/q-p1-27.jpg"
     },
     {
       "id": "DSE-2014-P1-28",
@@ -45712,7 +45748,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "The Old Age Living Allowance (長者生活津貼) introduced by the Hong Kong government increases the _______ in GDP and results in a _______ shift of the aggregate demand curve.\n\nA. government consumption expenditure …… rightward\nB. government consumption expenditure …… leftward\nC. private consumption expenditure …… rightward\nD. private consumption expenditure …… leftward",
       "correctPercentage": 48,
       "imageChi": "https://drive.google.com/file/d/1ya8Ke2_hJenSuwaNsYOIxoqEmV1y7Hqx/view?usp=drivesdk,https://drive.google.com/file/d/1CdyIuS-ynJYGvi3_eSXXGE0wqigHABt8/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1TEYadyH3fF9aXxLSuxnZkiF2kZOq3Mht/view?usp=drivesdk,https://drive.google.com/file/d/1pC-RvzUuDY4xImiCZL_Jth1qQKJo2FJg/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1TEYadyH3fF9aXxLSuxnZkiF2kZOq3Mht/view?usp=drivesdk,https://drive.google.com/file/d/1pC-RvzUuDY4xImiCZL_Jth1qQKJo2FJg/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-28.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-28.jpg"
     },
     {
       "id": "DSE-2014-P1-29",
@@ -45916,7 +45954,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Study the following information about an economy.\n\nMonetary base $500 billion\nThe coins and notes circulated in the public $300 billion\nRequired reserve ratio 20%\n\nIf all the banks are fully loaned up, the amount of deposits will be _______.\n\nA. $1 000 billion\nB. $1 500 billion\nC. $2 500 billion\nD. $4 000 billion",
       "correctPercentage": 70,
       "imageChi": "https://drive.google.com/file/d/1ErUwzcJ3VtrLYLcBD4hsfUhQAaqMWgGA/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1jWKx9PZvL8074CDMRq1H3zB1uqkflnP8/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1jWKx9PZvL8074CDMRq1H3zB1uqkflnP8/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-33.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-33.jpg"
     },
     {
       "id": "DSE-2014-P1-34",
@@ -45962,7 +46002,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Deflationary (output) gap\n\nA.\twill be widened when there is a depreciation of the domestic currency.\nB.\twill be eliminated by a rightward shift of the aggregate demand curve when the market adjusts from short run equilibrium to long run equilibrium.\nC.\twill result in a downward pressure on the prices of inputs.\nD.\twill exist if the aggregate demand falls short of the short run aggregate supply",
       "correctPercentage": 42,
       "imageChi": "https://drive.google.com/file/d/1FB58DgpDpHwIL9P5SgZaJBalj34V65MI/view?usp=drivesdk,https://drive.google.com/file/d/1GvF5nWEduekZVOgxU-FDkqoFAvbh1QSE/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1yvy_Rf8KCLwgjaoVaJGuZmmlTRGNJTgG/view?usp=drivesdk,https://drive.google.com/file/d/1bPp_8FaGE-gVr-myXQJudY-h4Mcn2Kwt/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1yvy_Rf8KCLwgjaoVaJGuZmmlTRGNJTgG/view?usp=drivesdk,https://drive.google.com/file/d/1bPp_8FaGE-gVr-myXQJudY-h4Mcn2Kwt/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-34.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-34.jpg"
     },
     {
       "id": "DSE-2014-P1-35",
@@ -46003,7 +46045,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Which of the following policies can the government introduce to reduce the price and unemployment levels at the same time?\n\nA. to raise the discount rates\nB. to raise the subsidies to small and medium-sized enterprises\nC. to raise the salaries tax rate\nD. to raise the expenditure on social welfare",
       "correctPercentage": 67,
       "imageChi": "https://drive.google.com/file/d/1G9MZixdsxKTa3ivrkuSYtkPXHi77ZkTE/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1VzG71pi_irsULfav3mNeCsbC0jvW9PSM/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1VzG71pi_irsULfav3mNeCsbC0jvW9PSM/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-35.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-35.jpg"
     },
     {
       "id": "DSE-2014-P1-36",
@@ -46041,7 +46085,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "The government plans to impose a new tax under which the tax payment drops when taxable income drops. Which of the following statements about the new tax is correct?\n\nA. The tax is regressive as the tax rate increases when the taxable income drops.\nB. The tax is proportional as the taxable income and the tax payment are positively related.\nC. The tax cannot be progressive as the tax rate increases when the tax payment drops.\nD. The tax can be progressive, proportional or regressive.",
       "correctPercentage": 52,
       "imageChi": "https://drive.google.com/file/d/1Rpff9yeHMo4kkL7_WSpRMJskF9r0GGch/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1J0lLhq1VEfNUZqWyy7AsFDqQXMDhk3VM/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1J0lLhq1VEfNUZqWyy7AsFDqQXMDhk3VM/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-36.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-36.jpg"
     },
     {
       "id": "DSE-2014-P1-37",
@@ -46083,7 +46129,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Suppose the velocity of circulation of money remains constant. If a central bank reduces money supply by 10%,\n\nA. the price level will decrease by 10%.\nB. real output will decrease by 10%.\nC. nominal output may decrease by less than 10%.\nD. real output may decrease by less than 10%.",
       "correctPercentage": 56,
       "imageChi": "https://drive.google.com/file/d/17RL-BBO1R6ZDEdVZjNM8ktcrDBbMs4-x/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1QfImu4wCAbowRZtGDF5b4gkcxipuM6gP/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1QfImu4wCAbowRZtGDF5b4gkcxipuM6gP/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-37.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-37.jpg"
     },
     {
       "id": "DSE-2014-P1-38",
@@ -46289,7 +46337,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Suppose South Korean Won depreciates against the US Dollar. Under the linked exchange rate system of Hong Kong, which of the following would be results of the above change in the exchange rate?\n\n(1) The volume of imported goods from South Korea to Hong Kong would increase.\n(2) The price of exported goods from Hong Kong to South Korea in terms of HK dollar would increase.\n(3) The number of tourists from South Korea to Hong Kong would decrease.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
       "correctPercentage": 59,
       "imageChi": "https://drive.google.com/file/d/1gG5MPqxJ5BlfAAC0FUSla_S6FScKTlnF/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1rbhGhCpgjnTK8k3YmVcUe-85qyVjayNw/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1rbhGhCpgjnTK8k3YmVcUe-85qyVjayNw/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-42.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-42.jpg"
     },
     {
       "id": "DSE-2014-P1-43",
@@ -46332,7 +46382,9 @@ window.QUESTION_DATABASE = {
       "questionTextEng": "Which of the following is included in the calculation of the balance of Hong Kong's current account?\n\nA. A mainland investor purchases a house in Hong Kong.\nB. A Hong Kong investor buys shares issued by a mainland listed company.\nC. A mainland resident buys an air ticket to Hong Kong from a mainland airline.\nD. A Hong Kong resident buys a life insurance policy from a mainland insurance company.",
       "correctPercentage": 38,
       "imageChi": "https://drive.google.com/file/d/1dZXNHceLHi6tAP5dNsKtiBajH2QwSK6z/view?usp=drivesdk,https://drive.google.com/file/d/1Pba9e90Piuhu_AkMQKN3pu2gmCWqTbJY/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1Mnl4XWaRY40d0s3f9VuWBMmUuDlEKEua/view?usp=drivesdk,https://drive.google.com/file/d/1nJYFU0VUAh53deT10N6ahH2l3JUivhN7/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1Mnl4XWaRY40d0s3f9VuWBMmUuDlEKEua/view?usp=drivesdk,https://drive.google.com/file/d/1nJYFU0VUAh53deT10N6ahH2l3JUivhN7/view?usp=drivesdk",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p1-43.jpg",
+      "originalQuestionImage": "originals/dse/2014/q-p1-43.jpg"
     },
     {
       "id": "DSE-2014-P1-44",
@@ -46457,7 +46509,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "markersReportChi": "(a) 優異。只有小部分考生混淆了題目中「必然」一詞的意義。\n(b) 良好。部分考生未能考慮第三選項價值上升可能會影響已放棄選項中價值最高者。由他們的解釋可見，「成本」和「價值」這兩個概念有時混淆了。",
       "imageChi": "https://drive.google.com/file/d/1X5dvOpC__m-Dlmr63fyllfyTLyd8HSYL/view?usp=drivesdk,https://drive.google.com/file/d/1mwil8k3ku0GVK56z7zTXq69b2_FDph8s/view?usp=drivesdk,https://drive.google.com/file/d/1WvIt50UzpyCXQH49QYxXbwEntS4tqD3o/view?usp=drivesdk",
-      "imageEng": "https://drive.google.com/file/d/1I4kXi7bfba0YmVys-My0j1f0DAW-68i1/view?usp=drivesdk,https://drive.google.com/file/d/1KMK96pkjPbXJ-K9BdzWaC5dki48uAgVB/view?usp=drivesdk,https://drive.google.com/file/d/1gLkbrxCK3VgFwAlzBTcyWgLMe66O_dXs/view?usp=drivesdk"
+      "imageEng": "https://drive.google.com/file/d/1I4kXi7bfba0YmVys-My0j1f0DAW-68i1/view?usp=drivesdk,https://drive.google.com/file/d/1KMK96pkjPbXJ-K9BdzWaC5dki48uAgVB/view?usp=drivesdk,https://drive.google.com/file/d/1gLkbrxCK3VgFwAlzBTcyWgLMe66O_dXs/view?usp=drivesdk",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-01.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-01.jpg"
     },
     {
       "id": "DSE-2014-P2-02",
@@ -46494,7 +46548,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-02.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-02.jpg"
     },
     {
       "id": "DSE-2014-P2-03",
@@ -46531,7 +46587,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-03.jpg"
     },
     {
       "id": "DSE-2014-P2-04",
@@ -46562,7 +46619,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-04.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-04.jpg"
     },
     {
       "id": "DSE-2014-P2-05",
@@ -46600,7 +46659,10 @@ window.QUESTION_DATABASE = {
       "calculationType": "物價指數計算",
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalQuestionImageEng": "originals/dse/2014/qe-p2-05.jpg",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-05.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-05.jpg"
     },
     {
       "id": "DSE-2014-P2-06",
@@ -46635,7 +46697,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-06.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-06.jpg"
     },
     {
       "id": "DSE-2014-P2-07",
@@ -46671,7 +46735,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-07.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-07.jpg"
     },
     {
       "id": "DSE-2014-P2-08",
@@ -46708,7 +46774,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-08.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-08.jpg"
     },
     {
       "id": "DSE-2014-P2-09",
@@ -46748,7 +46816,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-09.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-09.jpg"
     },
     {
       "id": "DSE-2014-P2-10",
@@ -46786,7 +46856,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-10.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-10.jpg"
     },
     {
       "id": "DSE-2014-P2-11",
@@ -46826,7 +46898,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-11.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-11.jpg"
     },
     {
       "id": "DSE-2014-P2-12",
@@ -46866,7 +46940,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-12.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-12.jpg"
     },
     {
       "id": "DSE-2014-P2-13",
@@ -46910,7 +46986,9 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "marks": 16
+      "marks": 16,
+      "originalAnswerImageEng": "originals/dse/2014/ae-p2-13.jpg",
+      "originalReportImageEng": "originals/dse/2014/re-p2-13.jpg"
     },
     {
       "id": "DSE-2014-P2-14",
@@ -46948,7 +47026,8 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2014 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "marks": 16
+      "marks": 16,
+      "originalReportImageEng": "originals/dse/2014/re-p2-14.jpg"
     },
     {
       "id": "DSE-2015-P1-01",
