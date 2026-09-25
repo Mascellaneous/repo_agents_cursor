@@ -41,7 +41,7 @@ PAPER_NUM = {
 # Longer / more specific phrases are listed first and score higher.
 TOPICS = [
     ("01", "A", "A 基本經濟概念", "基本經濟概念",
-     ["機會成本", "稀少性", "稀少", "免費物品", "經濟物品", "共用品", "利息", "私用品", "沉沒", "最不重要的因素", "成本效益分析", "優先次序"]),
+     ["機會成本", "稀少性", "稀少", "免費物品", "經濟物品", "共用品", "利息", "私用品", "沉沒", "最不重要的因素", "成本效益分析", "優先次序", "放棄的收入"]),
     ("02", "A", "A 基本經濟概念", "三個基本經濟問題與私有產權",
      ["生產甚麼", "怎樣生產", "為誰生產", "私有產權", "計劃經濟", "市場經濟", "命令經濟", "實證性", "規範性", "基本經濟問題"]),
     ("03", "B", "B 廠商與生產", "廠商的所有權形式",
@@ -53,21 +53,21 @@ TOPICS = [
     ("06", "B", "B 廠商與生產", "生產及成本",
      ["邊際產量", "平均產量", "總產量", "邊際回報", "規模經濟", "規模不經濟", "固定成本", "可變成本", "平均成本", "邊際成本", "固定生產要素", "可變生產要素", "短期", "長期", "邊際產量"]),
     ("07", "B", "B 廠商與生產", "廠商的目標與擴張",
-     ["利潤極大", "縱向後向", "縱向前向", "橫向結合", "後向結合", "前向結合", "橫向擴張", "縱向擴張", "收購"]),
+     ["利潤極大", "縱向後向", "縱向前向", "橫向結合", "後向結合", "前向結合", "橫向擴張", "縱向擴張", "收購", "後向合併", "橫向合併", "前向合併", "側向合併"]),
     ("08", "C", "C 市場與價格", "市場價格的訂定",
      ["需求定律", "供應定律", "均衡價格", "均衡數量", "均衡點", "消費者剩餘", "消費者盈餘", "生產者剩餘", "邊際利益", "市場需求曲線", "市場供應曲線", "需求曲線", "供應曲線", "供需圖", "價格的分配", "配給", "價高者得", "平均質素", "價格差異"]),
     ("09", "C", "C 市場與價格", "市場價格的變化",
-     ["代替品", "互補品", "正常物品", "劣等物品", "需求上升", "需求下降", "供應上升", "供應下降", "交易量", "樓價", "物業落成"]),
+     ["代替品", "互補品", "替代品", "輔助品", "正常物品", "劣等物品", "需求上升", "需求下降", "供應上升", "供應下降", "交易量", "樓價", "物業落成", "競爭性供應", "聯合供應"]),
     ("10", "C", "C 市場與價格", "需求和供應的價格彈性",
-     ["需求價格彈性", "供應價格彈性", "收入彈性", "交叉彈性", "價格彈性", "需求彈性", "供應彈性", "總支出", "總收入"]),
+     ["需求價格彈性", "供應價格彈性", "收入彈性", "交叉彈性", "價格彈性", "需求彈性", "供應彈性", "總支出", "總收入", "高彈性", "低彈性", "單一彈性", "完全沒有彈性"]),
     ("11", "C", "C 市場與價格", "市場干預",
      ["價格上限", "價格下限", "最低工資", "最高租金", "租金管制", "從價稅", "從量稅", "從量銷售稅", "從量津貼", "銷售稅", "間接稅", "定額稅", "單位稅", "單位補貼", "政府補貼", "津貼得益", "非價格競爭", "離境稅", "黑市", "有效價格"]),
     ("12", "D", "D 競爭與市場結構", "市場結構",
-     ["完全競爭", "壟斷性競爭", "寡頭壟斷", "寡頭", "市場結構", "價格接受者", "進入障礙", "自由進出"]),
+     ["完全競爭", "壟斷性競爭", "寡頭壟斷", "寡頭", "市場結構", "價格接受者", "進入障礙", "自由進出", "壟斷者", "壟斷能力"]),
     ("13", "E", "E 效率、公平和政府的角色", "效率、公平和政府的角色 (I)",
      ["界外影響", "外部效益", "外部成本", "界外效益", "界外成本", "配置效率", "私人與社會", "私人利益", "社會利益", "社會成本", "社會效益", "噪音"]),
     ("14", "E", "E 效率、公平和政府的角色", "效率、公平和政府的角色 (II)",
-     ["堅尼係數", "堅尼系數", "基尼係數", "基尼系數", "洛伦茨", "洛伦兹", "收入分配", "收入不均", "累進稅", "累退稅", "財富轉移", "更公平", "應課稅", "稅制", "公平賦稅"]),
+     ["堅尼係數", "堅尼系數", "基尼係數", "基尼系數", "洛伦茨", "洛伦兹", "收入分配", "收入不均", "累進稅", "累退稅", "財富轉移", "更公平", "應課稅", "稅制", "公平賦稅", "賦稅原則", "亞當史密夫"]),
     ("15", "F", "F 經濟表現的量度", "經濟表現的量度 (I)",
      ["本地生產總值", "國民生產總值", "GDP", "GNP", "消費物價指數", "以要素成本", "以市價計算", "名義GDP", "實質GDP", "物價指數", "名義本地", "實質本地"]),
     ("16", "F", "F 經濟表現的量度", "經濟表現的量度 (II)",
@@ -75,15 +75,15 @@ TOPICS = [
     ("17", "G", "G 國民收入決定及價格水平", "總需求和總供應",
      ["總需求", "總供應"]),
     ("18", "G", "G 國民收入決定及價格水平", "產出和價格的決定",
-     ["通脹差距", "通縮差距", "充分就業產出", "物價水平", "產出水平", "通貨緊縮差距", "通貨膨脹差距"]),
+     ["通脹差距", "通縮差距", "充分就業產出", "物價水平", "產出水平", "通貨緊縮差距", "通貨膨脹差距", "deflationary gap", "inflationary gap"]),
     ("19", "H", "H 貨幣與銀行", "貨幣與銀行",
-     ["交易媒介", "記帳單位", "價值儲藏", "延期支付", "商業銀行", "中央銀行", "有限制牌照銀行", "貨幣的功能", "法定貨幣", "活期存款", "定期存款", "貨幣形式", "容易分割"]),
+     ["交易媒介", "記帳單位", "價值儲藏", "延期支付", "商業銀行", "中央銀行", "有限制牌照銀行", "貨幣的功能", "法定貨幣", "活期存款", "定期存款", "貨幣形式", "容易分割", "用作貨幣"]),
     ("20", "H", "H 貨幣與銀行", "貨幣供應和貨幣需求",
-     ["貨幣供應", "貨幣需求", "貨幣基礎", "存款創造", "流動性偏好", "信貸創造", "貨幣乘數", "資產負債表", "超額儲備"]),
+     ["貨幣供應", "貨幣需求", "貨幣基礎", "存款創造", "流動性偏好", "信貸創造", "貨幣乘數", "資產負債表", "超額儲備", "資產貨幣需求"]),
     ("21", "I", "I 宏觀經濟問題和政府", "經濟周期、一般物價水平的變動和失業",
      ["經濟周期", "成本推動", "需求拉動", "通脹", "通縮", "失業", "滯脹", "一般物價"]),
     ("22", "I", "I 宏觀經濟問題和政府", "財政政策與貨幣政策",
-     ["財政政策", "貨幣政策", "公開市場操作", "貼現率", "法定儲備率", "政府開支", "預算", "量化寬鬆"]),
+     ["財政政策", "貨幣政策", "公開市場操作", "貼現率", "法定儲備率", "政府開支", "預算", "量化寬鬆", "財政赤字", "財政盈餘"]),
     ("23", "J", "J 國際貿易和金融", "國際貿易",
      ["比較優勢", "絕對優勢", "貿易得益", "貿易總得益", "貿易比率", "互惠", "國際貿易", "生產可能性"]),
     ("24", "J", "J 國際貿易和金融", "貿易障礙",
@@ -450,7 +450,7 @@ FALLBACK = [
 
 # Specific concepts, separate from the chapter-level topic.
 CONCEPT_RULES = [
-    ("機會成本", ["機會成本", "最不重要的因素", "成本效益分析", "優先次序"]),
+    ("機會成本", ["機會成本", "最不重要的因素", "成本效益分析", "優先次序", "放棄的收入"]),
     ("稀少性", ["稀少性", "稀少"]),
     ("免費物品", ["免費物品"]),
     ("經濟物品", ["經濟物品"]),
@@ -478,13 +478,13 @@ CONCEPT_RULES = [
     ("成本", ["固定成本", "可變成本", "平均成本", "邊際成本"]),
     ("固定與可變生產要素", ["固定生產要素", "可變生產要素"]),
     ("利潤極大化", ["利潤極大"]),
-    ("結合與擴張", ["縱向", "橫向結合", "後向結合", "前向結合", "收購"]),
+    ("結合與擴張", ["縱向", "橫向結合", "後向結合", "前向結合", "收購", "合併"]),
     ("需求定律", ["需求定律"]),
     ("供應定律", ["供應定律"]),
     ("消費者盈餘", ["消費者剩餘", "消費者盈餘", "邊際利益"]),
     ("價格的功能", ["分配功能", "配給", "價高者得", "價格的訊息"]),
-    ("需求與供應的變化", ["代替品", "互補品", "正常物品", "劣等物品", "需求上升", "供應上升", "需求下降", "供應下降"]),
-    ("彈性", ["需求彈性", "供應彈性", "價格彈性", "收入彈性", "交叉彈性", "總支出"]),
+    ("需求與供應的變化", ["代替品", "互補品", "替代品", "輔助品", "正常物品", "劣等物品", "需求上升", "供應上升", "需求下降", "供應下降", "競爭性供應", "聯合供應"]),
+    ("彈性", ["需求彈性", "供應彈性", "價格彈性", "收入彈性", "交叉彈性", "總支出", "高彈性", "低彈性", "單一彈性", "完全沒有彈性"]),
     ("價格管制", ["價格上限", "價格下限", "最低工資", "租金管制", "有效價格"]),
     ("稅項與津貼", ["從價稅", "從量稅", "從量銷售稅", "銷售稅", "從量津貼", "單位補貼", "津貼"]),
     ("界外影響", ["界外影響", "外部效益", "外部成本", "界外效益", "界外成本", "私人與社會", "社會成本", "社會利益"]),
@@ -493,10 +493,10 @@ CONCEPT_RULES = [
     ("物價指數", ["消費物價指數", "物價指數"]),
     ("失業", ["失業"]),
     ("通脹與通縮", ["通脹", "通縮"]),
-    ("貨幣的功能", ["交易媒介", "記帳單位", "價值儲藏", "延期支付", "貨幣形式"]),
+    ("貨幣的功能", ["交易媒介", "記帳單位", "價值儲藏", "延期支付", "貨幣形式", "用作貨幣"]),
     ("銀行體系", ["商業銀行", "中央銀行", "有限制牌照銀行"]),
-    ("貨幣供應", ["貨幣供應", "存款創造", "貨幣基礎", "貨幣乘數", "資產負債表", "超額儲備"]),
-    ("財政政策與貨幣政策", ["財政政策", "貨幣政策", "貼現率", "公開市場"]),
+    ("貨幣供應", ["貨幣供應", "貨幣需求", "存款創造", "貨幣基礎", "貨幣乘數", "資產負債表", "超額儲備", "資產貨幣需求"]),
+    ("財政政策與貨幣政策", ["財政政策", "貨幣政策", "貼現率", "公開市場", "財政赤字", "財政盈餘"]),
     ("總需求與總供應", ["總需求", "總供應"]),
     ("比較優勢", ["比較優勢", "絕對優勢", "貿易得益", "貿易總得益", "貿易比率"]),
     ("貿易障礙", ["關稅", "進口配額", "配額", "貿易障礙"]),
@@ -608,6 +608,7 @@ TABLE_TYPES = [
     "總支出表",
     "喜好次序表",
     "需求表",
+    "供需表",
     "堅尼系數表",
     "資產負債表",
     "就業與人口表",
@@ -627,11 +628,11 @@ TABLE_TYPES = [
 
 
 def _has_figure(text):
-    return any(k in text for k in ("[圖", "下圖", "細閱下圖", "圖一", "圖二", "圖三", "圖四", "以圖", "一幅供需", "參閱下圖", "參考下圖"))
+    return any(k in text for k in ("[圖", "下圖", "細閱下圖", "圖一", "圖二", "圖三", "圖四", "以圖", "一幅供需", "參閱下圖", "參考下圖", "哪幅圖", "上圖"))
 
 
 def _has_table(text):
-    return any(k in text for k in ("下表", "表顯示", "參閱下表", "參看下表", "下表顯示"))
+    return any(k in text for k in ("下表", "表顯示", "參閱下表", "參看下表", "下表顯示", "供需表"))
 
 
 def classify_table(text):
@@ -652,6 +653,7 @@ def classify_table(text):
         ("喜好次序表", ("喜好次序", "第一選項")),
         ("總支出表", ("總支出",)),
         ("銷量表", ("銷量",)),
+        ("供需表", ("供需表",)),
         ("需求表", ("需求表",)),
         ("政策比較表", ("政策I", "政策II")),
         ("收費表", ("落旗", "跳錶")),
@@ -864,7 +866,10 @@ def strip_question_number(text, number):
     """Drop a leading question number. The id already stores it."""
     if not text or number in (None, "", "-"):
         return text
-    n = str(int(number))
+    try:
+        n = str(int(number))
+    except (TypeError, ValueError):
+        return text
     lines = str(text).split("\n")
     lines[0] = re.sub(rf"^{n}\.(?:\t| )", "", lines[0], count=1)
     return "\n".join(lines).strip()
@@ -1147,8 +1152,128 @@ def build():
         print(f"{n:4d}  {name}")
 
 
+def _paper_slot(raw):
+    text = str(raw or "").strip().upper()
+    if text in ("P1", "1", "卷一"):
+        return "1"
+    if text in ("P2", "2", "卷二"):
+        return "2"
+    return str(raw or "-")
+
+
+def _clean_hkeaa_text(value):
+    if value is None:
+        return ""
+    text = str(value).replace("\r\n", "\n").replace("\r", "\n")
+    return re.sub(r"\n{3,}", "\n\n", text).strip()
+
+
+def import_hkeaa(path):
+    """Classify an HKEAA export and merge it into database.json.
+
+    Reviewed rows (reviewedByAI Y) are left unchanged. New rows stay N.
+    """
+    incoming = json.load(open(path, encoding="utf-8")).get("questions", [])
+    existing = load_previous_questions()
+    reviewed = {q["id"]: q for q in existing if q.get("reviewedByAI") == "Y"}
+    kept_ids = {q["id"] for q in existing}
+    converted = []
+    for raw in incoming:
+        qid = raw.get("id")
+        if not qid or qid in reviewed:
+            continue
+        chinese = _clean_hkeaa_text(raw.get("questionTextChi"))
+        english = _clean_hkeaa_text(raw.get("questionTextEng"))
+        wording = chinese or english
+        number = raw.get("questionNumber")
+        wording = strip_question_number(wording, number)
+        chinese = strip_question_number(chinese, number) if chinese else ""
+        topic = classify(wording)
+        graph, table, multi, calc = features(wording)
+        paper = _paper_slot(raw.get("paper"))
+        slot = "卷一" if paper == "1" else "卷二" if paper == "2" else str(raw.get("paper") or "")
+        record = {
+            "id": qid,
+            "publisher": raw.get("publisher") or "HKEAA",
+            "examination": raw.get("examination") or "HKDSE",
+            "year": str(raw.get("year") or ""),
+            "paper": paper,
+            "questionType": raw.get("questionType") or "MC",
+            "section": raw.get("section") or "-",
+            "questionNumber": str(number or ""),
+            "questionTextChi": chinese or wording,
+            "plainText": wording,
+            "topic": topic["topic"],
+            "question": qid,
+            "answerMC": raw.get("answerMC") or "",
+            "answerChi": _clean_hkeaa_text(raw.get("answerChi")),
+            "curriculumClassification": topic["curriculumClassification"],
+            "AristochapterClassification": topic["AristochapterClassification"],
+            "concepts": detect_concepts(wording),
+            "patterns": detect_patterns(wording),
+            "graphType": graph,
+            "tableType": table,
+            "multipleSelectionType": multi,
+            "calculationType": calc,
+            "source": f"{raw.get('examination') or 'HKDSE'} {raw.get('year') or ''} {slot}".strip(),
+            "reviewedByAI": "N",
+            "lastReviewDate": "",
+        }
+        if raw.get("marks") not in (None, "", "-"):
+            record["marks"] = raw["marks"]
+        if english:
+            record["questionTextEng"] = english
+        answer_eng = _clean_hkeaa_text(raw.get("answerEng"))
+        if answer_eng:
+            record["answerEng"] = answer_eng
+        if raw.get("correctPercentage") not in (None, ""):
+            record["correctPercentage"] = raw["correctPercentage"]
+        for field in ("markersReportChi", "markersReportEng", "imageChi", "imageEng"):
+            cleaned = _clean_hkeaa_text(raw.get(field))
+            if cleaned:
+                record[field] = cleaned
+        if str(raw.get("outSyl") or "").strip().upper() == "Y":
+            record["outSyl"] = "Y"
+        converted.append(record)
+
+    # Drop a previous unreviewed HKEAA import so a second run refreshes it.
+    base = [q for q in existing if q.get("publisher") != "HKEAA" or q.get("reviewedByAI") == "Y"]
+    merged = base + converted
+    payload = {
+        "version": "1.0",
+        "source": "Aristo HKDSE Economics mock papers 27–44 and HKEAA HKALE, HKCEE, and HKDSE questions",
+        "description": "Each record is one question. topic is the chapter; concepts are specific ideas such as 機會成本; patterns are question styles and do not repeat questionType; plainText is the wording. reviewedByAI is Y or N. lastReviewDate is YYYY-MM-DD when reviewed. The builder does not overwrite records with reviewedByAI Y.",
+        "questionCount": len(merged),
+        "questions": merged,
+    }
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    with open(OUT_PATH, "w", encoding="utf-8") as fh:
+        json.dump(payload, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
+    js_path = os.path.join(DATA_DIR, "database.js")
+    with open(js_path, "w", encoding="utf-8") as fh:
+        fh.write("window.QUESTION_DATABASE = ")
+        fh.write(open(OUT_PATH, encoding="utf-8").read().strip())
+        fh.write(";\n")
+    vocab = write_vocabulary(merged)
+    from collections import Counter
+    hkeaa = [q for q in merged if q.get("publisher") == "HKEAA"]
+    print("imported", len(converted), "hkeaa", len(hkeaa), "total", len(merged), "skipped reviewed", sum(1 for q in incoming if q.get("id") in reviewed))
+    print("unclassified", sum(1 for q in hkeaa if q["topic"] == "未分類"), "no concept", sum(1 for q in hkeaa if not q["concepts"]))
+    print("graph", Counter(q["graphType"] for q in hkeaa).most_common(8))
+    print("table", Counter(q["tableType"] for q in hkeaa).most_common(6))
+    print("calc", Counter(q["calculationType"] for q in hkeaa).most_common(8))
+    print("multi", Counter(q["multipleSelectionType"] for q in hkeaa).most_common(6))
+    print("vocab concepts", len(vocab["concepts"]), "patterns", len(vocab["patterns"]))
+
+
 if __name__ == "__main__":
     if "--sync-vocabulary" in sys.argv:
         sync_vocabulary_from_disk()
+    elif "--import-hkeaa" in sys.argv:
+        at = sys.argv.index("--import-hkeaa")
+        if at + 1 >= len(sys.argv):
+            raise SystemExit("Pass the HKEAA JSON path after --import-hkeaa")
+        import_hkeaa(sys.argv[at + 1])
     else:
         build()

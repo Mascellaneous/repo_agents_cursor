@@ -8,6 +8,7 @@ var triStateFilters = {
     curriculum: {},
     feature: { 'Out syl': 'excluded' },
     chapter: {},
+    publisher: {},
     exam: {},
     qtype: {},
     section: {},

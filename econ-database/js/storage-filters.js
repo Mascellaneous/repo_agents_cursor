@@ -125,6 +125,19 @@ IndexedDBStorage.prototype.applyFilters = function(questions, filters) {
 
     // Tri-state filters
     if (filters.triState) {
+        if (filters.triState.publisher) {
+            const checkedPublishers = Object.keys(filters.triState.publisher).filter(k => filters.triState.publisher[k] === 'checked');
+            const excludedPublishers = Object.keys(filters.triState.publisher).filter(k => filters.triState.publisher[k] === 'excluded');
+
+            if (checkedPublishers.length > 0) {
+                questions = questions.filter(q => checkedPublishers.includes(q.publisher));
+            }
+
+            if (excludedPublishers.length > 0) {
+                questions = questions.filter(q => !excludedPublishers.includes(q.publisher));
+            }
+        }
+
         // Exam type filters
         if (filters.triState.exam) {
             const checkedExams = Object.keys(filters.triState.exam).filter(k => filters.triState.exam[k] === 'checked');
