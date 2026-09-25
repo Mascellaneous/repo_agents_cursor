@@ -60963,7 +60963,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following statements made by Peter and Mary.\n\nPeter: As a developed economy, Hong Kong’s Gini coefficient is too high.\nMary: Hong Kong’s Gini coefficient is the highest in Asia.\n\n_________________ statement is ______________ because ____________________.\n\nA. Peter’s … positive … most people agree with it\nB. Peter’s … normative … it is inconsistent with the real world data\nC. Mary’s … positive … it can be rejected by fact\nD. Mary’s … normative … value judgement is involved in the statement",
-      "correctPercentage": 85
+      "correctPercentage": 85,
+      "originalReportImageEng": "originals/dse/2021/re-p1-01.jpg",
+      "originalQuestionImage": "originals/dse/2021/q-p1-01.jpg"
     },
     {
       "id": "DSE-2021-P1-02",
@@ -61041,7 +61043,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "After graduating from secondary school, Paul considers whether to become a full-time Key Opinion Leader (KOL) in social media channels or to become an e-sports player.\n\nWhich of the following will lower Paul’s cost of being a full-time KOL after his graduation?\n\n(1) Paul receives sponsored video equipment for KOL.\n(2) The e-sports team offers a lower basic salary to Paul.\n(3) The risk of social media channels being attacked by hackers increases.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 67
+      "correctPercentage": 67,
+      "originalQuestionImage": "originals/dse/2021/q-p1-03.jpg"
     },
     {
       "id": "DSE-2021-P1-04",
@@ -61079,7 +61082,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Because of COVID-19, normal schooling was disrupted. Most schools used video communication software, such as Zoom and Google Meet, to conduct online lessons. Suppose the school campus was re-opened and face-to-face lessons were allowed.\n\nWhich of the following would be the LEAST important factor for teachers to choose between online lessons and face-to-face lesson?\n\nA. The risk of contracting COVID-19 for teachers is lower when they conduct online lessons.\nB. Teachers have no idea what their students are doing during online lessons because students may turn off their cameras.\nC. Teachers have already spent a lot of time learning how to use the video communication software to conduct online lessons.\nD. The eyesight of teachers may be worsened by the intensive use of the video communication software in conducting online lessons.",
-      "correctPercentage": 60
+      "correctPercentage": 60,
+      "originalQuestionImage": "originals/dse/2021/q-p1-04.jpg"
     },
     {
       "id": "DSE-2021-P1-05",
@@ -61119,7 +61123,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Factory A Factory B\nNumber of workers employed 90 78\nWorking hours per worker/month 125 155\nTotal output/month 79 850 82 800\nPercentage of output with quality below standard 37% 11%\n\nRefer to the above table. Which of the following can best explain the difference in quality of the outputs between Factory A and Factory B?\n\nA. Factory A employs less labour service than Factory B.\nB. Factory A practices a higher degree of division of labour than Factory B.\nC. The degree of mechanisation of Factory A is higher than that of Factory B.\nD. Factory A uses piece rate while Factory B uses time rate.",
-      "correctPercentage": 67
+      "correctPercentage": 67,
+      "originalReportImageEng": "originals/dse/2021/re-p1-05.jpg"
     },
     {
       "id": "DSE-2021-P1-06",
@@ -61157,7 +61162,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Li & Fung (Stock Code: 00494) announced a privatisation of its company, cancelling its listing status at the stock exchange in Hong Kong. Which of the following statements about Li & Fung is correct after the change?\n\nA. The firm can enjoy a lower profits tax rate.\nB. The firm can still issue shares to raise capital.\nC. The owners will become personally liable for legal charges against the firm.\nD. The firm will no longer exist when one of the owners goes bankrupt.",
-      "correctPercentage": 56
+      "correctPercentage": 56,
+      "originalReportImageEng": "originals/dse/2021/re-p1-06.jpg"
     },
     {
       "id": "DSE-2021-P1-07",
@@ -61236,7 +61242,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Study the following diagram and answer Questions 8 and 9.\n \nMarket Shares (%) of China's Online Food Delivery Sector in 2017\n\nMeituan Dianping 33%\nEle.me 36.5%\nBaidu Waimai 17.3%\nOthers 13.2%\n\nEle.me 餓了麼\nBaidu Waimai 百度外賣\nMeituan Dianping 美團點評\n\nEle.me acquired Baidu Waimai in 2017. Which of the following could be the motive(s) behind the acquisition?\n\n(1) to enjoy economies of scale\n(2) to spread risk by business diversification\n(3) to have a greater influence on the market price\n\nA. (1) only\nB. (1) and (2) only\nC. (1) and (3) only\nD. (2) and (3) only",
-      "correctPercentage": 81
+      "correctPercentage": 81,
+      "originalQuestionImage": "originals/dse/2021/q-p1-08.jpg"
     },
     {
       "id": "DSE-2021-P1-09",
@@ -61311,7 +61318,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Because of the outbreak of COVID-19, the government of a country announced a temporary ban of dine-in services in restaurants. Which of the following statements about restaurants under the temporary ban is correct?\n\nA. If the expected sales revenue generated from takeaway food exceeds the variable cost of running a restaurant, the restaurant will continue to operate.\nB. With the extremely high cost of breaking the rental contract, the fixed rental will affect whether the owners continue to operate their restaurant.\nC. A decrease in prices of takeaway food will necessarily decrease the sales revenue of the restaurants.\nD. Unpopular restaurants will close down before popular ones.",
-      "correctPercentage": 46
+      "correctPercentage": 46,
+      "originalReportImageEng": "originals/dse/2021/re-p1-10.jpg",
+      "originalQuestionImage": "originals/dse/2021/q-p1-10.jpg"
     },
     {
       "id": "DSE-2021-P1-11",
@@ -61350,7 +61359,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the production plan of a firm which employs two factors only, namely labour and machinery.\nLabour (units) Machinery (units) Total output (units)\n1 2 10\n2 2 25\n3 2 45\n4 2 Q1\n5 2 Q2\n\nSuppose the above data illustrates the law of diminishing marginal returns. Which of the following figures are consistent with the law?\n\n(1) Q1 = 60; Q2 = 70\n(2) Q1 = 40; Q2 = 30\n(3) Q1 = 65; Q2 = 85\n\nA. (1) only\nB. (3) only\nC. (1) and (2) only\nD. (2) and (3) only",
-      "correctPercentage": 60
+      "correctPercentage": 60,
+      "originalReportImageEng": "originals/dse/2021/re-p1-11.jpg"
     },
     {
       "id": "DSE-2021-P1-12",
@@ -61389,7 +61399,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the cost-output relationship of a price-taking firm.\n\nQuantity (units) Average cost ($)\n1 5\n2 4\n3 4\n4 4.5\n5 6\n\nBased on the above table, when the market price falls from $6 to $4, we can conclude that\n\nA. the firm starts to enjoy economies of scale.\nB. the total cost of the firm will decrease from $30 to $12.\nC. the profit of the firm will decrease by $6.\nD. the quantity supplied will decrease from 5 units to 3 units.",
-      "correctPercentage": 58
+      "correctPercentage": 58,
+      "originalReportImageEng": "originals/dse/2021/re-p1-12.jpg",
+      "originalQuestionImage": "originals/dse/2021/q-p1-12.jpg"
     },
     {
       "id": "DSE-2021-P1-13",
@@ -61427,7 +61439,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The demand for ___________ can be regarded as a derived demand for __________.\n\nA. mobile phones … earphones\nB. laptops … batteries\nC. music videos … singers\nD. game programmers … online games",
-      "correctPercentage": 62
+      "correctPercentage": 62,
+      "originalQuestionImage": "originals/dse/2021/q-p1-13.jpg"
     },
     {
       "id": "DSE-2021-P1-14",
@@ -61465,7 +61478,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "When Good X and Good Y are ___________, a decrease in the supply of Good X will result in an increase in the ____________ Good Y.\n\nA. substitutes … supply of\nB. substitutes … quantity supplied of\nC. complements … demand for\nD. complements … quantity supplied of",
-      "correctPercentage": 51
+      "correctPercentage": 51,
+      "originalQuestionImage": "originals/dse/2021/q-p1-14.jpg"
     },
     {
       "id": "DSE-2021-P1-15",
@@ -61544,7 +61558,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following demand-supply schedules of Good X.\n\nPrice ($) Quantity demanded (units) Quantity supplied (units)\n80 100 80\n90 100 90\n100 100 100\n110 100 110\n120 100 120\n130 100 130\n\nIf a $10 per-unit subsidy is provided to the producers of Good,\n\n(1) the total revenue including the subsidy will remain unchanged.\n(2) the subsidy benefit will be received entirely by the producers.\n(3) the total expenditure of consumers on Good X will reduce by $1 000.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 48
+      "correctPercentage": 48,
+      "originalQuestionImage": "originals/dse/2021/q-p1-16.jpg"
     },
     {
       "id": "DSE-2021-P1-17",
@@ -61586,7 +61601,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following demand-supply diagram of Good Y.\n \nPrice Quantity 0\nP1 P2 D S\n\nIf the government lowers the price ceiling of Good Y from P1 to P2,\n\nA. the producer surplus will decrease.\nB. the consumer surplus will increase.\nC. the total social surplus will remain unchanged.\nD. the excess supply of Good Y will be eliminated.",
-      "correctPercentage": 71
+      "correctPercentage": 71,
+      "originalQuestionImage": "originals/dse/2021/q-p1-17.jpg"
     },
     {
       "id": "DSE-2021-P1-18",
@@ -61665,7 +61681,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Since most schools deliver their lessons online, more students need to buy tablet computers. The marginal cost of the last unit of tablet computers will ________ and the producer surplus will _________.\n\nA. decrease … increase\nB. decrease … decrease\nC. increase … increase\nD. increase … decrease",
-      "correctPercentage": 58
+      "correctPercentage": 58,
+      "originalQuestionImage": "originals/dse/2021/q-p1-19.jpg"
     },
     {
       "id": "DSE-2021-P1-20",
@@ -61708,7 +61725,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Initially a country imposes an effective quota on coffee bean production.\n\nIf now more people like to drink coffee, which of the following statements about coffee bean market are correct?\n\n(1) The total expenditure will increase.\n(2) The deadweight loss will increase.\n(3) The consumer surplus will increase.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 57
+      "correctPercentage": 57,
+      "originalQuestionImage": "originals/dse/2021/q-p1-20.jpg"
     },
     {
       "id": "DSE-2021-P1-21",
@@ -61784,7 +61802,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the information about two top-tier football leagues.\n\n Average annual income of the players\nFootball league Defensive players Attacking players\nEngland £2 751 537 £3 839 875\nItaly £1 536 945 £2 625 975\n\nWhich of the following is/are possible reason(s) for the income differences among players?\n\n(1) The television broadcast revenue generated by the top-tier football league in England is higher than that in Italy.\n(2) The price level in England is higher than that in Italy.\n(3) The commercial values of attacking players are higher than those of defensive players since attacking players are more popular.\n\nA. (1) only\nB. (2) only\nC. (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 61
+      "correctPercentage": 61,
+      "originalQuestionImage": "originals/dse/2021/q-p1-22.jpg"
     },
     {
       "id": "DSE-2021-P1-23",
@@ -61824,7 +61843,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "A production chain of Good X in an economy is shown below.\n \n$200 raw materials Local importers $400\nLocal farmers $600\nincrease in inventory $50\nLocal supermarkets\n$1 200 ($100 sales tax inclusive) Local consumers\n$500 Foreign tourists\n\nThe contribution of the above production chain to the economy’s gross domestic product at factor cost is _____________.\n\nA. $1 400\nB. $1 450\nC. $1 500\nD. $1 550",
-      "correctPercentage": 49
+      "correctPercentage": 49,
+      "originalQuestionImage": "originals/dse/2021/q-p1-23.jpg"
     },
     {
       "id": "DSE-2021-P1-24",
@@ -61863,7 +61883,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the gross domestic product (GDP) data of an economy.\n\n Growth rate (relative to previous year)\nNominal GDP 0\nReal GDP -1.2%\nPer-capita nominal GDP -3.5%\n\nCompared to the previous year, the general price level has _________ and population has ___________ in the economy in the current year.\n\nA. increased … increased\nB. increased … decreased\nC. decreased … increased\nD. decreased … decreased",
-      "correctPercentage": 53
+      "correctPercentage": 53,
+      "originalQuestionImage": "originals/dse/2021/q-p1-24.jpg"
     },
     {
       "id": "DSE-2021-P1-25",
@@ -61903,7 +61924,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose the unemployment rate of an economy is 8%. Which of the following would increase the unemployment rate?\n\n(1) 15% of the new graduates could not find jobs successfully.\n(2) Some employers closed down their local businesses and migrated to other countries.\n(3) Some of the part-time workers lost their job due to automation of production.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 53
+      "correctPercentage": 53,
+      "originalQuestionImage": "originals/dse/2021/q-p1-25.jpg"
     },
     {
       "id": "DSE-2021-P1-26",
@@ -61941,7 +61963,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The per-capita real GDP of a country would understate the general living standard because\n\nA. it includes the value of non-consumption goods.\nB. it does not consider the size of population.\nC. it does not reflect the increasing crime rate in society.\nD. it does not include all non-marketed goods.",
-      "correctPercentage": 56
+      "correctPercentage": 56,
+      "originalQuestionImage": "originals/dse/2021/q-p1-26.jpg"
     },
     {
       "id": "DSE-2021-P1-27",
@@ -62102,7 +62125,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Student the following news extract about Bitcoin (比特幣).\nIn 2018, Kentucky Fried Chicken Canada launched ‘Bitcoin Bucket’. The company set up a Facebook live feed, displaying the number of bitcoins needed to pay for the meal as in the picture below. The ‘Bitcoin Bucket’ could only be purchased online and would be delivered to the buyers’ home later.\n \n0.0011204\n\nIn the above case, Bitcoin performed as a ___________.\n\n(1) medium of exchange\n(2) unit of account\n(3) standard of deferred payment\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 74
+      "correctPercentage": 74,
+      "originalQuestionImage": "originals/dse/2021/q-p1-30.jpg"
     },
     {
       "id": "DSE-2021-P1-31",
@@ -62142,7 +62166,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The table below shows the monetary data of a country.\nMoney supply $250 million\nLegal tender held by public $50 million\nRequired reserve ratio 20%\nExcess reserves $10 million\n\nWhich of the following statements are correct?\n\n(1) Monetary base is $100 million.\n(2) Actual reserves are $40 million.\n(3) The maximum amount of deposits after credit creation is $250 million.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 65
+      "correctPercentage": 65,
+      "originalQuestionImage": "originals/dse/2021/q-p1-31.jpg"
     },
     {
       "id": "DSE-2021-P1-32",
@@ -62180,7 +62205,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Jack wants to deposit $400 000 for 5 months. Which of the following financial institutions in Hong Kong can accept his deposit?\n\n(1) a restricted licence bank\n(2) a virtual bank which is classified as a licensed bank\n(3) a deposit-taking company\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 60
+      "correctPercentage": 60,
+      "originalQuestionImage": "originals/dse/2021/q-p1-32.jpg"
     },
     {
       "id": "DSE-2021-P1-33",
@@ -62225,7 +62251,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below shows the money demand and money supply curves of an economy. The original equilibrium point is at E.\n \nNominal interest rate Quantity of money 0\nMs0 Ms1 Ms2\nMd0 Md1 Md2\nA B C D E\n\nSuppose the stock market becomes more volatile. At the same time, the central bank decides to redeem government bonds from the public. The new equilibrium point will be at _________.\n\nA. A\nB. B\nC. C\nD. D",
-      "correctPercentage": 60
+      "correctPercentage": 60,
+      "originalQuestionImage": "originals/dse/2021/q-p1-33.jpg"
     },
     {
       "id": "DSE-2021-P1-34",
@@ -62265,7 +62292,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose the actual inflation rate and the nominal interest rate are -1% and 3% respectively. Which of the following statements are correct?\n\n(1) The cost of holding cash is 3%.\n(2) The expected real interest rate is higher than the nominal interest rate.\n(3) The actual real rate of return on holding cash is 1%.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 50
+      "correctPercentage": 50,
+      "originalQuestionImage": "originals/dse/2021/q-p1-34.jpg"
     },
     {
       "id": "DSE-2021-P1-35",
@@ -62304,7 +62332,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following would offset the effect on aggregate output of an expansionary fiscal policy?\n\nA. The public held more cash.\nB. The use of electronic wallets became more popular.\nC. The interbank rate decreased.\nD. The government increased quota on the importation of foreign domestic helpers.",
-      "correctPercentage": 41
+      "correctPercentage": 41,
+      "originalQuestionImage": "originals/dse/2021/q-p1-35.jpg"
     },
     {
       "id": "DSE-2021-P1-36",
@@ -62340,7 +62369,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Due to the COVID-19 outbreak, most of the flights were cancelled, leading to a significant drop in the number of tourists visiting Hong Kong. At the same time, many employees in Hong Kong were forced to take no pay leave.\n\nWhich of the following diagrams can best describe the consequence of the above incidents?\n\nA. Price level Output Level AD1 AD2 SRAS1 SRAS2\nB. Price level Output Level AD1 AD2 SRAS1 SRAS2\nC. Price level Output Level AD1 AD2 LRAS1 LRAS2\nD. Price level Output Level AD1 AD2 LRAS1 LRAS2",
-      "correctPercentage": 88
+      "correctPercentage": 88,
+      "originalQuestionImage": "originals/dse/2021/q-p1-36.jpg"
     },
     {
       "id": "DSE-2021-P1-37",
@@ -62381,7 +62411,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following policies may narrow a deflationary (output) gap and reduce the budget deficit at the same time?\n\nA. an open market purchase of government bonds\nB. an increase in income tax allowance\nC. a reduction in transfer payment\nD. an increase in required reserve ratio",
-      "correctPercentage": 50
+      "correctPercentage": 50,
+      "originalQuestionImage": "originals/dse/2021/q-p1-37.jpg"
     },
     {
       "id": "DSE-2021-P1-38",
@@ -62422,7 +62453,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Study the following diagram.\n \nGrowth rate (%) Year\nMoney supply General price level\n\nAccording to the quantity theory of money, which of the following statements is correct?\n\nA. Real output is increasing.\nB. Nominal output is decreasing.\nC. Money supply is decreasing.\nD. The velocity of circulation of money is decreasing.",
-      "correctPercentage": 54
+      "correctPercentage": 54,
+      "originalQuestionImage": "originals/dse/2021/q-p1-38.jpg"
     },
     {
       "id": "DSE-2021-P1-39",
@@ -62536,7 +62568,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Mr Li is a major shareholder of a Hong Kong listed company which makes huge profits. He has sold some of his residential properties, and received rental income from some leased commercial buildings.\n\nAccording to the above information, which types of tax does Mr Li need to pay to the Hong Kong government?\n\n(1) profits tax\n(2) stamp duty\n(3) property tax\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 26
+      "correctPercentage": 26,
+      "originalQuestionImage": "originals/dse/2021/q-p1-41.jpg"
     },
     {
       "id": "DSE-2021-P1-42",
@@ -62696,7 +62729,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Study the following table.\n\n Exchange rate\n3 December 2019 HKD 1 = RMB 0.902\n3 December 2020 HKD 1 = RMB 0.923\n\nOn 3 December 2019, Mr Chan exchanged a total of RMB 300 000 from Hong Kong dollar and deposited the sum to a bank as time deposits at an annual interest rate of 0.8%. Suppose he withdrew the sum of 3 December 2020 and exchanged it back to Hong Kong dollar.\n\nFrom the above transactions, Mr Chan ______________.\n\nA. lost about HK$4 967\nB. lost about HK$7 570\nC. gained about HK$6 300\nD. gained about HK$8 515",
-      "correctPercentage": 53
+      "correctPercentage": 53,
+      "originalQuestionImage": "originals/dse/2021/q-p1-45.jpg"
     },
     {
       "id": "DSE-2021-P2-01",
@@ -62727,7 +62761,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2021 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2021/re-p2-01.jpg"
     },
     {
       "id": "DSE-2021-P2-02",
@@ -62820,7 +62855,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2021 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2021/ae-p2-04.jpg"
     },
     {
       "id": "DSE-2021-P2-05",
@@ -62851,7 +62887,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2021 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2021/re-p2-05.jpg"
     },
     {
       "id": "DSE-2021-P2-06",
@@ -62882,7 +62919,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2021 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2021/ae-p2-06.jpg",
+      "originalReportImageEng": "originals/dse/2021/re-p2-06.jpg"
     },
     {
       "id": "DSE-2021-P2-07",
@@ -62975,7 +63014,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2021 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2021/ae-p2-09.jpg"
     },
     {
       "id": "DSE-2021-P2-10",
@@ -63006,7 +63046,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2021 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2021/ae-p2-10.jpg",
+      "originalReportImageEng": "originals/dse/2021/re-p2-10.jpg"
     },
     {
       "id": "DSE-2021-P2-11",
@@ -63037,7 +63079,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2021 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2021/re-p2-11.jpg"
     },
     {
       "id": "DSE-2021-P2-12",
@@ -63082,7 +63125,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2021 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2021/ae-p2-12.jpg",
+      "originalReportImageEng": "originals/dse/2021/re-p2-12.jpg"
     },
     {
       "id": "DSE-2022-P1-01",
