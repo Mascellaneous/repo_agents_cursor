@@ -71,6 +71,8 @@ Import another HKEAA export with:
 
 The importer classifies topic, concepts, patterns, diagram type, table type, calculation type, and combination type from the wording. New rows stay `reviewedByAI` `N`. A row already marked `Y` is not replaced. It refreshes `vocabulary.json` in the same run.
 
+Question images for the mock papers are cut from the official PDF, not from the Word file. The Chinese wording still comes from the Word file. `questionTextEng` is the English paper when the question number and, for multiple choice, the answer letter match the Chinese record. `python3 econ-database/scripts/capture_from_pdf.py` repeats that capture.
+
 ## Adding another mock paper
 
 1. Put three files in `MockTests/`: 卷一, 卷二, and 參考答案. Keep the same filename style as the papers already there.
