@@ -65339,7 +65339,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Mr Cheung bought restaurant premises 2 years ago for $5 000 000 and sells 'two-dish-rice' meal boxes at the premises. Recently, his monthly profit has decreased from $30 000 to $10 000 due to the opening of new restaurants nearby. A businessman offers to rent Mr Cheung's restaurant premises for a monthly rental of $15 000.\n\nWhich of the following would be included in Mr Cheung's opportunity cost of continuing to operate his 'two-dish-rice' business at the premises?\n\nA. the $5 000 000 purchase price of the restaurant premises\nB. the $10 000 monthly profit\nC. the $15 000 monthly rental\nD. the $20 000 drop in monthly profit",
-      "correctPercentage": 84
+      "correctPercentage": 84,
+      "originalQuestionImage": "originals/dse/2023/q-p1-01.jpg"
     },
     {
       "id": "DSE-2023-P1-02",
@@ -65377,7 +65378,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Jacky, a Secondary 6 student in Hong Kong, is going to travel to Korea for his graduation trip. Which of the following will decrease his cost of having the graduation trip to Korea?\n\nA. Hong Kong dollar appreciates against South Korean Won.\nB. The return flight from Korea to Hong Kong is delayed.\nC. The number of confirmed cases of COVID-19 in Korea has increased drastically.\nD. The services of the hotel in Korea are better than his expectation.",
-      "correctPercentage": 82
+      "correctPercentage": 82,
+      "originalQuestionImage": "originals/dse/2023/q-p1-02.jpg"
     },
     {
       "id": "DSE-2023-P1-03",
@@ -65418,7 +65420,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "A band in Hong Kong adopted a real-name registration system for the sale of its concert tickets. tickets were not transferrable so that the chance of ticket scalping (炒賣) was reduced.\n\nWhich of the following statements about the above real-name registration system is/are correct?\n\n(1) It is a mechanism to tackle the problem of ‘what to produce’.\n(2) The private property rights over the tickets would be weakened under the system.\n(3) Non-price competition would not be involved in the allocation of the tickets under the system.\n\nA. (1) only\nB. (2) only\nC. (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 80
+      "correctPercentage": 80,
+      "originalReportImageEng": "originals/dse/2023/re-p1-03.jpg",
+      "originalQuestionImage": "originals/dse/2023/q-p1-03.jpg"
     },
     {
       "id": "DSE-2023-P1-04",
@@ -65460,7 +65464,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following is a normative statement/ are normative statements?\n\n(1) Launching consumption voucher schemes will lead to inflation.\n(2) Promoting tourism is the most appropriate way to stimulate economic growth\n(3) The government should continue to attract Mainland enterprises to invest in Hong Kong.\n\nA. (1) only\nB. (3) only\nC. (1) and (2) only\nD. (2) and (3) only",
-      "correctPercentage": 61
+      "correctPercentage": 61,
+      "originalQuestionImage": "originals/dse/2023/q-p1-04.jpg"
     },
     {
       "id": "DSE-2023-P1-05",
@@ -65500,7 +65505,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements about the classification of goods is correct?\n\nA. Musical instruments used by street performers are public goods because the music performed with these instruments can be enjoyed concurrently by many people.\nB. Textbooks are private goods because the marginal cost of producing an additional unit of textbooks is positive.\nC. Artworks exhibited in the Hong Kong Palace Museum (香港故宮文化博物館) are consumer goods because costs are involved in their production. \nD. Popular free online videos for learning English are economic goods because their quantities are not enough to satisfy human wants.",
-      "correctPercentage": 63
+      "correctPercentage": 63,
+      "originalQuestionImage": "originals/dse/2023/q-p1-05.jpg"
     },
     {
       "id": "DSE-2023-P1-06",
@@ -65540,7 +65546,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following would raise both the labour supply and average labour productivity of an economy?\n\nA. The government raises the amount of unemployment benefits.\nB. Free education is extended to university programmes.\nC. More firms install advanced production equipment.\nD. The quota of an immigration scheme of highly skilled individuals is increased.",
-      "correctPercentage": 78
+      "correctPercentage": 78,
+      "originalQuestionImage": "originals/dse/2023/q-p1-06.jpg"
     },
     {
       "id": "DSE-2023-P1-07",
@@ -65579,7 +65586,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The occupational mobility of labour of an economy will decrease if\n\nA. transport subsidies are provided to workers who live in remote districts.\nB. more jobs require specialised skills.\nC. the statutory retirement age is raised from 65 to 70.\nD. more job retraining courses are provided by the government free of charge.",
-      "correctPercentage": 93
+      "correctPercentage": 93,
+      "originalQuestionImage": "originals/dse/2023/q-p1-07.jpg"
     },
     {
       "id": "DSE-2023-P1-08",
@@ -65617,7 +65625,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following information about Firm A and Firm B in Hong Kong.\n\n Firm A Firm B\nNumber of owners 3 50\nIssuing shares to the public Impossible Possible\nDisclosure of financial information to the public Not necessary Necessary\n\nBased on the above information, we can conclude that\n\nA. Firm B raises more capital than Firm A.\nB. owners of both firms are required to obtain consent from other owners when transferring their ownership.\nC. Firm A may enjoy a lower profits tax rate than Firm B.\nD. Firm B is an independent legal entity while Firm A is not.",
-      "correctPercentage": 59
+      "correctPercentage": 59,
+      "originalQuestionImage": "originals/dse/2023/q-p1-08.jpg"
     },
     {
       "id": "DSE-2023-P1-09",
@@ -65658,7 +65667,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the data of a price-taking garment factory. The fixed cost of the factory is $10.\n\nOutput (units) Total cost ($)\n6 48\n7 63\n8 80\n9 99\n10 120\n11 143\n\nSuppose the market price of garments rises from $17 to $19, and the fixed cost of the factory rises by $2. As a result, the profit-maximising output of the factory would __________ while its profit would __________.\n\nA. remain unchanged …… increase to $56\nB. remain unchanged …… increase to $70\nC. increase by 1 unit. …… increase to $70\nD. increase by 1 unit. …… increase to $82",
-      "correctPercentage": 67
+      "correctPercentage": 67,
+      "originalReportImageEng": "originals/dse/2023/re-p1-09.jpg",
+      "originalQuestionImage": "originals/dse/2023/q-p1-09.jpg"
     },
     {
       "id": "DSE-2023-P1-10",
@@ -65696,7 +65707,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following is INCONSISTENT with the law of demand?\n\nA. When a theme park reduces its ticket price, visitors stay in the theme park for longer hours on average.\nB. Both the price and quantity transacted of private housing units decrease when people expect an increase in mortgage interest rates.\nC. Compared with customers living close to supermarkets, customers living far away from supermarkets tend to buy more items in each visit to supermarkets..\nD. If the Hong Kong Government shortens the quarantine period for incoming arrivals, the number of tourists visiting Hong Kong would increase.",
-      "correctPercentage": 64
+      "correctPercentage": 64,
+      "originalReportImageEng": "originals/dse/2023/re-p1-10.jpg",
+      "originalQuestionImage": "originals/dse/2023/q-p1-10.jpg"
     },
     {
       "id": "DSE-2023-P1-11",
@@ -65778,7 +65791,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below shows the supply and demand curves of electric vehicles. The original equilibrium point is E0.\n \nPrice 0 Quantity\nD0 D1 D2\nS0 S1 S2\n\nSuppose there is an increase in the cost of producing electric vehicles. At the same time, the decreasing number of car accidents involving electric vehicles increases consumers’ confidence in electric vehicles. As a result, the new equilibrium point will be at __________.\n\nA. E1\nB. E2\nC. E3\nD. E4",
-      "correctPercentage": 89
+      "correctPercentage": 89,
+      "originalReportImageEng": "originals/dse/2023/re-p1-12.jpg",
+      "originalQuestionImage": "originals/dse/2023/q-p1-12.jpg"
     },
     {
       "id": "DSE-2023-P1-13",
@@ -65817,7 +65832,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Semiconductor chips are key components for producing smartphones.\n\nDue to a global shortage of semiconductor chips, the quantity of smartphones sold has changed by 10% whereas the price of smartphones has increased by 20%. Which of the following best explains the above changes in the price and quantity sold of smartphones?\n\nA. Smartphones have no close substitutes.\nB. Smartphone manufacturers have excess capacity in production.\nC. Consumers expenditure on smartphones takes up a large proportion of their total expenditure.\nD. The workers for producing smartphones cannot be easily recruited.",
-      "correctPercentage": 72
+      "correctPercentage": 72,
+      "originalQuestionImage": "originals/dse/2023/q-p1-13.jpg"
     },
     {
       "id": "DSE-2023-P1-14",
@@ -65857,7 +65873,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose the demand curve of face masks is a downward-sloping straight line. When the price of face masks falls from $5 to $4, consumers' total expenditure on face masks remains unchanged. If the price of face masks falls further from $4 to $3, consumers' total expenditure on face masks\n\nA. will increase.\nB. will decrease.\nC. will remain unchanged\nD. may increase, decrease or remain unchanged.",
-      "correctPercentage": 17
+      "correctPercentage": 17,
+      "originalQuestionImage": "originals/dse/2023/q-p1-14.jpg"
     },
     {
       "id": "DSE-2023-P1-15",
@@ -65898,7 +65915,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The initial equilibrium price of pineapples is $5. Suppose the government imposes a per unit tax of $4 on pineapples. If the elasticity for pineapples is __________ than their elasticity of supply, the new equilibrium price can be __________.\n\n(1) higher …… $6\n(2) higher …… $8\n(3) lower …… $7\n(4) lower …… $8\n\nA. (1) and (3) only\nB. (1) and (4) only\nC. (2) and (3) only\nD. (2) and (4) only",
-      "correctPercentage": 62
+      "correctPercentage": 62,
+      "originalQuestionImage": "originals/dse/2023/q-p1-15.jpg"
     },
     {
       "id": "DSE-2023-P1-16",
@@ -65985,7 +66003,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following diagram shows the supply and demand curves of a good.\n \nPrice Quantity 0\nP1 P2 D S\n\nSuppose the government changes the price floor from P1 to P2. Which of the following statements is/are correct?\n\n(1) The marginal benefit of the last unit of the good will decrease.\n(2) There will be an increase in the excess demand for the good.\n(3) Consumers’ total expenditure on the good will decrease.\n(4) The quantity transacted of the good will remain unchanged.\n\nA. (4) only\nB. (1) and (4) only\nC. (2) and (3) only\nD. (1), (2) and (3) only",
-      "correctPercentage": 64
+      "correctPercentage": 64,
+      "originalQuestionImage": "originals/dse/2023/q-p1-17.jpg"
     },
     {
       "id": "DSE-2023-P1-18",
@@ -66023,7 +66042,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The table below shows the distribution of market share of Mandatory Provident Fund trustees in Hong Kong in 2021.\n\nMandatory Provident Fund trustee Market share\nManulife 25.8%\nHSBC 18.6%\nSun Life 10.4%\nAIA 9.1%\nOthers 36.1%\n\nBased on the above information, we can conclude that the above market is an example of _________ because __________.\n\nA. oligopoly …… sellers are interdependent in their marketing strategies\nB. oligopoly …… there are a few dominant sellers in the market\nC. monopolistic competition …… there are many sellers in the market\nD. monopolistic competition …… services provided by different sellers are heterogeneous",
-      "correctPercentage": 76
+      "correctPercentage": 76,
+      "originalQuestionImage": "originals/dse/2023/q-p1-18.jpg"
     },
     {
       "id": "DSE-2023-P1-19",
@@ -66063,7 +66083,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following diagram about the market of local vegetables in an economy.\n \nPrice Quantity 0\nD0 D1 S\n\nThe shift of the demand curve from D0 to D1 __________.\n\nA. can be caused by an increase in the price of local vegetables\nB. will raise the marginal cost of the last unit of local vegetables\nC. will lead to economic inefficiency\nD. can be caused by a decrease in the sales tax on imported vegetables",
-      "correctPercentage": 62
+      "correctPercentage": 62,
+      "originalQuestionImage": "originals/dse/2023/q-p1-19.jpg"
     },
     {
       "id": "DSE-2023-P1-20",
@@ -66221,7 +66242,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Study the following data about an economy.\n\n 2016 2021\nGini coefficient based on post-tax post-social transfer household income 0.398 0.407\n\nWhich of the following are possible explanations for the above change from 2016 to 2021?\n\n(1) The progressive tax system changed to a regressive one.\n(2) The tax bands of the progressive salaries tax are widened.\n(3) The transfer payments provided to the low-income households increased.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 77
+      "correctPercentage": 77,
+      "originalQuestionImage": "originals/dse/2023/q-p1-23.jpg"
     },
     {
       "id": "DSE-2023-P1-24",
@@ -66302,7 +66324,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following diagram shows a production chain of smartphones in an economy.\n \nLocal materials $60\nLocal smartphone manufacturers $100\nForeign consumers $460\nLocal smartphone retailers\nLocal consumers $640 ($40 sales tax inclusive)\nImported smartphones $X\n\nIf the contribution of the above production chain to the economy’s GDP at factor cost is $560, the value of X is _____________.\n\nA. 40\nB. 80\nC. 140\nD. 180",
-      "correctPercentage": 44
+      "correctPercentage": 44,
+      "originalQuestionImage": "originals/dse/2023/q-p1-25.jpg"
     },
     {
       "id": "DSE-2023-P1-26",
@@ -66344,7 +66367,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows some data of an economy in a certain year.\n\nFactor income from abroad $14 billion\nFactor income paid abroad $98 billion\nDirect taxes $95 billion\nIndirect taxes $23 billion\nProduction subsidies $57 billion\nGDP deflator 117\n\nWhich of the following statements about the economy are correct?\n\n(1) The GDP is higher than the gross national income (GNI).\n(2) The GDP at factor cost is higher than the GDP at market price.\n(3) The nominal GDP is higher than the real GDP.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 47
+      "correctPercentage": 47,
+      "originalQuestionImage": "originals/dse/2023/q-p1-26.jpg"
     },
     {
       "id": "DSE-2023-P1-27",
@@ -66385,7 +66409,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Study the following data of a country.\n\nYear 2020 2021\nUnemployed population (million) 176.9 175.4\nUnemployment rate (%) 3.8 4.0\n\nWhich of the following best explains the above changes of the country from 2020 to 2021?\n\nA. More people look for jobs.\nB. More employed persons emigrate to other countries.\nC. The government raises the effective minimum wage rate.\nD. The government raises the amount of unemployment benefits.",
-      "correctPercentage": 71
+      "correctPercentage": 71,
+      "originalQuestionImage": "originals/dse/2023/q-p1-27.jpg"
     },
     {
       "id": "DSE-2023-P1-28",
@@ -66460,7 +66485,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose the stock market becomes more volatile. Which of the following diagrams best illustrates the effect of the above change on the money market?\n\nA.\nNominal interest rate Quantity of money 0 Ma1 Ma2\nB.\nNominal interest rate Quantity of money 0 Ma\nC.\nNominal interest rate Quantity of money 0 Mt1 Mt2\nD.\nNominal interest rate Quantity of money 0 Mt",
-      "correctPercentage": 67
+      "correctPercentage": 67,
+      "originalQuestionImage": "originals/dse/2023/q-p1-29.jpg"
     },
     {
       "id": "DSE-2023-P1-30",
@@ -66500,7 +66526,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below shows the aggregate demand (AD) curves, the short run aggregate supply (SRAS) curves and the long run aggregate supply (LRAS) curve of an economy. The economy initially operates at point E.\n\nPrice level 0 Output level\nAD1 AD2 SRAS1 SRAS2 LRAS E F\n\nWhich of the following will result in a change in the long run equilibrium point from E to F?\n\nA. Households’ desire to save increases.\nB. Prices of factor inputs decrease.\nC. The government offers more retraining programmes to workers.\nD. The required reserve ratio decreases.",
-      "correctPercentage": 57
+      "correctPercentage": 57,
+      "originalQuestionImage": "originals/dse/2023/q-p1-30.jpg"
     },
     {
       "id": "DSE-2023-P1-31",
@@ -66536,7 +66563,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following is a function of the Hong Kong Monetary Authority?\n\nA. providing loans to licensed banks and the public\nB. managing foreign exchange reserves\nC. determining the market interest rates\nD. collecting taxes for the government",
-      "correctPercentage": 76
+      "correctPercentage": 76,
+      "originalQuestionImage": "originals/dse/2023/q-p1-31.jpg"
     },
     {
       "id": "DSE-2023-P1-32",
@@ -66577,7 +66605,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following will lead to an increase in monetary base?\n\nA. The central bank raises the discount rate.\nB. The central bank reduces the required reserve ratio.\nC. The central bank buys government bonds from the public.\nD. The central bank replaces some of the paper banknotes in circulation with polymer banknotes.",
-      "correctPercentage": 66
+      "correctPercentage": 66,
+      "originalQuestionImage": "originals/dse/2023/q-p1-32.jpg"
     },
     {
       "id": "DSE-2023-P1-33",
@@ -66615,7 +66644,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Carmen withdraws HK$600 000 from her savings deposits with a licensed bank in Hong Kong. She puts one-third of the amount into her current account and remits the remaining amount overseas.\n\nWhat will be the immediate effects of the above actions on the Hong Kong dollar money supply?\n\n(1) M1 increases by HK$200 000.\n(2) M2 decreases by HK$600 000.\n(3) M3 decreases by HK$400 000.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 73
+      "correctPercentage": 73,
+      "originalQuestionImage": "originals/dse/2023/q-p1-33.jpg"
     },
     {
       "id": "DSE-2023-P1-34",
@@ -66653,7 +66683,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following balance sheet of a banking system which has excess reserves of $125 million.\n\nAssets ($ million)\tLiabilities ($ million)\nReserves\t500\tDeposits\t1 500\nLoans\t1 000\t\t\n\nWhich of the following statements about the above banking system is correct?\n\nA.\tThe actual banking multiplier is 4.\nB.\tIf the banking system loans out all the excess reserves, the amount of reserves will decrease after the deposit creation process is completed.\nC.\tIf the banking system loans out all the excess reserves, the maximum possible increase in loans will be $500 million.\nD.\tIf the public withdraws $125 million from the banking system and holds it as cash, the amount of excess reserves will decrease to zero immediately.",
-      "correctPercentage": 58
+      "correctPercentage": 58,
+      "originalQuestionImage": "originals/dse/2023/q-p1-34.jpg"
     },
     {
       "id": "DSE-2023-P1-35",
@@ -66693,7 +66724,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Bobby lives in his newly bought property in Wan Chai. He gains $100000 from trading shares in the stock market of Hong Kong.\n\nBased on the above information, Bobby needs to pay __________ to the Hong Kong Government.\n\n(1) capital gains tax\n(2) property tax\n(3) rates\n(4) stamp duty\n\nA. (1) and (3) only\nB. (2) and (4) only\nC. (3) and (4) only\nD. (1), (2) and (3) only",
-      "correctPercentage": 47
+      "correctPercentage": 47,
+      "originalQuestionImage": "originals/dse/2023/q-p1-35.jpg"
     },
     {
       "id": "DSE-2023-P1-36",
@@ -66729,7 +66761,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following diagrams describe a progressive tax?\n\n(1) Tax payment ($) Taxable Income ($) 0\n(2) Average tax rate (%) Taxable Income ($) 0\n(3) Tax payment ($) Taxable Income ($) 0\n(4) Average tax rate (%) Taxable Income ($) 0\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (4) only\nD. (3) and (4) only",
-      "correctPercentage": 56
+      "correctPercentage": 56,
+      "originalQuestionImage": "originals/dse/2023/q-p1-36.jpg"
     },
     {
       "id": "DSE-2023-P1-37",
@@ -66810,7 +66843,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The table below shows the Composite Consumer Price Index of Hong Kong.\n\nYear Composite Consumer Price Index\n2020 99.9\n2021 101.4\n\nSuppose people did not expect any change in the price level from 2020 to 2021. Which of the following persons would gain when the above change in price level occurred?\n\nA. a lender who provided a one-year loan to an enterprise at a fixed interest rate in 2020\nB. an employee whose salary in 2021 was adjusted according to the inflation rate\nC. a student who paid a fixed tuition fee in both 2020 and 2021\nD. an elderly who held time deposits in a bank from 2020 to 2021",
-      "correctPercentage": 73
+      "correctPercentage": 73,
+      "originalQuestionImage": "originals/dse/2023/q-p1-38.jpg"
     },
     {
       "id": "DSE-2023-P1-39",
@@ -66851,7 +66885,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following chart shows the changes in the GDP deflator of a country.\n \nYear-on-year growth rate of GDP deflator\nGrowth rate\n2% 0% -2% -4% -6%\n2019 2020 2021 2022 Year\n\nBased on the above chart, which of the following statements about the country during the above period are correct?\n\n(1) The purchasing power of money increased.\n(2) The nominal GDP growth rate was lower than the real GDP growth rate.\n(3) The cost of living increased.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 51
+      "correctPercentage": 51,
+      "originalQuestionImage": "originals/dse/2023/q-p1-39.jpg"
     },
     {
       "id": "DSE-2023-P1-40",
@@ -66928,7 +66963,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following are examples of an expansionary fiscal policy?\n\n(1) increasing the child allowance of salaries tax\n(2) launching a consumption voucher scheme\n(3) lowering required reserve ratio\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 51
+      "correctPercentage": 51,
+      "originalQuestionImage": "originals/dse/2023/q-p1-41.jpg"
     },
     {
       "id": "DSE-2023-P1-42",
@@ -66969,7 +67005,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the amount of apples or peaches that Country A and Country B can produce with one unit of resources.\n\n Apples (units) Peaches (units)\nCountry A 100 Or 80\nCountry B 180 Or 90\n\nAccording to the above table, which of the following statements are correct?\n\n(1) The opportunity cost of producing 1 unit of apples is 0.8 units of peaches in Country A.\n(2) Country B has an absolute advantage in producing apples.\n(3) A mutually beneficial terms of trade can be 1 unit of apples = 0.7 units of peaches.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 62
+      "correctPercentage": 62,
+      "originalQuestionImage": "originals/dse/2023/q-p1-42.jpg"
     },
     {
       "id": "DSE-2023-P1-43",
@@ -67050,7 +67087,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following is included in the calculation of the balance of Hong Kong’s current account?\n\nA. A Mainland billionaire spends HK$20 billion building a shopping mall in Hong Kong.\nB. A Japanese resident buys an air ticket to Hong Kong from an airline company in Japan.\nC. A Hong Kong resident receives interest from US Government bonds.\nD. A Hong Kong investor buys shares issued by a German listed company.",
-      "correctPercentage": 53
+      "correctPercentage": 53,
+      "originalQuestionImage": "originals/dse/2023/q-p1-44.jpg"
     },
     {
       "id": "DSE-2023-P1-45",
@@ -67085,7 +67123,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The figure below shows the values of a country's exports and imports of goods from 2018 to 2022.\n \n$ billion\n30 25 20 15 10 5 0\n2018 2019 2020 2021 2022 Year\nValue of exports of goods\nValue of imports of goods\n\nFrom year __________ to year __________, the country had an increase in the value of imports of goods and an increase in visible trade surplus at the same time.\n\nA. 2018 …… 2019\nB. 2019 …… 2020\nC. 2020 …… 2021\nD. 2021 …… 2022",
-      "correctPercentage": 77
+      "correctPercentage": 77,
+      "originalQuestionImage": "originals/dse/2023/q-p1-45.jpg"
     },
     {
       "id": "DSE-2023-P2-01",
@@ -67116,7 +67155,8 @@
       "calculationType": "-",
       "source": "HKDSE 2023 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2023/ae-p2-01.jpg"
     },
     {
       "id": "DSE-2023-P2-02",
@@ -67147,7 +67187,8 @@
       "calculationType": "-",
       "source": "HKDSE 2023 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2023/ae-p2-02.jpg"
     },
     {
       "id": "DSE-2023-P2-03",
@@ -67178,7 +67219,9 @@
       "calculationType": "-",
       "source": "HKDSE 2023 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2023/ae-p2-03.jpg",
+      "originalReportImageEng": "originals/dse/2023/re-p2-03.jpg"
     },
     {
       "id": "DSE-2023-P2-04",
@@ -67240,7 +67283,8 @@
       "calculationType": "-",
       "source": "HKDSE 2023 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2023/ae-p2-05.jpg"
     },
     {
       "id": "DSE-2023-P2-06",
@@ -67271,7 +67315,8 @@
       "calculationType": "-",
       "source": "HKDSE 2023 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2023/ae-p2-06.jpg"
     },
     {
       "id": "DSE-2023-P2-07",
@@ -67302,7 +67347,8 @@
       "calculationType": "-",
       "source": "HKDSE 2023 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2023/ae-p2-07.jpg"
     },
     {
       "id": "DSE-2023-P2-08",
@@ -67333,7 +67379,8 @@
       "calculationType": "-",
       "source": "HKDSE 2023 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2023/ae-p2-08.jpg"
     },
     {
       "id": "DSE-2023-P2-09",
@@ -67364,7 +67411,9 @@
       "calculationType": "-",
       "source": "HKDSE 2023 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2023/ae-p2-09.jpg",
+      "originalReportImageEng": "originals/dse/2023/re-p2-09.jpg"
     },
     {
       "id": "DSE-2023-P2-10",
@@ -67395,7 +67444,9 @@
       "calculationType": "-",
       "source": "HKDSE 2023 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2023/ae-p2-10.jpg",
+      "originalReportImageEng": "originals/dse/2023/re-p2-10.jpg"
     },
     {
       "id": "DSE-2023-P2-11",
@@ -67426,7 +67477,8 @@
       "calculationType": "-",
       "source": "HKDSE 2023 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2023/ae-p2-11.jpg"
     },
     {
       "id": "DSE-2023-P2-12",
@@ -67471,7 +67523,9 @@
       "calculationType": "-",
       "source": "HKDSE 2023 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2023/ae-p2-12.jpg",
+      "originalReportImageEng": "originals/dse/2023/re-p2-12.jpg"
     },
     {
       "id": "DSE-2024-P1-01",
