@@ -23,6 +23,7 @@ if (!window.triStateFilters) {
         curriculum: {}, 
         chapter: {}, 
         feature: { 'Out syl': 'excluded' }, 
+        publisher: {},
         exam: {}, 
         qtype: {},
         section: {},
@@ -51,6 +52,7 @@ const ARROW_MAP = {
     'year-options': 'year-arrow',
     
     // Standard Filters
+    'publisher-options': 'publisher-arrow',
     'exam-options': 'exam-arrow',
     'qtype-options': 'qtype-arrow',
     'section-options': 'section-arrow',
@@ -255,7 +257,7 @@ function updateFilterIndicators() {
     // graph/table/calculation/multipleSelection/concepts/patterns use
     // modal trigger badges (filter-modal.js) instead of dot indicators.
     const triStateTypes = [
-        'exam', 'qtype', 'curriculum', 'chapter', 'feature', 'year',
+        'publisher', 'exam', 'qtype', 'curriculum', 'chapter', 'feature', 'year',
         'section', 'ai'
     ];
     
@@ -824,6 +826,7 @@ function clearFilters() {
         curriculum: {}, 
         chapter: {}, 
         feature: { 'Out syl': 'excluded' },  
+        publisher: {},
         exam: {}, 
         qtype: {},
         section: {},
@@ -941,6 +944,7 @@ function updateSearchInfo() {
         'curriculum': '課程',
         'chapter': 'Chapter',
         'feature': '特徵',
+        'publisher': '出版商',
         'exam': '考試',
         'qtype': '題型',
         'section': 'Section',

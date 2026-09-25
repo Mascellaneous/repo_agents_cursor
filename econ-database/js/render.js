@@ -305,6 +305,7 @@ async function renderQuestions() {
                 </div>
                 <div class="question-badges">
                     ${q.reviewedByAI === 'Y' ? `<span class="badge" title="上次覆核 ${escapeHTML(q.lastReviewDate || '')}">AI已覆核</span>` : `<span class="badge" title="尚未人工覆核">未覆核</span>`}
+                    ${q.publisher && q.publisher !== '-' ? `<span class="badge" style="cursor: pointer;" data-action="filter" data-type="publisher" data-value="${escapeHTML(q.publisher)}" title="點擊以篩選此出版商">${escapeHTML(q.publisher)}</span>` : ''}
                     ${q.year && q.year !== '-' ? `<span class="badge badge-year" style="cursor: pointer;" data-action="filter" data-type="year" data-value="${escapeHTML(q.year)}" title="點擊以篩選此年份">${escapeHTML(q.year)}</span>` : ''}
                     ${q.questionType && q.questionType !== '-' ? `<span class="badge badge-type" style="cursor: pointer;" data-action="filter" data-type="qtype" data-value="${escapeHTML(q.questionType)}" title="點擊以篩選此題型">${escapeHTML(q.questionType)}</span>` : ''}
                     ${q.marks > 0 ? `<span class="badge badge-marks" style="cursor: pointer;" data-action="filter-marks" data-value="${q.marks}" title="點擊以篩選此分數">${q.marks}分</span>` : ''}

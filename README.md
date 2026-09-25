@@ -1,6 +1,6 @@
 # Mock-paper question bank: notes for a future agent
 
-This repository holds Aristo HKDSE Economics mock papers and the `econ-database` app that browses them. Opening `econ-database/index.html` through a web server fetches `econ-database/data/database.json`. Opening that file directly (`file://`) cannot fetch a neighbour file, so the page loads `econ-database/data/database.js` instead. The builder writes both files together. The app does not fetch Google Sheets.
+This repository holds Aristo HKDSE Economics mock papers, an HKEAA question export, and the `econ-database` app that browses them. Opening `econ-database/index.html` through a web server fetches `econ-database/data/database.json`. Opening that file directly (`file://`) cannot fetch a neighbour file, so the page loads `econ-database/data/database.js` instead. The builder writes both files together. The app does not fetch Google Sheets.
 
 ## What the Python script is for
 
@@ -54,6 +54,16 @@ Read `econ-database/data/vocabulary.json` before you classify a new paper. It li
 - A figure labelled 下圖 that is only rows of numbers is a table, not a diagram.
 - 細閱以下 by itself is not a diagram. Use it only when the question actually shows or asks for a figure.
 - Add a new label on the question when none of the existing ones fits. Do not edit `vocabulary.json` by hand. Every time the builder writes `database.json`, it rewrites `vocabulary.json` from the concepts, patterns, diagram types, and table types on those questions, and it keeps labels already in the file. After you change labels without a full import, run `python3 econ-database/scripts/build_mock_questions.py --sync-vocabulary`. That reads `database.json` and updates `vocabulary.json` only.
+
+## HKEAA questions
+
+`econ-database/data/database.json` also holds questions published by HKEAA (HKDSE, HKCEE, and HKALE). They use the same fields as the mock papers. `publisher` is `HKEAA` or `雅集出版社`. The filter row has a 出版商 control that includes or excludes either publisher. A publisher badge on a question card applies the same filter.
+
+Import another HKEAA export with:
+
+`python3 econ-database/scripts/build_mock_questions.py --import-hkeaa path/to/export.json`
+
+The importer classifies topic, concepts, patterns, diagram type, table type, calculation type, and combination type from the wording. New rows stay `reviewedByAI` `N`. A row already marked `Y` is not replaced. It refreshes `vocabulary.json` in the same run.
 
 ## Adding another mock paper
 
