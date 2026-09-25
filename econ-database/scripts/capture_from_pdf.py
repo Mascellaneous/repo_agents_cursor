@@ -603,6 +603,70 @@ def english_question_starts(pdf):
     return kept, pages
 
 
+def answer_line_blocks(image):
+    """Vertical spans of the blank ruled lines left for students to write on."""
+    gray = np.array(image.convert("L"))
+    height, width = gray.shape
+    dark = gray < 170
+    rule = []
+    for i in range(height):
+        cols = np.where(dark[i])[0]
+        if len(cols) < width * 0.5:
+            continue
+        span = int(cols[-1] - cols[0])
+        if span > width * 0.6 and len(cols) > span * 0.6:
+            rule.append(i)
+    lines = []
+    for i in rule:
+        if lines and i - lines[-1][-1] <= 4:
+            lines[-1].append(i)
+        else:
+            lines.append([i])
+    blocks = []
+    run = []
+    for i, line in enumerate(lines):
+        if i == 0:
+            run = [0]
+            continue
+        y0, y1 = lines[i - 1][-1], line[0]
+        gap = y1 - y0
+        band = dark[y0 + 2:y1 - 1]
+        mean = float(band.mean()) if band.size else 1
+        if 18 <= gap <= 110 and mean <= 0.02:
+            run.append(i)
+        else:
+            if len(run) >= 3:
+                blocks.append((lines[run[0]][0] - 6, lines[run[-1]][-1] + 4))
+            run = [i]
+    if len(run) >= 3:
+        blocks.append((lines[run[0]][0] - 6, lines[run[-1]][-1] + 4))
+    return [(max(0, a), min(height, b)) for a, b in blocks if b - a > 40]
+
+
+def strip_answer_lines(image):
+    blocks = answer_line_blocks(image)
+    if not blocks:
+        return image
+    height = image.height
+    pieces = []
+    y = 0
+    for top, bottom in blocks:
+        if top > y + 10:
+            pieces.append(image.crop((0, y, image.width, top)))
+        y = bottom
+    if y < height - 10:
+        pieces.append(image.crop((0, y, image.width, height)))
+    pieces = [piece for piece in pieces if piece.height > 12]
+    if not pieces:
+        return image
+    canvas = Image.new("RGB", (image.width, sum(p.height for p in pieces)), "white")
+    at = 0
+    for piece in pieces:
+        canvas.paste(piece, (0, at))
+        at += piece.height
+    return canvas
+
+
 def crop_english_questions():
     """Crop each English mock question. Leave Chinese crops unchanged."""
     db = json.loads(DB_PATH.read_text())
@@ -634,10 +698,68 @@ def crop_english_questions():
     print("english question images", saved_n, "skipped", skipped)
 
 
+def paper2_answer_starts(pdf):
+    pages = page_words(pdf)
+    start = None
+    for page in pages:
+        for i, (x, y, label) in enumerate(page["words"]):
+            if x > 100 or label != "Paper":
+                continue
+            nxt = next((w for w in page["words"][i + 1:i + 4] if abs(w[1] - y) < 2), None)
+            if nxt and nxt[2] == "2":
+                start = (page["page"], y)
+    kept = []
+    for mark in question_starts(pdf):
+        if not start or (mark["page"], mark["y"]) <= (start[0], start[1]):
+            continue
+        if kept and mark["num"] <= kept[-1]["num"]:
+            break
+        kept.append(mark)
+    return kept, pages
+
+
+def refresh_sq_images():
+    """Drop student answer lines from SQ/LQ question crops and add English answers."""
+    trimmed = 0
+    for path in list(ORIG.glob("*/q-p2-*.jpg")) + list(ORIG.glob("*/qe-p2-*.jpg")):
+        image = Image.open(path)
+        stripped = strip_answer_lines(image)
+        if stripped.size != image.size:
+            stripped.convert("RGB").save(path, quality=74, optimize=True)
+            trimmed += 1
+    db = json.loads(DB_PATH.read_text())
+    by_id = {q["id"]: q for q in db["questions"]}
+    saved = 0
+    for num in range(27, 45):
+        pdf = eng_pdf(num, "Suggested Solution")
+        if not pdf:
+            continue
+        starts, words = paper2_answer_starts(pdf)
+        pages = render_pages(pdf, Path(f"/tmp/mt-render/{num}-eng-ans"))
+        footers = footer_limits(words)
+        for i, mark in enumerate(starts):
+            qid = f"M{num}-P2-Q{mark['num']:02d}"
+            question = by_id.get(qid)
+            if not question or question.get("questionType") == "MC":
+                continue
+            dest = ORIG / str(num) / f"ae-p2-{mark['num']:02d}.jpg"
+            end = starts[i + 1] if i + 1 < len(starts) else None
+            if crop_span(pages, mark, end, dest, footers):
+                question["originalAnswerImageEng"] = f"originals/{num}/ae-p2-{mark['num']:02d}.jpg"
+                saved += 1
+        print("sq english answers", num, "saved", saved, flush=True)
+    text = json.dumps(db, ensure_ascii=False, indent=2) + "\n"
+    DB_PATH.write_text(text)
+    (DATA / "database.js").write_text("window.QUESTION_DATABASE = " + text.strip() + ";\n")
+    print("trimmed question images", trimmed, "english sq answers", saved)
+
+
 if __name__ == "__main__":
     if "--mc-answers" in sys.argv:
         recrop_mc_answers()
     elif "--english-questions" in sys.argv:
         crop_english_questions()
+    elif "--sq-images" in sys.argv:
+        refresh_sq_images()
     else:
         main()

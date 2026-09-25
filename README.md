@@ -71,7 +71,9 @@ Import another HKEAA export with:
 
 The importer classifies topic, concepts, patterns, diagram type, table type, calculation type, and combination type from the wording. New rows stay `reviewedByAI` `N`. A row already marked `Y` is not replaced. It refreshes `vocabulary.json` in the same run.
 
-Question images for the mock papers are cut from the official PDF, not from the Word file. The Chinese wording still comes from the Word file. `questionTextEng` is the English paper when the question number and, for multiple choice, the answer letter match the Chinese record. The matching English question image is `originalQuestionImageEng`. Multiple-choice answer images are the「答案解釋」block in the Chinese solution PDF, and the matching「Explanation」block in the English solution PDF (`originalAnswerImageEng`). Each English answer is the explanation printed under that question number, and it is kept only when its letter matches the Chinese key. `python3 econ-database/scripts/capture_from_pdf.py --mc-answers` recrops those answers.
+Question images for the mock papers are cut from the official PDF, not from the Word file. The Chinese wording still comes from the Word file. `questionTextEng` is the English paper when the question number and, for multiple choice, the answer letter match the Chinese record. The matching English question image is `originalQuestionImageEng`.
+
+Multiple-choice answer images are the「答案解釋」block in the Chinese solution PDF, and the matching「Explanation」block in the English solution PDF (`originalAnswerImageEng`). Each English multiple-choice answer is kept only when its letter matches the Chinese key. Written questions (SQ/LQ, Paper 2) also have an English answer image, cropped from the Paper 2 section of the English solution. The blank ruled lines left for students to write on (答案線) are not part of the question and are removed from both the Chinese and English question images. `python3 econ-database/scripts/capture_from_pdf.py --sq-images` repeats that Paper 2 update.
 
 ## Adding another mock paper
 
