@@ -40183,7 +40183,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements are positive statements?\n\n(1) More workers will be employed on a part-time basis after the imposition of a minimum wage.\n(2) Less low skilled workers will be unemployed after the imposition of a minimum wage.\n(3) Meal times should be counted as working time in the calculation of a minimum wage.\n(4) The imposition of a minimum wage widens the income gap between the rich and the poor.\n\nA. (2) and (3) only\nB. (1) and (4) only\nC. (1), (2) and (3) only\nD. (1), (2) and (4) only",
-      "correctPercentage": 67
+      "correctPercentage": 67,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-01.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-01.jpg"
     },
     {
       "id": "DSE-2012-P1-02",
@@ -40221,7 +40223,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Mr Kwok plans to purchase a new racing car from a German automobile manufacturer and drive the car in Hong Kong. In which of the following situations will the cost of purchasing the racing car increase?\n\nA. The first registration fee increases.\nB. The price of gasoline increases.\nC. The Euro depreciates against the Hong Kong dollar.\nD. The racing car performs poorly.",
-      "correctPercentage": 62
+      "correctPercentage": 62,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-02.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-02.jpg"
     },
     {
       "id": "DSE-2012-P1-03",
@@ -40261,7 +40265,10 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements about interest is correct?\n\nA. People will reduce current consumption when the interest rate drops.\nB. The interest rate will be zero if there is no inflation.\nC. Interest does not exist in a planned economy.\nD. Interest still exists without money.",
-      "correctPercentage": 90
+      "correctPercentage": 90,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-03.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p1-03.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-03.jpg"
     },
     {
       "id": "DSE-2012-P1-04",
@@ -40299,7 +40306,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "A parking lot in the government headquarter is reserved for government officials. The parking lot is _______ because _______.\n\nA. a private good … it is for private use only\nB. a private good … concurrent consumption is not possible\nC. a public good … the government owns it\nD. a public good … no one has an exclusive right to use",
-      "correctPercentage": 72
+      "correctPercentage": 72,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-04.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p1-04.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-04.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-04.jpg"
     },
     {
       "id": "DSE-2012-P1-05",
@@ -40337,7 +40348,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The occupational mobility of labour in an economy will increase when\n\nA.\tthe cross-border railway network is improved.\nB.\tLicences are required for more types of job in the labour market.\nC.\tTax allowances are provided for continuing education.\nD.\tThere is a greater degree of specialization in production.",
-      "correctPercentage": 70
+      "correctPercentage": 70,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-05.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p1-05.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-05.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-05.jpg"
     },
     {
       "id": "DSE-2012-P1-06",
@@ -40373,7 +40388,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following policies will result in an increase in the labour force of Hong Kong?\n\nA. extension of free education from 9 years to 12 years\nB. an increase in the minimum capital requirement of the Capital Investment Entrant Scheme (資本投資者入境計劃)\nC. an increase in the immigration scheme quota for talented persons from the mainland\nD. introduction of maximum working hours",
-      "correctPercentage": 86
+      "correctPercentage": 86,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-06.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p1-06.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-06.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-06.jpg"
     },
     {
       "id": "DSE-2012-P1-07",
@@ -40412,7 +40431,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Some property agencies pay their employees a basic salary plus commission because\n\n(1) It can increase the working incentive of the employees.\n(2) It can transfer part of the business risk to the employees.\n(3) The cost of calculating wages is lower.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 76
+      "correctPercentage": 76,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-07.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-07.jpg"
     },
     {
       "id": "DSE-2012-P1-08",
@@ -40450,7 +40471,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Firm A\tFirm B\nNumber of owners\t2\t10\nTransfer of ownership\tNeeds the consent of other owners\tNeeds the consent of other owners\nContinuity\tContinues to exist when one of the owners goes bankrupt\tWill be dissolved when one of the owners goes bankrupt\n\nAccording to the above table, which of the following descriptions of Firm A and Firm B is correct?\n\nA.\tFirm A is at a greater risk of being taken over by another firm than Firm B.\nB.\tFirm A is a legal entity while Firm B is not.\nC.\tBoth firms are subject to the same profits tax rate.\nD.\tFirm A is required to disclose its financial status to the public while Firm B is not.",
-      "correctPercentage": 77
+      "correctPercentage": 77,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-08.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-08.jpg"
     },
     {
       "id": "DSE-2012-P1-09",
@@ -40488,7 +40511,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following table showing the production costs of a price-taking firm.\n\nTotal output (units) 2 3 4 5 6\nMarginal cost ($) 4 6 8 10 12\nAverage variable cost ($) 3 4 5 6 7\nFixed cost ($) 1 1 1 1 1\n\nIf the product price is $6,\n\nA. the firm will produce 5 units of output to maximize its profit.\nB. the maximum profit the firm can make is $5.\nC. the average variable cost is $5 when the firm maximizes its profit.\nD. the minimum total cost of the firm is $13.",
-      "correctPercentage": 39
+      "correctPercentage": 39,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-09.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p1-09.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-09.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-09.jpg"
     },
     {
       "id": "DSE-2012-P1-10",
@@ -40527,7 +40554,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the table below.\n\n Factory A Factory B\nNumber of workers employed 60 10\nTotal number of working hours 2 000 5 000\nTotal output (units) 12 000 20 000\n\nWhich of the following is a possible reason for the difference between the labour productivity of Factory A and Factory B?\n\nA. Factory B provides more training for its workers.\nB. More machines are used in Factory B.\nC. The working environment in Factory A is poorer.\nD. Factory A pays its workers at piece rate while Factory B pays at time rate.",
-      "correctPercentage": 38
+      "correctPercentage": 38,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-10.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p1-10.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-10.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-10.jpg"
     },
     {
       "id": "DSE-2012-P1-11",
@@ -40565,7 +40596,10 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Michelle is a jewelry lover and she says, “I will spend all my monthly salary on jewelry no matter what the price is.” From this we can conclude that her demand for jewelry is\n\nA. elastic.\nB. inelastic.\nC. unitarily elastic.\nD. perfectly inelastic.",
-      "correctPercentage": 45
+      "correctPercentage": 45,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-11.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p1-11.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-11.jpg"
     },
     {
       "id": "DSE-2012-P1-12",
@@ -40606,7 +40640,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Owing to continuous bad weather, the quantity transacted of local vegetables falls by 40% while the price rises by 13%. Which of the following statements are correct?\n\n(1)\tThe quantity demanded of local vegetables falls.\n(2)\tThe total expenditure on local vegetables rises.\n(3)\tThe demand for imported vegetables rises.\n(4)\tThe total expenditure on imported vegetables may rise or fall depending on the elasticity of demand.\n\nA.\t(1) and (2) only\nB.\t(1) and (3) only\nC.\t(2) and (4) only\nD.\t(3) and (4) only",
-      "correctPercentage": 61
+      "correctPercentage": 61,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-12.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p1-12.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-12.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-12.jpg"
     },
     {
       "id": "DSE-2012-P1-13",
@@ -40640,7 +40678,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "A train accident seriously affects the confidence of travelers using a high-speed electric train services. At the same time, the airlines are facing the problem of rising fuel prices. Which of the following diagrams could represent a result of the above events?\n\nA.\nAir travel service\nPrice Quantity 0 D1 D2 S1 S2\n\nB.\nAir travel service\nPrice Quantity 0 D1 D2 S1 S2\n\nC.\nHigh-speed electric train service\nPrice Quantity 0 D1 D2 S1 S2\n\nD.\nHigh-speed electric train service\nPrice Quantity 0 D1 D2 S1",
-      "correctPercentage": 78
+      "correctPercentage": 78,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-13.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p1-13.jpg"
     },
     {
       "id": "DSE-2012-P1-14",
@@ -40682,7 +40722,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "On 10th July 2011, the urban taxi fare for the first 2km was raised from $18 to $20. Which of the following statements about the urban taxi service are correct?\n\n(1)\tThe demand for taxi service dropped.\n(2)\tThe price of long-distance taxi trips relative to short-distance taxi trips dropped.\n(3)\tThe consumer surplus for the taxi service dropped.\n\nA.\t(1) and (2) only\nB.\t(1) and (3) only\nC.\t(2) and (3) only\nD.\t(1), (2) and (3)",
-      "correctPercentage": 64
+      "correctPercentage": 64,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-14.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p1-14.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-14.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-14.jpg"
     },
     {
       "id": "DSE-2012-P1-15",
@@ -40722,7 +40766,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following is the demand-supply diagram of a property market. E0 is the original equilibrium point.\n\nPrice Quantity 0\nE0 S0 S1 S2 D1 D2 D0\n\nIf the government increases the stamp duties levied on property buyers and tightens the controls on dumping of construction waste, the new equilibrium point in the property market will be _______.\n\nA.\tE1\nB.\tE2\nC.\tE3\nD.\tE4",
-      "correctPercentage": 80
+      "correctPercentage": 80,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-15.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p1-15.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-15.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-15.jpg"
     },
     {
       "id": "DSE-2012-P1-16",
@@ -40763,7 +40811,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following demand-supply schedule of good X and answer Question 16 and 17.\n\nPrice ($)\tQuantity demanded (units)\tQuantity supplied (units)\n10\t700\t300\n11\t600\t400\n12\t500\t500\n13\t400\t600\n14\t300\t700\n15\t200\t800\n\nIf the government imposes a per unit tax of $4 on good X,\n\nA.\tthe total tax revenue will be $2 000.\nB.\tthe total sales revenue will drop by $1 800.\nC.\tthe demand for good X is inelastic.\nD.\tthe total sales revenue of the substitutes of good X will drop.",
-      "correctPercentage": 66
+      "correctPercentage": 66,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-16.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-16.jpg"
     },
     {
       "id": "DSE-2012-P1-17",
@@ -40797,7 +40847,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "With reference to the above question, the ratio of the consumers’ tax burden to the producers’ tax burden is ___________.\n\nA. 1:1\nB. 1:3\nC. 3:1\nD. None of the above",
-      "correctPercentage": 60
+      "correctPercentage": 60,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-17.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-17.jpg"
     },
     {
       "id": "DSE-2012-P1-18",
@@ -40833,7 +40885,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "If a firm is a monopolist in a market,\n\nA.\tits monopoly power may come from the government.\nB.\tits return will be positive.\nC.\tit faces no competition.\nD.\tit bears no risk.",
-      "correctPercentage": 75
+      "correctPercentage": 75,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-18.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-18.jpg"
     },
     {
       "id": "DSE-2012-P1-19",
@@ -40873,7 +40927,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The increase of an effective quota on a good will result in\n\n(1) an increase in the quantity transacted of the good.\n(2) a further improvement in the quality of the good.\n(3) a smaller deadweight loss.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 56
+      "correctPercentage": 56,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-19.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-19.jpg"
     },
     {
       "id": "DSE-2012-P1-20",
@@ -40912,7 +40968,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following diagrams show the Lorenz curves of Country A and Country B:\n\nCountry A Country B\n% of income\n% of households\n0 20 40 60 80 100\n\nAccording to the above two diagrams,\n\nA.\tCountry B has a higher national income than Country A.\nB.\tthe low income group of Country B has a higher income than that of Country A.\nC.\tCountry A has a more even distribution of income than Country B.\nD.\tCountry A has a higher Gini coefficient than Country B.",
-      "correctPercentage": 82
+      "correctPercentage": 82,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-20.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-20.jpg"
     },
     {
       "id": "DSE-2012-P1-21",
@@ -40952,7 +41010,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following are possible causes of income inequality among individuals?\n\n(1) difference in race\n(2) difference in capital ownership\n(3) difference in health\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 64
+      "correctPercentage": 64,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-21.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-21.jpg"
     },
     {
       "id": "DSE-2012-P1-22",
@@ -40994,7 +41054,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following table.\n\nGross Domestic Product (GDP) Components\t$ million\nPrivate consumption expenditure\t200\nNet domestic fixed capital formation\t40\nIncrease in inventory\tX\nGovernment consumption expenditure\t24\nNet exports\t10\nIndirect taxes\t60\nSubsides\t30\nDepreciation\t40\nNet factor income from abroad\t16\n\nIf the GDP at factor cost is $264 million, the value of X is _______.\n\nA.\t-50\nB.\t-20\nC.\t20\nD.\t50",
-      "correctPercentage": 61
+      "correctPercentage": 61,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-22.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-22.jpg"
     },
     {
       "id": "DSE-2012-P1-23",
@@ -41033,7 +41095,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Country A’s general price level increases by 10% and its aggregate output and population drop by 2% and 10% respectively. As a result, Country A’s nominal GDP will _______ and the per-capita real GDP will _______.\n\nA. rise … rise\nB. rise … fall\nC. remain unchanged … rise\nD. remain unchanged … fall",
-      "correctPercentage": 53
+      "correctPercentage": 53,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-23.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-23.jpg"
     },
     {
       "id": "DSE-2012-P1-24",
@@ -41073,7 +41137,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Many Hong Kong construction workers stay in Macau to work for several years. If they are attracted by the job opportunities offered by new infrastructure projects in Hong Kong and return to seek jobs, what will be the effect on the unemployment rate in Hong Kong?\n\nA.\tThe unemployment rate will increase.\nB.\tThe unemployment rate will decrease.\nC.\tThe unemployment rate will remain unchanged.\nD.\tThe effect on the unemployment rate cannot be determined.",
-      "correctPercentage": 53
+      "correctPercentage": 53,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-24.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-24.jpg"
     },
     {
       "id": "DSE-2012-P1-25",
@@ -41114,7 +41180,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following will lead to a decrease in aggregate demand?\n\nA. a rise in private saving\nB. a rise in investment expenditure\nC. a fall in imports\nD. a fall in the progressivity of income tax",
-      "correctPercentage": 72
+      "correctPercentage": 72,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-25.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-25.jpg"
     },
     {
       "id": "DSE-2012-P1-26",
@@ -41156,7 +41224,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below shows the aggregate demand (AD) curves, the short run aggregate supply (SRAS) curves and the long run aggregate supply (LRAS) curve of a country. Point E is the initial equilibrium point.\n\nPrice Output 0\nAD1 AD2 SRAS1 SRAS2 E LRAS\n\nWhen there is an economic recovery in the country's major trading partner, _______ in the short run and _______ in the long run.\n\nA.\tAD1 will shift to AD2 ... SRAS1 will shift to SRAS2\nB.\tAD1 will shift to AD2 ... AD2 will shift back to AD1\nC.\tSRAS1 will shift to SRAS2 ... AD1 will shift to AD2\nD.\tSRAS1 will shift to SRAS2 ... SRAS2 will shift back to SRAS1",
-      "correctPercentage": 73
+      "correctPercentage": 73,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-26.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-26.jpg"
     },
     {
       "id": "DSE-2012-P1-27",
@@ -41195,7 +41265,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The table below shows the balance sheet of a banking system.\n\nAssets ($ million) Liabilities ($ million)\nReserves 400 Deposits 1 000\nLoans 600 \n\nSuppose the required reserve ratio for the banking system is 25%. Which of the following statements is correct?\n\nA. The excess reserves of the banking system are $200 million.\nB. The actual banking multiplier of the banking system is 4.\nC. The banking system can expand its total deposits to $1 600 million.\nD. The maximum amount of loans the banking system can make is $1 000 million.",
-      "correctPercentage": 71
+      "correctPercentage": 71,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-27.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-27.jpg"
     },
     {
       "id": "DSE-2012-P1-28",
@@ -41233,7 +41305,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Winnie withdraws HK$500 000 from her time deposit with a deposit-taking company. Then she deposits HK$200 000 as a time deposit and HK$100 000 as a demand deposit with a licensed bank. She keeps $50 000 in a safe at home and remits the remainder overseas.\n\nWhat will be the immediate effect of the above actions on the Hong Kong dollar money supply?\n\nA. M1 will increase by HK$50 000 and M2 will increase by HK$350 000.\nB. M1 will increase by HK$150 000 and M3 will decrease by $150 000.\nC. M2 will increase by HK$150 000 and M3 will decrease by HK$150 000.\nD. M2 will increase by HK$350 000 and M3 will decrease by HK$500 000.",
-      "correctPercentage": 69
+      "correctPercentage": 69,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-28.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-28.jpg"
     },
     {
       "id": "DSE-2012-P1-29",
@@ -41271,7 +41345,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following is NOT a function of the Hong Kong Monetary Authority?\n\nA.\tdetermining the inter-bank offered rate in Hong Kong\nB.\tsupervising the liquidity position of the private banking institutions\nC.\tmanaging and investing the Exchange Fund\nD.\tmaintaining the stability of the linked exchange rate",
-      "correctPercentage": 64
+      "correctPercentage": 64,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-29.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-29.jpg"
     },
     {
       "id": "DSE-2012-P1-30",
@@ -41313,7 +41389,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "On-line shopping has become more popular, and hence people hold less cash for transaction purposes. Which of the following measures can be adopted by a central bank to reduce the effect of the above situation on the interest rate?\n\n(1) an increase in discount rate\n(2) an increase in required reserve ratio\n(3) an open market purchase of government bonds\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 51
+      "correctPercentage": 51,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-30.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-30.jpg"
     },
     {
       "id": "DSE-2012-P1-31",
@@ -41352,7 +41430,10 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "In an open economy, the government expenditure is equal to tax revenue and the value of exports is equal to the value of imports. If there is an increase in private consumption expenditure, the government will have _______ and there will be _______.\n\nA.\ta budget deficit … a trade deficit\nB.\ta budget deficit … a trade surplus\nC.\ta budget surplus … a trade deficit\nD.\ta budget surplus … a trade surplus",
-      "correctPercentage": 40
+      "correctPercentage": 40,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-31.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-31.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-31.jpg"
     },
     {
       "id": "DSE-2012-P1-32",
@@ -41394,7 +41475,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The US government has accumulated a huge amount of debt, about US$14 trillion in 2011. If there is unexpected inflation in the US, which of the following parties will most likely gain?\n\nA. Hong Kong residents holding cash in Hong Kong dollars under the linked exchange rate system\nB. US citizens holding time deposits\nC. countries holding a large amount of US government bonds, like China and Japan\nD. the US government",
-      "correctPercentage": 68
+      "correctPercentage": 68,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-32.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-32.jpg"
     },
     {
       "id": "DSE-2012-P1-33",
@@ -41432,7 +41515,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Serine has the following incomes:\n\n(1) rental income from a leased flat\n(2) dividends from a local listed company\n(3) a gratuity (酬金) after completion of contract as a manager\n(4) commission received as an agent\n\nAccording to the tax system of Hong Kong, which of the above incomes are subjected to taxation?\n\nA. (1) and (3) only\nB. (2) and (4) only\nC. (1), (3) and (4) only\nD. (1), (2), (3) and (4)",
-      "correctPercentage": 56
+      "correctPercentage": 56,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-33.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-33.jpg"
     },
     {
       "id": "DSE-2012-P1-34",
@@ -41472,7 +41557,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose the government spends $3 billion on the construction of a cruise terminal which is financed from its services. This will result in\n\n(1) an increase in aggregate output in the short run.\n(2) an increase in aggregate output in the long run.\n(3) an increase in employment in the short run.\n(4) a budget deficit in the years of construction.\n\nA. (1) and (3) only\nB. (2) and (4) only\nC. (1), (2) and (3) only\nD. (1), (3) and (4) only",
-      "correctPercentage": 51
+      "correctPercentage": 51,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-34.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-34.jpg"
     },
     {
       "id": "DSE-2012-P1-35",
@@ -41508,7 +41595,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following charts show the composition of the General Revenue Account of Hong Kong in years 2008-2009 and 2009-2010.\n\n2008-2009\nDirect tax 46.20%\nIndirect tax 22.80%\nOther revenues 31.00%\n\n2009-2010\nDirect tax 38.70%\nIndirect tax 26.60%\nOther revenues 34.70%\n\nBased on the above data, in the year 2009-2010,\n\nA.\tthere was an economic recession in Hong Kong.\nB.\tthe ratio of direct taxes to indirect taxes increased.\nC.\tthe total amount of tax revenue decreased.\nD.\tthe proportion of tax revenue in total government revenue decreased.",
-      "correctPercentage": 69
+      "correctPercentage": 69,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-35.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-35.jpg"
     },
     {
       "id": "DSE-2012-P1-36",
@@ -41550,7 +41639,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following can offset the effect of a decrease in income tax rate on aggregate demand?\n\nA. a decrease in the asset demand for money\nB. a decrease in the desire to import\nC. an increase in the desire to invest\nD. an increase in the required reserve ratio",
-      "correctPercentage": 52
+      "correctPercentage": 52,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-36.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-36.jpg"
     },
     {
       "id": "DSE-2012-P1-37",
@@ -41588,7 +41679,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the number of toys or clothes that Country A and Country B can produce with one unit of resources.\n\n Toys (units) Clothes (units)\nCountry A 10 10\nCountry B 4 10\n\nIf the terms of trade is 2 units of clothes = 1 unit of toys,\n\nA. Country A will gain 5 units of toys per unit of imports.\nB. Country A will gain 0.6 units of clothes per unit of exports.\nC. Country B will gain 0.5 units of clothes per unit of imports.\nD. Country B will export toys and gain 0.6 units of clothes per unit of exports.",
-      "correctPercentage": 65
+      "correctPercentage": 65,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-37.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-37.jpg"
     },
     {
       "id": "DSE-2012-P1-38",
@@ -41629,7 +41722,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Consider the trade of a good between two countries. Suppose we know their opportunity costs of producing the good. Without knowing the terms of trade, we can determine\n\n(1) the possible range of the terms of trade.\n(2) the gain of each country from trading one unit of the good.\n(3) the total gain of both countries from trading one unit of the good.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 47
+      "correctPercentage": 47,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-38.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-38.jpg"
     },
     {
       "id": "DSE-2012-P1-39",
@@ -41667,7 +41762,10 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Date Exchange Rate\nSeptember 2010 HK$10 = 1 Euro\nJuly 2011 HK$11.3 = 1 Euro\n\nThe above change in the exchange rate between HK$ and the Euro will result in\n\nA. a drop in the number of tourists from Europe to Hong Kong.\nB. a drop in the price (in terms of HK$) of imports from Europe.\nC. a drop in the total value (in terms of the Euro) of imports from Europe.\nD. a drop in the exchange rate of the US dollar against the Euro.",
-      "correctPercentage": 37
+      "correctPercentage": 37,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-39.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-39.jpg",
+      "originalReportImage": "originals/dse/2012/r-p1-39.jpg"
     },
     {
       "id": "DSE-2012-P1-40",
@@ -41705,7 +41803,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following is an invisible import in the current account of Hong Kong?\n\nA. In Beijing, a Hong Kong tourist purchases tickets to visit a local museum.\nB. A Mainland resident consults a doctor in a hospital in Hong Kong.\nC. A Mainland billionaire donates money to a university in Hong Kong.\nD. A Hong Kong manufacturer purchases raw materials from a Mainland firm.",
-      "correctPercentage": 52
+      "correctPercentage": 52,
+      "originalQuestionImageEng": "originals/dse/2012/qe-p1-40.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p1-40.jpg"
     },
     {
       "id": "DSE-2012-P2-01",
@@ -41741,7 +41841,9 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "A good which is free-of-charge is a free good. Do you agree? Explain. (3 marks)"
+      "questionTextEng": "A good which is free-of-charge is a free good. Do you agree? Explain. (3 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-01.jpg",
+      "originalReportImage": "originals/dse/2012/r-p2-01.jpg"
     },
     {
       "id": "DSE-2012-P2-02",
@@ -41778,7 +41880,11 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "The table below shows the input-output relationship of a firm.\nWorker (Units)\tMachine (Units)\tTotal output (Units)\n10\t1\t10\n15\t2\t23\n20\t3\t42\n25\t4\t62\n30\t5\t80\n\nState the law of diminishing marginal returns and explain whether the above data illustrate the law.\t(5 marks)"
+      "questionTextEng": "The table below shows the input-output relationship of a firm.\nWorker (Units)\tMachine (Units)\tTotal output (Units)\n10\t1\t10\n15\t2\t23\n20\t3\t42\n25\t4\t62\n30\t5\t80\n\nState the law of diminishing marginal returns and explain whether the above data illustrate the law.\t(5 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-02.jpg",
+      "originalAnswerImageEng": "originals/dse/2012/ae-p2-02.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p2-02.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-02.jpg"
     },
     {
       "id": "DSE-2012-P2-03",
@@ -41812,7 +41918,12 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "A telecommunication service provider starts a credit company which offers loans to the public.\n(a)    Explain what type of expansion this is.                                           (2 marks)\n(b)    List THREE possible motives for the above expansion.                            (3 marks)"
+      "questionTextEng": "A telecommunication service provider starts a credit company which offers loans to the public.\n(a)    Explain what type of expansion this is.                                           (2 marks)\n(b)    List THREE possible motives for the above expansion.                            (3 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-03.jpg",
+      "originalAnswerImageEng": "originals/dse/2012/ae-p2-03.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p2-03.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p2-03.jpg",
+      "originalReportImage": "originals/dse/2012/r-p2-03.jpg"
     },
     {
       "id": "DSE-2012-P2-04",
@@ -41849,7 +41960,13 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "According to a report of the United Nations in 2008, the Gini coefficients of Hong Kong and Beijing were 0.53 and 0.22 respectively.\n\n(a)\tWas the income gap between the rich and the poor in Hong Kong wider or narrower than that in Beijing?\t(1 mark)\n(b)\tExplain how an increase in the standard tax rate of salaries tax will affect the post-tax Gini coefficient of Hong Kong.\t(3 marks)"
+      "questionTextEng": "According to a report of the United Nations in 2008, the Gini coefficients of Hong Kong and Beijing were 0.53 and 0.22 respectively.\n\n(a)\tWas the income gap between the rich and the poor in Hong Kong wider or narrower than that in Beijing?\t(1 mark)\n(b)\tExplain how an increase in the standard tax rate of salaries tax will affect the post-tax Gini coefficient of Hong Kong.\t(3 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-04.jpg",
+      "originalAnswerImageEng": "originals/dse/2012/ae-p2-04.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p2-04.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p2-04.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-04.jpg",
+      "originalReportImage": "originals/dse/2012/r-p2-04.jpg"
     },
     {
       "id": "DSE-2012-P2-05",
@@ -41887,7 +42004,12 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "Country A has imposed an effective price ceiling on Good X.\n\n(a)\tSuppose Country A eliminates all illegal transactions of Good X. Can this price control ensure all lower income buyers obtain the quantity of Good X they plan to purchase? Explain.\t(4 marks)\n\n(b)\tAfter the imposition of the price ceiling, many citizens in Country B travel to Country A to purchase Good X. Will the balance of invisible trade of Country A be affected? Explain.\t(3 marks)\n\n(c)\tSuppose the effective price ceiling is lowered. Will the change in price ceiling improve economic efficiency? Explain your answer with the aid of a diagram.\t(4 marks)"
+      "questionTextEng": "Country A has imposed an effective price ceiling on Good X.\n\n(a)\tSuppose Country A eliminates all illegal transactions of Good X. Can this price control ensure all lower income buyers obtain the quantity of Good X they plan to purchase? Explain.\t(4 marks)\n\n(b)\tAfter the imposition of the price ceiling, many citizens in Country B travel to Country A to purchase Good X. Will the balance of invisible trade of Country A be affected? Explain.\t(3 marks)\n\n(c)\tSuppose the effective price ceiling is lowered. Will the change in price ceiling improve economic efficiency? Explain your answer with the aid of a diagram.\t(4 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-05.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p2-05.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p2-05.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-05.jpg",
+      "originalReportImage": "originals/dse/2012/r-p2-05.jpg"
     },
     {
       "id": "DSE-2012-P2-06",
@@ -41923,7 +42045,13 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "Rising unemployment is one of the phenomena which occurs during economic recession.\n(a)\tState TWO losses to society caused by unemployment. \t(2 marks)\n(b)\tOther than rising unemployment, give TWO other economic phenomena which occur during economic recession.\t(2 marks)"
+      "questionTextEng": "Rising unemployment is one of the phenomena which occurs during economic recession.\n(a)\tState TWO losses to society caused by unemployment. \t(2 marks)\n(b)\tOther than rising unemployment, give TWO other economic phenomena which occur during economic recession.\t(2 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-06.jpg",
+      "originalAnswerImageEng": "originals/dse/2012/ae-p2-06.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p2-06.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p2-06.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-06.jpg",
+      "originalReportImage": "originals/dse/2012/r-p2-06.jpg"
     },
     {
       "id": "DSE-2012-P2-07",
@@ -41959,7 +42087,11 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "\"9999 gold is preferred to cigarettes when used as money.\" Give TWO reasons to explain this argument. \t(4 marks)"
+      "questionTextEng": "\"9999 gold is preferred to cigarettes when used as money.\" Give TWO reasons to explain this argument. \t(4 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-07.jpg",
+      "originalAnswerImageEng": "originals/dse/2012/ae-p2-07.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p2-07.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-07.jpg"
     },
     {
       "id": "DSE-2012-P2-08",
@@ -41997,7 +42129,10 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "A country's currency depreciates against its trading partners' currencies. Will the depreciation necessarily lower the total import value of this country (in terms of domestic currency)? Explain with the aid of the diagram below. \t (7 marks)\n\nPrice (in terms of domestic currency)\nQuantity of imports"
+      "questionTextEng": "A country's currency depreciates against its trading partners' currencies. Will the depreciation necessarily lower the total import value of this country (in terms of domestic currency)? Explain with the aid of the diagram below. \t (7 marks)\n\nPrice (in terms of domestic currency)\nQuantity of imports",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-08.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p2-08.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-08.jpg"
     },
     {
       "id": "DSE-2012-P2-09",
@@ -42036,7 +42171,13 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "Country A requires 2 working-hours to produce a unit of shirts while Country B requires 1 working-hour. On the other hand, Country A requires 10 working-hours to produce a unit of watches while Country B requires 4 working-hours. Suppose labour is the only resource required for the production of shirts and watches.\n\n(a)        Calculate the opportunity costs of producing 1 unit of shirts (in terms of watches) for Country A and Country B.          (2 marks)\n\n(b)        State the principle of comparative advantage. According to this principle, explain which country would export shirts.         (3 marks)\n\n(c)        Find the range of terms of trade over which exchange between both countries is mutually beneficial.          (2 marks)"
+      "questionTextEng": "Country A requires 2 working-hours to produce a unit of shirts while Country B requires 1 working-hour. On the other hand, Country A requires 10 working-hours to produce a unit of watches while Country B requires 4 working-hours. Suppose labour is the only resource required for the production of shirts and watches.\n\n(a)        Calculate the opportunity costs of producing 1 unit of shirts (in terms of watches) for Country A and Country B.          (2 marks)\n\n(b)        State the principle of comparative advantage. According to this principle, explain which country would export shirts.         (3 marks)\n\n(c)        Find the range of terms of trade over which exchange between both countries is mutually beneficial.          (2 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-09.jpg",
+      "originalAnswerImageEng": "originals/dse/2012/ae-p2-09.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p2-09.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p2-09.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-09.jpg",
+      "originalReportImage": "originals/dse/2012/r-p2-09.jpg"
     },
     {
       "id": "DSE-2012-P2-10",
@@ -42078,7 +42219,13 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "In 2011, the Financial Secretary announced the \"Scheme $6000\" which provides $6000 to each Hong Kong permanent resident who is 18 years old or above.\n\n(a)        Mr. Chan is a retired person and received $6000 through the scheme in 2011.\n\n(i)        Should this item of payment by the government be included in the calculation of Gross Domestic Product of Hong Kong in 2011? Explain.\n        (2 marks)\n\n(ii)        Mr. Chan considers investing the $6000 either in shares or bonds issued by a listed company. Explain with TWO reasons why bonds could be a better choice than shares for Mr. Chan.         (4 marks)\n\n(b)        Do you think that the government should introduce the \"Scheme $6000\" to improve equity in the Hong Kong society? Explain.         (4 marks)\n\n(c)        With the aid of a diagram, explain how the \"Scheme $6000\" would affect the price and output levels of Hong Kong in the long run.        (8 marks)"
+      "questionTextEng": "In 2011, the Financial Secretary announced the \"Scheme $6000\" which provides $6000 to each Hong Kong permanent resident who is 18 years old or above.\n\n(a)        Mr. Chan is a retired person and received $6000 through the scheme in 2011.\n\n(i)        Should this item of payment by the government be included in the calculation of Gross Domestic Product of Hong Kong in 2011? Explain.\n        (2 marks)\n\n(ii)        Mr. Chan considers investing the $6000 either in shares or bonds issued by a listed company. Explain with TWO reasons why bonds could be a better choice than shares for Mr. Chan.         (4 marks)\n\n(b)        Do you think that the government should introduce the \"Scheme $6000\" to improve equity in the Hong Kong society? Explain.         (4 marks)\n\n(c)        With the aid of a diagram, explain how the \"Scheme $6000\" would affect the price and output levels of Hong Kong in the long run.        (8 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-10.jpg",
+      "originalAnswerImageEng": "originals/dse/2012/ae-p2-10.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p2-10.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p2-10.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-10.jpg",
+      "originalReportImage": "originals/dse/2012/r-p2-10.jpg"
     },
     {
       "id": "DSE-2012-P2-11",
@@ -42118,7 +42265,11 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "Read the following news extract.\n\nHong Kong's inflation rate rose to 7.9% last month - the sharpest jump in 16 years - confirming what many families already feared as they struggle to keep up with the runaway cost of food and rent ......\n\n(a)        What is inflation?         (2 marks)\n\n(b)        Many workers have their salaries increased during inflation. Explain whether the real income of these workers would necessarily rise.          (3 marks)\n\nTo relieve the effect of inflation on citizens, the government has issued inflation-linked bonds (ibonds) with interest paid to bondholders every six months. The interest rate is positively related to the actual inflation rate of the last half-year period.\n\n(c)        What is the opportunity cost of holding cash instead of ibonds?         (2 marks)\n\n(d)        Explain how ibonds would relieve the effect of inflation on their holders.        (2 marks)"
+      "questionTextEng": "Read the following news extract.\n\nHong Kong's inflation rate rose to 7.9% last month - the sharpest jump in 16 years - confirming what many families already feared as they struggle to keep up with the runaway cost of food and rent ......\n\n(a)        What is inflation?         (2 marks)\n\n(b)        Many workers have their salaries increased during inflation. Explain whether the real income of these workers would necessarily rise.          (3 marks)\n\nTo relieve the effect of inflation on citizens, the government has issued inflation-linked bonds (ibonds) with interest paid to bondholders every six months. The interest rate is positively related to the actual inflation rate of the last half-year period.\n\n(c)        What is the opportunity cost of holding cash instead of ibonds?         (2 marks)\n\n(d)        Explain how ibonds would relieve the effect of inflation on their holders.        (2 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-11.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p2-11.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-11.jpg",
+      "originalReportImage": "originals/dse/2012/r-p2-11.jpg"
     },
     {
       "id": "DSE-2012-P2-12",
@@ -42159,7 +42310,13 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "The local property market is considered to be overheated.\n\n(a)        Most private housing is constructed by several major property developers in Hong Kong. State the market structure of the private housing market and list TWO features of such kind of market structure.          (3 marks)\n\n(b)        Chinachem Group is one of the property developers in Hong Kong. Unlike other major developers, Chinachem Group does not list its shares on the stock market. State TWO advantages and TWO disadvantages of being a private limited company instead of a listed company.          (4 marks)\n\n(c)        The government has decided to re-introduce the Home Ownership Scheme in which eligible citizens can purchase a living unit under the scheme at a great discount.\n\n(i)        With the aid of a demand-supply diagram, explain how the re-introduction of the Home Ownership Scheme would cool down the private housing market.          (5 marks)\n\n(ii)        WITHOUT the aid of a diagram, explain how the mortgage interest rate could be adjusted to cool down the private housing market.        (3 marks)"
+      "questionTextEng": "The local property market is considered to be overheated.\n\n(a)        Most private housing is constructed by several major property developers in Hong Kong. State the market structure of the private housing market and list TWO features of such kind of market structure.          (3 marks)\n\n(b)        Chinachem Group is one of the property developers in Hong Kong. Unlike other major developers, Chinachem Group does not list its shares on the stock market. State TWO advantages and TWO disadvantages of being a private limited company instead of a listed company.          (4 marks)\n\n(c)        The government has decided to re-introduce the Home Ownership Scheme in which eligible citizens can purchase a living unit under the scheme at a great discount.\n\n(i)        With the aid of a demand-supply diagram, explain how the re-introduction of the Home Ownership Scheme would cool down the private housing market.          (5 marks)\n\n(ii)        WITHOUT the aid of a diagram, explain how the mortgage interest rate could be adjusted to cool down the private housing market.        (3 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-12.jpg",
+      "originalAnswerImageEng": "originals/dse/2012/ae-p2-12.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p2-12.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p2-12.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-12.jpg",
+      "originalReportImage": "originals/dse/2012/r-p2-12.jpg"
     },
     {
       "id": "DSE-2012-P2-13",
@@ -42198,7 +42355,11 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2012 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "questionTextEng": "The following table shows the balance sheet of the banking system of an economy:\nAssets ($ million)        Liabilities ($ million)\nReserves        500        Deposits        2000\nLoans        1500                \n\nSuppose the public does not hold cash and there are $100 million excess reserves in the banking system.\n\n(a)        Find the required reserve ratio. Show your working.        (2 marks)\n\n(b)        Find the maximum possible amount of deposits if the banks are fully loaned up. Show your working.         (2 marks)\n\n(c)        The central bank injects $200 million newly-printed banknotes into the banking system. If the banks lend out all of their excess reserves, what will the amount of money supply be in the economy? Show your working.          (4 marks)\n\n(d)        Based on the quantity theory of money, predict the effect of the monetary policy in (c) on the price level. State the assumption(s) needed to reach your conclusion.         (4 marks)"
+      "questionTextEng": "The following table shows the balance sheet of the banking system of an economy:\nAssets ($ million)        Liabilities ($ million)\nReserves        500        Deposits        2000\nLoans        1500                \n\nSuppose the public does not hold cash and there are $100 million excess reserves in the banking system.\n\n(a)        Find the required reserve ratio. Show your working.        (2 marks)\n\n(b)        Find the maximum possible amount of deposits if the banks are fully loaned up. Show your working.         (2 marks)\n\n(c)        The central bank injects $200 million newly-printed banknotes into the banking system. If the banks lend out all of their excess reserves, what will the amount of money supply be in the economy? Show your working.          (4 marks)\n\n(d)        Based on the quantity theory of money, predict the effect of the monetary policy in (c) on the price level. State the assumption(s) needed to reach your conclusion.         (4 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-13.jpg",
+      "originalAnswerImageEng": "originals/dse/2012/ae-p2-13.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p2-13.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-13.jpg"
     },
     {
       "id": "DSE-2012-P2-14",
@@ -42239,7 +42400,12 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "N",
       "lastReviewDate": "",
       "marks": 16,
-      "questionTextEng": "Large supermarket chains around the world are alleged to practise price discrimination.\n\n(a)        What is price discrimination?         (2 marks)\n\n(b)        State TWO conditions for price discrimination.         (2 marks)\n\n(c)        Below are some pricing arrangements among large supermarket chains. Explain whether they constitute price discrimination.\n\n(i)        Customers pay less for the same products during a promotional period.\n\n(ii)        Customers with discount coupons pay less for the same products.          (6 marks)\n\n(d)        Some supermarket chains are involved in the following business practices.\n\n(1)        They agree to raise the prices of the same products simultaneously.\n(2)        They request suppliers not to supply the same products to other sellers.\n\nWhat kind of anti-competitive business practice is described in each of the above practices? State whether each of the above practices constitutes horizontal agreement or vertical agreement.        (4 marks)\n\n(e)        State TWO ways in which anti-competitive business practices may harm consumers.        (2 marks)"
+      "questionTextEng": "Large supermarket chains around the world are alleged to practise price discrimination.\n\n(a)        What is price discrimination?         (2 marks)\n\n(b)        State TWO conditions for price discrimination.         (2 marks)\n\n(c)        Below are some pricing arrangements among large supermarket chains. Explain whether they constitute price discrimination.\n\n(i)        Customers pay less for the same products during a promotional period.\n\n(ii)        Customers with discount coupons pay less for the same products.          (6 marks)\n\n(d)        Some supermarket chains are involved in the following business practices.\n\n(1)        They agree to raise the prices of the same products simultaneously.\n(2)        They request suppliers not to supply the same products to other sellers.\n\nWhat kind of anti-competitive business practice is described in each of the above practices? State whether each of the above practices constitutes horizontal agreement or vertical agreement.        (4 marks)\n\n(e)        State TWO ways in which anti-competitive business practices may harm consumers.        (2 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-14.jpg",
+      "originalAnswerImageEng": "originals/dse/2012/ae-p2-14.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p2-14.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-14.jpg",
+      "originalReportImage": "originals/dse/2012/r-p2-14.jpg"
     },
     {
       "id": "DSE-2012-P2-15",
@@ -42279,7 +42445,13 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "N",
       "lastReviewDate": "",
       "marks": 16,
-      "questionTextEng": "In the diagram below, AA and BB are the production-possibility frontiers of Country A and Country B respectively.\n \n\n(a)        (i)        Which country has a comparative advantage in producing Good X? Explain.\n(ii)        Is mutually beneficial trade possible between these two countries? Explain.        (4 marks)\n\n(b)        If the terms of trade is 10 units of X in exchange for 8 units of Y, what will be the gain from trade per unit of X traded for each country?          (4 marks)\n\n(c)        Explain whether your answer in (a)(i) would change in the following situations:\n(i)        Country B finds new resources that raise the output of both Good X and Good Y by the same proportion.\n(ii)        Country B discovers a new technology that improves the production method of Good Y.          (4 marks)\n\n(d)        The Human Development Index (HDI) of Country B increases after trade.\n(i)        What does HDI measure?\n(ii)        Suggest ONE possible reason for such an increase.           (4 marks)"
+      "questionTextEng": "In the diagram below, AA and BB are the production-possibility frontiers of Country A and Country B respectively.\n \n\n(a)        (i)        Which country has a comparative advantage in producing Good X? Explain.\n(ii)        Is mutually beneficial trade possible between these two countries? Explain.        (4 marks)\n\n(b)        If the terms of trade is 10 units of X in exchange for 8 units of Y, what will be the gain from trade per unit of X traded for each country?          (4 marks)\n\n(c)        Explain whether your answer in (a)(i) would change in the following situations:\n(i)        Country B finds new resources that raise the output of both Good X and Good Y by the same proportion.\n(ii)        Country B discovers a new technology that improves the production method of Good Y.          (4 marks)\n\n(d)        The Human Development Index (HDI) of Country B increases after trade.\n(i)        What does HDI measure?\n(ii)        Suggest ONE possible reason for such an increase.           (4 marks)",
+      "originalQuestionImageEng": "originals/dse/2012/qe-p2-15.jpg",
+      "originalAnswerImageEng": "originals/dse/2012/ae-p2-15.jpg",
+      "originalReportImageEng": "originals/dse/2012/re-p2-15.jpg",
+      "originalQuestionImage": "originals/dse/2012/q-p2-15.jpg",
+      "originalAnswerImage": "originals/dse/2012/a-p2-15.jpg",
+      "originalReportImage": "originals/dse/2012/r-p2-15.jpg"
     },
     {
       "id": "DSE-2013-P1-01",
@@ -51430,7 +51602,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The operator of a canteen in the government headquarters decides to sell sushi and not burgers anymore because the former can earn a higher profit. This is an example of using ___________ to solve the problem of ____________.\n\nA. government command …… ‘what to produce’\nB. government command …… ‘for whom to produce’\nC. market mechanism …… ‘what to produce’\nD. market mechanism …… ‘for whom to produce’",
-      "correctPercentage": 90
+      "correctPercentage": 90,
+      "originalQuestionImage": "originals/dse/2017/q-p1-01.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-01.jpg"
     },
     {
       "id": "DSE-2017-P1-02",
@@ -51470,7 +51644,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements about interest is correct?\n\nA. Without money, interest does not exist.\nB. Without inflation, interest does not exist.\nC. Without scarcity, interest does not exist.\nD. Interest is the compensation paid to the borrower for delayed consumption.",
-      "correctPercentage": 53
+      "correctPercentage": 53,
+      "originalQuestionImage": "originals/dse/2017/q-p1-02.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-02.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-02.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-02.jpg"
     },
     {
       "id": "DSE-2017-P1-03",
@@ -51509,7 +51687,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "A public good\n\nA. is a good with zero marginal cost of production.\nB. can only be provided by the government.\nC. cannot be protected by private property rights.\nD. allows concurrent consumption by many individuals.",
-      "correctPercentage": 82
+      "correctPercentage": 82,
+      "originalQuestionImage": "originals/dse/2017/q-p1-03.jpg"
     },
     {
       "id": "DSE-2017-P1-04",
@@ -51543,7 +51722,10 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following would be the loss(es) of delaying the completion of a new railway to an economy?\n\n(1) the travel time of passengers that would have been saved by the new railway during the period of delay\n(2) the damage to the corporate image of the railway constructor for the delay\n(3) the nuisance to the shops and residents nearby during the period of delay\n\nA. (1) only\nB. (2) only\nC. (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 44
+      "correctPercentage": 44,
+      "originalQuestionImage": "originals/dse/2017/q-p1-04.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-04.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-04.jpg"
     },
     {
       "id": "DSE-2017-P1-05",
@@ -51581,7 +51763,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Alan and his partners turned their partnership into a private limited company. After the change, the firm will\n\nA. have more capital for development.\nB. have a lower average production cost.\nC. enjoy a lower profits tax rate.\nD. have a separate legal entity.",
-      "correctPercentage": 88
+      "correctPercentage": 88,
+      "originalQuestionImage": "originals/dse/2017/q-p1-05.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-05.jpg"
     },
     {
       "id": "DSE-2017-P1-06",
@@ -51622,7 +51806,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The government launched the Silver Bond for Hong Kong residents aged 65 or above. Bondholders will be paid interest at a rate linked to inflation in Hong Kong, subject to a minimum rate of 2% per year. Bondholders may sell their bonds at original price to the government before maturity.\n\nWhich of the following statements about the Silver Bond is/are correct?\n\n(1) The risk of holding the Silver Bond is lower than that of the shares of a listed company.\n(2) The return of the Silver Bond would increase during inflation while the return of the shares of a listed company would not.\n(3) The interest received by Silver Bond holders is higher than the dividend received by the shareholders of a listed company.\n\nA. (1) only\nB. (2) only\nC. (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 84
+      "correctPercentage": 84,
+      "originalQuestionImage": "originals/dse/2017/q-p1-06.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-06.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-06.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-06.jpg"
     },
     {
       "id": "DSE-2017-P1-07",
@@ -51663,7 +51851,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Certain restaurants in China found that they can introduce robots to replace some workers in serving customers without reducing their output. This will\n\nA. increase the quantity supplied of restaurant workers.\nB. increase the labour productivity of those restaurants.\nC. decrease the geographical mobility of restaurant workers.\nD. decrease the occupational mobility of restaurant workers.",
-      "correctPercentage": 65
+      "correctPercentage": 65,
+      "originalQuestionImage": "originals/dse/2017/q-p1-07.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-07.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-07.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-07.jpg"
     },
     {
       "id": "DSE-2017-P1-08",
@@ -51702,7 +51894,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the cost-output relationship of a price-taker.\n\nOutput (units) Average cost ($)\n5 10\n6 11\n7 12\n8 13\n9 14\n\nThe market price is $20. Suppose the average cost has increased by $2 for every unit of output. The profit of the firm will ___________.\n\nA. increase by $16\nB. increase by $14\nC. decrease by $16\nD. decrease by $14",
-      "correctPercentage": 55
+      "correctPercentage": 55,
+      "originalQuestionImage": "originals/dse/2017/q-p1-08.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-08.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-08.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-08.jpg"
     },
     {
       "id": "DSE-2017-P1-09",
@@ -51742,7 +51938,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Giordano International Limited is a retailer of casual wear. It has launched the Giordano Ladies, which provides luxury clothes and suits for ladies. It is an example of ____________ expansion.\n\nA. horizontal\nB. vertical\nC. lateral\nD. conglomerate",
-      "correctPercentage": 57
+      "correctPercentage": 57,
+      "originalQuestionImage": "originals/dse/2017/q-p1-09.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-09.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-09.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-09.jpg"
     },
     {
       "id": "DSE-2017-P1-10",
@@ -51781,7 +51981,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "An art centre extends its business hours for one hour in order to offer more painting classes. Which of the following are variable costs involved in the extra hour of operation?\n\n(1) salary of the accountant\n(2) electricity fee\n(3) expense on paints\n(4) rental payment\n\nA. (1) and (4) only\nB. (2) and (3) only\nC. (1), (2) and (4) only\nD. (1), (2), (3) and (4)",
-      "correctPercentage": 87
+      "correctPercentage": 87,
+      "originalQuestionImage": "originals/dse/2017/q-p1-10.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-10.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-10.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-10.jpg"
     },
     {
       "id": "DSE-2017-P1-11",
@@ -51819,7 +52023,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The input-output relationship of a firm is as follows:\n\n Year 1 Year 2\nNumber of workers 30 35\nNumber of working hours per worker per day 10 8\nQuantity of output (units) 3 000 2 900\n\nBased on the above information, labour supply _____________ and average labour productivity ____________.\n\nA. rises …… rises\nB. rises …… falls\nC. falls …… rises\nD. falls …… falls",
-      "correctPercentage": 75
+      "correctPercentage": 75,
+      "originalQuestionImage": "originals/dse/2017/q-p1-11.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-11.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-11.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-11.jpg"
     },
     {
       "id": "DSE-2017-P1-12",
@@ -51857,7 +52065,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "A famous artist, Tsz-Wah, held a show. Many people complained that they could not buy a ticket. Ticket touts resold the tickets on the Internet and some buyers paid a price higher than HK$10 000 for a ticket.\n\nThe above case illustrates the ___________ function of price because ___________.\n\nA. rationing …… the tickets are rationed to the highest-valued buyers\nB. rationing …… demand will be reduced by a higher price\nC. allocative …… more profits can be earned with a higher price\nD. allocative …… more resources should be allocated to the producer to raise the supply",
-      "correctPercentage": 88
+      "correctPercentage": 88,
+      "originalQuestionImage": "originals/dse/2017/q-p1-12.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-12.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-12.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-12.jpg"
     },
     {
       "id": "DSE-2017-P1-13",
@@ -51897,7 +52109,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following is INCONSISTENT with the law of demand?\n\nA. The abolishment of per unit import tariff on garment results in a rise in the quality of imported garments.\nB. Live fishes sold in a market near the fish farm have a higher price than frozen fishes sold in a faraway market.\nC. The ratio of high-quality white wine sold to total white wine sold remains unchanged when the government imposes an ad valorem tax on white wine.\nD. Developers tend to build higher-quality housing units on a piece of land with a good view.",
-      "correctPercentage": 46
+      "correctPercentage": 46,
+      "originalQuestionImage": "originals/dse/2017/q-p1-13.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-13.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-13.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-13.jpg"
     },
     {
       "id": "DSE-2017-P1-14",
@@ -51935,7 +52151,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following situations would most likely lead to an increase in the demand for iPhone produced by Apple Inc.?\n\nA. A technological breakthrough in the battery industry reduces its production cost.\nB. People expect the next model of iPhone will have more innovative features.\nC. A model of Samsung smartphone is banned by many airlines.\nD. Apple Inc. reduces the selling price of iPhone.",
-      "correctPercentage": 59
+      "correctPercentage": 59,
+      "originalQuestionImage": "originals/dse/2017/q-p1-14.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-14.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-14.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-14.jpg"
     },
     {
       "id": "DSE-2017-P1-15",
@@ -51973,7 +52193,11 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following conversation between Mandy and Shirley.\n\nMandy: I like coffee very much! No matter how its price changes, I always buy the same amount of coffee every week!\nShirley: I like coffee very much too! No matter how its price changes, I always spend the same amount of money on coffee every week!\n\nBased on their conversation, Mandy’s demand for coffee is __________ and Shirley’s demand for coffee is ____________.\n\nA. perfectly inelastic …… perfectly inelastic\nB. perfectly inelastic …… unitary elastic\nC. unitary elastic …… perfectly inelastic\nD. unitary elastic …… unitary elastic",
-      "correctPercentage": 84
+      "correctPercentage": 84,
+      "originalQuestionImage": "originals/dse/2017/q-p1-15.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-15.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-15.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p1-15.jpg"
     },
     {
       "id": "DSE-2017-P1-16",
@@ -52013,7 +52237,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following supply and demand schedules for Good X.\n\nUnit price ($) 6 7 8 9 10 11 12 13\nQuantity demanded 140 130 120 110 100 90 80 70\nQuantity supplied 60 70 80 90 100 110 120 130\n\nIf the government imposed a $2 per unit tax on Good X,\n\nA. sellers’ revenue net of tax would become $990.\nB. tax burden borne by the sellers would be $90.\nC. the total tax revenue would be $200.\nD. buyers’ total expenditure on Good X would decrease by $40.",
-      "correctPercentage": 64
+      "correctPercentage": 64,
+      "originalQuestionImage": "originals/dse/2017/q-p1-16.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-16.jpg"
     },
     {
       "id": "DSE-2017-P1-17",
@@ -52053,7 +52279,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose Good Y is an inferior good. When people’s income rises and the production cost of Good Y increases, the equilibrium price of Good Y __________.\n\nA. will increase\nB. will decrease\nC. will remain unchanged\nD. may increase or decrease",
-      "correctPercentage": 62
+      "correctPercentage": 62,
+      "originalQuestionImage": "originals/dse/2017/q-p1-17.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-17.jpg"
     },
     {
       "id": "DSE-2017-P1-18",
@@ -52092,7 +52320,10 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose the government imposed an effective rent control on living units. Which of the following would LEAST likely occur?\n\nA. There would be a shortage of living units.\nB. Black market would emerge.\nC. Poor people would be able to rent a living unit more easily.\nD. Landlords would have a lower incentive to renovate their living units for rent.",
-      "correctPercentage": 47
+      "correctPercentage": 47,
+      "originalQuestionImage": "originals/dse/2017/q-p1-18.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-18.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-18.jpg"
     },
     {
       "id": "DSE-2017-P1-19",
@@ -52129,7 +52360,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements about monopolistic competition are correct?\n\n(1) There can be a few or many buyers and sellers in the market.\n(2) The sellers are price searchers.\n(3) The goods and services provided by the sellers are homogeneous.\n(4) There are free entry and exit in the market.\n\nA. (1) and (3) only\nB. (1) and (4) only\nC. (2) and (3) only\nD. (2) and (4) only",
-      "correctPercentage": 70
+      "correctPercentage": 70,
+      "originalQuestionImage": "originals/dse/2017/q-p1-19.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-19.jpg"
     },
     {
       "id": "DSE-2017-P1-20",
@@ -52167,7 +52400,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Li Ka Shing Foundation gave HK$5 000 to each 2017 HKDSE candidate living in those remote districts with lower average household income. Which of the following statements about this unconditional gift is correct?\n\nA. It reduces the income inequality as a larger portion of the receivers of the gift are from lower income group.\nB. It increases the income inequality as it is unfair to the candidates living in the non-remote districts.\nC. As the money is given to all candidates living in those remote districts, income distribution remains unchanged.\nD. It helps equalising opportunities as those candidates will study harder to improve their exam result.",
-      "correctPercentage": 68
+      "correctPercentage": 68,
+      "originalQuestionImage": "originals/dse/2017/q-p1-20.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-20.jpg"
     },
     {
       "id": "DSE-2017-P1-21",
@@ -52206,7 +52441,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following diagram shows the Gini coefficient of Hong Kong based on original household income.\n \nGini coefficient based on original household income\nYear\n0.40 0.42 0.44 0.46 0.48 0.50 0.52 0.54 0.56 0.58 0.60\n1971 1976 1981 1986 1991 1996 2001 2006 2011\n0.430 0.429 0.451 0.453 0.476 0.518 0.525 0.533 0.537\n\nBased on the above diagram, we can conclude that\n\nA. the income level of Hong Kong people increased.\nB. income for high income household increased while income for low income household decreased.\nC. the welfare policy failed to reduce the income inequality.\nD. income gap had been widening.",
-      "correctPercentage": 91
+      "correctPercentage": 91,
+      "originalQuestionImage": "originals/dse/2017/q-p1-21.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-21.jpg"
     },
     {
       "id": "DSE-2017-P1-22",
@@ -52247,7 +52484,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The Work Incentive Transport Subsidy Scheme helps low-income earners reduce their cost of travelling to and from work and encourages them to get a job. Workers meeting certain criteria, such as monthly income and asset limits, are eligible to get the subsidy.\n\nWhich of the following would likely occur after the implementation of this scheme?\n\n(1) Labour supply would increase.\n(2) Labour productivity would increase.\n(3) Geographical mobility of labour would increase.\n(4) Income inequality would decrease.\n\nA. (1) and (2) only\nB. (3) and (4) only\nC. (1), (3) and (4) only\nD. (2), (3) and (4) only",
-      "correctPercentage": 73
+      "correctPercentage": 73,
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-22.jpg"
     },
     {
       "id": "DSE-2017-P1-23",
@@ -52289,7 +52527,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "If the government raises the effective price floor on Good X and at the same time the price of its substitute increases, the consumer surplus in the market of Good X ______________.\n\nA. will increase\nB. will decrease\nC. will remain unchanged\nD. may increase or decrease",
-      "correctPercentage": 47
+      "correctPercentage": 47,
+      "originalQuestionImage": "originals/dse/2017/q-p1-23.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-23.jpg"
     },
     {
       "id": "DSE-2017-P1-24",
@@ -52332,7 +52572,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following supply-demand diagram of a good with a quota set at Q1 by the government.\n \nPrice ($) Quantity 0 Q1 S1 S0 D\n\nWhich of the following will be the results of a reduction in quota on the good?\n\n(1) The total expenditure on the good may increase.\n(2) The consumer surplus will decrease.\n(3) The total social surplus may increase.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 69
+      "correctPercentage": 69,
+      "originalQuestionImage": "originals/dse/2017/q-p1-24.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-24.jpg"
     },
     {
       "id": "DSE-2017-P1-25",
@@ -52372,7 +52614,10 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following diagram shows a production chain of watches in an economy:\n \nImported materials $30\nLocal materials $20\nLocal watch manufacturers $150 $120\nForeign consumers Local watch retailers $280 ($50 tax inclusive) Local consumers\n\nThe contribution of the local watch manufacturers to the economy’s GDP at market prices is __________.\n\nA. $220\nB. $240\nC. $350\nD. $400",
-      "correctPercentage": 40
+      "correctPercentage": 40,
+      "originalQuestionImage": "originals/dse/2017/q-p1-25.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-25.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-25.jpg"
     },
     {
       "id": "DSE-2017-P1-26",
@@ -52411,7 +52656,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows some data of an economy.\n\n Growth rate\n 2015 2016\nGDP -3% -2%\nPrice level 1% 0%\nPopulation 4% 2%\n\nWhich of the following statements about the economy is correct?\n\nA. Real GDP in 2016 decreases.\nB. Per capita GDP in 2016 increases.\nC. The price level in 2016 decreases.\nD. The growth rate of real GDP in 2016 is lower than that in 2015.",
-      "correctPercentage": 52
+      "correctPercentage": 52,
+      "originalQuestionImage": "originals/dse/2017/q-p1-26.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-26.jpg"
     },
     {
       "id": "DSE-2017-P1-27",
@@ -52449,7 +52696,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The government launches ‘Admission Scheme for the Second Generation of Chinese Hong Kong Permanent Residents’ (輸入中國籍香港永久性居民第二代計劃) in order to meet the challenge of ageing population and declining workforce.\n\nIf some second-generation of Hong Kong permanent residents returned to Hong Kong to fill up the posts which have been vacant for a long time, Hong Kong’s labour force would __________ and the unemployment rate would __________.\n\nA. rise …… remain unchanged\nB. rise …… fall\nC. fall …… remain unchanged\nD. fall …… fall",
-      "correctPercentage": 76
+      "correctPercentage": 76,
+      "originalQuestionImage": "originals/dse/2017/q-p1-27.jpg"
     },
     {
       "id": "DSE-2017-P1-28",
@@ -52491,7 +52739,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The aggregate demand curve of Hong Kong will shift to the left if\n\nA. the implicit GDP deflator rises continuously.\nB. the government raises the retirement age of all civil servants\nC. the number of tourists from the Mainland decreases.\nD. the Mainland stock market booms.",
-      "correctPercentage": 76
+      "correctPercentage": 76,
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-28.jpg"
     },
     {
       "id": "DSE-2017-P1-29",
@@ -52532,7 +52781,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Price level Aggregate output 0\nAD0 AD1 LRAS0 LRAS1\n\nThe diagram above shows the aggregate demand curves and long run aggregate supply curves of an economy. Which of the following best explains the above changes?\n\nA. a decrease in people’s desire to save\nB. an enhancement in production technology\nC. an increase in national income of the economy’s trading partners\nD. an increase in government subsidy on private research and development",
-      "correctPercentage": 60
+      "correctPercentage": 60,
+      "originalQuestionImage": "originals/dse/2017/q-p1-29.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-29.jpg"
     },
     {
       "id": "DSE-2017-P1-30",
@@ -52567,7 +52818,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Electronic payment systems allow customers to pay without cash. ApplePay, Visa payWave and MasterCard paypass are some of the examples.\n \n\nWhen more shops accept these electronic payment systems as a method of payment,\n\n(1) their cost of handling coins and notes will fall.\n(2) the actual banking multiplier may increase.\n(3) transactions demand for money will increase.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 69
+      "correctPercentage": 69,
+      "originalQuestionImage": "originals/dse/2017/q-p1-30.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-30.jpg"
     },
     {
       "id": "DSE-2017-P1-31",
@@ -52606,7 +52859,10 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the balance sheet of a banking system.\n\nAssets ($) Liabilities ($)\nReserves 300 Deposits 900\nLoans 600 \n\nSuppose the public does not hold cash and the required reserve ratio is reduced to 25%. After deposit creation, the amount of loans in the banking system is $750. Which of the following statements about the banking system is correct?\n\nA. The money supply increases by $300.\nB. The actual banking multiplier is 3.5.\nC. The deposits increase by $600.\nD. Bank reserves are $450.",
-      "correctPercentage": 36
+      "correctPercentage": 36,
+      "originalQuestionImage": "originals/dse/2017/q-p1-31.jpg",
+      "originalReportImage": "originals/dse/2017/r-p1-31.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-31.jpg"
     },
     {
       "id": "DSE-2017-P1-32",
@@ -52652,7 +52908,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below shows the money demand and supply curves of an economy. The original equilibrium point is at E.\n \nNominal interest rate\nQuantity of money\n0 A B C D E\nMs0 Ms1 Ms2 Md0 Md1 Md2\n\nSuppose the risk of holding interest bearing assets (such as bonds) increases and the central bank reduces the discounts rate. The new equilibrium point will be at __________.\n\nA. A\nB. B\nC. C\nD. D",
-      "correctPercentage": 61
+      "correctPercentage": 61,
+      "originalQuestionImage": "originals/dse/2017/q-p1-32.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-32.jpg"
     },
     {
       "id": "DSE-2017-P1-33",
@@ -52690,7 +52948,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following data about Hong Kong’s money supply.\n\nComponents $ billion\nTotal issue of legal tender 300\nLegal tender held by all authorized institutions 80\nDemand deposits 100\nAll types of deposits with licensed banks and negotiable certificates of deposit issued by licensed banks (other than those held by authorized institutions) 3 000\n\nThe money supply M2 is __________.\n\nA. $320 billion\nB. $3 180 billion\nC. $3 220 billion\nD. $3 300 billion",
-      "correctPercentage": 43
+      "correctPercentage": 43,
+      "originalQuestionImage": "originals/dse/2017/q-p1-33.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-33.jpg"
     },
     {
       "id": "DSE-2017-P1-34",
@@ -52728,7 +52988,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "When there is unexpected inflation, which of the following individual(s) will lose?\n\nA. A firm owner paying his workers a fixed wage\nB. A flat owner charging a rental with adjustment according to the change in price level\nC. A retired civil servant receiving a fixed monthly pension\nD. All of the above individuals will lose because the purchasing power of money will be lower.",
-      "correctPercentage": 85
+      "correctPercentage": 85,
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-34.jpg"
     },
     {
       "id": "DSE-2017-P1-35",
@@ -52764,7 +53025,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following diagrams describe a regressive tax?\n \n(1) tax payment ($) taxable income 0\n(2) tax payment ($) taxable income 0\n(3) tax rate (%) taxable income 0\n(4) tax rate (%) taxable income 0\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (4) only\nD. (3) and (4) only",
-      "correctPercentage": 57
+      "correctPercentage": 57,
+      "originalQuestionImage": "originals/dse/2017/q-p1-35.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-35.jpg"
     },
     {
       "id": "DSE-2017-P1-36",
@@ -52805,7 +53068,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "According to the quantity theory of money, if a central bank increases money supply,\n\nA. the price level will increase.\nB. real output will remain constant.\nC. nominal output will increase.\nD. the unemployment rate will decrease.",
-      "correctPercentage": 64
+      "correctPercentage": 64,
+      "originalQuestionImage": "originals/dse/2017/q-p1-36.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-36.jpg"
     },
     {
       "id": "DSE-2017-P1-37",
@@ -52844,7 +53109,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following policies would most likely lead to a drop in aggregate output?\n\nA. The government bought bonds from the public and raised the tax allowance at the same time.\nB. The government sold bonds to the public and reduced transfer payment to the poor at the same time.\nC. The government reduced required reserve ratio and raised the progressivity of income tax at the same time.\nD. The government increased the discount rate and lowered profits tax rate at the same time.",
-      "correctPercentage": 66
+      "correctPercentage": 66,
+      "originalQuestionImage": "originals/dse/2017/q-p1-37.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-37.jpg"
     },
     {
       "id": "DSE-2017-P1-38",
@@ -52885,7 +53152,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "To reduce fiscal deficits, the government may adopt either contractionary fiscal policy (e.g. increase taxes and/or decrease fiscal spending) or expansionary monetary policy (e.g. finance the deficits by printing money).\n\nRefer to a situation of an upward-sloping short run aggregate supply curve. Which of the following are the advantages of using expansionary monetary policy over contractionary fiscal policy to reduce fiscal deficits?\n\n(1) The employment level will be higher.\n(2) The purchasing power of money will be higher.\n(3) The real output level will be higher.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 68
+      "correctPercentage": 68,
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-38.jpg"
     },
     {
       "id": "DSE-2017-P1-39",
@@ -52928,7 +53196,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below shows the aggregate demand curve, the short run aggregate supply curve and the long run aggregate supply curve of an economy.\n \nPrice level Output level E1 AD LRAS SRAS 0\n\nSuppose the economy initially operates at E1 and the total import value equals total export value. If the government decreases the social security assistance to the elderly, in short run, the deflationary (output) gap will _________ and there will be a _________.\n\nA. narrower …… trade surplus\nB. wider …… trade deficit\nC. narrower …… trade deficit\nD. wider …… trade surplus",
-      "correctPercentage": 51
+      "correctPercentage": 51,
+      "originalQuestionImage": "originals/dse/2017/q-p1-39.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-39.jpg"
     },
     {
       "id": "DSE-2017-P1-40",
@@ -52966,7 +53236,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "In this 2016-17 Budget, the Financial Secretary proposed to waive business registration fees for 2016-17. At the same time, the personal basic tax allowance was raised from $120 000 to $132 000. Which of the following best illustrates the effect of the above changes on the price and output levels?\n \nA. Price level Output AD1 AD2 LRAS1 LRAS2\nB. Price level Output AD1 AD2 SRAS\nC. Price level Output AD1 AD2 SRAS1 SRAS2\nD. Price level Output AD SRAS1 SRAS2 LRAS1 LRAS2",
-      "correctPercentage": 45
+      "correctPercentage": 45,
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-40.jpg"
     },
     {
       "id": "DSE-2017-P1-41",
@@ -53008,7 +53279,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following transactions will be included in the calculation of the balance of payments of Hong Kong?\n\n(1) A Mainland resident who owns an apartment in Hong Kong receives rental payments from his tenant.\n(2) A Japanese resident sells the shares of a Hong Kong firm to a Korean resident.\n(3) A Hong Kong resident buys an air ticket to London from a Hong Kong based airline.\n(4) An Indonesian who works in Hong Kong as a domestic helper remits money to her husband who lives in Indonesia.\n\nA. (1) and (3) only\nB. (1) and (4) only\nC. (2) and (3) only\nD. (2) and (4) only",
-      "correctPercentage": 48
+      "correctPercentage": 48,
+      "originalQuestionImage": "originals/dse/2017/q-p1-41.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-41.jpg"
     },
     {
       "id": "DSE-2017-P1-42",
@@ -53046,7 +53319,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "A small open economy increases the import quota for Good X. Which of the following diagrams best illustrate the effect of this change?\n\nA. Price Quantity of Good X D S1 S2 0\nB. Price Quantity of Good X D S1 S2 0\nC. Price Quantity of Good X D S1 S2 0\nD. Price Quantity of Good X D S1 S2 0",
-      "correctPercentage": 57
+      "correctPercentage": 57,
+      "originalQuestionImage": "originals/dse/2017/q-p1-42.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-42.jpg"
     },
     {
       "id": "DSE-2017-P1-43",
@@ -53084,7 +53359,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the number of man-hours required by Country A and Country B in the production of toys and watches.\n\n 1 unit of toy 1 unit of watches\nCountry A 4 8\nCountry B 5 20\n\nSuppose the transaction cost for 1 unit of toys is 0.1 units of watches and it is borne by the exporting country. Which of the following would be a mutually beneficial terms of trade between Country A and Country B?\n\nA. 1 unit of toys = 0.3 units of watches\nB. 1 unit of toys = 0.4 units of watches\nC. 1 unit of toys = 2.5 units of watches\nD. 1 unit of toys = 6 units of watches",
-      "correctPercentage": 65
+      "correctPercentage": 65,
+      "originalQuestionImage": "originals/dse/2017/q-p1-43.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-43.jpg"
     },
     {
       "id": "DSE-2017-P1-44",
@@ -53123,7 +53400,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Date Exchange rates\n22 November 2015 US$1 = RMB￥6.39\n22 November 2016 US$1 = RMB￥6.89\n\nThe above change in the exchange rate between the US dollar and the Renminbi would lead to\n\n(1) a decrease in the number of Chines tourists to the US.\n(2) a decrease in the competitiveness of US exports to China\n(3) an increase in the total value of US exports to China (in terms of the US Dollar)\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 69
+      "correctPercentage": 69,
+      "originalQuestionImage": "originals/dse/2017/q-p1-44.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-44.jpg"
     },
     {
       "id": "DSE-2017-P1-45",
@@ -53163,7 +53442,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Under the linked exchange rate system of Hong Kong, which of the following statements is correct?\n\nA. The non-bank public can sell their Hong Kong dollar to the Hong Kong Monetary Authority in exchange for US Dollars at any time.\nB. It enables the Hong Kong Monetary Authority to carry out an expansionary monetary policy to stimulate private investment.\nC. The market exchange rate of the US Dollar against HK Dollar is fixed at US$1 = HK$7.8.\nD. There would be a downward pressure on the consumer price indices of Hong Kong when the Renminbi continuously depreciates against the US Dollar.",
-      "correctPercentage": 40
+      "correctPercentage": 40,
+      "originalQuestionImage": "originals/dse/2017/q-p1-45.jpg",
+      "originalQuestionImageEng": "originals/dse/2017/qe-p1-45.jpg"
     },
     {
       "id": "DSE-2017-P2-01",
@@ -53198,7 +53479,10 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalQuestionImage": "originals/dse/2017/q-p2-01.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-01.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-01.jpg"
     },
     {
       "id": "DSE-2017-P2-02",
@@ -53231,7 +53515,12 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalQuestionImage": "originals/dse/2017/q-p2-02.jpg",
+      "originalReportImage": "originals/dse/2017/r-p2-02.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-02.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-02.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-02.jpg"
     },
     {
       "id": "DSE-2017-P2-03",
@@ -53262,7 +53551,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-03.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-03.jpg"
     },
     {
       "id": "DSE-2017-P2-04",
@@ -53293,7 +53584,11 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImage": "originals/dse/2017/r-p2-04.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-04.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-04.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-04.jpg"
     },
     {
       "id": "DSE-2017-P2-05",
@@ -53324,7 +53619,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-05.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-05.jpg"
     },
     {
       "id": "DSE-2017-P2-06",
@@ -53355,7 +53652,11 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImage": "originals/dse/2017/r-p2-06.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-06.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-06.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-06.jpg"
     },
     {
       "id": "DSE-2017-P2-07",
@@ -53386,7 +53687,11 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImage": "originals/dse/2017/r-p2-07.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-07.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-07.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-07.jpg"
     },
     {
       "id": "DSE-2017-P2-08",
@@ -53417,7 +53722,11 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImage": "originals/dse/2017/r-p2-08.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-08.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-08.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-08.jpg"
     },
     {
       "id": "DSE-2017-P2-09",
@@ -53448,7 +53757,11 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImage": "originals/dse/2017/r-p2-09.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-09.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-09.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-09.jpg"
     },
     {
       "id": "DSE-2017-P2-10",
@@ -53479,7 +53792,10 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImage": "originals/dse/2017/r-p2-10.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-10.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-10.jpg"
     },
     {
       "id": "DSE-2017-P2-11",
@@ -53510,7 +53826,11 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImage": "originals/dse/2017/r-p2-11.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-11.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-11.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-11.jpg"
     },
     {
       "id": "DSE-2017-P2-12",
@@ -53541,7 +53861,11 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImage": "originals/dse/2017/r-p2-12.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-12.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-12.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-12.jpg"
     },
     {
       "id": "DSE-2017-P2-13",
@@ -53572,7 +53896,11 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImage": "originals/dse/2017/r-p2-13.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-13.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-13.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-13.jpg"
     },
     {
       "id": "DSE-2017-P2-14",
@@ -53604,7 +53932,10 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "marks": 16
+      "marks": 16,
+      "originalReportImage": "originals/dse/2017/r-p2-14.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-14.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-14.jpg"
     },
     {
       "id": "DSE-2017-P2-15",
@@ -53636,7 +53967,11 @@ window.QUESTION_DATABASE = {
       "source": "HKDSE 2017 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "marks": 16
+      "marks": 16,
+      "originalReportImage": "originals/dse/2017/r-p2-15.jpg",
+      "originalAnswerImageEng": "originals/dse/2017/ae-p2-15.jpg",
+      "originalReportImageEng": "originals/dse/2017/re-p2-15.jpg",
+      "originalAnswerImage": "originals/dse/2017/a-p2-15.jpg"
     },
     {
       "id": "DSE-2018-P1-01",

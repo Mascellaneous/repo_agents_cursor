@@ -75,6 +75,10 @@ Question images for the mock papers are cut from the official PDF, not from the 
 
 Multiple-choice answer images are the「答案解釋」block in the Chinese solution PDF, and the matching「Explanation」block in the English solution PDF (`originalAnswerImageEng`). Each English multiple-choice answer is kept only when its letter matches the Chinese key. Written questions (SQ/LQ, Paper 2) also have an English answer image, cropped from the Paper 2 section of the English solution. The blank ruled lines left for students to write on (答案線) are not part of the question and are removed from both the Chinese and English question images. `python3 econ-database/scripts/capture_from_pdf.py --sq-images` repeats that Paper 2 update.
 
+HKDSE papers for 2012–2025 live in `PastPaper/` as one Chinese file and one English file per year. Each file contains the question papers, the marking scheme, and the markers’ comments. `python3 econ-database/scripts/capture_hkeaa.py` cuts question images, written-answer images, and the exam-report image for a question. A crop is kept only when its wording agrees with the Chinese plain text or the English question text already stored for that question. Multiple-choice answer keys are not cropped. Report images use the 報告 and 英報告 buttons.
+
+2013 is skipped. Those two PDFs are scans, and OCR does not finish reliably, so the crops cannot be matched to the stored questions. The images still needed, and the filenames to use, are listed in `econ-database/HKEAA-2013-待補.md`.
+
 ## Adding another mock paper
 
 1. Put three files in `MockTests/`: 卷一, 卷二, and 參考答案. Keep the same filename style as the papers already there.
