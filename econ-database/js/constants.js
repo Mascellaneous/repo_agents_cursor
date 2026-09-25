@@ -5,7 +5,7 @@
 
 // Printed when the page loads. Bump this on every change so a reader can
 // tell whether the open tab is current. Do not keep a changelog here.
-const APP_VERSION = '2026.09.25.2';
+const APP_VERSION = '2026.09.25.3';
 console.log('Question bank version:', APP_VERSION);
 
 // Curriculum classifications

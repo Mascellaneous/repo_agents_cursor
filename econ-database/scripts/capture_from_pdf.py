@@ -11,6 +11,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 from pathlib import Path
 
 from PIL import Image
@@ -271,6 +272,200 @@ def wants_figure(question):
     return bool(question.get("inlineDiagrams")) or "[圖" in text or graph not in ("-", "", "考生繪圖")
 
 
+def page_words(pdf):
+    html = subprocess.check_output(
+        ["pdftotext", "-bbox-layout", str(pdf), "-"], text=True, errors="replace"
+    )
+    pages = []
+    for page_no, page in enumerate(re.findall(r"<page\b[^>]*>.*?</page>", html, re.S), 1):
+        size = re.search(r'width="([\d.]+)" height="([\d.]+)"', page)
+        if not size:
+            continue
+        words = []
+        for word in re.finditer(
+            r'<word xMin="([\d.]+)" yMin="([\d.]+)"[^>]*>([^<]+)</word>', page
+        ):
+            words.append((float(word.group(1)), float(word.group(2)), word.group(3).strip()))
+        pages.append({
+            "page": page_no,
+            "width": float(size.group(1)),
+            "height": float(size.group(2)),
+            "words": words,
+        })
+    return pages
+
+
+def _after(page, y, start):
+    if start is None:
+        return False
+    return (page, y) > (start[0], start[1] - 1)
+
+
+def _before(page, y, end):
+    if end is None:
+        return True
+    return (page, y) < (end[0], end[1] - 1)
+
+
+def explanation_window(pages, language):
+    """Page/y of the MC explanation heading, and of Paper 2 after it."""
+    start = end = None
+    for page in pages:
+        words = page["words"]
+        for i, (x, y, label) in enumerate(words):
+            if x > 90:
+                continue
+            if language == "chi" and label == "答案解釋" and start is None:
+                start = (page["page"], y)
+            if language == "eng" and label == "Explanation" and start is None:
+                start = (page["page"], y)
+            if start is None or not _after(page["page"], y, start):
+                continue
+            if language == "chi" and label == "卷二":
+                return start, (page["page"], y)
+            if language == "eng" and label == "Paper":
+                nxt = next((w for w in words[i + 1:i + 4] if abs(w[1] - y) < 2), None)
+                if nxt and nxt[2] == "2":
+                    return start, (page["page"], y)
+    return start, end
+
+
+def explanation_starts(pages, language):
+    start, end = explanation_window(pages, language)
+    if not start:
+        return []
+    starts = []
+    seen = set()
+    for page in pages:
+        if page["page"] < start[0] or (end and page["page"] > end[0]):
+            continue
+        tokens = [
+            (x, y, label)
+            for x, y, label in page["words"]
+            if x < 180 and 40 < y < page["height"] - 40 and re.match(r"\d", label)
+            and _after(page["page"], y, start) and _before(page["page"], y, end)
+        ]
+        tokens.sort(key=lambda item: (item[1], item[0]))
+        i = 0
+        while i < len(tokens):
+            x, y, label = tokens[i]
+            if x > 70:
+                i += 1
+                continue
+            if (
+                i + 1 < len(tokens)
+                and abs(tokens[i + 1][1] - y) < 1.2
+                and 0 < tokens[i + 1][0] - x < 14
+                and re.fullmatch(r"\d{1,2}\.?", label + tokens[i + 1][2])
+            ):
+                label += tokens[i + 1][2]
+                i += 1
+            followed = any(
+                abs(tok[1] - y) < 1.2 and x + 8 < tok[0] < x + 50 and re.match(r"\d", tok[2])
+                for tok in tokens[i + 1:]
+            )
+            if re.fullmatch(r"\d{1,2}\.?", label) and not followed:
+                num = int(label.rstrip("."))
+                if num not in seen and (not starts or num > starts[-1]["num"]):
+                    seen.add(num)
+                    starts.append({
+                        "page": page["page"], "num": num, "y": y,
+                        "width": page["width"], "height": page["height"],
+                    })
+            i += 1
+    return starts
+
+
+def english_explanation_text(pdf):
+    text = layout_text(pdf)
+    exp = re.search(r"(?:^|\n|\f)\s*Explanation\s*(?:\n|\f)", text)
+    if not exp:
+        return {}
+    paper2 = re.search(r"(?:^|\n|\f)\s*Paper 2\s*(?:\n|\f)", text[exp.end():])
+    body = text[exp.end(): exp.end() + paper2.start()] if paper2 else text[exp.end():]
+    found = split_numbered(body)
+    nums = sorted(found)
+    for i, num in enumerate(nums):
+        chunk = found[num].strip()
+        if not re.fullmatch(r"Answer:\s*[A-D]\s*", chunk):
+            continue
+        for later in nums[i + 1:]:
+            later_chunk = found[later].strip()
+            if re.fullmatch(r"Answer:\s*[A-D]\s*", later_chunk):
+                continue
+            between = [k for k in nums[i + 1: nums.index(later)] if not re.fullmatch(r"Answer:\s*[A-D]\s*", found[k].strip())]
+            if not between:
+                rest = re.sub(r"^Answer:\s*[A-D]\s*", "", later_chunk).strip()
+                found[num] = chunk + ("\n" + rest if rest else "")
+            break
+    return found
+
+
+def cluster_end(group, index):
+    """Shared explanations sit under the last letter of a tight run of question numbers."""
+    j = index + 1
+    while j < len(group):
+        prev, cur = group[j - 1], group[j]
+        gap = cur["y"] - prev["y"] if cur["page"] == prev["page"] else 999
+        if gap >= 40:
+            return cur
+        j += 1
+    return None
+
+
+def recrop_mc_answers():
+    """Replace paper-1 answer crops with the explanation block, plus English crops."""
+    db = json.loads(DB_PATH.read_text())
+    by_id = {q["id"]: q for q in db["questions"]}
+    chi_saved = eng_saved = text_saved = 0
+    short = []
+    for num in range(27, 45):
+        chi = chi_pdf(num, "參考答案")
+        eng = eng_pdf(num, "Suggested Solution")
+        chi_pages = render_pages(chi, Path(f"/tmp/mt-render/{num}-ans")) if chi else {}
+        eng_pages = render_pages(eng, Path(f"/tmp/mt-render/{num}-eng-ans")) if eng else {}
+        chi_starts = explanation_starts(page_words(chi), "chi") if chi else []
+        eng_starts = explanation_starts(page_words(eng), "eng") if eng else []
+        eng_text = english_explanation_text(eng) if eng else {}
+        for group, pages, prefix, field in (
+            (chi_starts, chi_pages, "a", "originalAnswerImage"),
+            (eng_starts, eng_pages, "ae", "originalAnswerImageEng"),
+        ):
+            for i, mark in enumerate(group):
+                qid = f"M{num}-P1-Q{mark['num']:02d}"
+                question = by_id.get(qid)
+                if not question or question.get("questionType") != "MC":
+                    continue
+                dest = ORIG / str(num) / f"{prefix}-p1-{mark['num']:02d}.jpg"
+                end = cluster_end(group, i)
+                saved = crop_span(pages, mark, end, dest)
+                if not saved:
+                    short.append((qid, prefix, "missing"))
+                    continue
+                question[field] = f"originals/{num}/{prefix}-p1-{mark['num']:02d}.jpg"
+                if prefix == "a":
+                    chi_saved += 1
+                else:
+                    eng_saved += 1
+                with Image.open(saved) as image:
+                    if image.height < 80:
+                        short.append((qid, prefix, image.height))
+        for qnum, answer in eng_text.items():
+            question = by_id.get(f"M{num}-P1-Q{qnum:02d}")
+            if not question or question.get("questionType") != "MC":
+                continue
+            letter = mc_letter(answer)
+            if letter and question.get("answerMC") and letter != question["answerMC"]:
+                continue
+            question["answerEng"] = answer.strip()
+            text_saved += 1
+        print("mc answers", num, "chi", len(chi_starts), "eng", len(eng_starts), flush=True)
+    text = json.dumps(db, ensure_ascii=False, indent=2) + "\n"
+    DB_PATH.write_text(text)
+    (DATA / "database.js").write_text("window.QUESTION_DATABASE = " + text.strip() + ";\n")
+    print("chi", chi_saved, "eng", eng_saved, "text", text_saved, "short", short[:20], "nshort", len(short))
+
+
 def main():
     db = json.loads(DB_PATH.read_text())
     by_id = {q["id"]: q for q in db["questions"]}
@@ -395,4 +590,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if "--mc-answers" in sys.argv:
+        recrop_mc_answers()
+    else:
+        main()

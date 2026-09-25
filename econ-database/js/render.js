@@ -297,6 +297,7 @@ async function renderQuestions() {
                     ${renderImageButtons(q.imageEng, 'eng')}
                     ${renderOriginalBadge(q.originalQuestionImage, '原題')}
                     ${renderOriginalBadge(q.originalAnswerImage, '答案')}
+                    ${renderOriginalBadge(q.originalAnswerImageEng, '英答案')}
                     ${aiUrl ? `
                         <a href="${escapeHTML(aiUrl)}" target="_blank" rel="noopener noreferrer" class="ai-btn" title="AI 詳解" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background-color: #e3f2fd; border: 1px solid #90caf9; margin-left: 8px; font-size: 1.2em; transition: all 0.2s; cursor: pointer;">
                             🤖
