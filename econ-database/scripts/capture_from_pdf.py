@@ -142,7 +142,7 @@ def question_starts(pdf):
                 label += tokens[i + 1][2]
                 i += 1
             followed = any(
-                abs(tok[1] - y) < 1.2 and x + 8 < tok[0] < x + 50 and re.match(r"\d", tok[2])
+                abs(tok[1] - y) < 1.2 and x + 8 < tok[0] < x + 18 and re.match(r"\d", tok[2])
                 for tok in tokens[i + 1:]
             )
             if re.fullmatch(r"\d{1,2}\.?", label) and not followed:
@@ -582,8 +582,62 @@ def main():
         print(" mismatch", row)
 
 
+def english_question_starts(pdf):
+    """Question numbers after the paper heading, ignoring the instruction list."""
+    pages = page_words(pdf)
+    start = None
+    for page in pages:
+        for x, y, label in page["words"]:
+            if x < 140 and label in ("There", "Section", "Choose"):
+                start = (page["page"], y)
+                break
+        if start:
+            break
+    kept = []
+    for mark in question_starts(pdf):
+        if start and (mark["page"], mark["y"]) <= (start[0], start[1] + 1):
+            continue
+        if kept and mark["num"] <= kept[-1]["num"]:
+            break
+        kept.append(mark)
+    return kept, pages
+
+
+def crop_english_questions():
+    """Crop each English mock question. Leave Chinese crops unchanged."""
+    db = json.loads(DB_PATH.read_text())
+    by_id = {q["id"]: q for q in db["questions"]}
+    saved_n = skipped = 0
+    for num in range(27, 45):
+        for paper, name in ((1, "Paper 1"), (2, "Paper 2")):
+            pdf = eng_pdf(num, name)
+            if not pdf:
+                continue
+            starts, words = english_question_starts(pdf)
+            pages = render_pages(pdf, Path(f"/tmp/mt-render/{num}-eng-p{paper}"))
+            footers = footer_limits(words)
+            for i, mark in enumerate(starts):
+                qid = f"M{num}-P{paper}-Q{mark['num']:02d}"
+                question = by_id.get(qid)
+                if not question or not question.get("questionTextEng"):
+                    skipped += 1
+                    continue
+                dest = ORIG / str(num) / f"qe-p{paper}-{mark['num']:02d}.jpg"
+                end = starts[i + 1] if i + 1 < len(starts) else None
+                if crop_span(pages, mark, end, dest, footers):
+                    question["originalQuestionImageEng"] = f"originals/{num}/qe-p{paper}-{mark['num']:02d}.jpg"
+                    saved_n += 1
+        print("english questions", num, "saved", saved_n, flush=True)
+    text = json.dumps(db, ensure_ascii=False, indent=2) + "\n"
+    DB_PATH.write_text(text)
+    (DATA / "database.js").write_text("window.QUESTION_DATABASE = " + text.strip() + ";\n")
+    print("english question images", saved_n, "skipped", skipped)
+
+
 if __name__ == "__main__":
     if "--mc-answers" in sys.argv:
         recrop_mc_answers()
+    elif "--english-questions" in sys.argv:
+        crop_english_questions()
     else:
         main()

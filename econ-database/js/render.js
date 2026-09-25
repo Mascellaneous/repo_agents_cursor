@@ -296,6 +296,7 @@ async function renderQuestions() {
                     ${renderImageButtons(q.imageChi, 'chi')}
                     ${renderImageButtons(q.imageEng, 'eng')}
                     ${renderOriginalBadge(q.originalQuestionImage, '原題')}
+                    ${renderOriginalBadge(q.originalQuestionImageEng, '英題')}
                     ${renderOriginalBadge(q.originalAnswerImage, '答案')}
                     ${renderOriginalBadge(q.originalAnswerImageEng, '英答案')}
                     ${aiUrl ? `
