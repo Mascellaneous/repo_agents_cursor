@@ -2,6 +2,12 @@
 
 This repository holds Aristo HKDSE Economics mock papers, an HKEAA question export, and the `econ-database` app that browses them. Opening `econ-database/index.html` through a web server fetches `econ-database/data/database.json`. Opening that file directly (`file://`) cannot fetch a neighbour file, so the page loads `econ-database/data/database.js` instead. The builder writes both files together. The app does not fetch Google Sheets.
 
+## Version number
+
+`APP_VERSION` in `econ-database/js/constants.js` is printed in the browser console as `Question bank version:` when the page loads. The same value is on the `?v=` of every script in `econ-database/index.html`, so a new number also bypasses a cached copy of the scripts.
+
+Bump both together on every change to the app or the question bank. Do not keep a record of what each version changed. A reader checks the console line against the number in `constants.js` to see whether the open page is current. GitHub Pages may keep the previous scripts for about ten minutes; the version line is how you tell.
+
 ## What the Python script is for
 
 `econ-database/scripts/build_mock_questions.py` is only the first import. It reads every `.docx` in `MockTests/`, splits Paper 1 and Paper 2 into questions, guesses a chapter (`topic`), specific concepts, and question patterns, and writes `econ-database/data/database.json`.

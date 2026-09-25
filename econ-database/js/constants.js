@@ -3,6 +3,11 @@
    ============================================ */
 // Dependencies: None (core constants file)
 
+// Printed when the page loads. Bump this on every change so a reader can
+// tell whether the open tab is current. Do not keep a changelog here.
+const APP_VERSION = '2026.09.25.1';
+console.log('Question bank version:', APP_VERSION);
+
 // Curriculum classifications
 const CURRICULUM_ITEMS = [
     'A 基本經濟概念',
