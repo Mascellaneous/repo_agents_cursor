@@ -54016,7 +54016,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements about a planned economy is correct?\n\nA. The quantity of public goods in the economy is greater than that in a market-oriented economy.\nB. Most production activities are carried out by government officials.\nC. All resources are allocated by government commands.\nD. Competitions still exist in the economy.",
-      "correctPercentage": 59
+      "correctPercentage": 59,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-01.jpg"
     },
     {
       "id": "DSE-2018-P1-02",
@@ -54054,7 +54055,10 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The Chief Executive proposed to raise the recurrent education spending by $5 billion. One of her proposals was to provide a $30,000 subsidy to eligible secondary school graduates studying self-financing programmes. The above proposal is related to the __________ question(s) in Economics.\n\nA. ‘how to produce’\nB. ‘for whom to produce’\nC. ‘what to produce’ and ‘how to produce’\nD. ‘what to produce’ and ‘for whom to produce’",
-      "correctPercentage": 81
+      "correctPercentage": 81,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-02.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p1-02.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-02.jpg"
     },
     {
       "id": "DSE-2018-P1-03",
@@ -54092,7 +54096,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "John, a Secondary 6 graduate, is considering studying a programme either in Hong Kong or the Mainland. Which of the following situations would lower his opportunity cost of studying the programme in Hong Kong?\n\n(1) His tuition fee of the first year will be waived if he studies the programme in Hong Kong.\n(2) The graduates of the Mainland programme have better job prospects.\n(3) The qualification of the Mainland programme may not be recognised in Hong Kong.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 80
+      "correctPercentage": 80,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-03.jpg"
     },
     {
       "id": "DSE-2018-P1-04",
@@ -54132,7 +54137,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following statements are adapted from the 2017-18 Budget Speech by the Financial Secretary of Hong Kong.\n\nStatement (1): The global economy in 2016 recorded the slowest growth since the global financial crisis.\nStatement (2): For 2016 as a whole, there was a growth of 1.9%, consistent with the 1% to 2% economic growth as forecast in last year’s Budget.\nStatement (3): While recognising the effect of market forces, the Government should play an active role as a facilitator by taking forward appropriate policies with good use of public resources.\nWhich of above is a normative statement / are normative statements?\n\nA. (1) only\nB. (3) only\nC. (1) and (2) only\nD. (2) and (3) only",
-      "correctPercentage": 79
+      "correctPercentage": 79,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-04.jpg"
     },
     {
       "id": "DSE-2018-P1-05",
@@ -54172,7 +54178,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements about the exhibits in the Louvre Museum is correct?\n\nA. They are public goods because the Louvre Museum is open to the public.\nB. They are capital because they are man-made resources used in production.\nC. They are consumer goods because more of them are preferred.\nD. They are economic goods because they satisfy human wants.",
-      "correctPercentage": 58
+      "correctPercentage": 58,
+      "originalReportImageEng": "originals/dse/2018/re-p1-05.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-05.jpg"
     },
     {
       "id": "DSE-2018-P1-06",
@@ -54212,7 +54220,10 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the cost-output relationship of a profit-maximising firm. The firm has a fixed cost of $5.\n\nOutput (units) 1 2 3 4 5 6\nAverage cost ($) 7 6 7 8 9.6 12\n\nWhich of the following statements is correct?\n\nA. The optimal scale of production is 2 units.\nB. There exist diseconomies of scale after the third unit of output is produced.\nC. If the market price is $8, the output is 4 units.\nD. If the market price is $9, the profit is $6.",
-      "correctPercentage": 42
+      "correctPercentage": 42,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-06.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p1-06.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-06.jpg"
     },
     {
       "id": "DSE-2018-P1-07",
@@ -54251,7 +54262,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Firm X Firm Y\nNumber of owners 2 10\nTransfer of ownership the consent of other owners required the consent of other owners NOT required\nDisclosure of financial account to public NOT required required\n\nAccording to the above table, which of the following description of Firm X and Firm Y is correct?\n\nA. Firm Y earns a higher profit than Firm X.\nB. Firm Y raises more capital than Firm X.\nC. Owners of both firms enjoy limited liability.\nD. Firm Y is a legal entity while Firm X may not be.",
-      "correctPercentage": 69
+      "correctPercentage": 69,
+      "originalReportImageEng": "originals/dse/2018/re-p1-07.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-07.jpg"
     },
     {
       "id": "DSE-2018-P1-08",
@@ -54290,7 +54303,10 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Toridoll Holdings Corporation, a leading company in the restaurant industry in Japan, acquired a Hong Kong noodle chain Tam Chai Yunnan Noodles (譚仔雲南米線). Which of the following is the LEAST likely motive behind the integration?\n\nA. to secure the supply of factor inputs\nB. to spread risk through product diversification\nC. to enjoy economies of scale\nD. to expand its business to other markets",
-      "correctPercentage": 83
+      "correctPercentage": 83,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-08.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p1-08.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-08.jpg"
     },
     {
       "id": "DSE-2018-P1-09",
@@ -54326,7 +54342,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The labour supply in Hong Kong would increase if\n\nA. more Hong Kong people migrated to foreign countries.\nB. more Hong Kong students studied in tertiary institutions.\nC. the Government lowered the qualification requirements for the Quality Migrant Admission Scheme.\nD. all working fathers were allowed to take two extra days of paternity leave.",
-      "correctPercentage": 94
+      "correctPercentage": 94,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-09.jpg"
     },
     {
       "id": "DSE-2018-P1-10",
@@ -54363,7 +54380,10 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the input-output relationship of a firm. The only inputs required are capital and labour.\n\nCapital (units) Labour (units) Marginal product of labour (units)\n2 1 5\n2 2 7\n2 3 9\n2 4 8\n2 5 6\n\nThe average product of labour is at the highest when the quantity of labour is _______ units.\n\nA. 2\nB. 3\nC. 4\nD. 5",
-      "correctPercentage": 65
+      "correctPercentage": 65,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-10.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p1-10.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-10.jpg"
     },
     {
       "id": "DSE-2018-P1-11",
@@ -54401,7 +54421,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "A professor has decided to change the way of marking the exam papers of his subject. Instead of asking his teaching assistants to mark the whole paper for their own classes, he assigns each teaching assistant to mark one question of the paper for the entire candidature. Which of the following situations would likely occur?\n\n(1) The marking will be more accurate since practice makes perfect.\n(2) Training time will be reduced as each assistant only needs to know part of the marking schemes.\n(3) The tools required for marking will be reduced such as fewer red pens are needed.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 85
+      "correctPercentage": 85,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-11.jpg",
+      "originalQuestionImage": "originals/dse/2018/q-p1-11.jpg"
     },
     {
       "id": "DSE-2018-P1-12",
@@ -54441,7 +54463,10 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements about economies of scale is correct?\n\nA. It could be a source of monopoly power.\nB. It exists when the average fixed cost is falling.\nC. Only large firms enjoy economies of scale.\nD. It is the result of the law of diminishing marginal returns.",
-      "correctPercentage": 51
+      "correctPercentage": 51,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-12.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p1-12.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-12.jpg"
     },
     {
       "id": "DSE-2018-P1-13",
@@ -54475,7 +54500,10 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Farm products\nPrice ($) Quantity 0 D1 D2\n\nRefer to the above diagram. The price of farming tools will\n\nA. rise because farm products and farming tools are in joint demand.\nB. fall because farm products and farming tools are in joint demand.\nC. rise because demand for farm products creates a derived demand for farming tools.\nD. fall because demand for farm products creates a derived demand for farming tools.",
-      "correctPercentage": 74
+      "correctPercentage": 74,
+      "originalReportImageEng": "originals/dse/2018/re-p1-13.jpg",
+      "originalQuestionImage": "originals/dse/2018/q-p1-13.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-13.jpg"
     },
     {
       "id": "DSE-2018-P1-14",
@@ -54514,7 +54542,10 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The government imposes a per unit tax on a good. The price of the good will remain unchanged if\n(1) the demand is perfectly elastic.\n(2) the demand is perfectly inelastic.\n(3) the supply is perfectly elastic.\n(4) the supply is perfectly inelastic.\n\nA. (1) and (3) only\nB. (1) and (4) only\nC. (2) and (3) only\nD. (2) and (4) only",
-      "correctPercentage": 53
+      "correctPercentage": 53,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-14.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p1-14.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-14.jpg"
     },
     {
       "id": "DSE-2018-P1-15",
@@ -54552,7 +54583,11 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The average waiting time for public housing is 4.7 years according to the data from the Housing Authority. Which of the following would lead to an increase in the waiting time for public housing in the long term?\n\nA. a financial aid offered to low-income families renting private residential flats\nB. a rise in the income limit of applying for public housing\nC. a relaxation of rules regulating the change of land use\nD. a provision of shared-housing units by a billionaire for applicants of Comprehensive Social Security Assistance Scheme",
-      "correctPercentage": 47
+      "correctPercentage": 47,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-15.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p1-15.jpg",
+      "originalQuestionImage": "originals/dse/2018/q-p1-15.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-15.jpg"
     },
     {
       "id": "DSE-2018-P1-16",
@@ -54592,7 +54627,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below shows the supply and demand curves of air-purifiers. The original equilibrium point is E.\n \nPrice Quantity 0\nE E1 E2 E3 E4\nD0 D1 D2 S0 S1 S2\n\nSuppose there is a technological advance in producing air-purifiers. At the same time, the average air pollution index has been increasing over the last decade. The new equilibrium point will be at ____________.\n\nA. E1\nB. E2\nC. E3\nD. E4",
-      "correctPercentage": 82
+      "correctPercentage": 82,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-16.jpg"
     },
     {
       "id": "DSE-2018-P1-17",
@@ -54631,7 +54667,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The original price of Sausage McMuffin with Egg was $11 each. McDonald’s introduced the following discount in a limited time.\n \nBig Discount: $10 for 2! Sausage McMuffin with Egg\n\nAs a result, more people bought Sausage McMuffin with Egg during the promotion period. Which of the following statements about this situation is correct?\n\nA. McDonald’s was not maxmising profit during the promotion period.\nB. The demand for Sausage McMuffin with Egg would be higher during the promotion period.\nC. The total expenditure of consumers on Sausage McMuffin with Egg would increase if the demand was elastic.\nD. There would be a temporary shortage of the food ingredients for making Sausage McMuffin with Egg.",
-      "correctPercentage": 63
+      "correctPercentage": 63,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-17.jpg"
     },
     {
       "id": "DSE-2018-P1-18",
@@ -54672,7 +54709,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following supply and demand schedules for Good X.\nUnit price ($) 13 12 11 10 9 8 7\nQuantity demanded (units) 70 80 90 100 110 120 130\nQuantity supplied (units) 130 120 110 100 90 80 70\n\nSuppose the government increases the price ceiling from $8 to $12. Which of the following statements is correct?\nA. There would be a shortage of 40 units of Good X.\nB. There would be a surplus of 40 units of Good X.\nC. The total expenditure on Good X would increase by $360.\nD. The quantity transacted of Good X would remain unchanged.",
-      "correctPercentage": 62
+      "correctPercentage": 62,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-18.jpg"
     },
     {
       "id": "DSE-2018-P1-19",
@@ -54781,7 +54819,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Sony’s PS4 was responsible for $17.8 billion of sales value, or 51% share of the global console hardware market, compared with Microsoft’s Xbox One at $9.1 billion of sales value or a 26% market share. Nintendo’s 3DS platform (and its variants, such as the 2DS) was a distant third on the list with $2.6 billion of sales value or 8% share of the market.\n\nThe market structure of the above global console hardware market is oligopoly. This statement is\n\nA. correct because the companies sell heterogeneous goods in the market.\nB. correct because there are a few dominating companies in the market.\nC. incorrect because the PS4 was only responsible for 51% of the market.\nD. incorrect because there are a lot of sellers in the global market.",
-      "correctPercentage": 86
+      "correctPercentage": 86,
+      "originalQuestionImage": "originals/dse/2018/q-p1-21.jpg"
     },
     {
       "id": "DSE-2018-P1-22",
@@ -54820,7 +54859,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following diagram shows the demand and supply curves of Good X.\n \nUnit Price Quantity 0\nD S0 (without tax) S1 (with tax = t1) S2 (with tax = t2)\na b c f g h i \n\nSuppose the government increases the tax on Good X from t1 to t2. Which of the following statements is correct?\n\nA. The deadweight loss will increase by area bcgh.\nB. The deadweight loss will decrease by area abh.\nC. The new deadweight loss is area bcf.\nD. The new deadweight loss is area aci.",
-      "correctPercentage": 74
+      "correctPercentage": 74,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-22.jpg"
     },
     {
       "id": "DSE-2018-P1-23",
@@ -54857,7 +54897,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Recently, unmanned aircraft systems have become very popular but using those aircrafts in urban areas has caused noise and safety concerns. The Civil Aviation Department is considering regulating the manufacture, import and sale of unmanned aircraft systems.\n \nIt is an example of divergence between private and social ____________ and the _________ solution is being considered to reduce the divergence.\n\nA. costs …… market\nB. costs …… government\nC. benefits …… market\nD. benefits …… government",
-      "correctPercentage": 73
+      "correctPercentage": 73,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-23.jpg"
     },
     {
       "id": "DSE-2018-P1-24",
@@ -54896,7 +54937,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following are included in the calculation of the gross domestic product of Hong Kong?\n\n(1) the estimated rental value of an owner-occupied property in Hong Kong\n(2) the commission received by a real estate agent from selling second-hand property\n(3) the scholarship received by a university student\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 71
+      "correctPercentage": 71,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-24.jpg"
     },
     {
       "id": "DSE-2018-P1-25",
@@ -54937,7 +54979,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the gross domestic product (GDP) data of an economy in a particular year:\n\nGDP components $ billion\nCapital consumption allowance 40\nNet factor income from abroad 36\nProduction subsidies 14\nDirect taxes 5\nIndirect taxes 47\n\nWhich of the following statements about the economy are correct?\n\n(1) The GDP is smaller than the gross national income (GNI).\n(2) The GDP at market price is smaller than the GDP at factor cost.\n(3) Depreciation is positive in the economy.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 55
+      "correctPercentage": 55,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-25.jpg"
     },
     {
       "id": "DSE-2018-P1-26",
@@ -54981,7 +55024,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The short run aggregate supply curve will shift to the right if\n\nA. the government relaxes the importation quota of foreign workers.\nB. the government increases the profits tax rate.\nC. the central bank sells government bonds to the public.\nD. there is an increase in the price level.",
-      "correctPercentage": 80
+      "correctPercentage": 80,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-26.jpg"
     },
     {
       "id": "DSE-2018-P1-27",
@@ -55022,7 +55066,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following will lead to an increase in both price level and aggregate output in the short run?\n\nA. There is an improvement in production technology.\nB. There is an increase in the oil price.\nC. There is a decrease in money supply.\nD. There is a decrease in the desire to save.",
-      "correctPercentage": 76
+      "correctPercentage": 76,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-27.jpg"
     },
     {
       "id": "DSE-2018-P1-28",
@@ -55063,7 +55108,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below shows the aggregate demand (AD) curves, short run aggregate supply (SRAS) curves and the long run aggregate supply (LRAS) curve of an economy. The economy initially operates at E0.\n \nAD0 AD2 AD2\nSRAS0 SRAS1 SRAS2 LRAS0\nPrice level Output level 0\nE0 E1 E2 E3 E4\n\nIf the government gives $10 000 cash to every citizen every year, the short-run equilibrium will be at ___________ and the long-run equilibrium will be at __________.\n\nA. E2 …… E0\nB. E2 …… E1\nC. E3 …… E0\nD. E3 …… E4",
-      "correctPercentage": 80
+      "correctPercentage": 80,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-28.jpg"
     },
     {
       "id": "DSE-2018-P1-29",
@@ -55104,7 +55150,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Nominal interest rate\nQuantity of money 0\nMd1 Md0\n\nWhich of the following would result in the above change in money demand?\n\nA. The central bank issues larger denomination banknotes for circulation.\nB. The expected inflation rate drops.\nC. The risk of investing in stock market decreases.\nD. Security problems have been found in the major electronic payment system.",
-      "correctPercentage": 65
+      "correctPercentage": 65,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-29.jpg",
+      "originalQuestionImage": "originals/dse/2018/q-p1-29.jpg"
     },
     {
       "id": "DSE-2018-P1-30",
@@ -55145,7 +55193,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following will lead to a reduction in monetary base?\n\nA. The central bank increases the required reserve ratio.\nB. The central bank purchases the government bonds from the public.\nC. The central bank raises the discount rate.\nD. The commercial banks hold more excess reserves.",
-      "correctPercentage": 52
+      "correctPercentage": 52,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-30.jpg"
     },
     {
       "id": "DSE-2018-P1-31",
@@ -55333,7 +55382,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose the salaries tax system in Hong Kong has the following changes:\n\nOld system New system\nNet chargeable income Tax rate Net chargeable income Tax rate\nFirst $50 000 2% First $60 000 2%\nNext $50 000 7% Next $60 000 7%\nNext $50 000 12% Next $60 000 12%\nRemainder 17% Remainder 17%\n \nStandard rate 15% Standard rate 15%\n\nIf the basic tax allowance remains unchanged, which of the following is most likely to be a result of the above changes in the tax system?\n\nA. Fewer people will fall into the tax net.\nB. Fewer people will have to pay at the standard tax rate.\nC. People’s work incentive will decrease.\nD. Consumption expenditure will decrease.",
-      "correctPercentage": 49
+      "correctPercentage": 49,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-35.jpg"
     },
     {
       "id": "DSE-2018-P1-36",
@@ -55373,7 +55423,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose a deflationary (output) gap and a fiscal deficit exist in a country. Which of the following would narrow the deflationary (output) gap and reduce the fiscal deficit at the same time?\n\nA. increasing government expenditure on infrastructure\nB. reducing the profits tax rate\nC. increasing the tax rebate on salaries tax\nD. allowing more tourists to travel to the country visa-free",
-      "correctPercentage": 62
+      "correctPercentage": 62,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-36.jpg"
     },
     {
       "id": "DSE-2018-P1-37",
@@ -55415,7 +55466,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following diagram.\n \nGrowth rate (%)\nMoney supply\nPrice level\nYear\n0\n\nAccording to the quantity theory of money, which of the following statements is correct?\n\nA. The inflation rate is zero.\nB. The growth rate of real output is increasing.\nC. The growth rate of money supply is constant.\nD. The growth rate of nominal income is constant.",
-      "correctPercentage": 72
+      "correctPercentage": 72,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-37.jpg"
     },
     {
       "id": "DSE-2018-P1-38",
@@ -55456,7 +55508,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose there is a reduction in the basic allowance of the salaries tax in an economy. Which of the following can offset its effect on aggregate demand?\n\nA. People’s desire to save increases.\nB. The price level decreases.\nC. The central bank carries out an open market sale of government bonds.\nD. The required reserve ratio in the banking system decreases.",
-      "correctPercentage": 58
+      "correctPercentage": 58,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-38.jpg"
     },
     {
       "id": "DSE-2018-P1-39",
@@ -55497,7 +55550,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the AS-AD diagram below.\n \nPrice level Output level 0\nAD SRAS LRAS E1\n\nThe economy operates at E1 initially. Which of the following can help the economy restore to the long run equilibrium?\n\n(1) to reduce the subsidies to small enterprises\n(2) to increase the required reserve ratio\n(3) to reduce the discount rate\n(4) to reduce property tax\n\nA. (1) and (2) only\nB. (3) and (4) only\nC. (1), (2) and (3) only\nD. (2), (3) and (4) only",
-      "correctPercentage": 65
+      "correctPercentage": 65,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-39.jpg"
     },
     {
       "id": "DSE-2018-P1-40",
@@ -55533,7 +55587,9 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "A Hong Kong resident works for a Mainland company located in Shenzhen and he earns a monthly wage. He receives dividend from Hang Seng Bank and rental income from a leased apartment in Mongkok as well. He took a flight to Seoul departing from the Hong Kong International Airport last month.\n\nWhich type(s) of direct tax does he need to pay in Hong Kong?\n\n(1) property tax\n(2) profits tax\n(3) salaries tax\n(4) air passenger departure tax\n\nA. (1) only\nB. (1) and (4) only\nC. (1), (2) and (3) only\nD. (2), (3) and (4) only",
-      "correctPercentage": 24
+      "correctPercentage": 24,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-40.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-40.jpg"
     },
     {
       "id": "DSE-2018-P1-41",
@@ -55573,7 +55629,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following diagram shows an imposition of import tariff on a good of a small open economy.\n \nPrice Quantity 0\n20 25 60 70 7 10 S0 S1 D S\n\nReferring to the above diagram, which of the following statements are correct after the imposition of import tariff (t)?\n\n(1) The total amount of tariff received by the government is $105.\n(2) The revenue of domestic producers will increase by $110.\n(3) The volume of imports drops by 15 units.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 43
+      "correctPercentage": 43,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-41.jpg"
     },
     {
       "id": "DSE-2018-P1-42",
@@ -55612,7 +55669,9 @@
       "reviewedByAI": "N",
       "lastReviewDate": "",
       "marks": 1,
-      "questionTextEng": "The diagram below shows some trade data of Country A in the second quarter last year.\n \nvalue of imported goods (growth rate %)\nvalue of exported goods (growth rate %)\n% 30 25 20 15 10 5 0\nApr 2017 May 2017 Jun 2017\n\nCountry A reported a trade surplus during that period. Based on the given information, we can conclude that during the second quarter last year,\n\nA. the trade balance was in deficit.\nB. the volume of imported goods increased faster than that of exported goods.\nC. the visible trade surplus decreased.\nD. the current account deficit increased."
+      "questionTextEng": "The diagram below shows some trade data of Country A in the second quarter last year.\n \nvalue of imported goods (growth rate %)\nvalue of exported goods (growth rate %)\n% 30 25 20 15 10 5 0\nApr 2017 May 2017 Jun 2017\n\nCountry A reported a trade surplus during that period. Based on the given information, we can conclude that during the second quarter last year,\n\nA. the trade balance was in deficit.\nB. the volume of imported goods increased faster than that of exported goods.\nC. the visible trade surplus decreased.\nD. the current account deficit increased.",
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-42.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-42.jpg"
     },
     {
       "id": "DSE-2018-P1-43",
@@ -55689,7 +55748,10 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The Hong Kong Tourism Board organised the E-sports and Music Festival in summer 2017. Foreign E-sports players and K-pop superstars participated in the festival and they attracted locals and tourists from other parts of the world to attend the event. Organising the festival will lead to\n\n(1) an increase in private consumption expenditure in Hong Kong.\n(2) an increase in export of services in Hong Kong.\n(3) a decrease in balance of payment deficit in Hong Kong.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 46
+      "correctPercentage": 46,
+      "originalQuestionImageEng": "originals/dse/2018/qe-p1-44.jpg",
+      "originalQuestionImage": "originals/dse/2018/q-p1-44.jpg",
+      "originalReportImage": "originals/dse/2018/r-p1-44.jpg"
     },
     {
       "id": "DSE-2018-P1-45",
@@ -55728,7 +55790,8 @@
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Mr Wong used $10 000 Hong Kong Dollars (HKD) to buy Renminbi (RMB) at Day 1 and sold the sum at Day 2 to obtain HKD at the exchange rate shown in the table below.\n\n Exchange rates\nDay 1 1 HKD = 0.83 RMB\nDay 2 1 HKD = 0.77 RMB\n\nMr Wong ____________ approximately in the above transactions.\n\nA. lost HK$779\nB. lost HK$600\nC. gained HK$600\nD. gained HK$779",
-      "correctPercentage": 57
+      "correctPercentage": 57,
+      "originalQuestionImage": "originals/dse/2018/q-p1-45.jpg"
     },
     {
       "id": "DSE-2018-P2-01",
@@ -55790,7 +55853,10 @@
       "calculationType": "-",
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2018/ae-p2-02.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p2-02.jpg",
+      "originalReportImage": "originals/dse/2018/r-p2-02.jpg"
     },
     {
       "id": "DSE-2018-P2-03",
@@ -55821,7 +55887,8 @@
       "calculationType": "-",
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2018/ae-p2-03.jpg"
     },
     {
       "id": "DSE-2018-P2-04",
@@ -55852,7 +55919,8 @@
       "calculationType": "-",
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2018/ae-p2-04.jpg"
     },
     {
       "id": "DSE-2018-P2-05",
@@ -55883,7 +55951,9 @@
       "calculationType": "-",
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2018/re-p2-05.jpg",
+      "originalReportImage": "originals/dse/2018/r-p2-05.jpg"
     },
     {
       "id": "DSE-2018-P2-06",
@@ -55914,7 +55984,10 @@
       "calculationType": "-",
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2018/re-p2-06.jpg",
+      "originalAnswerImage": "originals/dse/2018/a-p2-06.jpg",
+      "originalReportImage": "originals/dse/2018/r-p2-06.jpg"
     },
     {
       "id": "DSE-2018-P2-07",
@@ -55945,7 +56018,9 @@
       "calculationType": "-",
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2018/re-p2-07.jpg",
+      "originalReportImage": "originals/dse/2018/r-p2-07.jpg"
     },
     {
       "id": "DSE-2018-P2-08",
@@ -55976,7 +56051,9 @@
       "calculationType": "-",
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2018/re-p2-08.jpg",
+      "originalReportImage": "originals/dse/2018/r-p2-08.jpg"
     },
     {
       "id": "DSE-2018-P2-09",
@@ -56038,7 +56115,11 @@
       "calculationType": "-",
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2018/ae-p2-10.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p2-10.jpg",
+      "originalAnswerImage": "originals/dse/2018/a-p2-10.jpg",
+      "originalReportImage": "originals/dse/2018/r-p2-10.jpg"
     },
     {
       "id": "DSE-2018-P2-11",
@@ -56069,7 +56150,9 @@
       "calculationType": "-",
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2018/ae-p2-11.jpg",
+      "originalAnswerImage": "originals/dse/2018/a-p2-11.jpg"
     },
     {
       "id": "DSE-2018-P2-12",
@@ -56100,7 +56183,10 @@
       "calculationType": "-",
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2018/ae-p2-12.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p2-12.jpg",
+      "originalReportImage": "originals/dse/2018/r-p2-12.jpg"
     },
     {
       "id": "DSE-2018-P2-13",
@@ -56131,7 +56217,10 @@
       "calculationType": "-",
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2018/ae-p2-13.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p2-13.jpg",
+      "originalReportImage": "originals/dse/2018/r-p2-13.jpg"
     },
     {
       "id": "DSE-2018-P2-14",
@@ -56163,7 +56252,10 @@
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "marks": 16
+      "marks": 16,
+      "originalAnswerImageEng": "originals/dse/2018/ae-p2-14.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p2-14.jpg",
+      "originalReportImage": "originals/dse/2018/r-p2-14.jpg"
     },
     {
       "id": "DSE-2018-P2-15",
@@ -56195,7 +56287,11 @@
       "source": "HKDSE 2018 卷二",
       "reviewedByAI": "N",
       "lastReviewDate": "",
-      "marks": 16
+      "marks": 16,
+      "originalAnswerImageEng": "originals/dse/2018/ae-p2-15.jpg",
+      "originalReportImageEng": "originals/dse/2018/re-p2-15.jpg",
+      "originalAnswerImage": "originals/dse/2018/a-p2-15.jpg",
+      "originalReportImage": "originals/dse/2018/r-p2-15.jpg"
     },
     {
       "id": "DSE-2019-P1-01",
