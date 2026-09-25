@@ -63166,7 +63166,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following information of the COVID-19 vaccination programme.\n\n All residents are eligible for joining the programme free-of-charge.\n The government has set up vaccination centres in some government buildings and deployed civil servants to work in these centres.\n\nThe above information is related to the ______________ question(s) in Economics.\n\n(1) ‘what to produce’\n(2) ‘how to produce’\n(3) ‘for whom to produce’\n\nA. (3) only\nB. (1) and (2) only\nC. (1) and (3) only\nD. (2) and (3) only",
-      "correctPercentage": 60
+      "correctPercentage": 60,
+      "originalQuestionImage": "originals/dse/2022/q-p1-01.jpg"
     },
     {
       "id": "DSE-2022-P1-02",
@@ -63204,7 +63205,8 @@ window.QUESTION_DATABASE = {
       "reviewedByAI": "N",
       "lastReviewDate": "",
       "marks": 1,
-      "questionTextEng": "Sony launched the ‘PlayStation 5’ game console. As it was popular among game players, long queues were found outside the shops after the official release.\n\nWhich of the following would increase the opportunity cost of buying a ‘PlayStation 5’ console?\n\nA. The resale value of ‘PlayStation 5’ increased due to its shortage.\nB. Retailers provided online purchase service to eliminate the queues outside the shops.\nC. With the same price, its competitor launched a new game console featuring better performance than ‘PlayStation 5’.\nD. The government issued electronic consumption coupons, which can be used to purchase game consoles."
+      "questionTextEng": "Sony launched the ‘PlayStation 5’ game console. As it was popular among game players, long queues were found outside the shops after the official release.\n\nWhich of the following would increase the opportunity cost of buying a ‘PlayStation 5’ console?\n\nA. The resale value of ‘PlayStation 5’ increased due to its shortage.\nB. Retailers provided online purchase service to eliminate the queues outside the shops.\nC. With the same price, its competitor launched a new game console featuring better performance than ‘PlayStation 5’.\nD. The government issued electronic consumption coupons, which can be used to purchase game consoles.",
+      "originalQuestionImage": "originals/dse/2022/q-p1-02.jpg"
     },
     {
       "id": "DSE-2022-P1-03",
@@ -63243,7 +63245,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Tommy is planning for his future after his S.6 graduation. He has several options and his order of preference is as follows.\n\nFirst option: Being a barista in a café\nSecond option: Being a trainee in digital marketing\nThird option: Being a junior fireman\n\nWhich of the following factors would LEAST likely affect the cost-benefit analysis for Tommy’s career choice?\n\nA. Coffee culture becomes more popular.\nB. More companies expand their digital marketing departments.\nC. The remuneration of junior firemen worsens.\nD. Safety measures of fire-fighting are improved drastically.",
-      "correctPercentage": 37
+      "correctPercentage": 37,
+      "originalReportImageEng": "originals/dse/2022/re-p1-03.jpg"
     },
     {
       "id": "DSE-2022-P1-04",
@@ -63282,7 +63285,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The Government purchased the broadcasting rights of the Tokyo 2020 Olympic Games. This enabled all Hong Kong people to watch the events for free. The Olympic Games broadcast is a _____________ because ____________.\n\nA. public good …… the Government paid for the broadcasting rights\nB. private good …… one individual’s consumption reduces its amount available to others\nC. free good …… more is not preferred\nD. consumer good …… it can directly satisfy human wants",
-      "correctPercentage": 71
+      "correctPercentage": 71,
+      "originalReportImageEng": "originals/dse/2022/re-p1-04.jpg",
+      "originalQuestionImage": "originals/dse/2022/q-p1-04.jpg"
     },
     {
       "id": "DSE-2022-P1-05",
@@ -63320,7 +63325,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following is a possible reason for turning a firm from a sole proprietorship to a partnership?\n\nA. The firm can get more profit.\nB. The firm can enjoy a wider scope of specialisation.\nC. The firm will become an independent legal entity.\nD. Business risk will be reduced as all partners have unlimited liability.",
-      "correctPercentage": 65
+      "correctPercentage": 65,
+      "originalReportImageEng": "originals/dse/2022/re-p1-05.jpg",
+      "originalQuestionImage": "originals/dse/2022/q-p1-05.jpg"
     },
     {
       "id": "DSE-2022-P1-06",
@@ -63358,7 +63365,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The WaltDisney Company (華特迪士尼公司) expanded its business to provide video streaming service, Disney+.\n \nWhich of the following are most likely the motives behind the expansion?\n\n(1) to spread risk by service diversification\n(2) to extend its brand name to other products\n(3) to enjoy economies of scale\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 79
+      "correctPercentage": 79,
+      "originalReportImageEng": "originals/dse/2022/re-p1-06.jpg",
+      "originalQuestionImage": "originals/dse/2022/q-p1-06.jpg"
     },
     {
       "id": "DSE-2022-P1-07",
@@ -63398,7 +63407,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the input, output and cost relationships of a firm. The only inputs required for production are labour and capital.\n\nLabout (units) Capital (units) Total product (units) Total cost of production\n1 1 20 $150\n2 1 50 $200\n3 1 70 $250\n4 1 80 $300\n\nBased on the above table, we can conclude that\n\nA. the firm enjoys economies of scale.\nB. the optimal scale of production is 70 units.\nC. the average product of labour is at the highest when the quantity of labour is 2 units.\nD. the law of diminishing marginal returns does not apply to the firm.",
-      "correctPercentage": 67
+      "correctPercentage": 67,
+      "originalReportImageEng": "originals/dse/2022/re-p1-07.jpg",
+      "originalQuestionImage": "originals/dse/2022/q-p1-07.jpg"
     },
     {
       "id": "DSE-2022-P1-08",
@@ -63437,7 +63448,9 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The _______________ of labour in Hong Kong will increase if ____________________.\n\nA. occupational mobility …… a professional labour union tightens the requirements for entering the industry\nB. occupational mobility …… the Government waives the examination for foreign-trained doctors to work in Hong Kong\nC. geographical mobility …… Tuen Ma Line connecting Tuen Mun and Ma On Shan is open\nD. geographical mobility …… the Government reduces the travel subsidy to the low-income group",
-      "correctPercentage": 93
+      "correctPercentage": 93,
+      "originalReportImageEng": "originals/dse/2022/re-p1-08.jpg",
+      "originalQuestionImage": "originals/dse/2022/q-p1-08.jpg"
     },
     {
       "id": "DSE-2022-P1-09",
@@ -63478,7 +63491,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "In the Outline Development Plan for the Guangdong-Hong Kong-Macao Greater Bay Area, Hong Kong is an international financial and transportation centre; Macao is a leisure and tourism centre; Guangzhou is an international commercial centre.\n\nThis is an example of __________ division of labour because _______________.\n\nA. simple …… each city has its own comparative advantage\nB. simple …… each city engages in different production stages\nC. regional …… multiple cities cooperate to build the Greater Bay Area\nD. regional …… each city has its own specialty of production",
-      "correctPercentage": 84
+      "correctPercentage": 84,
+      "originalReportImageEng": "originals/dse/2022/re-p1-09.jpg"
     },
     {
       "id": "DSE-2022-P1-10",
@@ -63516,7 +63530,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "In 2021, Trial & Error (試當真), a Hong Kong YouTube channel, held its first live show. The following was the pricing arrangement of its tickets.\n\nTicket price adjusts daily at 10am.\nDate Ticket price\n9 August $10 000\n10 August $5 000\n11 August $2 000\n… …\n31 August $20\n1 September\n onwards $10\n\nThe above case illustrates the __________ function of price because _______________.\n\nA. allocative …… more resources can be allocated to the production of the show\nB. allocative …… the arrangement can guarantee a sell-out of the tickets\nC. rationing …… the tickets are sold to the highest-valued buyers\nD. rationing …… the tickets are distributed on a first-come, first-served basis",
-      "correctPercentage": 55
+      "correctPercentage": 55,
+      "originalReportImageEng": "originals/dse/2022/re-p1-10.jpg"
     },
     {
       "id": "DSE-2022-P1-11",
@@ -63550,7 +63565,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Winnie operates a café in Sham Shui Po. To maximise her profit, Winnie will produce more output if\n\nA. water charges for commercial use fall.\nB. business registration fee falls.\nC. the monthly rental payment of the café rises.\nD. the wage rate of part-time waiters increases.",
-      "correctPercentage": 74
+      "correctPercentage": 74,
+      "originalQuestionImage": "originals/dse/2022/q-p1-11.jpg"
     },
     {
       "id": "DSE-2022-P1-12",
@@ -63589,7 +63605,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the total expenditure of Mary and Peter on soft drinks.\n\nUnit price ($) Consumer’s total expenditure ($)\n Mary Peter\n1 20 60\n2 40 60\n3 60 60\n4 80 60\n\nMary’s elasticity of demand for soft drinks is ___________ while Peter’s elasticity of demand for soft drinks is __________ (without regard to the negative sign).\n\nA. between zero and one …… equal to zero\nB. between zero and one …… equal to one\nC. equal to zero …… equal to zero\nD. equal to zero …… equal to one",
-      "correctPercentage": 47
+      "correctPercentage": 47,
+      "originalQuestionImage": "originals/dse/2022/q-p1-12.jpg"
     },
     {
       "id": "DSE-2022-P1-13",
@@ -63629,7 +63646,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below shows the demand and supply curves of webcams. \n \nPrice Quantity 0\nD0 D1 D2\nS0 S1 S2\n\nSuppose more firms replace face-to-face meetings with online meetings using video-conferencing software such as Zoom. At the same time, the price of lens used to produce webcams increases. As a result, the new equilibrium point will be ____________.\n\nA. E1\nB. E2\nC. E3\nD. E4",
-      "correctPercentage": 87
+      "correctPercentage": 87,
+      "originalQuestionImage": "originals/dse/2022/q-p1-13.jpg"
     },
     {
       "id": "DSE-2022-P1-14",
@@ -63670,7 +63688,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following diagram shows the demand curve of private housing.\n \nPrice Quantity 0\nD X Y\n\nWhich of the following can best explain the change in equilibrium position from X to Y?\n\nA. The household income decreases.\nB. People expect a price drop in private housing.\nC. The wage rates of construction workers increase.\nD. The demand for commercial buildings decreases.",
-      "correctPercentage": 68
+      "correctPercentage": 68,
+      "originalQuestionImage": "originals/dse/2022/q-p1-14.jpg"
     },
     {
       "id": "DSE-2022-P1-15",
@@ -63753,7 +63772,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following supply and demand schedules of Good X.\n\nUnit price ($) 7 8 9 10 11 12 13\nQuantity demanded (units) 700 600 500 400 300 200 100\nQuantity supplied (units) 250 300 350 400 450 500 550\n\nIf the government increases the price floor from $9 to $11, the total expenditure on Good X will ____________.\n\nA. become $3 300\nB. become $4 950\nC. increase by $150\nD. increase by $950",
-      "correctPercentage": 74
+      "correctPercentage": 74,
+      "originalQuestionImage": "originals/dse/2022/q-p1-16.jpg"
     },
     {
       "id": "DSE-2022-P1-17",
@@ -63788,7 +63808,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "If the price of ____________ increases, the supply of ____________ will decrease.\n\n(1) flour …… bread\n(2) beef …… leather\n(3) cars …… gasoline\n(4) commercial buildings …… industrial buildings\n\nA. (1) and (3) only\nB. (1) and (4) only\nC. (2) and (3) only\nD. (2) and (4) only",
-      "correctPercentage": 56
+      "correctPercentage": 56,
+      "originalQuestionImage": "originals/dse/2022/q-p1-17.jpg"
     },
     {
       "id": "DSE-2022-P1-18",
@@ -63826,7 +63847,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Country A imports a huge amount of red wine every year via shopping.\n \nSuppose the shipping cost of each container rises from $250 to $1 000. What will be the effect of the increase in shipping cost on the red wine sold in Country A?\n\nA. More red wine will be imported.\nB. The total expenditure on high-quality red wine will drop by the same percentage as that on low-quality red wine.\nC. The proportion of low-quality red wine sold in the market will decrease.\nD. The average quality of red wine sold in the market will decrease.",
-      "correctPercentage": 82
+      "correctPercentage": 82,
+      "originalQuestionImage": "originals/dse/2022/q-p1-18.jpg"
     },
     {
       "id": "DSE-2022-P1-19",
@@ -63865,7 +63887,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Clothing retail market can be classified as monopolistic competition. Which of the following statements about clothing retail market are correct?\n\n(1) The retailers engage in both price and non-price competition.\n(2) There are a few dominant sellers in the market.\n(3) There is imperfect information about the quality of clothing in the market.\n(4) The entry and exit of retailers are restricted.\n\nA. (1) and (3) only\nB. (1) and (4) only\nC. (2) and (3) only\nD. (2) and (4) only",
-      "correctPercentage": 84
+      "correctPercentage": 84,
+      "originalQuestionImage": "originals/dse/2022/q-p1-19.jpg"
     },
     {
       "id": "DSE-2022-P1-20",
@@ -63905,7 +63928,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the marginal benefit schedule of a consumer for avocados.\n\nQuantity (units) 1 2 3 4 5 6\nMarginal benefit ($) 8 7 6 5 4 3\n\nWhen the price of avocados increases from $5 to $6, the consumer surplus will ___________.\n\nA. increase by $1\nB. increase by $3\nC. decrease by $1\nD. decrease by $3",
-      "correctPercentage": 42
+      "correctPercentage": 42,
+      "originalQuestionImage": "originals/dse/2022/q-p1-20.jpg"
     },
     {
       "id": "DSE-2022-P1-21",
@@ -63947,7 +63971,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following supply-demand diagram of Good X.\n\nPrice\nQuantity\n0\nSwithout subsidy\nSwith subsidy\n\nIf the government cancels the per-unit subsidy on Good X, it will lead to a decrease in __________.\n\n(1) quantity transacted\n(2) consumer surplus\n(3) deadweight loss\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 50
+      "correctPercentage": 50,
+      "originalQuestionImage": "originals/dse/2022/q-p1-21.jpg"
     },
     {
       "id": "DSE-2022-P1-22",
@@ -63981,7 +64006,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following will most likely be the positive external effect of the opening of the full Tuen Ma Line of MTR?\n\nA. The travel time is shortened for MTR passengers.\nB. The business of restaurants near the stations of MTR Tuen Ma Line rises.\nC. The problem of noise pollution worsens.\nD. The income of minibus drivers drops.",
-      "correctPercentage": 87
+      "correctPercentage": 87,
+      "originalQuestionImage": "originals/dse/2022/q-p1-22.jpg"
     },
     {
       "id": "DSE-2022-P1-23",
@@ -64021,7 +64047,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Refer to the following Lorenz curves of a country.\n \n100 0\nPercentage of total income\nPercentage of household\nA: based on pre-tax pre-social transfer income\nB: based on post-tax post-social transfer income\n\nBased on the above information, which of the following statements about the country is/are correct?\n\n(1) The tax system is progressive.\n(2) Social transfer helps equalise outcome.\n(3) The income inequality problem becomes more serious after the government’s redistribution of income.\n\nA. (1) only\nB. (2) only\nC. (3) only\nD. (1) and (2) only",
-      "correctPercentage": 80
+      "correctPercentage": 80,
+      "originalQuestionImage": "originals/dse/2022/q-p1-23.jpg"
     },
     {
       "id": "DSE-2022-P1-24",
@@ -64060,7 +64087,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Study the following data of an economy.\n\nComponents $ million\nPrivate consumption expenditure 500\nGross domestic fixed capital formation 260\nDecrease in stock 120\nGovernment consumption expenditure 470\nTotal exports of goods 380\nRe-exports of goods 140\nTotal imports of goods 220\nNet exports of services 730\nDepreciation 90\nIndirect taxes 75\n\nThe gross domestic product (GDP) at factor cost is $ __________ million.\n\nA. 1925\nB. 2065\nC. 2075\nD. 2165",
-      "correctPercentage": 60
+      "correctPercentage": 60,
+      "originalQuestionImage": "originals/dse/2022/q-p1-24.jpg"
     },
     {
       "id": "DSE-2022-P1-25",
@@ -64100,7 +64128,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows some data of a country.\n\n Growth rate\nYear 2019 2020\nNominal GDP 0.3% -5.5%\nPrice level 2.0% 0.6%\nPopulation 0.5% -1.2%\n\nWhich of the following statements is correct?\n\nA. Real GDP in 2020 increased.\nB. Per capita nominal GDP in 2020 increased.\nC. There was deflation in 2020.\nD. The growth rate of real GDP in 2020 was smaller than that in 2019.",
-      "correctPercentage": 69
+      "correctPercentage": 69,
+      "originalQuestionImage": "originals/dse/2022/q-p1-25.jpg"
     },
     {
       "id": "DSE-2022-P1-26",
@@ -64180,7 +64209,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following would be deducted from the GDP of Hong Kong to calculate the gross national income (GNI) of Hong Kong?\n\nA. the salary received by a Hong Kong professor who worked in a university in Japan on a permanent contract\nB. the dividend earned by a Filipino billionaire from his holding of shares of a Hong Kong company\nC. the salary received by an Indonesian domestic worker who worked for a Hong Kong family for two years\nD. the rental income earned from a residential property in the United Kingdom owned by a Hong Kong resident",
-      "correctPercentage": 58
+      "correctPercentage": 58,
+      "originalQuestionImage": "originals/dse/2022/q-p1-27.jpg"
     },
     {
       "id": "DSE-2022-P1-28",
@@ -64222,7 +64252,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following will result in a leftward shift of the short run aggregate supply curve?\n\nA. The general price level falls.\nB. The stock market becomes more volatile.\nC. There is a decrease in birth rate.\nD. The transportation cost of raw materials rises.",
-      "correctPercentage": 85
+      "correctPercentage": 85,
+      "originalQuestionImage": "originals/dse/2022/q-p1-28.jpg"
     },
     {
       "id": "DSE-2022-P1-29",
@@ -64264,7 +64295,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "A country relaxed its immigration requirements to attract foreigners to work, live and study there. It is estimated that 200 000 foreigners will be settling there this year. Which of the following statements about the relaxation of immigration requirements is correct?\n\n(1) The aggregate demand of the country will rise.\n(2) The labour productivity of the country will rise.\n(3) The short run aggregate supply of the country will rise.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 51
+      "correctPercentage": 51,
+      "originalQuestionImage": "originals/dse/2022/q-p1-29.jpg"
     },
     {
       "id": "DSE-2022-P1-30",
@@ -64302,7 +64334,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The balance sheet of a banking system is as follows.\n\nAssets ($ million) Liabilities ($ million)\nReserves 500 Deposits 2 000\nLoans 1 500 \n\nThe required reserve ratio is 20% and the public does not hold cash initially.\n\nSuppose a customer withdraws $200 million from his bank account and holds it as cash. If all banks do not hold any excess reserves, the amount of money supply is _____________ after the process of credit creation/contraction has been completed.\n\nA. $1 200 million\nB. $1 400 million\nC. $1 500 million\nD. $1 700 million",
-      "correctPercentage": 69
+      "correctPercentage": 69,
+      "originalQuestionImage": "originals/dse/2022/q-p1-30.jpg"
     },
     {
       "id": "DSE-2022-P1-31",
@@ -64340,7 +64373,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "David plans to deposit $1 million to a financial institution in Hong Kong as savings deposit. Which of the following types of institution can receive this amount of savings deposits?\n\n(1) a licensed bank\n(2) a restricted licence bank\n(3) a deposit-taking company\n\nA. (1) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 52
+      "correctPercentage": 52,
+      "originalQuestionImage": "originals/dse/2022/q-p1-31.jpg"
     },
     {
       "id": "DSE-2022-P1-32",
@@ -64379,7 +64413,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Suppose the central bank requires the commercial banks to keep all deposits as reserves. Which of the following statements is INCORRECT?\n\nA. The monetary base will be equal to the money supply\nB. The required reserve ratio will be equal to one.\nC. The maximum banking multiplier will be equal to zero.\nD. The money creation ability of the banking system will be smaller than that of a fractional reserve banking system.",
-      "correctPercentage": 67
+      "correctPercentage": 67,
+      "originalQuestionImage": "originals/dse/2022/q-p1-32.jpg"
     },
     {
       "id": "DSE-2022-P1-33",
@@ -64422,7 +64457,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below shows the money demand and money supply curves of an economy. The original equilibrium point is at E.\n \nNominal interest rate\n0\nQuantity of money\nMd1 Md2 Md3 Ms1 Ms2 Ms3\n\nSuppose most of the employers in the economy change the payment of salaries from monthly to bi-weekly. At the same time, the commercial banks tend to hold more excess reserves. The new equilibrium point will be at _____________.\n\nA. A\nB. B\nC. C\nD. D",
-      "correctPercentage": 41
+      "correctPercentage": 41,
+      "originalQuestionImage": "originals/dse/2022/q-p1-33.jpg"
     },
     {
       "id": "DSE-2022-P1-34",
@@ -64465,7 +64501,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the monetary base and money supply of a country.\n\nDate        Monetary base ($ billion)        Money supply ($ billion)\n1 January 2020        150        500\n1 January 2021        150        800\n\nWhich of the following could explain the above data?\n\n(1)        The central bank bought bonds from the public in 2020.\n(2)        The central bank increased the discount rate in 2020.\n(3)        The central bank lowered the required reserve ratio in 2020.\n\nA.        (3) only\nB.        (1) and (2) only\nC.        (1) and (3) only\nD.        (2) and (3) only",
-      "correctPercentage": 41
+      "correctPercentage": 41,
+      "originalQuestionImage": "originals/dse/2022/q-p1-34.jpg"
     },
     {
       "id": "DSE-2022-P1-35",
@@ -64503,7 +64540,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The nominal interest rate on a one-year deposit is 1% and the inflation rate is 3%. The cost of holding cash is ____________ and the real rate of return of holding cash is ___________.\n\nA. 1% …… -3%\nB. 1% …… -2%\nC. 3% …… -3%\nD. 3% …… -2%",
-      "correctPercentage": 53
+      "correctPercentage": 53,
+      "originalQuestionImage": "originals/dse/2022/q-p1-35.jpg"
     },
     {
       "id": "DSE-2022-P1-36",
@@ -64542,7 +64580,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following will widen the deflationary (output) gap of a country?\n\nA. Its trading partners experience an economic recovery.\nB. Credit cards are more widely used.\nC. There is a decrease in transfer payment.\nD. The central bank prints more money.",
-      "correctPercentage": 66
+      "correctPercentage": 66,
+      "originalQuestionImage": "originals/dse/2022/q-p1-36.jpg"
     },
     {
       "id": "DSE-2022-P1-37",
@@ -64576,7 +64615,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following may lead to a rise in aggregate output and in improvement in equity in Hong Kong at the same time?\n\n(1)\ta charity fund donating HK$10 billion to set up non-governmental organisations in order to provide services for the underprivileged\n(2)\ta cash payout of HK$10 000 to each permanent resident aged 18 or above by the Government\n(3)\ta 1% reduction in the standard tax rate of salaries tax\n\nA.\t(1) and (2) only\nB.\t(1) and (3) only\nC.\t(2) and (3) only\nD.\t(1), (2) and (3)",
-      "correctPercentage": 65
+      "correctPercentage": 65,
+      "originalQuestionImage": "originals/dse/2022/q-p1-37.jpg"
     },
     {
       "id": "DSE-2022-P1-38",
@@ -64617,7 +64657,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Study the following diagram.\n \nPrice level Output level\n0 Y0 Y1 P0\nAD SRAS LRAS\n\nThe initial output level of the economy is Y0. Suppose scientists have invented a new oil-refining technology. In the long run,\n\n(1) the price level will be lower than P0.\n(2) the output level will be higher than Y1.\n(3) the aggregate demand curve will shift to the right to attain equilibrium.\n\nA. (1) and (2) only\nB. (1) and (3) only\nC. (2) and (3) only\nD. (1), (2) and (3)",
-      "correctPercentage": 54
+      "correctPercentage": 54,
+      "originalQuestionImage": "originals/dse/2022/q-p1-38.jpg"
     },
     {
       "id": "DSE-2022-P1-39",
@@ -64656,7 +64697,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "If there is unexpected inflation, which of the following persons will lose?\n\nA. a consumer who used credit cards to buy goods\nB. an employer who signed fixed nominal wage contracts with his employees\nC. a holder of certificate of deposits\nD. an investor of bonds with the rate of return adjusted according to the inflation rate",
-      "correctPercentage": 65
+      "correctPercentage": 65,
+      "originalQuestionImage": "originals/dse/2022/q-p1-39.jpg"
     },
     {
       "id": "DSE-2022-P1-40",
@@ -64732,7 +64774,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following results CANNOT be a negative number?\n\nA. total exports minus total imports\nB. money supply (M2) minus money supply (M1)\nC. factor income received from abroad minus factor income paid abroad\nD. GDP at market price minus GDP at factor cost",
-      "correctPercentage": 77
+      "correctPercentage": 77,
+      "originalQuestionImage": "originals/dse/2022/q-p1-41.jpg"
     },
     {
       "id": "DSE-2022-P1-42",
@@ -64810,7 +64853,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The following table shows the production and consumption data in Country A, which only produces and consumes clothing (C) and food (F).\n\n Clothing (units) Food (units)\nTotal production WITHOUT trade 10 60\nTotal production with specialisation 60 0\nTotal consumption with trade 20 120\n\nThe terms of trade is ____________.\n\nA. 1C = 2F\nB. 1C = 3F\nC. 1C = 5F\nD. 1C = 6F",
-      "correctPercentage": 52
+      "correctPercentage": 52,
+      "originalQuestionImage": "originals/dse/2022/q-p1-43.jpg"
     },
     {
       "id": "DSE-2022-P1-44",
@@ -64848,7 +64892,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "The diagram below is about a small open economy imposing an import quota on Good X.\n \nPrice Quantity 0\nPworld price quota S0 S1\n\nIf the world price of Good X drops,\n\nA. the quota will become ineffective.\nB. the quantity of Good X produced domestically will decrease.\nC. the quantity of Good X consumed domestically will increase.\nD. the domestic price of Good X will remain unchanged.",
-      "correctPercentage": 31
+      "correctPercentage": 31,
+      "originalQuestionImage": "originals/dse/2022/q-p1-44.jpg"
     },
     {
       "id": "DSE-2022-P1-45",
@@ -64886,7 +64931,8 @@ window.QUESTION_DATABASE = {
       "lastReviewDate": "",
       "marks": 1,
       "questionTextEng": "Which of the following statements about the Linked Exchange Rate System of Hong Kong is correct?\n\nA. The public can sell their Hong Kong dollars to the Hong Kong Monetary Authority in exchange for US dollars at the market exchange rate.\nB. The public can sell their Hong Kong dollars to the three note-issuing banks in exchange for US dollars at the linked exchange rate.\nC. An appreciation of Hong Kong dollar against Japanese yen would lead to an appreciation of US dollar against Japanese yen.\nD. An appreciation of US dollar against Japanese yen would lead to an appreciation of Hong Kong dollar against Japanese yen.",
-      "correctPercentage": 83
+      "correctPercentage": 83,
+      "originalQuestionImage": "originals/dse/2022/q-p1-45.jpg"
     },
     {
       "id": "DSE-2022-P2-01",
@@ -64917,7 +64963,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2022 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2022/ae-p2-01.jpg"
     },
     {
       "id": "DSE-2022-P2-02",
@@ -64979,7 +65026,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2022 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2022/ae-p2-03.jpg",
+      "originalReportImageEng": "originals/dse/2022/re-p2-03.jpg"
     },
     {
       "id": "DSE-2022-P2-04",
@@ -65010,7 +65059,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2022 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalReportImageEng": "originals/dse/2022/re-p2-04.jpg"
     },
     {
       "id": "DSE-2022-P2-05",
@@ -65041,7 +65091,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2022 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2022/ae-p2-05.jpg",
+      "originalReportImageEng": "originals/dse/2022/re-p2-05.jpg"
     },
     {
       "id": "DSE-2022-P2-06",
@@ -65072,7 +65124,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2022 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2022/ae-p2-06.jpg",
+      "originalReportImageEng": "originals/dse/2022/re-p2-06.jpg"
     },
     {
       "id": "DSE-2022-P2-07",
@@ -65103,7 +65157,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2022 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2022/ae-p2-07.jpg",
+      "originalReportImageEng": "originals/dse/2022/re-p2-07.jpg"
     },
     {
       "id": "DSE-2022-P2-08",
@@ -65134,7 +65190,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2022 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2022/ae-p2-08.jpg",
+      "originalReportImageEng": "originals/dse/2022/re-p2-08.jpg"
     },
     {
       "id": "DSE-2022-P2-09",
@@ -65165,7 +65223,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2022 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2022/ae-p2-09.jpg",
+      "originalReportImageEng": "originals/dse/2022/re-p2-09.jpg"
     },
     {
       "id": "DSE-2022-P2-10",
@@ -65196,7 +65256,9 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2022 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2022/ae-p2-10.jpg",
+      "originalReportImageEng": "originals/dse/2022/re-p2-10.jpg"
     },
     {
       "id": "DSE-2022-P2-11",
@@ -65238,7 +65300,8 @@ window.QUESTION_DATABASE = {
       "calculationType": "-",
       "source": "HKDSE 2022 卷二",
       "reviewedByAI": "N",
-      "lastReviewDate": ""
+      "lastReviewDate": "",
+      "originalAnswerImageEng": "originals/dse/2022/ae-p2-11.jpg"
     },
     {
       "id": "DSE-2023-P1-01",
