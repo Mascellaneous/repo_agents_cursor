@@ -62,6 +62,20 @@ function renderFiltersTemplate() {
         <div id="collapsible-filters-wrapper" style="max-height: 0px; opacity: 0; overflow: hidden; transition: all 0.3s ease; margin-top: 0;">
             <div class="filter-primary-grid">
 
+                <!-- 🏢 出版商 -->
+                <div class="filter-item">
+                    <div class="dropdown-filter">
+                        <button class="dropdown-btn" onclick="toggleDropdown('publisher-options')">
+                            <span>🏢 出版商</span><span class="arrow" id="publisher-arrow">▶</span>
+                        </button>
+                        <span class="active-indicator" id="indicator-publisher"></span>
+                        <div class="dropdown-content" id="publisher-options">
+                            ${triLabel('publisher', '雅集出版社')}
+                            ${triLabel('publisher', 'HKEAA')}
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 📝 考試 -->
                 <div class="filter-item">
                     <div class="dropdown-filter">
