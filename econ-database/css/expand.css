@@ -42,9 +42,10 @@
 
 .inline-diagram {
     display: block;
-    max-width: min(100%, 520px);
+    width: auto;
+    max-width: 100%;
     height: auto;
-    margin: 8px 0;
+    margin: 10px 0;
     background: #fff;
 }
 

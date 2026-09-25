@@ -129,8 +129,18 @@ async function renderQuestions() {
         .filter(s => s && !s.includes('..') && !/^[a-z]+:/i.test(s));
 
     const renderInlineText = (content, images) => {
-        const parts = content.split(/\[圖：[^\]]*\]/);
-        const marks = content.match(/\[圖：[^\]]*\]/g) || [];
+        let parts = content.split(/\[圖：[^\]]*\]/);
+        let marks = content.match(/\[圖：[^\]]*\]/g) || [];
+        if (!marks.length && images.length) {
+            const lines = content.split('\n');
+            const at = lines.findIndex(line => /圖/.test(line));
+            const cut = at === -1 ? 0 : at + 1;
+            const before = lines.slice(0, cut).join('\n');
+            const after = lines.slice(cut).join('\n');
+            return escapeHTML(before)
+                + images.map(src => `<img class="inline-diagram" src="${escapeHTML(src)}" alt="圖">`).join('')
+                + escapeHTML(after);
+        }
         let html = '';
         let used = 0;
         parts.forEach((part, i) => {
