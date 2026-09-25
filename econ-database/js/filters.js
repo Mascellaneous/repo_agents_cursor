@@ -463,6 +463,7 @@ async function updateDynamicDropdowns() {
     const contextQuestions = window.storage.applyFilters(allQuestions, contextFilters);
 
     // --- Populate Year Filter Dynamically (Grouped by Decade) ---
+    // Mock papers store a paper number (44), not a calendar year. Show MT44.
     const populateYearGrid = () => {
         const container = document.getElementById('year-options');
         if (!container) return;
@@ -505,16 +506,20 @@ async function updateDynamicDropdowns() {
             if (!validYears.includes(y)) validYears.push(y);
         });
 
-        // 4. Group years by decade; "PP", "SP" and other non-numeric values go to a special group
+        // 4. Four-digit exam years go by decade. Practice papers (PP, SP)
+        // stay in their own group. Mock-paper numbers (27–44) go last.
         const decadeGroups = {};
         const specialYears = [];
+        const mockYears = [];
 
         validYears.forEach(y => {
-            const num = parseInt(y, 10);
-            if (!isNaN(num) && /^\d{4}$/.test(String(y).trim())) {
-                const decade = Math.floor(num / 10) * 10;
+            const text = String(y).trim();
+            if (/^\d{4}$/.test(text)) {
+                const decade = Math.floor(parseInt(text, 10) / 10) * 10;
                 if (!decadeGroups[decade]) decadeGroups[decade] = [];
                 decadeGroups[decade].push(y);
+            } else if (/^\d{1,3}$/.test(text)) {
+                mockYears.push(y);
             } else {
                 specialYears.push(y);
             }
@@ -522,6 +527,7 @@ async function updateDynamicDropdowns() {
 
         const decadeKeys = Object.keys(decadeGroups).map(Number).sort((a, b) => b - a); // newest decade first
         specialYears.sort((a, b) => String(b).localeCompare(String(a)));
+        mockYears.sort((a, b) => parseInt(b, 10) - parseInt(a, 10));
 
         // Helper to render a single year button (Sheet-sourced → escaped)
         const yearButton = (year) => {
@@ -531,13 +537,14 @@ async function updateDynamicDropdowns() {
             else if (currentState === 'excluded') itemClass += ' excluded';
 
             const count = counts[year] || 0;
+            const label = yearFilterLabel(year);
             return `
                 <div class="${itemClass}" 
                      data-filter="year" 
                      data-value="${escapeHTML(year)}" 
                      onclick="toggleTriState(this)"
-                     title="${escapeHTML(year)}（${count} 題）">
-                    ${escapeHTML(year)}
+                     title="${escapeHTML(label)}（${count} 題）">
+                    ${escapeHTML(label)}
                 </div>`;
         };
 
@@ -571,6 +578,18 @@ async function updateDynamicDropdowns() {
                     </div>
                     <div class="year-group-grid">
                         ${specialYears.map(yearButton).join('')}
+                    </div>
+                </div>`;
+        }
+
+        if (mockYears.length > 0) {
+            html += `
+                <div class="year-group">
+                    <div class="year-group-header">
+                        <span class="year-group-title">Mock Test</span>
+                    </div>
+                    <div class="year-group-grid">
+                        ${mockYears.map(yearButton).join('')}
                     </div>
                 </div>`;
         }
@@ -632,6 +651,12 @@ async function updateDynamicDropdowns() {
 async function populateDynamicFilters() {
     await updateDynamicDropdowns();
     applyChapterTooltips();
+}
+
+function yearFilterLabel(year) {
+    const text = String(year).trim();
+    if (/^\d{1,3}$/.test(text)) return `MT${text}`;
+    return text;
 }
 
 function populateSearchScope() {
@@ -966,11 +991,12 @@ function updateSearchInfo() {
                 }
 
                 const label = categories[catKey] || catKey;
+                const shown = catKey === 'year' ? yearFilterLabel(itemVal) : itemVal;
                 if (state === 'checked') {
-                    html += createBadge(label, itemVal, 'blue', 'tag', catKey, itemVal);
+                    html += createBadge(label, shown, 'blue', 'tag', catKey, itemVal);
                     hasFilters = true;
                 } else if (state === 'excluded') {
-                    html += createBadge(`排除 ${label}`, itemVal, 'red', 'tag', catKey, itemVal);
+                    html += createBadge(`排除 ${label}`, shown, 'red', 'tag', catKey, itemVal);
                     hasFilters = true;
                 }
             });
