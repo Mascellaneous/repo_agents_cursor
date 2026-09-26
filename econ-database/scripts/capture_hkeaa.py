@@ -13,6 +13,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from PIL import Image
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import capture_from_pdf as base
@@ -444,5 +445,160 @@ def main():
     print("done", saved)
 
 
+# Scanned footers often OCR as DSE/D3E plus ECON / EOON / BOON / HCON.
+FOOTER_LINE_RE = re.compile(r"(?i)d[s3]e[-\.]?[ebh]?[co0][o0]n")
+
+
+def _isolated_text_bands(image, *, row=0.008, thr=170, minh=8, maxh=24, gapmin=22, densmax=0.12, y_from=0):
+    """Short, sparse lines with a clear gap above them, where a page footer can sit."""
+    gray = np.array(image.convert("L"))
+    ink = (gray < thr).mean(axis=1)
+    dark = gray < thr
+    height, width = dark.shape
+    bands = []
+    y = max(0, y_from)
+    while y < height:
+        if ink[y] < row:
+            y += 1
+            continue
+        start = y
+        while y < height and ink[y] >= row:
+            y += 1
+        end = y
+        gap = start
+        while gap > 0 and ink[gap - 1] < row:
+            gap -= 1
+        if not (minh <= end - start <= maxh and start - gap >= gapmin):
+            continue
+        band = dark[start:end]
+        if float(band.mean()) > densmax:
+            continue
+        xs = np.where(band.any(axis=0))[0]
+        if len(xs) == 0:
+            continue
+        bands.append((start, end, int(xs[0]), int(xs[-1])))
+    return bands
+
+
+def _ocr_footer_bands(image, bands, image_path):
+    found = []
+    for start, end, x0, x1 in bands:
+        # The year code is on the left; the sheet number is on the same line, so
+        # read the whole sparse run (capped) rather than only the first glyphs.
+        strip = image.crop((
+            max(0, x0 - 4),
+            max(0, start - 2),
+            min(image.width, max(x1 + 8, x0 + 360), x0 + 720),
+            min(image.height, end + 2),
+        ))
+        tmp = Path("/tmp") / f"dse-footer-{image_path.parent.name}-{image_path.stem}-{start}.jpg"
+        strip.save(tmp, quality=70)
+        try:
+            proc = subprocess.run(
+                ["tesseract", str(tmp), "stdout", "-l", "eng", "--psm", "7"],
+                capture_output=True, text=True, timeout=4,
+                env={**dict(**{k: v for k, v in __import__("os").environ.items()}), "OMP_THREAD_LIMIT": "1"},
+            )
+        except subprocess.TimeoutExpired:
+            continue
+        finally:
+            tmp.unlink(missing_ok=True)
+        compact = re.sub(r"\s+", "", proc.stdout)
+        # A real footer is a short line. A long OCR string is question text.
+        if len(compact) <= 48 and FOOTER_LINE_RE.search(compact):
+            found.append((start, end))
+    return found
+
+
+def footer_bands(image_path):
+    """Y ranges of exam footers (year, paper and page), not question text."""
+    image = Image.open(image_path).convert("RGB")
+    found = _ocr_footer_bands(image, _isolated_text_bands(image), image_path)
+    if found:
+        return found
+    # Faint scan footers sit in a short gap near the bottom and fail the stricter test.
+    faint = _isolated_text_bands(
+        image, row=0.0035, thr=200, minh=6, maxh=28, gapmin=10, densmax=0.08,
+        y_from=max(0, image.height - 140),
+    )
+    return _ocr_footer_bands(image, faint, image_path)
+
+
+def strip_footer_file(path):
+    """Remove 20xx-DSE-ECON footers from one saved crop. Return True if it changed."""
+    bands = footer_bands(path)
+    if not bands:
+        return False
+    image = Image.open(path).convert("RGB")
+    gray = np.array(image.convert("L"))
+    height, width = gray.shape
+    dark = gray < 170
+    spans = []
+    for top, bottom in bands:
+        y0, y1 = max(0, top - 2), min(height - 1, bottom + 2)
+        while y0 > 0 and float(dark[y0 - 1].mean()) < 0.012:
+            y0 -= 1
+        while y1 < height - 1 and float(dark[y1 + 1].mean()) < 0.012:
+            y1 += 1
+        spans.append((y0, y1, top))
+    spans.sort()
+    merged = []
+    for y0, y1, text_top in spans:
+        if merged and y0 <= merged[-1][1] + 4:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], y1), min(merged[-1][2], text_top))
+        else:
+            merged.append((y0, y1, text_top))
+    pieces = []
+    cursor = 0
+    for y0, y1, text_top in merged:
+        # Stop in the blank above the footer, and never keep the footer glyphs.
+        keep_end = min(y0 + 6, text_top)
+        if keep_end > cursor + 12:
+            pieces.append(image.crop((0, cursor, width, keep_end)))
+        cursor = min(height, y1 + 1)
+    if cursor < height - 8:
+        pieces.append(image.crop((0, cursor, width, height)))
+    pieces = [piece for piece in pieces if piece.height > 8]
+    if not pieces:
+        return False
+    canvas = Image.new("RGB", (width, sum(piece.height for piece in pieces)), "white")
+    y = 0
+    for piece in pieces:
+        canvas.paste(piece, (0, y))
+        y += piece.height
+    if canvas.size == image.size:
+        return False
+    canvas.save(path, quality=74, optimize=True)
+    return True
+
+
+def strip_question_footers():
+    """Drop year/page footers from HKDSE question crops already in the bank."""
+    changed = 0
+    checked = 0
+    paths = sorted(ORIG.glob("*/*q*-p*.jpg"))
+    # q-p and qe-p only; answer and report crops use a- / r- prefixes.
+    paths = [path for path in paths if path.name.startswith(("q-", "qe-"))]
+    with ThreadPoolExecutor(max_workers=3) as pool:
+        for path, did in pool.map(_strip_one, paths):
+            checked += 1
+            changed += int(did)
+            if checked % 80 == 0:
+                print("checked", checked, "changed", changed, flush=True)
+    print("footer strip checked", checked, "changed", changed)
+    return changed
+
+
+def _strip_one(path):
+    try:
+        return path, strip_footer_file(path)
+    except Exception as exc:
+        print("skip", path, exc, flush=True)
+        return path, False
+
+
 if __name__ == "__main__":
-    main()
+    if "--strip-footers" in sys.argv:
+        strip_question_footers()
+    else:
+        main()

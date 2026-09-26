@@ -210,7 +210,8 @@ def footer_limits(pages):
         ys = [
             y for x, y, label in page["words"]
             if y > page["height"] * 0.8 and (
-                "©" in label or "HKDSE" in label or label.startswith("參考答案") or "Suggested" in label
+                "©" in label or "HKDSE" in label or "DSE-ECON" in label.upper()
+                or label.startswith("參考答案") or "Suggested" in label
             )
         ]
         if ys:
