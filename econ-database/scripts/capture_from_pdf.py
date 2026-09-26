@@ -218,30 +218,103 @@ def footer_limits(pages):
     return limits
 
 
-def crop_span(pages, start, end, dest, footers=None):
+FURNITURE_RE = re.compile(
+    r"barcode|margins.{0,20}marked|not to be taken away|go on to the next page|"
+    r"end of paper|hkdse-econ|請在此貼|電腦條碼|不予評閱|邊界以外|寫於邊界",
+    re.I,
+)
+
+
+def furniture_masks(pdf):
+    """Side-margin columns and header/footer lines that are not part of a question."""
+    html = subprocess.check_output(
+        ["pdftotext", "-bbox-layout", str(pdf), "-"], text=True, errors="replace"
+    )
+    masks = {}
+    for page_no, page in enumerate(re.findall(r"<page\b[^>]*>.*?</page>", html, re.S), 1):
+        size = re.search(r'width="([\d.]+)" height="([\d.]+)"', page)
+        if not size:
+            continue
+        width, height = float(size.group(1)), float(size.group(2))
+        words = []
+        for word in re.finditer(
+            r'<word xMin="([\d.]+)" yMin="([\d.]+)" xMax="([\d.]+)" yMax="([\d.]+)"[^>]*>([^<]+)</word>',
+            page,
+        ):
+            words.append((
+                float(word.group(1)), float(word.group(2)),
+                float(word.group(3)), float(word.group(4)),
+                word.group(5).strip(),
+            ))
+        left, right = 48, width - 28
+        for x0, y0, x1, y1, _label in words:
+            if x1 <= 56 and y1 - y0 > 8:
+                left = max(left, x1 + 4)
+            if x0 >= width - 80 and y1 - y0 > 8:
+                right = min(right, x0 - 4)
+        left = min(left, 56)
+        lines = {}
+        for x0, y0, x1, y1, label in words:
+            # Side-margin warnings are stored as tall single words. Short words
+            # such as "in" and "be" stay with the horizontal footer line.
+            if y1 - y0 > 18 and y1 - y0 > x1 - x0:
+                continue
+            lines.setdefault(round(y0), []).append((x0, y0, x1, y1, label))
+        bands = []
+        for group in lines.values():
+            text = " ".join(item[4] for item in sorted(group))
+            if not FURNITURE_RE.search(text) and "©" not in text:
+                continue
+            bands.append((min(item[1] for item in group) - 3, max(item[3] for item in group) + 4))
+        masks[page_no] = {"left": left, "right": right, "bands": bands, "width": width, "height": height}
+    return masks
+
+
+def _cut_bands(start, end, bands):
+    spans = [(start, end)]
+    for top, bottom in bands:
+        nxt = []
+        for a, b in spans:
+            if bottom <= a or top >= b:
+                nxt.append((a, b))
+                continue
+            if a < top:
+                nxt.append((a, top))
+            if bottom < b:
+                nxt.append((bottom, b))
+        spans = nxt
+    return [(a, b) for a, b in spans if b - a > 8]
+
+
+def crop_span(pages, start, end, dest, footers=None, masks=None):
     """Cut from one question number to the next, across a page break if needed."""
     scale = DPI / 72
     footers = footers or {}
+    masks = masks or {}
     pieces = []
     page = start["page"]
     y0 = start["y"]
     last_page = end["page"] if end else start["page"]
-    y1 = end["y"] if end and end["page"] == page else start["height"] - 36
     while True:
         image_path = pages.get(page)
         if image_path:
             image = Image.open(image_path)
-            top = int((y0 - 4) * image.height / start["height"]) if page == start["page"] else 48
+            mask = masks.get(page, {})
+            href = mask.get("height") or start["height"]
+            href_w = mask.get("width") or start["width"]
+            y_start = (y0 - 4) if page == start["page"] else 40
             if page == last_page and end and end["page"] == page:
-                limit = end["y"] - 2
+                y_end = end["y"] - 2
             else:
-                limit = footers.get(page, start["height"] - 36)
-            bottom = int(limit * image.height / (end["height"] if end and end["page"] == page else start["height"]))
-            left = int(36 * scale)
-            right = image.width - int(24 * scale)
-            piece = image.crop((max(0, left), max(0, top), right, min(image.height, bottom)))
-            if piece.height > 20:
-                pieces.append(piece)
+                y_end = footers.get(page, href - 36)
+            left = int(mask.get("left", 36) * image.width / href_w) if mask else int(36 * scale)
+            right = int(mask.get("right", href_w - 24) * image.width / href_w) if mask else image.width - int(24 * scale)
+            for y_a, y_b in _cut_bands(y_start, y_end, mask.get("bands", [])):
+                top = int(y_a * image.height / href)
+                bottom = int(y_b * image.height / href)
+                piece = image.crop((max(0, left), max(0, top), min(image.width, right), min(image.height, bottom)))
+                if piece.height > 20:
+                    pieces.append(piece)
         if page >= last_page:
             break
         page += 1
@@ -718,8 +791,44 @@ def paper2_answer_starts(pdf):
     return kept, pages
 
 
+def recrop_sq_questions():
+    """Recut Paper 2 question images without barcode lines or margin warnings."""
+    db = json.loads(DB_PATH.read_text())
+    by_id = {q["id"]: q for q in db["questions"]}
+    saved = 0
+    for num in range(27, 45):
+        for paper_name, pdf, prefix, field in (
+            ("卷二", chi_pdf(num, "卷二"), "q", "originalQuestionImage"),
+            ("Paper 2", eng_pdf(num, "Paper 2"), "qe", "originalQuestionImageEng"),
+        ):
+            if not pdf:
+                continue
+            starts = question_starts(pdf) if prefix == "q" else english_question_starts(pdf)[0]
+            pages = render_pages(pdf, Path(f"/tmp/mt-render/{num}-{prefix}-sq"))
+            masks = furniture_masks(pdf)
+            for i, mark in enumerate(starts):
+                qid = f"M{num}-P2-Q{mark['num']:02d}"
+                question = by_id.get(qid)
+                if not question or question.get("questionType") == "MC":
+                    continue
+                dest = ORIG / str(num) / f"{prefix}-p2-{mark['num']:02d}.jpg"
+                end = starts[i + 1] if i + 1 < len(starts) else None
+                if crop_span(pages, mark, end, dest, masks=masks):
+                    image = strip_answer_lines(Image.open(dest))
+                    image.convert("RGB").save(dest, quality=74, optimize=True)
+                    question[field] = f"originals/{num}/{prefix}-p2-{mark['num']:02d}.jpg"
+                    saved += 1
+        print("sq questions", num, "saved", saved, flush=True)
+    text = json.dumps(db, ensure_ascii=False, indent=2) + "\n"
+    DB_PATH.write_text(text)
+    (DATA / "database.js").write_text("window.QUESTION_DATABASE = " + text.strip() + ";\n")
+    print("sq question images", saved)
+    return saved
+
+
 def refresh_sq_images():
     """Drop student answer lines from SQ/LQ question crops and add English answers."""
+    recrop_sq_questions()
     trimmed = 0
     for path in list(ORIG.glob("*/q-p2-*.jpg")) + list(ORIG.glob("*/qe-p2-*.jpg")):
         image = Image.open(path)

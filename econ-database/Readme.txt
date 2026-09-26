@@ -146,6 +146,9 @@ Templates (js/templates/):
 
 ## 4. Known Limitations / TODO
 
+- Mock-test Paper 2 question images omit the barcode header, the
+  margin warning in the side columns and footer, and the blank answer
+  lines. Recut them with capture_from_pdf.py --sq-images.
 - HKDSE question, written-answer, and report images that could not be
   matched to the stored wording are listed in HKEAA-待補圖片.md in this
   folder. 2013 has no crops yet. Other years from 2012 to 2025 include
