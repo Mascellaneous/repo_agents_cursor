@@ -265,9 +265,142 @@ def furniture_masks(pdf):
             text = " ".join(item[4] for item in sorted(group))
             if not FURNITURE_RE.search(text) and "©" not in text:
                 continue
-            bands.append((min(item[1] for item in group) - 3, max(item[3] for item in group) + 4))
+            bands.append((
+                min(item[1] for item in group) - 3,
+                max(item[3] for item in group) + 4,
+                min(item[0] for item in group),
+                max(item[2] for item in group),
+            ))
         masks[page_no] = {"left": left, "right": right, "bands": bands, "width": width, "height": height}
     return masks
+
+
+def _rule_at(gray, i, x0, x1):
+    seg = gray[i, x0:x1]
+    return seg.size > 0 and float((seg < 140).mean()) > 0.45
+
+
+def _expand_rule(gray, y, x0, x1):
+    """Follow a horizontal rule out to both ends, past the furniture words."""
+    height, width = gray.shape
+    if not (0 <= y < height):
+        return None
+    row = gray[y] < 145
+    if y > 0:
+        row = row | (gray[y - 1] < 145)
+    if y + 1 < height:
+        row = row | (gray[y + 1] < 145)
+    x0 = int(np.clip(x0, 0, width - 1))
+    x1 = int(np.clip(x1, x0 + 1, width))
+    if float(row[x0:x1].mean()) < 0.35:
+        return None
+
+    def walk(x, step):
+        gap = 0
+        last = x
+        while 0 <= x < width:
+            if row[x]:
+                last = x
+                gap = 0
+            else:
+                gap += 1
+                if gap > 3:
+                    break
+            x += step
+        return last
+
+    left, right = walk(x0, -1), walk(x1 - 1, 1)
+    if right - left < 40:
+        return None
+    return left, right
+
+
+def _nearest_rule(gray, start, limit, x0, x1):
+    step = -1 if limit < start else 1
+    y = start
+    while y != limit:
+        if _rule_at(gray, y, x0, x1):
+            return y
+        y += step
+    return None
+
+
+def snap_furniture_boxes(pages, masks):
+    """Remove the rectangle around furniture, not only the words inside it.
+
+    The barcode box is wider than the words. A full-width rule above the
+    margin warning is cut out. A partial box is removed as a band when the
+    page beside it is blank, and painted white when question text sits beside it.
+    """
+    for page_no, mask in masks.items():
+        path = pages.get(page_no)
+        if not path or not mask.get("bands"):
+            continue
+        image = Image.open(path).convert("RGB")
+        gray = np.array(image.convert("L"))
+        height, width = gray.shape
+        href, href_w = mask["height"], mask["width"]
+        cuts = []
+        painted = False
+
+        def to_pt(py):
+            return py * href / height
+
+        for band in mask["bands"]:
+            y0, y1 = band[0], band[1]
+            x0 = band[2] if len(band) > 3 else 0
+            x1 = band[3] if len(band) > 3 else href_w
+            py0 = int(np.clip(y0 * height / href, 0, height - 1))
+            py1 = int(np.clip(y1 * height / href, 0, height - 1))
+            px0 = int(np.clip(x0 * width / href_w - 4, 0, width - 1))
+            px1 = int(np.clip(x1 * width / href_w + 4, px0 + 1, width))
+            above = _nearest_rule(gray, py0, max(0, py0 - 170), px0, px1)
+            below = _nearest_rule(gray, py1, min(height - 1, py1 + 170), px0, px1)
+            spans = []
+            for rule_y in (above, below):
+                if rule_y is None:
+                    continue
+                span = _expand_rule(gray, rule_y, px0, px1)
+                if span:
+                    spans.append((rule_y, span, span[1] - span[0] > width * 0.62))
+            partials = [item for item in spans if not item[2]]
+            covered = False
+            for rule_y, span, full in spans:
+                if not full:
+                    continue
+                cuts.append((to_pt(max(0, rule_y - 2)), to_pt(min(height - 1, rule_y + 3))))
+            if len(partials) >= 2:
+                (y_a, span_a, _), (y_b, span_b, _) = partials[0], partials[1]
+                overlap = min(span_a[1], span_b[1]) - max(span_a[0], span_b[0])
+                if overlap > 40 and abs(y_b - y_a) > 12:
+                    top_y, bot_y = sorted((y_a, y_b))
+                    left = max(0, min(span_a[0], span_b[0]) - 2)
+                    right = min(width - 1, max(span_a[1], span_b[1]) + 2)
+                    margin_l = int(mask.get("left", 36) * width / href_w)
+                    side = gray[top_y + 2:bot_y - 1, margin_l:max(margin_l, left - 4)]
+                    blank_beside = left - margin_l > 36 and (
+                        side.size == 0 or float((side < 170).mean()) < 0.012
+                    )
+                    if blank_beside:
+                        cuts.append((to_pt(max(0, top_y - 2)), to_pt(min(height, bot_y + 3))))
+                    else:
+                        image.paste(
+                            Image.new("RGB", (right - left + 1, bot_y - top_y + 1), "white"),
+                            (left, max(0, top_y)),
+                        )
+                        painted = True
+                    covered = True
+            if not covered:
+                cuts.append((y0, y1))
+        if painted:
+            image.save(path, quality=80)
+        # The answer-frame's right rule sits just inside the side-column margin.
+        right_px = int(np.clip(mask["right"] * width / href_w, 0, width - 1))
+        for x in range(min(width - 1, right_px + 4), max(0, right_px - 30), -1):
+            if float((gray[:, x] < 140).mean()) > 0.35:
+                mask["right"] = max(mask["left"] + 40, (x - 4) * href_w / width)
+                break
+        mask["bands"] = cuts
 
 
 def _cut_bands(start, end, bands):
@@ -716,6 +849,30 @@ def answer_line_blocks(image):
     return [(max(0, a), min(height, b)) for a, b in blocks if b - a > 40]
 
 
+def trim_stray_frame_line(image):
+    """Drop a solid full-width rule left at the bottom after the frame is cut."""
+    gray = np.array(image.convert("L"))
+    height, width = gray.shape
+    dark = gray < 150
+    cut = None
+    for y in range(height - 1, max(-1, height - 18), -1):
+        if float(dark[y].mean()) < 0.85:
+            if cut is not None:
+                break
+            continue
+        above = dark[max(0, y - 40):y]
+        if above.size:
+            zone = above[above.mean(1) < 0.8]
+            if zone.size and int((zone.mean(0) > 0.5).sum()) >= 2:
+                break
+        if cut is None and y < height - 1 and float(dark[y + 1:].mean()) > 0.02:
+            break
+        cut = y
+    if cut is not None and cut > 20:
+        return image.crop((0, 0, width, cut))
+    return image
+
+
 def strip_answer_lines(image):
     blocks = answer_line_blocks(image)
     if not blocks:
@@ -806,6 +963,7 @@ def recrop_sq_questions():
             starts = question_starts(pdf) if prefix == "q" else english_question_starts(pdf)[0]
             pages = render_pages(pdf, Path(f"/tmp/mt-render/{num}-{prefix}-sq"))
             masks = furniture_masks(pdf)
+            snap_furniture_boxes(pages, masks)
             for i, mark in enumerate(starts):
                 qid = f"M{num}-P2-Q{mark['num']:02d}"
                 question = by_id.get(qid)
@@ -814,7 +972,7 @@ def recrop_sq_questions():
                 dest = ORIG / str(num) / f"{prefix}-p2-{mark['num']:02d}.jpg"
                 end = starts[i + 1] if i + 1 < len(starts) else None
                 if crop_span(pages, mark, end, dest, masks=masks):
-                    image = strip_answer_lines(Image.open(dest))
+                    image = trim_stray_frame_line(strip_answer_lines(Image.open(dest)))
                     image.convert("RGB").save(dest, quality=74, optimize=True)
                     question[field] = f"originals/{num}/{prefix}-p2-{mark['num']:02d}.jpg"
                     saved += 1
