@@ -155,6 +155,9 @@ Templates (js/templates/):
   folder. 2013 has no crops yet. Other years from 2012 to 2025 include
   only the crops that matched. Add missing files under
   originals/dse/year/ using the names in that note.
+- DSE-題目規律.md in this folder is the organised past-paper pattern
+  note. Years whose Paper 2 stems are missing from the bank are left
+  blank instead of guessed.
 
 - Topic, curriculum, chapter, and pattern statistics tabs are published
   so the mock-paper topic distribution can be reviewed.

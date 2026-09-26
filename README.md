@@ -79,6 +79,8 @@ HKDSE papers for 2012–2025 live in `PastPaper/` as one Chinese file and one En
 
 Crops that do not match the stored wording are left out. `econ-database/HKEAA-待補圖片.md` lists every year from 2012 to 2025 that still needs a picture, and the filenames to use. 2013 was not cropped at all. The other years include only the crops that matched.
 
+`econ-database/DSE-題目規律.md` collects the past-paper patterns (answer-key balance, diagrams, calculations, and wording). It keeps the notes already compiled by hand and fills only the years whose stems are in the question bank.
+
 ## Adding another mock paper
 
 1. Put three files in `MockTests/`: 卷一, 卷二, and 參考答案. Keep the same filename style as the papers already there.
