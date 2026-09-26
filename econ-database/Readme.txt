@@ -150,6 +150,10 @@ Templates (js/templates/):
   box around that header, the margin warning in the side columns and
   footer, and the blank answer lines. Recut them with
   capture_from_pdf.py --sq-images.
+- HKDSE question images drop the year-and-page footer, such as
+  2025-DSE-ECON 1-14, including a footer in the middle of a crop that
+  crosses a page. Repeat that cleanup with
+  capture_hkeaa.py --strip-footers.
 - HKDSE question, written-answer, and report images that could not be
   matched to the stored wording are listed in HKEAA-待補圖片.md in this
   folder. 2013 has no crops yet. Other years from 2012 to 2025 include
