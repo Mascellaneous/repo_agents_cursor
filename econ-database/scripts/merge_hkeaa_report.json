@@ -1,0 +1,3930 @@
+{
+  "stats": {
+    "mock_skipped": 889,
+    "chapter_kept_local_blank_sheets": 236,
+    "curriculum_kept_local_blank_sheets": 217,
+    "concepts_rebuilt_from_focus": 904,
+    "patterns_kept_local": 984,
+    "graphType_kept_local": 964,
+    "tableType_kept_local": 968,
+    "calculationType_kept_local": 934,
+    "rows_changed": 928,
+    "matched": 1008,
+    "graphType_sheets_unmapped": 40,
+    "concepts_kept_local": 104,
+    "rows_unchanged": 80,
+    "chapter_updated": 453,
+    "topic_updated": 454,
+    "curriculum_updated": 329,
+    "patterns_cleaned": 24,
+    "tableType_sheets_unmapped": 40,
+    "calculationType_sheets_unmapped": 74,
+    "graphType_filled_from_sheets": 4
+  },
+  "sheets_count": 1008,
+  "examples": [
+    {
+      "id": "AL-1990-P2A-18",
+      "before": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "貨幣供應"
+        ],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "法定儲備比率",
+          "貨幣供應"
+        ],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "AL-1994-P2A-09",
+      "before": {
+        "AristochapterClassification": [
+          "Ch18"
+        ],
+        "curriculumClassification": [
+          "G 國民收入決定及價格水平"
+        ],
+        "topic": "產出和價格的決定",
+        "concepts": [],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch18"
+        ],
+        "curriculumClassification": [
+          "G 國民收入決定及價格水平"
+        ],
+        "topic": "產出和價格的決定",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "AL-2003-P2A-24",
+      "before": {
+        "AristochapterClassification": [
+          "Ch08",
+          "Ch17"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格",
+          "G 國民收入決定及價格水平"
+        ],
+        "topic": "市場價格的訂定；總需求和總供應",
+        "concepts": [
+          "股票與債券",
+          "供需",
+          "通脹與通縮",
+          "總需求與總供應"
+        ],
+        "patterns": [
+          "解釋"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch08",
+          "Ch17"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格",
+          "G 國民收入決定及價格水平"
+        ],
+        "topic": "市場價格的訂定；總需求和總供應",
+        "concepts": [
+          "總需求"
+        ],
+        "patterns": [
+          "解釋"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "AL-2003-P2A-28",
+      "before": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "匯率"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "聯繫匯率"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "AL-2008-P2A-20",
+      "before": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "貨幣供應"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "填空"
+        ],
+        "graphType": "貨幣市場圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "貨幣需求"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "填空"
+        ],
+        "graphType": "貨幣市場圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-1990-P2-43",
+      "before": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "匯率"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-1992-P2-34",
+      "before": {
+        "AristochapterClassification": [
+          "Ch22",
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府",
+          "H 貨幣與銀行"
+        ],
+        "topic": "財政政策與貨幣政策；貨幣供應和貨幣需求",
+        "concepts": [
+          "貨幣供應"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch22",
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府",
+          "H 貨幣與銀行"
+        ],
+        "topic": "財政政策與貨幣政策；貨幣供應和貨幣需求",
+        "concepts": [
+          "銀行體系"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-1992-P2-59",
+      "before": {
+        "AristochapterClassification": [
+          "Ch19",
+          "Ch23"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行",
+          "J 國際貿易和金融"
+        ],
+        "topic": "貨幣與銀行；國際貿易",
+        "concepts": [
+          "貨幣的功能"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch19",
+          "Ch23"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行",
+          "J 國際貿易和金融"
+        ],
+        "topic": "貨幣與銀行；國際貿易",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-1993-P2-01",
+      "before": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "經濟物品"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-1994-P2-30",
+      "before": {
+        "AristochapterClassification": [
+          "Ch03",
+          "Ch12"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產",
+          "D 競爭與市場結構"
+        ],
+        "topic": "廠商的所有權形式；市場結構",
+        "concepts": [
+          "廠商所有權形式",
+          "規模經濟"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch03",
+          "Ch12"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產",
+          "D 競爭與市場結構"
+        ],
+        "topic": "廠商的所有權形式；市場結構",
+        "concepts": [
+          "有限公司"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-1997-P2-03",
+      "before": {
+        "AristochapterClassification": [
+          "Ch11"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場干預",
+        "concepts": [
+          "短缺與盈餘"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch11"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場干預",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-2000-P2-01",
+      "before": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "機會成本",
+          "免費物品"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "免費物品"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-2000-P2-02",
+      "before": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "機會成本"
+        ],
+        "patterns": [
+          "比較",
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "比較",
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-2000-P2-07",
+      "before": {
+        "AristochapterClassification": [
+          "Ch25",
+          "Ch08"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融",
+          "C 市場與價格"
+        ],
+        "topic": "國際收支平衡表與匯率；市場價格的訂定",
+        "concepts": [
+          "均衡",
+          "匯率"
+        ],
+        "patterns": [
+          "圖表判讀"
+        ],
+        "graphType": "其他圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch25",
+          "Ch08"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融",
+          "C 市場與價格"
+        ],
+        "topic": "國際收支平衡表與匯率；市場價格的訂定",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "圖表判讀"
+        ],
+        "graphType": "其他圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-2000-P2-29",
+      "before": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "貨幣供應"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-2001-P2-29",
+      "before": {
+        "AristochapterClassification": [
+          "Ch15"
+        ],
+        "curriculumClassification": [
+          "F 經濟表現的量度"
+        ],
+        "topic": "經濟表現的量度 (I)",
+        "concepts": [
+          "本地生產總值"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch15"
+        ],
+        "curriculumClassification": [
+          "F 經濟表現的量度"
+        ],
+        "topic": "經濟表現的量度 (I)",
+        "concepts": [
+          "本地生產總值",
+          "進口"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-2002-P2-38",
+      "before": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "貨幣供應"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-2003-P2-34",
+      "before": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "貨幣供應"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-2005-P2-42",
+      "before": {
+        "AristochapterClassification": [
+          "Ch11",
+          "Ch15"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格",
+          "F 經濟表現的量度"
+        ],
+        "topic": "市場干預；經濟表現的量度 (I)",
+        "concepts": [
+          "稅項與津貼",
+          "本地生產總值"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch11",
+          "Ch15"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格",
+          "F 經濟表現的量度"
+        ],
+        "topic": "市場干預；經濟表現的量度 (I)",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-2006-P2-02",
+      "before": {
+        "AristochapterClassification": [
+          "Ch11"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場干預",
+        "concepts": [],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch11"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場干預",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-2007-P2-41",
+      "before": {
+        "AristochapterClassification": [
+          "Ch14"
+        ],
+        "curriculumClassification": [
+          "E 效率、公平和政府的角色"
+        ],
+        "topic": "效率、公平和政府的角色 (II)",
+        "concepts": [],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch14"
+        ],
+        "curriculumClassification": [
+          "E 效率、公平和政府的角色"
+        ],
+        "topic": "效率、公平和政府的角色 (II)",
+        "concepts": [
+          "賦稅原則",
+          "累退稅"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "CE-2008-P2-37",
+      "before": {
+        "AristochapterClassification": [
+          "Ch20",
+          "Ch19"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求；貨幣與銀行",
+        "concepts": [
+          "貨幣供應"
+        ],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch20",
+          "Ch19"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求；貨幣與銀行",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P1-01",
+      "before": {
+        "AristochapterClassification": [
+          "Ch11",
+          "Ch21"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格",
+          "I 宏觀經濟問題和政府"
+        ],
+        "topic": "市場干預；經濟周期、一般物價水平的變動和失業",
+        "concepts": [
+          "實證性與規範性陳述",
+          "價格管制",
+          "失業"
+        ],
+        "patterns": [
+          "計算",
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "實證性與規範性陳述"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "區分實證性陳述和規範性陳述"
+    },
+    {
+      "id": "DSE-2012-P1-02",
+      "before": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "匯率"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "成本"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "解釋在不同情況下成本如何改變, 選擇和成本的關係"
+    },
+    {
+      "id": "DSE-2012-P1-03",
+      "before": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "利息",
+          "計劃經濟與市場經濟",
+          "通脹與通縮"
+        ],
+        "patterns": [
+          "正誤判斷"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "利息"
+        ],
+        "patterns": [
+          "正誤判斷"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "利息的意思"
+    },
+    {
+      "id": "DSE-2012-P1-04",
+      "before": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "共用品"
+        ],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch04"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產與分工",
+        "concepts": [
+          "共用品"
+        ],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "私用品及共用品"
+    },
+    {
+      "id": "DSE-2012-P1-05",
+      "before": {
+        "AristochapterClassification": [
+          "Ch05"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產要素",
+        "concepts": [
+          "勞工流動性"
+        ],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch05"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產要素",
+        "concepts": [
+          "勞力"
+        ],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "勞力的流動性"
+    },
+    {
+      "id": "DSE-2012-P1-06",
+      "before": {
+        "AristochapterClassification": [
+          "Ch16"
+        ],
+        "curriculumClassification": [
+          "F 經濟表現的量度"
+        ],
+        "topic": "經濟表現的量度 (II)",
+        "concepts": [],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch05"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產要素",
+        "concepts": [
+          "勞力"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "勞力供應"
+    },
+    {
+      "id": "DSE-2012-P1-07",
+      "before": {
+        "AristochapterClassification": [
+          "Ch05"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產要素",
+        "concepts": [
+          "工資差異"
+        ],
+        "patterns": [
+          "計算",
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch05"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產要素",
+        "concepts": [
+          "不同的付酬方式"
+        ],
+        "patterns": [
+          "計算",
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "不同的付酬方式"
+    },
+    {
+      "id": "DSE-2012-P1-08",
+      "before": {
+        "AristochapterClassification": [
+          "Ch03"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "廠商的所有權形式",
+        "concepts": [
+          "結合與擴張"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch03"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "廠商的所有權形式",
+        "concepts": [
+          "比較不同所有權形式的特徵及利弊"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "比較不同所有權形式的特徵及利弊"
+    },
+    {
+      "id": "DSE-2012-P1-09",
+      "before": {
+        "AristochapterClassification": [
+          "Ch06"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產及成本",
+        "concepts": [
+          "成本"
+        ],
+        "patterns": [
+          "表格判讀"
+        ],
+        "graphType": "-",
+        "tableType": "成本產出表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch07"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "廠商的目標與擴張",
+        "concepts": [
+          "利潤極大化"
+        ],
+        "patterns": [
+          "表格判讀"
+        ],
+        "graphType": "-",
+        "tableType": "成本產出表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "競爭性廠商如何選擇利潤極大化產出水平"
+    },
+    {
+      "id": "DSE-2012-P1-10",
+      "before": {
+        "AristochapterClassification": [
+          "Ch05"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產要素",
+        "concepts": [
+          "勞工生產力",
+          "工資差異"
+        ],
+        "patterns": [
+          "表格判讀"
+        ],
+        "graphType": "-",
+        "tableType": "貿易生產表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch05"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產要素",
+        "concepts": [
+          "勞工生產力"
+        ],
+        "patterns": [
+          "表格判讀"
+        ],
+        "graphType": "-",
+        "tableType": "貿易生產表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "勞工生產力, 不同的付酬方式"
+    },
+    {
+      "id": "DSE-2012-P1-11",
+      "before": {
+        "AristochapterClassification": [
+          "Ch10"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "需求和供應的價格彈性",
+        "concepts": [
+          "彈性"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch10"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "需求和供應的價格彈性",
+        "concepts": [
+          "需求價格彈性",
+          "總收入"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "需求價格彈性和總收入之間的關係"
+    },
+    {
+      "id": "DSE-2012-P1-12",
+      "before": {
+        "AristochapterClassification": [
+          "Ch10",
+          "Ch09"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "需求和供應的價格彈性；市場價格的變化",
+        "concepts": [
+          "需求與供應的變化",
+          "彈性"
+        ],
+        "patterns": [
+          "複選組合",
+          "正誤判斷"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch10"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "需求和供應的價格彈性",
+        "concepts": [
+          "需求價格彈性",
+          "總收入"
+        ],
+        "patterns": [
+          "複選組合",
+          "正誤判斷"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "需求價格彈性和總收入之間的關係"
+    },
+    {
+      "id": "DSE-2012-P1-13",
+      "before": {
+        "AristochapterClassification": [],
+        "curriculumClassification": [
+          "未分類"
+        ],
+        "topic": "未分類",
+        "concepts": [],
+        "patterns": [
+          "圖表判讀"
+        ],
+        "graphType": "其他圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch09"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場價格的變化",
+        "concepts": [
+          "需求和供應同時改變"
+        ],
+        "patterns": [
+          "圖表判讀"
+        ],
+        "graphType": "其他圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "需求和供應同時改變：解釋需求改變和供應改變如何影響均衡價格和數量"
+    },
+    {
+      "id": "DSE-2012-P1-14",
+      "before": {
+        "AristochapterClassification": [
+          "Ch08",
+          "Ch09"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場價格的訂定；市場價格的變化",
+        "concepts": [
+          "短缺與盈餘",
+          "消費者盈餘",
+          "需求與供應的變化"
+        ],
+        "patterns": [
+          "複選組合",
+          "正誤判斷"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch13"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格",
+          "E 效率、公平和政府的角色"
+        ],
+        "topic": "效率、公平和政府的角色 (I)",
+        "concepts": [
+          "消費者盈餘"
+        ],
+        "patterns": [
+          "複選組合",
+          "正誤判斷"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "價格/ 需求/ 供應改變對消費者盈餘的影響"
+    },
+    {
+      "id": "DSE-2012-P1-15",
+      "before": {
+        "AristochapterClassification": [
+          "Ch08"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場價格的訂定",
+        "concepts": [
+          "均衡",
+          "供需"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch09"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場價格的變化",
+        "concepts": [
+          "需求和供應同時改變"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "需求和供應同時改變：解釋需求改變和供應改變如何影響均衡價格和數量"
+    },
+    {
+      "id": "DSE-2012-P1-16",
+      "before": {
+        "AristochapterClassification": [
+          "Ch11"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場干預",
+        "concepts": [
+          "供需",
+          "需求與供應的變化",
+          "彈性",
+          "稅項與津貼"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "供需表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch11"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場干預",
+        "concepts": [
+          "交易量",
+          "從量稅",
+          "總收入"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "供需表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "分析從量稅對價格、交易量及總收入等的影響，並說明生產者和消費者的稅項負擔分配"
+    },
+    {
+      "id": "DSE-2012-P1-17",
+      "before": {
+        "AristochapterClassification": [],
+        "curriculumClassification": [
+          "未分類"
+        ],
+        "topic": "未分類",
+        "concepts": [],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch11"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場干預",
+        "concepts": [
+          "交易量",
+          "從量稅",
+          "總收入"
+        ],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "分析從量稅對價格、交易量及總收入等的影響，並說明生產者和消費者的稅項負擔分配"
+    },
+    {
+      "id": "DSE-2012-P1-18",
+      "before": {
+        "AristochapterClassification": [
+          "Ch12"
+        ],
+        "curriculumClassification": [
+          "D 競爭與市場結構"
+        ],
+        "topic": "市場結構",
+        "concepts": [],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch12"
+        ],
+        "curriculumClassification": [
+          "D 競爭與市場結構"
+        ],
+        "topic": "市場結構",
+        "concepts": [
+          "市場結構"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "列出不同市場結構的一般特徵, 解釋壟斷能力的來源"
+    },
+    {
+      "id": "DSE-2012-P1-19",
+      "before": {
+        "AristochapterClassification": [
+          "Ch09",
+          "Ch24"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格",
+          "J 國際貿易和金融"
+        ],
+        "topic": "市場價格的變化；貿易障礙",
+        "concepts": [
+          "貿易障礙"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch13"
+        ],
+        "curriculumClassification": [
+          "E 效率、公平和政府的角色"
+        ],
+        "topic": "效率、公平和政府的角色 (I)",
+        "concepts": [
+          "消費者盈餘",
+          "生產者盈餘",
+          "配額"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "以供需圖輔助，分析市場干預對消費者盈餘、生產者盈餘和效率的影響：配額"
+    },
+    {
+      "id": "DSE-2012-P1-20",
+      "before": {
+        "AristochapterClassification": [
+          "Ch14"
+        ],
+        "curriculumClassification": [
+          "E 效率、公平和政府的角色"
+        ],
+        "topic": "效率、公平和政府的角色 (II)",
+        "concepts": [
+          "收入不均"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "計算"
+        ],
+        "graphType": "洛倫茨曲線",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch14"
+        ],
+        "curriculumClassification": [
+          "E 效率、公平和政府的角色"
+        ],
+        "topic": "效率、公平和政府的角色 (II)",
+        "concepts": [
+          "洛倫茨曲線",
+          "堅尼系數",
+          "收入不均"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "計算"
+        ],
+        "graphType": "洛倫茨曲線",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "量度收入不均：了解堅尼系數的大小和洛倫茨曲線的形狀的關係"
+    },
+    {
+      "id": "DSE-2012-P1-21",
+      "before": {
+        "AristochapterClassification": [
+          "Ch14",
+          "Ch05"
+        ],
+        "curriculumClassification": [
+          "E 效率、公平和政府的角色",
+          "B 廠商與生產"
+        ],
+        "topic": "效率、公平和政府的角色 (II)；生產要素",
+        "concepts": [
+          "收入不均"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch14"
+        ],
+        "curriculumClassification": [
+          "E 效率、公平和政府的角色"
+        ],
+        "topic": "效率、公平和政府的角色 (II)",
+        "concepts": [
+          "收入不均"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "收入不均的來源包括人力資本、歧視及資本擁有權不同等"
+    },
+    {
+      "id": "DSE-2012-P1-22",
+      "before": {
+        "AristochapterClassification": [
+          "Ch05",
+          "Ch15"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產",
+          "F 經濟表現的量度"
+        ],
+        "topic": "生產要素；經濟表現的量度 (I)",
+        "concepts": [
+          "本地生產總值"
+        ],
+        "patterns": [
+          "表格判讀",
+          "計算",
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "本地生產總值表",
+        "calculationType": "本地生產總值計算",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch15"
+        ],
+        "curriculumClassification": [
+          "F 經濟表現的量度",
+          "B 廠商與生產"
+        ],
+        "topic": "經濟表現的量度 (I)",
+        "concepts": [
+          "本地生產總值",
+          "要素成本"
+        ],
+        "patterns": [
+          "表格判讀",
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "本地生產總值表",
+        "calculationType": "本地生產總值計算",
+        "outSyl": null
+      },
+      "learningFocus": "「以要素成本計算的本地生產總值」 與 「以市價計算的本地生產總值」 之間的關係"
+    },
+    {
+      "id": "DSE-2012-P1-23",
+      "before": {
+        "AristochapterClassification": [
+          "Ch15"
+        ],
+        "curriculumClassification": [
+          "F 經濟表現的量度"
+        ],
+        "topic": "經濟表現的量度 (I)",
+        "concepts": [
+          "本地生產總值"
+        ],
+        "patterns": [
+          "比較",
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch16"
+        ],
+        "curriculumClassification": [
+          "F 經濟表現的量度"
+        ],
+        "topic": "經濟表現的量度 (II)",
+        "concepts": [
+          "本地生產總值"
+        ],
+        "patterns": [
+          "比較",
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "本地生產總值的增長率"
+    },
+    {
+      "id": "DSE-2012-P1-24",
+      "before": {
+        "AristochapterClassification": [
+          "Ch21",
+          "Ch16"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府",
+          "F 經濟表現的量度"
+        ],
+        "topic": "經濟周期、一般物價水平的變動和失業；經濟表現的量度 (II)",
+        "concepts": [
+          "失業"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch21"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府"
+        ],
+        "topic": "經濟周期、一般物價水平的變動和失業",
+        "concepts": [
+          "失業率"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "某一情況對失業率/就業不足率/就業人口的影響"
+    },
+    {
+      "id": "DSE-2012-P1-25",
+      "before": {
+        "AristochapterClassification": [
+          "Ch09",
+          "Ch17"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格",
+          "G 國民收入決定及價格水平"
+        ],
+        "topic": "市場價格的變化；總需求和總供應",
+        "concepts": [
+          "需求與供應的變化",
+          "總需求與總供應"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch17"
+        ],
+        "curriculumClassification": [
+          "G 國民收入決定及價格水平"
+        ],
+        "topic": "總需求和總供應",
+        "concepts": [
+          "總需求"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "導致總需求曲線移動的因素"
+    },
+    {
+      "id": "DSE-2012-P1-26",
+      "before": {
+        "AristochapterClassification": [
+          "Ch17",
+          "Ch06"
+        ],
+        "curriculumClassification": [
+          "G 國民收入決定及價格水平",
+          "B 廠商與生產"
+        ],
+        "topic": "總需求和總供應；生產及成本",
+        "concepts": [
+          "均衡",
+          "總需求與總供應"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "填空"
+        ],
+        "graphType": "總供需圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch18"
+        ],
+        "curriculumClassification": [
+          "G 國民收入決定及價格水平"
+        ],
+        "topic": "產出和價格的決定",
+        "concepts": [
+          "短期總供應",
+          "長期總供應",
+          "物價水平",
+          "總需求"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "填空"
+        ],
+        "graphType": "總供需圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "由短期均衡達至長期均衡的機制"
+    },
+    {
+      "id": "DSE-2012-P1-27",
+      "before": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "貨幣供應"
+        ],
+        "patterns": [
+          "表格判讀",
+          "正誤判斷"
+        ],
+        "graphType": "-",
+        "tableType": "資產負債表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "存款創造",
+          "貨幣供應"
+        ],
+        "patterns": [
+          "表格判讀",
+          "正誤判斷"
+        ],
+        "graphType": "-",
+        "tableType": "資產負債表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "了解及計算存款、放款、貨幣供應等在存款創造/收縮過程後的最大及實際改變"
+    },
+    {
+      "id": "DSE-2012-P1-28",
+      "before": {
+        "AristochapterClassification": [
+          "Ch19"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣與銀行",
+        "concepts": [
+          "貨幣供應"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "貨幣供應"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "資產轉移對貨幣供應的影響"
+    },
+    {
+      "id": "DSE-2012-P1-29",
+      "before": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "匯率"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch19"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣與銀行",
+        "concepts": [
+          "中央銀行的職能如何在香港執行"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "中央銀行的職能如何在香港執行"
+    },
+    {
+      "id": "DSE-2012-P1-30",
+      "before": {
+        "AristochapterClassification": [
+          "Ch19",
+          "Ch22"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行",
+          "I 宏觀經濟問題和政府"
+        ],
+        "topic": "貨幣與銀行；財政政策與貨幣政策",
+        "concepts": [
+          "股票與債券",
+          "銀行體系",
+          "財政政策與貨幣政策"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch22"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "財政政策與貨幣政策",
+        "concepts": [
+          "貨幣政策"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "緊縮性貨幣政策的影響"
+    },
+    {
+      "id": "DSE-2012-P1-31",
+      "before": {
+        "AristochapterClassification": [
+          "Ch22"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府"
+        ],
+        "topic": "財政政策與貨幣政策",
+        "concepts": [
+          "短缺與盈餘",
+          "財政政策與貨幣政策"
+        ],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch22",
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府"
+        ],
+        "topic": "財政政策與貨幣政策；國際收支平衡表與匯率",
+        "concepts": [
+          "貿易盈餘",
+          "赤字預算"
+        ],
+        "patterns": [
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "盈餘預算、赤字預算和平衡預算, 貿易盈餘及貿易赤字的意思"
+    },
+    {
+      "id": "DSE-2012-P1-32",
+      "before": {
+        "AristochapterClassification": [
+          "Ch21",
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府",
+          "J 國際貿易和金融"
+        ],
+        "topic": "經濟周期、一般物價水平的變動和失業；國際收支平衡表與匯率",
+        "concepts": [
+          "股票與債券",
+          "通脹與通縮",
+          "匯率"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch21"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府"
+        ],
+        "topic": "經濟周期、一般物價水平的變動和失業",
+        "concepts": [
+          "解釋為何出現非預期通貨膨脹（緊縮）時",
+          "債務人會得益（受損）",
+          "而債權人會受損（得益）"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "解釋為何出現非預期通貨膨脹（緊縮）時，債務人會得益（受損），而債權人會受損（得益）"
+    },
+    {
+      "id": "DSE-2012-P1-33",
+      "before": {
+        "AristochapterClassification": [
+          "Ch14",
+          "Ch03"
+        ],
+        "curriculumClassification": [
+          "E 效率、公平和政府的角色",
+          "B 廠商與生產"
+        ],
+        "topic": "效率、公平和政府的角色 (II)；廠商的所有權形式",
+        "concepts": [],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch22"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府"
+        ],
+        "topic": "財政政策與貨幣政策",
+        "concepts": [
+          "稅制"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "香港的徵稅"
+    },
+    {
+      "id": "DSE-2012-P1-34",
+      "before": {
+        "AristochapterClassification": [
+          "Ch06",
+          "Ch22"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產",
+          "I 宏觀經濟問題和政府"
+        ],
+        "topic": "生產及成本；財政政策與貨幣政策",
+        "concepts": [
+          "財政政策與貨幣政策"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch22",
+          "Ch18"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府"
+        ],
+        "topic": "財政政策與貨幣政策；產出和價格的決定",
+        "concepts": [
+          "短期總供應",
+          "長期總供應",
+          "赤字預算",
+          "總需求"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "盈餘預算、赤字預算和平衡預算, 透過明確說明受影響的總需求組成部分及/ 或影響短期總供應及/或長期總供應的因素，解釋某情況會如何導致總需求、短期總供應及/ 或長期總供應轉變，因而令總需求曲線、短期總供應曲線及/或長期總供應曲線移動"
+    },
+    {
+      "id": "DSE-2012-P1-35",
+      "before": {
+        "AristochapterClassification": [
+          "Ch11"
+        ],
+        "curriculumClassification": [
+          "C 市場與價格"
+        ],
+        "topic": "市場干預",
+        "concepts": [],
+        "patterns": [
+          "圖表判讀"
+        ],
+        "graphType": "其他圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch22"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府"
+        ],
+        "topic": "財政政策與貨幣政策",
+        "concepts": [
+          "直接稅",
+          "間接稅"
+        ],
+        "patterns": [
+          "圖表判讀"
+        ],
+        "graphType": "其他圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "香港的徵稅"
+    },
+    {
+      "id": "DSE-2012-P1-36",
+      "before": {
+        "AristochapterClassification": [
+          "Ch20",
+          "Ch17"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行",
+          "G 國民收入決定及價格水平"
+        ],
+        "topic": "貨幣供應和貨幣需求；總需求和總供應",
+        "concepts": [
+          "需求與供應的變化",
+          "貨幣供應",
+          "總需求與總供應"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch22"
+        ],
+        "curriculumClassification": [
+          "I 宏觀經濟問題和政府"
+        ],
+        "topic": "財政政策與貨幣政策",
+        "concepts": [
+          "總需求"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "緊縮性貨幣政策的影響"
+    },
+    {
+      "id": "DSE-2012-P1-37",
+      "before": {
+        "AristochapterClassification": [
+          "Ch23"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際貿易",
+        "concepts": [
+          "比較優勢"
+        ],
+        "patterns": [
+          "表格判讀"
+        ],
+        "graphType": "-",
+        "tableType": "貿易生產表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch23"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際貿易",
+        "concepts": [
+          "計算貿易得益"
+        ],
+        "patterns": [
+          "表格判讀"
+        ],
+        "graphType": "-",
+        "tableType": "貿易生產表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "計算貿易得益"
+    },
+    {
+      "id": "DSE-2012-P1-38",
+      "before": {
+        "AristochapterClassification": [
+          "Ch01",
+          "Ch23"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念",
+          "J 國際貿易和金融"
+        ],
+        "topic": "基本經濟概念；國際貿易",
+        "concepts": [
+          "機會成本",
+          "比較優勢"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch23"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際貿易",
+        "concepts": [
+          "機會成本"
+        ],
+        "patterns": [
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "了解貿易實現互惠互利的先決條件"
+    },
+    {
+      "id": "DSE-2012-P1-39",
+      "before": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "匯率"
+        ],
+        "patterns": [
+          "計算"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "出口",
+          "匯率"
+        ],
+        "patterns": [
+          "計算"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "匯率改變對進出口價格（以本地貨幣及外幣計算）、進出口數量及進出口價值（以本地貨幣及外幣計算）的影響"
+    },
+    {
+      "id": "DSE-2012-P1-40",
+      "before": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "國際收支"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "經常帳",
+          "進口"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "一宗交易會否及如何影響經常帳"
+    },
+    {
+      "id": "DSE-2012-P2-02",
+      "before": {
+        "AristochapterClassification": [
+          "Ch06"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產及成本",
+        "concepts": [
+          "邊際回報遞減"
+        ],
+        "patterns": [
+          "表格判讀",
+          "解釋"
+        ],
+        "graphType": "-",
+        "tableType": "投入產出表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch06"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產及成本",
+        "concepts": [
+          "邊際回報遞減",
+          "總產出"
+        ],
+        "patterns": [
+          "表格判讀",
+          "解釋"
+        ],
+        "graphType": "-",
+        "tableType": "投入產出表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-03",
+      "before": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [],
+        "patterns": [
+          "解釋"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "擴張"
+        ],
+        "patterns": [
+          "解釋"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-04",
+      "before": {
+        "AristochapterClassification": [
+          "Ch14"
+        ],
+        "curriculumClassification": [
+          "E 效率、公平和政府的角色"
+        ],
+        "topic": "效率、公平和政府的角色 (II)",
+        "concepts": [
+          "收入不均"
+        ],
+        "patterns": [
+          "解釋",
+          "比較"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch14"
+        ],
+        "curriculumClassification": [
+          "E 效率、公平和政府的角色"
+        ],
+        "topic": "效率、公平和政府的角色 (II)",
+        "concepts": [
+          "堅尼系數"
+        ],
+        "patterns": [
+          "解釋",
+          "比較"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-05",
+      "before": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "價格管制",
+          "國際收支"
+        ],
+        "patterns": [
+          "以圖輔助",
+          "解釋"
+        ],
+        "graphType": "考生繪圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "價格上限",
+          "價格管制",
+          "無形貿易",
+          "經濟效率"
+        ],
+        "patterns": [
+          "以圖輔助",
+          "解釋"
+        ],
+        "graphType": "考生繪圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-07",
+      "before": {
+        "AristochapterClassification": [
+          "Ch19"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣與銀行",
+        "concepts": [
+          "貨幣的功能"
+        ],
+        "patterns": [
+          "解釋"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch19"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣與銀行",
+        "concepts": [
+          ""
+        ],
+        "patterns": [
+          "解釋"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-08",
+      "before": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "匯率"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "計算",
+          "解釋"
+        ],
+        "graphType": "其他圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch25"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際收支平衡表與匯率",
+        "concepts": [
+          "進口"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "計算",
+          "解釋"
+        ],
+        "graphType": "其他圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-09",
+      "before": {
+        "AristochapterClassification": [
+          "Ch23"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際貿易",
+        "concepts": [
+          "機會成本",
+          "比較優勢"
+        ],
+        "patterns": [
+          "計算",
+          "解釋",
+          "比較"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "貿易得益計算",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch23"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際貿易",
+        "concepts": [
+          "勞力"
+        ],
+        "patterns": [
+          "計算",
+          "解釋",
+          "比較"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "貿易得益計算",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-10",
+      "before": {
+        "AristochapterClassification": [
+          "Ch03",
+          "Ch15"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產",
+          "F 經濟表現的量度"
+        ],
+        "topic": "廠商的所有權形式；經濟表現的量度 (I)",
+        "concepts": [
+          "股票與債券",
+          "本地生產總值"
+        ],
+        "patterns": [
+          "以圖輔助",
+          "計算",
+          "解釋",
+          "舉例"
+        ],
+        "graphType": "考生繪圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch03",
+          "Ch15"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產",
+          "F 經濟表現的量度"
+        ],
+        "topic": "廠商的所有權形式；經濟表現的量度 (I)",
+        "concepts": [
+          "本地生產總值"
+        ],
+        "patterns": [
+          "以圖輔助",
+          "計算",
+          "解釋",
+          "舉例"
+        ],
+        "graphType": "考生繪圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-11",
+      "before": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "機會成本",
+          "利息",
+          "股票與債券",
+          "通脹與通縮"
+        ],
+        "patterns": [
+          "資料回應",
+          "解釋"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "機會成本",
+          "利息"
+        ],
+        "patterns": [
+          "資料回應",
+          "解釋"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-12",
+      "before": {
+        "AristochapterClassification": [
+          "Ch03"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "廠商的所有權形式",
+        "concepts": [
+          "廠商所有權形式",
+          "股票與債券",
+          "供需"
+        ],
+        "patterns": [
+          "以圖輔助",
+          "圖表判讀",
+          "解釋",
+          "比較"
+        ],
+        "graphType": "供需圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch03"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "廠商的所有權形式",
+        "concepts": [
+          "市場結構"
+        ],
+        "patterns": [
+          "以圖輔助",
+          "圖表判讀",
+          "解釋",
+          "比較"
+        ],
+        "graphType": "供需圖",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-13",
+      "before": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "銀行體系",
+          "貨幣供應",
+          "財政政策與貨幣政策"
+        ],
+        "patterns": [
+          "表格判讀",
+          "計算"
+        ],
+        "graphType": "-",
+        "tableType": "資產負債表",
+        "calculationType": "貨幣供應計算",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch20"
+        ],
+        "curriculumClassification": [
+          "H 貨幣與銀行"
+        ],
+        "topic": "貨幣供應和貨幣需求",
+        "concepts": [
+          "法定儲備比率",
+          "資產負債表",
+          "物價水平",
+          "貨幣供應"
+        ],
+        "patterns": [
+          "表格判讀",
+          "計算"
+        ],
+        "graphType": "-",
+        "tableType": "資產負債表",
+        "calculationType": "貨幣供應計算",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-14",
+      "before": {
+        "AristochapterClassification": [
+          "Ch26",
+          "Ch27"
+        ],
+        "curriculumClassification": [
+          "E1 選修單元一"
+        ],
+        "topic": "壟斷定價；反競爭行為與競爭政策",
+        "concepts": [
+          "結合與擴張",
+          "價格分歧",
+          "反競爭行為"
+        ],
+        "patterns": [
+          "解釋",
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch26",
+          "Ch27"
+        ],
+        "curriculumClassification": [
+          "E1 選修單元一"
+        ],
+        "topic": "壟斷定價；反競爭行為與競爭政策",
+        "concepts": [
+          "價格分歧"
+        ],
+        "patterns": [
+          "解釋",
+          "複選組合"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2012-P2-15",
+      "before": {
+        "AristochapterClassification": [
+          "Ch23"
+        ],
+        "curriculumClassification": [
+          "J 國際貿易和金融"
+        ],
+        "topic": "國際貿易",
+        "concepts": [
+          "比較優勢"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "計算",
+          "解釋",
+          "比較"
+        ],
+        "graphType": "生產可能線",
+        "tableType": "-",
+        "calculationType": "貿易得益計算",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch28",
+          "Ch29"
+        ],
+        "curriculumClassification": [
+          "E2 選修單元二"
+        ],
+        "topic": "貿易理論的延伸；經濟增長及發展",
+        "concepts": [
+          "生產可能線"
+        ],
+        "patterns": [
+          "圖表判讀",
+          "解釋",
+          "比較"
+        ],
+        "graphType": "生產可能線",
+        "tableType": "-",
+        "calculationType": "貿易得益計算",
+        "outSyl": null
+      },
+      "learningFocus": ""
+    },
+    {
+      "id": "DSE-2013-P1-02",
+      "before": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "成本"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "解釋在不同情況下成本如何改變, 選擇和成本的關係"
+    },
+    {
+      "id": "DSE-2013-P1-03",
+      "before": {
+        "AristochapterClassification": [
+          "Ch06"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產及成本",
+        "concepts": [
+          "規模經濟",
+          "成本"
+        ],
+        "patterns": [
+          "表格判讀"
+        ],
+        "graphType": "-",
+        "tableType": "成本產出表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch06"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產及成本",
+        "concepts": [
+          "邊際成本"
+        ],
+        "patterns": [
+          "表格判讀"
+        ],
+        "graphType": "-",
+        "tableType": "成本產出表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "總成本、平均成本及邊際成本"
+    },
+    {
+      "id": "DSE-2013-P1-04",
+      "before": {
+        "AristochapterClassification": [
+          "Ch06"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產及成本",
+        "concepts": [
+          "邊際回報遞減",
+          "規模經濟"
+        ],
+        "patterns": [
+          "表格判讀",
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "投入產出表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch06"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產及成本",
+        "concepts": [
+          "邊際回報遞減"
+        ],
+        "patterns": [
+          "表格判讀",
+          "填空"
+        ],
+        "graphType": "-",
+        "tableType": "投入產出表",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "邊際回報遞減定律"
+    },
+    {
+      "id": "DSE-2013-P1-06",
+      "before": {
+        "AristochapterClassification": [
+          "Ch01"
+        ],
+        "curriculumClassification": [
+          "A 基本經濟概念"
+        ],
+        "topic": "基本經濟概念",
+        "concepts": [
+          "免費物品",
+          "共用品"
+        ],
+        "patterns": [
+          "正誤判斷"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch04"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產與分工",
+        "concepts": [
+          "生產者物品及消費品"
+        ],
+        "patterns": [
+          "正誤判斷"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "生產者物品及消費品"
+    },
+    {
+      "id": "DSE-2013-P1-07",
+      "before": {
+        "AristochapterClassification": [],
+        "curriculumClassification": [
+          "未分類"
+        ],
+        "topic": "未分類",
+        "concepts": [],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "after": {
+        "AristochapterClassification": [
+          "Ch05"
+        ],
+        "curriculumClassification": [
+          "B 廠商與生產"
+        ],
+        "topic": "生產要素",
+        "concepts": [
+          "不同的付酬方式"
+        ],
+        "patterns": [
+          "選擇最佳答案"
+        ],
+        "graphType": "-",
+        "tableType": "-",
+        "calculationType": "-",
+        "outSyl": null
+      },
+      "learningFocus": "不同的付酬方式"
+    }
+  ],
+  "mock_topic_fixed": 39,
+  "mock_issues_before": [
+    {
+      "id": "MT35-P2-08",
+      "topic": "市場價格的訂定；生產要素",
+      "chapters": [
+        "Ch03"
+      ],
+      "expectedTopic": "廠商的所有權形式",
+      "concepts": [
+        "機會成本",
+        "短缺與盈餘",
+        "供需",
+        "實證性與規範性陳述",
+        "彈性"
+      ],
+      "patterns": [
+        "資料回應",
+        "以圖輔助",
+        "解釋",
+        "短文"
+      ]
+    },
+    {
+      "id": "MT36-P1-10",
+      "topic": "需求和供應的價格彈性",
+      "chapters": [
+        "Ch08"
+      ],
+      "expectedTopic": "市場價格的訂定",
+      "concepts": [
+        "彈性"
+      ],
+      "patterns": [
+        "圖表判讀",
+        "填空",
+        "計算"
+      ]
+    },
+    {
+      "id": "MT37-P1-16",
+      "topic": "貿易障礙；需求和供應的價格彈性",
+      "chapters": [
+        "Ch10",
+        "Ch08"
+      ],
+      "expectedTopic": "需求和供應的價格彈性；市場價格的訂定",
+      "concepts": [
+        "貿易障礙",
+        "短缺與盈餘",
+        "彈性"
+      ],
+      "patterns": [
+        "圖表判讀",
+        "複選組合"
+      ]
+    },
+    {
+      "id": "MT37-P1-27",
+      "topic": "總需求和總供應",
+      "chapters": [
+        "Ch18",
+        "Ch08"
+      ],
+      "expectedTopic": "產出和價格的決定；市場價格的訂定",
+      "concepts": [
+        "總需求與總供應"
+      ],
+      "patterns": [
+        "圖表判讀"
+      ]
+    },
+    {
+      "id": "MT37-P2-10",
+      "topic": "市場價格的訂定；總需求和總供應",
+      "chapters": [
+        "Ch11"
+      ],
+      "expectedTopic": "市場干預",
+      "concepts": [
+        "供需",
+        "機會成本",
+        "總需求與總供應",
+        "勞工流動性",
+        "失業"
+      ],
+      "patterns": [
+        "資料回應",
+        "以圖輔助",
+        "解釋",
+        "短文"
+      ]
+    },
+    {
+      "id": "MT38-P2-08",
+      "topic": "市場結構；需求和供應的價格彈性",
+      "chapters": [
+        "Ch22"
+      ],
+      "expectedTopic": "財政政策與貨幣政策",
+      "concepts": [
+        "完全競爭",
+        "供需",
+        "彈性",
+        "分工",
+        "勞工生產力",
+        "收入不均"
+      ],
+      "patterns": [
+        "資料回應",
+        "以圖輔助",
+        "解釋",
+        "短文"
+      ]
+    },
+    {
+      "id": "MT39-P1-18",
+      "topic": "市場干預",
+      "chapters": [
+        "Ch08"
+      ],
+      "expectedTopic": "市場價格的訂定",
+      "concepts": [
+        "配額",
+        "消費者盈餘",
+        "效率損失"
+      ],
+      "patterns": [
+        "圖表判讀",
+        "複選組合"
+      ]
+    },
+    {
+      "id": "MT39-P1-24",
+      "topic": "經濟表現的量度 (I)",
+      "chapters": [
+        "Ch11"
+      ],
+      "expectedTopic": "市場干預",
+      "concepts": [
+        "本地生產總值",
+        "要素成本",
+        "海外要素收益"
+      ],
+      "patterns": [
+        "表格判讀",
+        "正誤判斷",
+        "計算"
+      ]
+    },
+    {
+      "id": "MT39-P1-33",
+      "topic": "經濟周期、一般物價水平的變動和失業",
+      "chapters": [
+        "Ch15"
+      ],
+      "expectedTopic": "經濟表現的量度 (I)",
+      "concepts": [
+        "經濟周期"
+      ],
+      "patterns": [
+        "圖表判讀",
+        "複選組合"
+      ]
+    },
+    {
+      "id": "MT40-P2-09",
+      "topic": "市場價格的訂定；三個基本經濟問題與私有產權",
+      "chapters": [
+        "Ch11"
+      ],
+      "expectedTopic": "市場干預",
+      "concepts": [
+        "短缺",
+        "三個基本經濟問題",
+        "勞工生產力"
+      ],
+      "patterns": [
+        "資料回應",
+        "短文",
+        "以圖輔助",
+        "解釋",
+        "舉例"
+      ]
+    },
+    {
+      "id": "MT41-P1-18",
+      "topic": "市場干預",
+      "chapters": [
+        "Ch09",
+        "Ch06"
+      ],
+      "expectedTopic": "市場價格的變化；生產及成本",
+      "concepts": [
+        "價格上限",
+        "正常物品",
+        "超額需求",
+        "效率損失"
+      ],
+      "patterns": [
+        "圖表判讀",
+        "複選組合",
+        "正誤判斷"
+      ]
+    },
+    {
+      "id": "MT41-P1-19",
+      "topic": "效率、公平和政府的角色 (II)",
+      "chapters": [
+        "Ch10"
+      ],
+      "expectedTopic": "需求和供應的價格彈性",
+      "concepts": [
+        "洛倫茨曲線",
+        "收入不均"
+      ],
+      "patterns": [
+        "圖表判讀",
+        "複選組合",
+        "正誤判斷"
+      ]
+    },
+    {
+      "id": "MT41-P1-32",
+      "topic": "產出和價格的決定",
+      "chapters": [
+        "Ch08"
+      ],
+      "expectedTopic": "市場價格的訂定",
+      "concepts": [
+        "長期總供應",
+        "均衡"
+      ],
+      "patterns": [
+        "圖表判讀"
+      ]
+    },
+    {
+      "id": "MT41-P2-07",
+      "topic": "產出和價格的決定",
+      "chapters": [
+        "Ch17",
+        "Ch06"
+      ],
+      "expectedTopic": "總需求和總供應；生產及成本",
+      "concepts": [
+        "通貨緊縮差距",
+        "通脹差距",
+        "總需求",
+        "總供應"
+      ],
+      "patterns": [
+        "以圖輔助",
+        "解釋"
+      ]
+    },
+    {
+      "id": "MT41-P2-09",
+      "topic": "基本經濟概念；效率、公平和政府的角色 (I)",
+      "chapters": [
+        "Ch03"
+      ],
+      "expectedTopic": "廠商的所有權形式",
+      "concepts": [
+        "需求價格彈性",
+        "機會成本",
+        "貨幣需求",
+        "本地生產總值",
+        "經濟效率"
+      ],
+      "patterns": [
+        "資料回應",
+        "解釋",
+        "短文"
+      ]
+    },
+    {
+      "id": "MT42-P1-19",
+      "topic": "市場干預",
+      "chapters": [
+        "Ch08"
+      ],
+      "expectedTopic": "市場價格的訂定",
+      "concepts": [
+        "從量稅",
+        "邊際利益",
+        "邊際成本"
+      ],
+      "patterns": [
+        "圖表判讀",
+        "填空"
+      ]
+    },
+    {
+      "id": "MT42-P2-08",
+      "topic": "財政政策與貨幣政策；產出和價格的決定",
+      "chapters": [
+        "Ch11",
+        "Ch22"
+      ],
+      "expectedTopic": "市場干預；財政政策與貨幣政策",
+      "concepts": [
+        "直接稅",
+        "間接稅",
+        "通縮差距",
+        "貨幣政策"
+      ],
+      "patterns": [
+        "以圖輔助",
+        "解釋",
+        "舉例",
+        "比較"
+      ]
+    },
+    {
+      "id": "MT42-P2-10",
+      "topic": "基本經濟概念；市場價格的訂定",
+      "chapters": [
+        "Ch11"
+      ],
+      "expectedTopic": "市場干預",
+      "concepts": [
+        "三個基本經濟問題",
+        "供需",
+        "機會成本",
+        "失業率"
+      ],
+      "patterns": [
+        "資料回應",
+        "以圖輔助",
+        "解釋",
+        "短文"
+      ]
+    },
+    {
+      "id": "MT43-P2-09",
+      "topic": "市場價格的變化；效率、公平和政府的角色 (II)",
+      "chapters": [
+        "Ch06"
+      ],
+      "expectedTopic": "生產及成本",
+      "concepts": [
+        "供需",
+        "機會成本",
+        "配置效率",
+        "堅尼系數",
+        "稅項與津貼"
+      ],
+      "patterns": [
+        "資料回應",
+        "以圖輔助",
+        "解釋"
+      ]
+    }
+  ],
+  "mock_issues_after_count": 0,
+  "policy": {
+    "chapters": "prefer Sheets when present",
+    "curriculum": "prefer Sheets when present",
+    "concepts": "keep local unless chapter changed; then rebuild from learning focus + vocabulary",
+    "patterns": "keep local; light cleanup when chapter changed",
+    "multipleSelectionType": "keep local",
+    "learningFocus": "used only to rebuild short concepts after chapter changes",
+    "typeFields": "fill from Sheets only when local blank and label in vocabulary",
+    "mock": "align topic strings to chapter labels"
+  }
+}

@@ -1025,7 +1025,7 @@ def build():
             plain = join_plain(lines)
             topic = classify(plain)
             graph, table, multi, calc = features(plain)
-            qid = f"M{num}-P1-Q{i:02d}"
+            qid = f"MT{num}-P1-{i:02d}"
             answer = p1_answers[i - 1] if i - 1 < len(p1_answers) else ""
             questions.append({
                 "id": qid,
@@ -1064,7 +1064,7 @@ def build():
             graph, table, multi, calc = features(plain)
             marks = sum_marks(plain)
             n = item["number"]
-            qid = f"M{num}-P2-Q{n:02d}"
+            qid = f"MT{num}-P2-{n:02d}"
             questions.append({
                 "id": qid,
                 "publisher": "雅集出版社",

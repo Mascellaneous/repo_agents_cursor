@@ -631,7 +631,7 @@ def recrop_mc_answers():
             (eng_starts, eng_pages, "ae", "originalAnswerImageEng", eng_words),
         ):
             for i, mark in enumerate(group):
-                qid = f"M{num}-P1-Q{mark['num']:02d}"
+                qid = f"MT{num}-P1-{mark['num']:02d}"
                 question = by_id.get(qid)
                 if not question or question.get("questionType") != "MC":
                     continue
@@ -651,7 +651,7 @@ def recrop_mc_answers():
                     if image.height < 80:
                         short.append((qid, prefix, image.height))
         for qnum, answer in eng_text.items():
-            question = by_id.get(f"M{num}-P1-Q{qnum:02d}")
+            question = by_id.get(f"MT{num}-P1-{qnum:02d}")
             if not question or question.get("questionType") != "MC":
                 continue
             letter = mc_letter(answer)
@@ -772,7 +772,7 @@ def main():
             p1, p2 = starts, []
         for paper, group in ((1, p1), (2, p2)):
             for i, mark in enumerate(group):
-                qid = f"M{num}-P{paper}-Q{mark['num']:02d}"
+                qid = f"MT{num}-P{paper}-{mark['num']:02d}"
                 question = by_id.get(qid)
                 if not question:
                     continue
@@ -912,7 +912,7 @@ def crop_english_questions():
             pages = render_pages(pdf, Path(f"/tmp/mt-render/{num}-eng-p{paper}"))
             footers = footer_limits(words)
             for i, mark in enumerate(starts):
-                qid = f"M{num}-P{paper}-Q{mark['num']:02d}"
+                qid = f"MT{num}-P{paper}-{mark['num']:02d}"
                 question = by_id.get(qid)
                 if not question or not question.get("questionTextEng"):
                     skipped += 1
@@ -966,7 +966,7 @@ def recrop_sq_questions():
             masks = furniture_masks(pdf)
             snap_furniture_boxes(pages, masks)
             for i, mark in enumerate(starts):
-                qid = f"M{num}-P2-Q{mark['num']:02d}"
+                qid = f"MT{num}-P2-{mark['num']:02d}"
                 question = by_id.get(qid)
                 if not question or question.get("questionType") == "MC":
                     continue
@@ -1006,7 +1006,7 @@ def refresh_sq_images():
         pages = render_pages(pdf, Path(f"/tmp/mt-render/{num}-eng-ans"))
         footers = footer_limits(words)
         for i, mark in enumerate(starts):
-            qid = f"M{num}-P2-Q{mark['num']:02d}"
+            qid = f"MT{num}-P2-{mark['num']:02d}"
             question = by_id.get(qid)
             if not question or question.get("questionType") == "MC":
                 continue
