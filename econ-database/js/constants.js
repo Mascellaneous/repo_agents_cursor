@@ -5,8 +5,20 @@
 
 // Printed when the page loads. Bump this on every change so a reader can
 // tell whether the open tab is current. Do not keep a changelog here.
-const APP_VERSION = '2026.09.30.3';
+const APP_VERSION = '2026.09.30.4';
 console.log('Question bank version:', APP_VERSION);
+
+// Local username → role map for this JSON-backed bank.
+// Colleagues do not see Mock Test questions (publisher 雅集 / id MT…).
+const LOCAL_USERS = {
+    vicky: { displayName: 'Vicky', userGroup: 'Colleagues', canViewMockTests: false },
+    sarah: { displayName: 'Sarah', userGroup: 'Colleagues', canViewMockTests: false }
+};
+
+const DEFAULT_LOCAL_USER = {
+    userGroup: 'Local',
+    canViewMockTests: true
+};
 
 // Curriculum classifications
 const CURRICULUM_ITEMS = [

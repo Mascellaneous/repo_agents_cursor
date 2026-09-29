@@ -12,7 +12,24 @@ IndexedDBStorage.prototype.getUniqueValues = function(questions, field) {
 };
 
 // Add filter logic to IndexedDBStorage
+IndexedDBStorage.prototype.isMockQuestion = function(q) {
+    const id = String(q && q.id ? q.id : '');
+    if (/^MT?\d/i.test(id)) return true;
+    const publisher = String(q && q.publisher ? q.publisher : '');
+    return publisher !== '' && publisher !== 'HKEAA' && publisher !== '-';
+};
+
+IndexedDBStorage.prototype.applyPermissionFilter = function(questions) {
+    if (!window.authManager || window.authManager.canViewMockTests()) {
+        return questions;
+    }
+    return questions.filter(q => !this.isMockQuestion(q));
+};
+
 IndexedDBStorage.prototype.applyFilters = function(questions, filters) {
+    // Hard permission gate: Colleagues such as Vicky/Sarah never see Mock Tests.
+    questions = this.applyPermissionFilter(questions);
+
     // Apply search filter with Scope
     if (filters.search) {
         const searchLower = filters.search.toLowerCase();
