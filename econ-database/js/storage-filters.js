@@ -140,6 +140,25 @@ IndexedDBStorage.prototype.applyFilters = function(questions, filters) {
         });
     }
 
+    // Question number filter — last digits of id (e.g. DSE-2026-P1-01 → 1)
+    if (filters.questionNumberFilter && filters.questionNumberFilter.active) {
+        const { min, max } = filters.questionNumberFilter;
+
+        questions = questions.filter(q => {
+            let num = NaN;
+            if (q.id) {
+                const idMatch = String(q.id).match(/(\d+)\s*$/);
+                if (idMatch) num = parseInt(idMatch[1], 10);
+            }
+            if (isNaN(num) && q.questionNumber !== undefined && q.questionNumber !== null && q.questionNumber !== '') {
+                const qnMatch = String(q.questionNumber).match(/^(\d+)/);
+                if (qnMatch) num = parseInt(qnMatch[1], 10);
+            }
+            if (isNaN(num)) return false;
+            return num >= min && num <= max;
+        });
+    }
+
     // Tri-state filters
     if (filters.triState) {
         if (filters.triState.publisher) {

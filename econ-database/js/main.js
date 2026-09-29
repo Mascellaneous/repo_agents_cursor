@@ -111,6 +111,11 @@ async function initializeApp() {
         updateMarksRange();
     }
 
+    // Initialize question-number slider
+    if (document.getElementById('min-qnum')) {
+        updateQuestionNumberRange();
+    }
+
     // Populate the Search Scope dropdown based on loaded permissions
     if (typeof populateSearchScope === 'function') {
         populateSearchScope();

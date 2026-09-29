@@ -18,6 +18,17 @@ if (!window.marksFilter) {
     window.marksFilter = { min: 0, max: 30, active: false };
 }
 
+const QNUM_MIN = (typeof QUESTION_NUMBER_RANGE !== 'undefined') ? QUESTION_NUMBER_RANGE.min : 1;
+const QNUM_MAX = (typeof QUESTION_NUMBER_RANGE !== 'undefined') ? QUESTION_NUMBER_RANGE.max : 60;
+
+if (!window.questionNumberFilter) {
+    window.questionNumberFilter = { min: QNUM_MIN, max: QNUM_MAX, active: false };
+}
+
+function formatQuestionNumberDisplay(n) {
+    return String(Math.round(n)).padStart(2, '0');
+}
+
 if (!window.triStateFilters) {
     window.triStateFilters = { 
         curriculum: {}, 
@@ -60,6 +71,7 @@ const ARROW_MAP = {
     // Range Filters
     'percentage-options': 'percentage-arrow',
     'marks-options': 'marks-arrow',
+    'qnum-options': 'qnum-arrow',
     
     // AI
     'ai-options': 'ai-arrow'
@@ -321,6 +333,15 @@ function updateFilterIndicators() {
             marksIndicator.classList.remove('visible');
         }
     }
+
+    const qnumIndicator = document.getElementById('indicator-qnum');
+    if (qnumIndicator) {
+        if (window.questionNumberFilter && window.questionNumberFilter.active) {
+            qnumIndicator.classList.add('visible');
+        } else {
+            qnumIndicator.classList.remove('visible');
+        }
+    }
 }
 
 // ============================================
@@ -333,6 +354,7 @@ function gatherFilterState() {
         searchScope: window.searchScope || 'all',
         percentageFilter: window.percentageFilter,
         marksFilter: window.marksFilter,
+        questionNumberFilter: window.questionNumberFilter,
         triState: window.triStateFilters
     };
 }
@@ -809,6 +831,9 @@ function clearFilters() {
     const marksSection = document.getElementById('marks-options');
     if (marksSection) marksSection.style.display = 'none';
 
+    const qnumSection = document.getElementById('qnum-options');
+    if (qnumSection) qnumSection.style.display = 'none';
+
     const collapsibleTypes = ['curriculum', 'chapter', 'feature', 'year'];
     collapsibleTypes.forEach(type => {
         const section = document.getElementById(`${type}-options`);
@@ -880,6 +905,7 @@ function clearFilters() {
 
     clearPercentageFilter();    
     clearMarksFilter();
+    clearQuestionNumberFilter();
     updateFilterIndicators();
 
     if (window.paginationState && window.paginationState.questions) {
@@ -907,6 +933,9 @@ window.removeFilter = function(type, param1, param2) {
         return;
     } else if (type === 'marks') {
         clearMarksFilter();
+        return;
+    } else if (type === 'qnum') {
+        clearQuestionNumberFilter();
         return;
     } else if (type === 'tag') {
         const category = param1;
@@ -962,6 +991,16 @@ function updateSearchInfo() {
 
     if (window.marksFilter && window.marksFilter.active) {
         html += createBadge('分數', `${window.marksFilter.min} - ${window.marksFilter.max}`, 'green', 'marks');
+        hasFilters = true;
+    }
+
+    if (window.questionNumberFilter && window.questionNumberFilter.active) {
+        html += createBadge(
+            '題號',
+            `${formatQuestionNumberDisplay(window.questionNumberFilter.min)} - ${formatQuestionNumberDisplay(window.questionNumberFilter.max)}`,
+            'green',
+            'qnum'
+        );
         hasFilters = true;
     }
 
@@ -1176,6 +1215,65 @@ function clearMarksFilter() {
     maxSlider.value = 30;
     window.marksFilter = { min: 0, max: 30, active: false };
     updateMarksRange();
+}
+
+function updateQuestionNumberRange() {
+    const minSlider = document.getElementById('min-qnum');
+    const maxSlider = document.getElementById('max-qnum');
+    const minDisplay = document.getElementById('min-qnum-display');
+    const maxDisplay = document.getElementById('max-qnum-display');
+    const rangeFill = document.getElementById('qnum-range-fill');
+    
+    if (!minSlider || !maxSlider || !minDisplay || !maxDisplay || !rangeFill) return;
+    
+    let minVal = parseFloat(minSlider.value);
+    let maxVal = parseFloat(maxSlider.value);
+    
+    if (minVal > maxVal) {
+        minVal = maxVal;
+        minSlider.value = minVal;
+    }
+    
+    minDisplay.textContent = formatQuestionNumberDisplay(minVal);
+    maxDisplay.textContent = formatQuestionNumberDisplay(maxVal);
+    
+    const span = QNUM_MAX - QNUM_MIN;
+    const percentMin = span > 0 ? ((minVal - QNUM_MIN) / span) * 100 : 0;
+    const percentMax = span > 0 ? ((maxVal - QNUM_MIN) / span) * 100 : 100;
+    
+    rangeFill.style.left = percentMin + '%';
+    rangeFill.style.width = (percentMax - percentMin) + '%';
+    
+    if (!window.questionNumberFilter) {
+        window.questionNumberFilter = { min: QNUM_MIN, max: QNUM_MAX, active: false };
+    }
+    window.questionNumberFilter.min = minVal;
+    window.questionNumberFilter.max = maxVal;
+    
+    applyQuestionNumberFilter();
+}
+
+function applyQuestionNumberFilter() {
+    const minVal = parseFloat(document.getElementById('min-qnum').value);
+    const maxVal = parseFloat(document.getElementById('max-qnum').value);
+    
+    window.questionNumberFilter = {
+        min: minVal,
+        max: maxVal,
+        active: (minVal > QNUM_MIN || maxVal < QNUM_MAX)
+    };
+    filterQuestions();
+}
+
+function clearQuestionNumberFilter() {
+    const minSlider = document.getElementById('min-qnum');
+    const maxSlider = document.getElementById('max-qnum');
+    if (!minSlider || !maxSlider) return;
+    
+    minSlider.value = QNUM_MIN;
+    maxSlider.value = QNUM_MAX;
+    window.questionNumberFilter = { min: QNUM_MIN, max: QNUM_MAX, active: false };
+    updateQuestionNumberRange();
 }
 
 function toggleChapterLogic(checkbox) {

@@ -5,7 +5,7 @@
 
 // Printed when the page loads. Bump this on every change so a reader can
 // tell whether the open tab is current. Do not keep a changelog here.
-const APP_VERSION = '2026.09.30.4';
+const APP_VERSION = '2026.09.30.5';
 console.log('Question bank version:', APP_VERSION);
 
 // Local username → role map for this JSON-backed bank.
@@ -18,6 +18,12 @@ const LOCAL_USERS = {
 const DEFAULT_LOCAL_USER = {
     userGroup: 'Local',
     canViewMockTests: true
+};
+
+// Question-number slider (last digits of the id, e.g. …-01 → 1)
+const QUESTION_NUMBER_RANGE = {
+    min: 1,
+    max: 60
 };
 
 // Curriculum classifications

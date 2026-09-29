@@ -1,7 +1,7 @@
 // Render questions
 // Dependencies: storage-core.js (storage), storage-filters.js (applyFilters),
 // globals.js (paginationState, triStateFilters, window.percentageFilter,
-// window.marksFilter), pagination.js (updatePaginationInfo,
+// window.marksFilter, window.questionNumberFilter), pagination.js (updatePaginationInfo,
 // generatePagination), admin.js (isAdminMode), utils.js (escapeHTML,
 // copyToClipboard, toggleQuestionText), sort.js, constants.js
 // (CURRICULUM_ORDER, CURRICULUM_DISPLAY, SECTION_DISPLAY_NAMES)
@@ -64,7 +64,8 @@ async function renderQuestions() {
         searchScope: window.searchScope || 'all',
         triState: triStateFilters,
         percentageFilter: window.percentageFilter,
-        marksFilter: window.marksFilter
+        marksFilter: window.marksFilter,
+        questionNumberFilter: window.questionNumberFilter
     };
 
     let questions = await storage.getQuestions(filters);
@@ -416,7 +417,8 @@ async function copyFilteredQuestions() {
         searchScope: window.searchScope || 'all',
         triState: triStateFilters,
         percentageFilter: window.percentageFilter,
-        marksFilter: window.marksFilter
+        marksFilter: window.marksFilter,
+        questionNumberFilter: window.questionNumberFilter
     };
 
     let questions = await storage.getQuestions(filters);

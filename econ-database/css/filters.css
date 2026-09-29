@@ -580,6 +580,9 @@
 .marks-filter .range-slider-fill { background: #9b59b6; }
 .marks-filter .range-slider-input::-webkit-slider-thumb { border-color: #9b59b6; }
 
+.qnum-filter .range-slider-fill { background: #16a085; }
+.qnum-filter .range-slider-input::-webkit-slider-thumb { border-color: #16a085; }
+
 /* ============================================
    AI Filter Dropdown Position and Width
    ============================================ */

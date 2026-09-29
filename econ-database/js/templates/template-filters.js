@@ -237,6 +237,30 @@ function renderFiltersTemplate() {
                     </div>
                 </div>
 
+                <!-- #️⃣ 題號 (last digits of id, range slider) -->
+                <div class="filter-item">
+                    <div class="dropdown-filter">
+                        <button class="dropdown-btn" onclick="toggleDropdown('qnum-options')">
+                            <span>#️⃣ 題號</span><span class="arrow" id="qnum-arrow">▶</span>
+                        </button>
+                        <span class="active-indicator" id="indicator-qnum"></span>
+                        <div class="dropdown-content range-dropdown qnum-filter" id="qnum-options">
+                            <div class="range-filter-wrapper">
+                                <div class="range-filter-header">
+                                    <button class="range-clear-btn" onclick="clearQuestionNumberFilter()">🗑️ 清除</button>
+                                </div>
+                                <div class="range-info">範圍: <span id="min-qnum-display">01</span> - <span id="max-qnum-display">60</span></div>
+                                <div class="range-slider-container">
+                                    <div class="range-slider-track"></div>
+                                    <div class="range-slider-fill" id="qnum-range-fill"></div>
+                                    <input type="range" id="min-qnum" class="range-slider-input" min="1" max="60" value="1" step="1" oninput="updateQuestionNumberRange()">
+                                    <input type="range" id="max-qnum" class="range-slider-input" min="1" max="60" value="60" step="1" oninput="updateQuestionNumberRange()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Modal-based filters (long option lists) -->
                 ${modalTrigger('graph', '📊 圖表類型')}
                 ${modalTrigger('table', '📅 表格類型')}
