@@ -88,28 +88,31 @@
 #   Optional. The script uses main when this is empty.
 #
 # GITHUB_DATA_PATH
-#   Question JSON path inside that user's folder. Not a shared file.
-#   Shape example only: data/questions.json
-#   Stored as users/<username>/data/questions.json
+#   Shared question-bank path under GITHUB_SHARED_PREFIX.
+#   Recommended: data/database.json
+#   Stored as shared/data/database.json (joined with the shared prefix).
+#   If the value already starts with the shared prefix, it is not double-prefixed.
+#   Must not be under users/. Username never appears in this path.
 #
 # GITHUB_AI_BACKUP_DIR
-#   Directory for that user's timestamped model-reply backups.
+#   Directory for that user's timestamped model-reply (AI出題) backups.
 #   Shape example only: ai-backups
 #   Stored as users/<username>/ai-backups/<timestamp>-….json
+#   Personal only; question-bank sync does not use this tree.
 #
 # <username> is the trimmed, lowercased signed-in name. Spaces become hyphens.
 # Do not put a real username in this file.
 #
 # GITHUB_SHARED_PREFIX
-#   Optional. Folder for diagrams, the question bank, and paper packs.
+#   Optional. Folder for the shared question bank, diagrams, and paper packs.
 #   The script uses shared when this is empty.
 #   Do not set this to users or to a path under users.
 #   Shape example only: shared
-#   The site then reads paths such as:
+#   Question sync and shared reads then use paths such as:
 #   shared/data/database.json
 #   shared/diagrams/...
 #   shared/originals/...
 #   shared/papers/mock-tests/...
 #   shared/papers/past-papers/...
 #   shared/build/...
-#   Per-user files stay under users/<username>/ and are not shared.
+#   Personal AI出題 backups stay under users/<username>/ only.

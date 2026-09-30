@@ -12,17 +12,21 @@
  *   GITHUB_OWNER
  *   GITHUB_REPO
  *   GITHUB_BRANCH        (optional; main when empty)
- *   GITHUB_DATA_PATH     (inside each user's folder; shape data/questions.json)
+ *   GITHUB_DATA_PATH     (under shared prefix; shape data/database.json → shared/data/database.json)
  *   GITHUB_AI_BACKUP_DIR (inside each user's folder; shape ai-backups)
  *   GITHUB_SHARED_PREFIX (optional; shared when empty)
  *
- * Question uploads and model-reply files are stored per user:
- *   users/<username>/<GITHUB_DATA_PATH>
+ * Question-bank upload/download is shared for every githubSync user:
+ *   <GITHUB_SHARED_PREFIX>/<GITHUB_DATA_PATH>
+ *   e.g. shared/data/database.json
+ * Username is required for auth only and must not appear in the bank path.
+ * Bank paths under users/ are rejected.
+ * Model-reply (AI出題) backups stay personal:
  *   users/<username>/<GITHUB_AI_BACKUP_DIR>/<timestamp>-….json
  * <username> is the trimmed, lowercased signed-in name. Spaces become hyphens.
  * The browser does not choose that path and never sees the owner or repository.
  *
- * Shared diagrams, the question bank, and paper packs are a separate tree.
+ * Shared diagrams, the question bank, and paper packs live under the same prefix.
  * GITHUB_SHARED_PREFIX defaults to shared. The site asks for a relative path
  * such as data/database.json, diagrams/…, originals/…, or papers/….
  * The script reads <prefix>/<relative path> and will not read users/.
@@ -602,7 +606,7 @@ function rightsResponse_(rights) {
     ai: ai,
     githubSync: githubSync,
     mockTests: item.mockTests === true,
-    allowed: ai || githubSync
+    allowed: githubSync
   };
 }
 
@@ -1062,7 +1066,7 @@ function handleGitUpload_(body) {
   }
   var bytes = utf8Length_(text);
   if (bytes > GITHUB_DATA_MAX_BYTES_) return gitClientError_('payload_too_large');
-  var dataPath = githubUserDataPath_(cfg, username);
+  var dataPath = githubSharedBankPath_(cfg);
   if (!dataPath) return gitClientError_('github_error');
   if (!takeGitSlot_(username, 8)) return gitClientError_('rate_limited');
   var lock = LockService.getScriptLock();
@@ -1108,7 +1112,7 @@ function handleGitDownload_(body) {
   if (!username || !lookupRights_(username).githubSync) return gitClientError_('feature_unavailable');
   var cfg = githubConfig_();
   if (!githubDataReady_(cfg)) return gitClientError_('github_not_configured');
-  var dataPath = githubUserDataPath_(cfg, username);
+  var dataPath = githubSharedBankPath_(cfg);
   if (!dataPath) return gitClientError_('github_error');
   try {
     var read = githubReadText_(cfg, dataPath);
@@ -1296,7 +1300,7 @@ function githubConfig_() {
 }
 
 function githubDataReady_(cfg) {
-  return !!(cfg && cfg.token && githubIdentOk_(cfg.owner) && githubIdentOk_(cfg.repo) && githubBranchOk_(cfg.branch) && githubPathOk_(cfg.dataPath));
+  return !!(cfg && cfg.token && githubIdentOk_(cfg.owner) && githubIdentOk_(cfg.repo) && githubBranchOk_(cfg.branch) && githubSharedBankPath_(cfg));
 }
 
 function githubBackupReady_(cfg) {
@@ -1584,11 +1588,25 @@ function githubUserSegment_(username) {
   return segment;
 }
 
-function githubUserDataPath_(cfg, username) {
-  var segment = githubUserSegment_(username);
+// Shared question-bank path for syncDataUpload / syncDataDownload.
+// Joins GITHUB_SHARED_PREFIX (default shared) with GITHUB_DATA_PATH.
+// If dataPath already starts with the shared prefix, do not double-prefix.
+// Rejects any bank path under users/. Username is never part of this path.
+function githubSharedBankPath_(cfg) {
+  var prefix = githubSharedPrefix_(cfg);
+  if (!prefix) return '';
   var rel = String(cfg && cfg.dataPath || '').replace(/^\/+|\/+$/g, '');
-  if (!segment || !githubPathOk_(rel)) return '';
-  return joinGithubPath_('users/' + segment, rel);
+  if (!rel || !githubPathOk_(rel)) return '';
+  if (rel === 'users' || rel.indexOf('users/') === 0) return '';
+  var full;
+  if (rel === prefix || rel.indexOf(prefix + '/') === 0) {
+    full = rel;
+  } else {
+    full = joinGithubPath_(prefix, rel);
+  }
+  if (!full) return '';
+  if (full === 'users' || full.indexOf('users/') === 0) return '';
+  return full;
 }
 
 function githubUserBackupDir_(cfg, username) {
@@ -1959,17 +1977,26 @@ function selfTestGitPaths() {
   if (githubUserSegment_('a/b')) throw new Error('user_segment_slash');
   if (githubUserSegment_('../x')) throw new Error('user_segment_dotdot');
   if (githubUserSegment_('bad name.json') !== 'bad-name.json') throw new Error('user_segment_space_file');
-  if (githubUserDataPath_({ dataPath: 'data/questions.json' }, 'Example') !== 'users/example/data/questions.json') {
-    throw new Error('user_data_path');
+  if (githubSharedBankPath_({ dataPath: 'data/database.json', sharedPrefix: '' }) !== 'shared/data/database.json') {
+    throw new Error('shared_bank_path');
   }
-  if (githubUserDataPath_({ dataPath: '../questions.json' }, 'example')) throw new Error('user_data_escape');
+  if (githubSharedBankPath_({ dataPath: 'data/database.json', sharedPrefix: 'shared' }) !== 'shared/data/database.json') {
+    throw new Error('shared_bank_explicit');
+  }
+  if (githubSharedBankPath_({ dataPath: 'shared/data/database.json', sharedPrefix: 'shared' }) !== 'shared/data/database.json') {
+    throw new Error('shared_bank_no_double');
+  }
+  if (githubSharedBankPath_({ dataPath: 'users/example/data/questions.json', sharedPrefix: 'shared' })) {
+    throw new Error('shared_bank_rejects_users');
+  }
+  if (githubSharedBankPath_({ dataPath: '../questions.json', sharedPrefix: 'shared' })) throw new Error('shared_bank_escape');
+  if (githubSharedBankPath_({ dataPath: 'data/database.json', sharedPrefix: 'users' })) throw new Error('shared_bank_bad_prefix');
   if (githubUserBackupDir_({ backupDir: 'ai-backups' }, 'Example') !== 'users/example/ai-backups') {
     throw new Error('user_backup_dir');
   }
   if (joinGithubPath_(githubUserBackupDir_({ backupDir: 'ai-backups' }, 'example'), '20260101-000000-000-generateQuestions-abcd1234.json') !== 'users/example/ai-backups/20260101-000000-000-generateQuestions-abcd1234.json') {
     throw new Error('user_backup_file');
   }
-  if (githubUserDataPath_({ dataPath: 'data/questions.json' }, 'a/b')) throw new Error('user_data_slash');
   if (backupFileAction_('generateQuestions') !== 'generateQuestions') throw new Error('backup_generate');
   if (backupFileAction_('testModel') !== 'testModel') throw new Error('backup_test_model');
   if (backupFileAction_('login') !== 'reply') throw new Error('backup_other');

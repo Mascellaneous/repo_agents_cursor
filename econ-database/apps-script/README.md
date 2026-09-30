@@ -4,7 +4,7 @@ The site button **AI出題** is hidden until `checkAccess` returns `ai: true` fo
 
 **After this change is merged**, paste the updated `Code.gs` from this repo into the live Apps Script project and create a **new deployment version** (Deploy → Manage deployments → Edit → Version: New version → Deploy). Keep the existing `/exec` URL. An older deployment ignores `testModel`, the model allowlist, and the backup tab.
 
-Git sync and the shared question bank use the same sign-in, with different flags. Only `githubSync` can upload or download a personal question JSON. Any known username (a hash on one of the three role lists) can load shared diagrams, the question bank, and paper files through this web app. A restricted role receives the bank with mock-test questions removed. The script talks to GitHub. The browser does not.
+Git sync and the shared question bank use the same sign-in, with different flags. Only `githubSync` can upload or download the **shared** question bank under `shared/data/…`. Any known username (a hash on one of the three role lists) can load shared diagrams, the question bank, and paper files through this web app. A restricted role receives the bank with mock-test questions removed. The script talks to GitHub. The browser does not.
 
 GitHub Pages is a static host. A private repository’s raw file URL answers 404 unless a token is sent, and the token must not be in the page. `fetchSharedAsset` and `listSharedData` are how the site reads those files. The question bank is not committed under `econ-database/data/`.
 
@@ -104,8 +104,8 @@ Changing properties does **not** require a new deployment. Changing `Code.gs` do
 | `GITHUB_OWNER` | for Git sync | GitHub user or organization that owns the private data repository |
 | `GITHUB_REPO` | for Git sync | private repository name |
 | `GITHUB_BRANCH` | no | `main` when this property is empty |
-| `GITHUB_DATA_PATH` | for Git sync | path inside each user's folder, such as `data/questions.json`. Stored as `users/<username>/data/questions.json`. |
-| `GITHUB_AI_BACKUP_DIR` | for Git sync | directory inside each user's folder, such as `ai-backups`. Stored as `users/<username>/ai-backups/`. |
+| `GITHUB_DATA_PATH` | for Git sync | path under the shared prefix, such as `data/database.json`. Stored as `shared/data/database.json` (joined with `GITHUB_SHARED_PREFIX`). Username is not in this path. |
+| `GITHUB_AI_BACKUP_DIR` | for Git sync | directory inside each user's folder, such as `ai-backups`. Stored as `users/<username>/ai-backups/`. Personal AI出題 history only. |
 | `GITHUB_SHARED_PREFIX` | no | `shared` when this property is empty. Shared diagrams, JSON, and papers live under this prefix. Do not set it to `users` or a path under `users`. |
 
 Usernames are trimmed and lowercased before the hash check. The site already stores the signed-in name that way.
@@ -156,12 +156,18 @@ Create a **fine-grained** personal access token:
 
 Then set `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_DATA_PATH`, and `GITHUB_AI_BACKUP_DIR`. Set `GITHUB_BRANCH` if it is not `main`.
 
-Each user with `githubSync` gets their own folder. The script builds the path. The browser does not send it, and the page never contains the owner or repository name.
+### Shared question bank vs personal AI backups
 
-- Question uploads and downloads use `users/<username>/` plus `GITHUB_DATA_PATH`. With the example path above, that is `users/<username>/data/questions.json`.
-- Model-reply files use `users/<username>/` plus `GITHUB_AI_BACKUP_DIR`, then a timestamped file name. With the example directory above, that is `users/<username>/ai-backups/<timestamp>-….json`.
+The script builds every GitHub path. The browser does not send paths, and the page never contains the owner or repository name.
 
-`<username>` is the signed-in name after trimming and lowercasing. A space in that name is written as a hyphen. The name has to be one path segment. A slash, a backslash, or `..` is rejected, and that user's upload or download returns an error. An AI backup is skipped in that case; the generation or test reply is still returned. An older shared file at `GITHUB_DATA_PATH` is not read and is not moved.
+| What | Where | Who |
+| --- | --- | --- |
+| **Shared question bank** (Upload / Download / Auto-sync) | `<GITHUB_SHARED_PREFIX>/<GITHUB_DATA_PATH>` — default `shared/data/database.json` when `GITHUB_DATA_PATH` is `data/database.json` | Every `githubSync` user reads and writes the **same** file. Username is required for auth only and must **not** appear in the bank path. Paths under `users/` are rejected. |
+| **Personal AI出題 history** (model-reply backups) | `users/<username>/<GITHUB_AI_BACKUP_DIR>/<timestamp>-….json` | Per signed-in user only. Unchanged. |
+
+Recommended Script property: `GITHUB_DATA_PATH` = `data/database.json` (not under `users/`). If the property value already starts with the shared prefix (for example `shared/data/database.json`), the script does not double-prefix.
+
+`<username>` for AI backups is the signed-in name after trimming and lowercasing. A space in that name is written as a hyphen. The name has to be one path segment. A slash, a backslash, or `..` is rejected; an AI backup is skipped in that case, but the generation or test reply is still returned.
 
 The private repository needs at least one commit on that branch (a README created with the repository is enough). The script never creates the repository.
 
@@ -181,7 +187,7 @@ Expected layout inside the private repository:
 - `shared/papers/past-papers/` — past-paper packs
 - `shared/build/` — classification JSON used by the import scripts
 
-`users/<username>/` is unchanged and is not readable through these actions.
+`users/<username>/` holds personal AI出題 backups only and is not readable through these shared-asset actions. Question-bank sync writes the shared bank under `shared/data/…`, not under `users/`.
 
 `fetchSharedAsset` returns `{ "ok": true, "path", "encoding", "mediaType", "bytes", "content" }`. Text files (`.json`, `.js`, `.jsonl`, `.txt`, `.md`) use `encoding: "utf8"`. Images and other allowed files use `encoding: "base64"`. The path in the response is the client-relative path, not a GitHub URL. Files larger than 9 MB return `payload_too_large`. The question bank and the images are under that cap. Some past-paper PDFs are larger; `listSharedData` still lists them, and they are read from the private checkout by the import scripts rather than streamed through the web app.
 
