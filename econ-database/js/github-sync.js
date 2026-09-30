@@ -1,6 +1,6 @@
-// Git sync for allowlisted users. The browser only talks to the Apps Script
-// web app already used by AI出題. The token, owner, and repository name stay
-// in Script properties and are never read or stored here.
+// Git sync when the proxy sets githubSync. The browser only talks to the
+// Apps Script web app already used by AI出題. The token, owner, and repository
+// name stay in Script properties and are never read or stored here.
 // Auto-sync is a local preference only (localStorage).
 
 var GIT_AUTO_SYNC_KEY = 'econ_git_auto_sync';
@@ -134,11 +134,10 @@ async function gitProxyRequest(payload, timeoutMs) {
 async function refreshGitSyncAccess() {
     showGitPanel(false);
     gitSyncState.allowed = false;
-    var username = gitUsername();
-    if (!username || !gitProxyUrl()) return false;
+    if (typeof refreshAccessRights !== 'function') return false;
     try {
-        var data = await gitProxyRequest({ action: 'checkAccess', username: username }, 20000);
-        gitSyncState.allowed = !!(data && data.ok === true && data.allowed === true);
+        var rights = await refreshAccessRights();
+        gitSyncState.allowed = !!(rights && rights.githubSync === true);
     } catch (error) {
         gitSyncState.allowed = false;
     }

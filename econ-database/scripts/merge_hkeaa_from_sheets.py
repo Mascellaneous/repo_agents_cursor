@@ -26,6 +26,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 import urllib.parse
 import urllib.request
 from collections import Counter
@@ -33,7 +34,10 @@ from copy import deepcopy
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "data"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from data_paths import build_dir, data_dir
+
+DATA = data_dir()
 DB_JSON = DATA / "database.json"
 DB_JS = DATA / "database.js"
 VOCAB = DATA / "vocabulary.json"
@@ -512,7 +516,7 @@ def main() -> None:
     parser.add_argument(
         "--report",
         type=Path,
-        default=ROOT / "scripts" / "merge_hkeaa_report.json",
+        default=build_dir() / "merge_hkeaa_report.json",
     )
     args = parser.parse_args()
 

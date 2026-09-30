@@ -14,3 +14,15 @@ __pycache__/
 **/script-properties.json
 **/private.properties
 econ-database/apps-script/local.settings.json
+
+# Question bank, diagrams, originals, and paper packs belong in the private
+# data repository under shared/. Do not commit them to this public site.
+/MockTests/
+/PastPaper/
+/econ-database/data/*.json
+/econ-database/data/*.js
+/econ-database/diagrams/
+/econ-database/originals/
+/econ-database/scripts/**/*.json
+/econ-database/scripts/**/*.jsonl
+/econ-database/_readme_stem_stats.json

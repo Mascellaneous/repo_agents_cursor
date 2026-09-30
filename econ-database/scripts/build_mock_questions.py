@@ -8,9 +8,11 @@ import sys
 import zipfile
 from xml.etree import ElementTree as ET
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-MOCK_DIR = os.path.join(ROOT, "MockTests")
-DATA_DIR = os.path.join(ROOT, "econ-database", "data")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from data_paths import data_dir, mock_tests_dir
+
+MOCK_DIR = str(mock_tests_dir())
+DATA_DIR = str(data_dir())
 OUT_PATH = os.path.join(DATA_DIR, "database.json")
 VOCAB_PATH = os.path.join(DATA_DIR, "vocabulary.json")
 

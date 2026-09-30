@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 """One-off builder for out_07.json stemPattern classifications."""
 import json
+import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from data_paths import build_dir
+
+ROOT = build_dir() / "classify_chunks"
 VOCAB = json.loads((ROOT / "vocab.json").read_text(encoding="utf-8"))
 VOCAB_SET = set(VOCAB)
 

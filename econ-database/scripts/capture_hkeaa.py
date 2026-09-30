@@ -18,10 +18,12 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import capture_from_pdf as base
 
-ROOT = Path(__file__).resolve().parents[2]
-PAST = ROOT / "PastPaper"
-DATA = ROOT / "econ-database" / "data"
-ORIG = ROOT / "econ-database" / "originals" / "dse"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from data_paths import data_dir, originals_dir, past_papers_dir
+
+PAST = past_papers_dir()
+DATA = data_dir()
+ORIG = originals_dir() / "dse"
 DB_PATH = DATA / "database.json"
 DPI = 110
 

@@ -6,12 +6,16 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-DATABASE_JSON = ROOT / "data" / "database.json"
-DATABASE_JS = ROOT / "data" / "database.js"
-VOCABULARY_JSON = ROOT / "data" / "vocabulary.json"
-IMPORT_JSON = Path(__file__).resolve().parent / "stem_patterns_import.json"
-VOCAB_JSON = Path(__file__).resolve().parent / "stem_patterns_vocab.json"
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from data_paths import build_dir, data_dir
+
+DATABASE_JSON = data_dir() / "database.json"
+DATABASE_JS = data_dir() / "database.js"
+VOCABULARY_JSON = data_dir() / "vocabulary.json"
+IMPORT_JSON = build_dir() / "stem_patterns_import.json"
+VOCAB_JSON = build_dir() / "stem_patterns_vocab.json"
 
 DESCRIPTION_STEM = (
     "stemPatterns are abstract stem templates from Past Paper分類表 題型分析 "
