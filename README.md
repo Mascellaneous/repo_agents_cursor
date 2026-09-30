@@ -83,7 +83,7 @@ Crops that do not match the stored wording are left out. `econ-database/HKEAA-�
 
 ## AI question generation
 
-One button, **AI出題**, asks for new questions in the style of the current filter. It stays hidden unless the signed-in user is allowed. The browser calls a Google Apps Script web app and can send an edited 出題指示. The upstream API key and the allowlist stay in that script’s Script properties, not in this repository. Production allowlist is hashed usernames only. Admin steps: `econ-database/apps-script/README.md`. The question bank itself is still `database.json`; the script only writes a usage log.
+One button, **AI出題**, asks for new questions from the current filter. It stays hidden unless the signed-in user is allowed. The modal picks a 出題模式, an editable 出題指示, and one of three models, and can send a short **測試** ping that does not use the filtered questions. The browser calls a Google Apps Script web app. The upstream API key and the allowlist stay in that script’s Script properties, not in this repository. Production allowlist is hashed usernames only. Successful replies are also backed up to a `GenerationBackup` sheet tab. Admin steps, including the required new deployment version after `Code.gs` changes: `econ-database/apps-script/README.md`. The question bank itself is still `database.json`.
 
 ## Adding another mock paper
 
