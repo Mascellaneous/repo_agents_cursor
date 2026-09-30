@@ -42,7 +42,7 @@ function renderTabContentsTemplate() {
         <!-- Sort controls -->
         <div class="sort-controls-wrapper">
             <button type="button" class="btn btn-outline-primary" id="copy-filtered-btn" onclick="copyFilteredQuestions()">📋 複製篩選題目</button>
-            <button type="button" class="btn btn-outline-primary" id="poe-generate-btn" hidden>根據篩選題目連接 poe API 出題</button>
+            <button type="button" class="btn btn-outline-primary" id="poe-generate-btn" hidden aria-label="AI出題">AI出題</button>
             <span class="sort-label">排序方式：</span>
             <select id="sort-order" onchange="onSortOrderChange()">
                 <option value="default">預設 (年份新→舊，題號小→大)</option>

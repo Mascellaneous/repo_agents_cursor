@@ -1,12 +1,16 @@
 // poeGenerateModal.js
 // Modal for generating new questions from the current filters.
 // The browser only talks to the Apps Script web app in config.js.
-// The Poe key and the allowlist stay in Apps Script properties.
+// The upstream API key and the allowlist stay in Apps Script properties.
+// The editable 出題指示 is stored in localStorage and sent as `instruction`.
 
 (function () {
     // Keep this sentence identical to POE_INSTRUCTION_ in apps-script/Code.gs.
-    // It is shown in the modal. The server rebuilds the real request.
+    // It is the default textarea value. The server uses it when the client
+    // sends an empty instruction.
     var POE_INSTRUCTION = '參考以下題目，撰寫全新的題目，並參考過程題目的風格、用字、句式撰寫解釋。請盡量提供最多的題目。一條題目不一定只涉及一件事件。有沒有甚麼有少許新意的問法？請同樣提供問題與解釋，並說明它創新之處。';
+    var INSTRUCTION_MAX = 4000;
+    var INSTRUCTION_KEY = 'econ_ai_instruction_v1';
     var CLIENT_SEND_CAP = 60;
     var LOCAL_KEY = 'econ_poe_generations_v1';
     var HISTORY_LIMIT = 30;
@@ -38,6 +42,68 @@
         db: null,
         storeMode: null
     };
+
+    function sanitizeClientInstruction(value) {
+        var text = String(value == null ? '' : value)
+            .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+            .replace(/[\u2028\u2029]/g, '\n')
+            .replace(/\r\n/g, '\n')
+            .replace(/\r/g, '\n')
+            .trim();
+        if (text.length > INSTRUCTION_MAX) {
+            text = text.slice(0, INSTRUCTION_MAX);
+            var last = text.charCodeAt(text.length - 1);
+            if (last >= 0xD800 && last <= 0xDBFF) text = text.slice(0, -1);
+            text = text.trim();
+        }
+        return text;
+    }
+
+    function readStoredInstruction() {
+        try {
+            var raw = localStorage.getItem(INSTRUCTION_KEY);
+            if (raw == null) return POE_INSTRUCTION;
+            return sanitizeClientInstruction(raw) || POE_INSTRUCTION;
+        } catch (error) {
+            return POE_INSTRUCTION;
+        }
+    }
+
+    function writeStoredInstruction(value) {
+        try {
+            var text = sanitizeClientInstruction(value);
+            if (!text || text === POE_INSTRUCTION) {
+                localStorage.removeItem(INSTRUCTION_KEY);
+                return;
+            }
+            localStorage.setItem(INSTRUCTION_KEY, text);
+        } catch (error) {
+            // Quota or private mode. The textarea still holds this session's text.
+        }
+    }
+
+    function instructionField() {
+        return document.getElementById('poe-instruction-input');
+    }
+
+    function loadInstructionField() {
+        var area = instructionField();
+        if (!area) return;
+        area.value = readStoredInstruction();
+    }
+
+    function currentInstructionForRequest() {
+        var area = instructionField();
+        if (!area) return '';
+        return sanitizeClientInstruction(area.value);
+    }
+
+    function resetInstruction() {
+        var area = instructionField();
+        if (!area || poeUi.busy) return;
+        area.value = POE_INSTRUCTION;
+        writeStoredInstruction(POE_INSTRUCTION);
+    }
 
     function proxyUrl() {
         if (typeof CONFIG === 'undefined' || !CONFIG.POE_PROXY_WEB_APP_URL) return '';
@@ -382,8 +448,8 @@
             + '<div class="poe-dialog" role="dialog" aria-modal="true" aria-labelledby="poe-generate-title">'
             + '  <header class="poe-header">'
             + '    <div>'
-            + '      <h2 id="poe-generate-title">根據篩選題目出題</h2>'
-            + '      <p class="poe-subtitle">參考目前篩選結果的風格、用字與句式，經伺服器向 Poe 要求全新題目與解釋。</p>'
+            + '      <h2 id="poe-generate-title">AI出題</h2>'
+            + '      <p class="poe-subtitle">參考目前篩選結果的風格、用字與句式，撰寫全新題目與解釋。可先改出題指示，再按出題。</p>'
             + '    </div>'
             + '    <button type="button" class="poe-close" aria-label="關閉">×</button>'
             + '  </header>'
@@ -397,6 +463,14 @@
             + '    </aside>'
             + '    <section class="poe-main">'
             + '      <div class="poe-meta" id="poe-meta"></div>'
+            + '      <details class="poe-instruction" open>'
+            + '        <summary>出題指示</summary>'
+            + '        <div class="poe-instruction-bar">'
+            + '          <p class="poe-instruction-hint" id="poe-instruction-hint">這段文字會連同參考題送給模型。上次修改會記在這部瀏覽器。留空則用預設指示。</p>'
+            + '          <button type="button" class="poe-text-btn" id="poe-instruction-reset">回復預設</button>'
+            + '        </div>'
+            + '        <textarea id="poe-instruction-input" maxlength="4000" rows="4" aria-label="出題指示" aria-describedby="poe-instruction-hint"></textarea>'
+            + '      </details>'
             + '      <div class="poe-stage" id="poe-stage" tabindex="0"></div>'
             + '    </section>'
             + '  </div>'
@@ -419,6 +493,10 @@
         overlay.querySelector('.poe-close').addEventListener('click', closePoeGenerateModal);
         overlay.querySelector('#poe-start').addEventListener('click', generateFromFilters);
         overlay.querySelector('#poe-again').addEventListener('click', regenerateActive);
+        overlay.querySelector('#poe-instruction-reset').addEventListener('click', resetInstruction);
+        overlay.querySelector('#poe-instruction-input').addEventListener('input', function (event) {
+            writeStoredInstruction(event.target.value);
+        });
         overlay.querySelector('#poe-copy').addEventListener('click', copyActive);
         overlay.querySelector('#poe-cancel').addEventListener('click', function () { cancelGeneration(false); });
         overlay.querySelector('#poe-history-clear').addEventListener('click', clearHistory);
@@ -478,6 +556,7 @@
             return;
         }
         ensureModal();
+        loadInstructionField();
         poeUi.trigger = document.getElementById('poe-generate-btn');
         poeUi.overlay.hidden = false;
         document.body.classList.add('poe-modal-open');
@@ -525,17 +604,8 @@
         stage.textContent = '';
         var lead = document.createElement('p');
         lead.className = 'poe-lead';
-        lead.textContent = '按「根據目前篩選出題」後，伺服器會附上參考題，並要求模型撰寫全新題目與解釋。結果會保存在這部瀏覽器。';
-        var details = document.createElement('details');
-        details.className = 'poe-instruction';
-        var summary = document.createElement('summary');
-        summary.textContent = '出題指示';
-        var copy = document.createElement('p');
-        copy.textContent = POE_INSTRUCTION;
-        details.appendChild(summary);
-        details.appendChild(copy);
+        lead.textContent = '按「根據目前篩選出題」後，伺服器會附上參考題，並依上方的出題指示要求模型撰寫全新題目與解釋。結果會保存在這部瀏覽器。';
         stage.appendChild(lead);
-        stage.appendChild(details);
         if (counting || !count) {
             var empty = document.createElement('p');
             empty.className = 'poe-note';
@@ -812,11 +882,15 @@
         var again = document.getElementById('poe-again');
         var copy = document.getElementById('poe-copy');
         var cancel = document.getElementById('poe-cancel');
+        var instruction = instructionField();
+        var reset = document.getElementById('poe-instruction-reset');
         var canRegenerate = !!(poeUi.activeRecord && poeUi.activeRecord.referenceIds && poeUi.activeRecord.referenceIds.length);
         if (start) start.disabled = poeUi.busy || poeUi.counting || poeUi.filteredCount === 0;
         if (again) again.disabled = poeUi.busy || !canRegenerate;
         if (copy) copy.disabled = poeUi.busy || !(poeUi.activeRecord && poeUi.activeRecord.content);
         if (cancel) cancel.hidden = !poeUi.busy;
+        if (instruction) instruction.disabled = !!poeUi.busy;
+        if (reset) reset.disabled = !!poeUi.busy;
         var dialog = poeUi.overlay && poeUi.overlay.querySelector('.poe-dialog');
         if (dialog) dialog.setAttribute('aria-busy', poeUi.busy ? 'true' : 'false');
     }
@@ -879,6 +953,8 @@
         }
         var filteredCount = references.length;
         var sending = references.slice(0, CLIENT_SEND_CAP);
+        var instruction = currentInstructionForRequest();
+        writeStoredInstruction(instruction);
         poeUi.busy = true;
         poeUi.control = { cancelled: false, handle: null };
         syncActionButtons();
@@ -892,7 +968,8 @@
                 action: 'generateQuestions',
                 username: currentUsername(),
                 filteredCount: filteredCount,
-                questions: sending
+                questions: sending,
+                instruction: instruction
             }, 240000, poeUi.control);
             if (!isPoeGenerateModalOpen()) return;
             if (!data || data.ok !== true || !data.content) {

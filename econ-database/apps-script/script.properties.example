@@ -5,20 +5,24 @@
 #   Required. Create a key at https://poe.com/api/keys
 #   Example value shape: paste the key, do not invent one in git.
 #
-# ALLOWED_USERS
-#   Optional if ALLOWED_USER_HASHES is set.
-#   Comma-separated usernames. The site lowercases them before the check.
-#   Example: user_a,user_b,user_c
-#
 # ALLOWED_USER_HASHES
-#   Optional if ALLOWED_USERS is set. Preferred when other people can open
-#   Project Settings. SHA-256 hex of the trimmed, lowercased username.
-#   In the bound spreadsheet use the menu 出題代理 → 計算使用者名稱雜湊.
-#   Or locally: printf '%s' 'user_a' | shasum -a 256
+#   Required in production. SHA-256 hex of each trimmed, lowercased username.
+#   Comma or newline separated. Do not commit real hashes.
+#   In the bound spreadsheet: 出題代理 → 計算使用者名稱雜湊.
+#   Paste each username only in that dialog, then copy the hex here.
+#   Fake shape only (do not paste this into Script properties):
+#   0000000000000000000000000000000000000000000000000000000000000000
+#   Or locally, and do not commit the output:
+#   printf '%s' 'user_a' | shasum -a 256
+#
+# ALLOWED_USERS
+#   Legacy / development only. Leave unset on the production project.
+#   Comma-separated plaintext usernames. The site lowercases them first.
+#   Example placeholders: user_a,user_b,user_c
 #
 # POE_MODEL
-#   Optional. Default: Claude-Sonnet-4.6
-#   Other public Poe model ids include GPT-5.4. The browser cannot choose.
+#   Optional. Default in Code.gs: Claude-Sonnet-5.5
+#   The browser cannot choose a model.
 #
 # POE_MAX_REFERENCES
 #   Optional. Default: 40. How many filtered questions are sent as style samples.
