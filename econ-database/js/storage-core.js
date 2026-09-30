@@ -92,6 +92,9 @@ class IndexedDBStorage {
     }
 
     async getQuestions(filters = {}) {
+        // Clicks during startup can reach here after `storage` exists and
+        // before IndexedDB open finishes. An empty list is safer than throwing.
+        if (!this.db) return [];
         return new Promise((resolve, reject) => {
             const transaction = this.db.transaction([this.storeName], 'readonly');
             const store = transaction.objectStore(this.storeName);

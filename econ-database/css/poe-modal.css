@@ -304,6 +304,20 @@ body.poe-modal-open {
 .poe-result h3 { font-size: 18px; }
 .poe-result h4 { font-size: 16px; }
 
+.poe-result strong,
+.poe-md-h strong,
+.poe-md-list strong,
+.poe-history-preview strong {
+    font-weight: 700;
+}
+
+.poe-result em,
+.poe-md-h em,
+.poe-md-list em,
+.poe-history-preview em {
+    font-style: italic;
+}
+
 .poe-md-list {
     margin: 0 0 12px;
     padding-left: 1.3em;
