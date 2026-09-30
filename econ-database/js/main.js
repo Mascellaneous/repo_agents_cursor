@@ -31,6 +31,10 @@ async function init() {
     }
     
     console.log('✅ 使用者已驗證:', window.authManager.displayName);
+
+    if (typeof logQuestionToolLogin === 'function') {
+        logQuestionToolLogin();
+    }
     
     // Update UI to show logged-in user
     updateUserDisplay();
@@ -127,6 +131,10 @@ async function initializeApp() {
     }    
     await renderQuestions();
     await refreshStatistics();
+
+    if (typeof initPoeGenerateFeature === 'function') {
+        initPoeGenerateFeature();
+    }
 }
 
 // Also add to refreshViews() so they update if data changes (e.g. after sync)
@@ -356,6 +364,10 @@ if (document.readyState === 'loading') {
 // === Hotkey Listener ===
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
+        if (typeof isPoeGenerateModalOpen === 'function' && isPoeGenerateModalOpen()) {
+            if (typeof closePoeGenerateModal === 'function') closePoeGenerateModal();
+            return;
+        }
         // If a filter modal is open, Esc closes it — and does NOT clear
         // the user's filters. Only a "bare" Esc clears filters.
         if (document.getElementById('mf-overlay')) {
