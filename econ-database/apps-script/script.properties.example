@@ -1,0 +1,48 @@
+# Copy these names into Apps Script → Project Settings → Script properties.
+# Do not commit real values. This file is an example only.
+#
+# POE_API_KEY
+#   Required. Create a key at https://poe.com/api/keys
+#   Example value shape: paste the key, do not invent one in git.
+#
+# ALLOWED_USERS
+#   Optional if ALLOWED_USER_HASHES is set.
+#   Comma-separated usernames. The site lowercases them before the check.
+#   Example: user_a,user_b,user_c
+#
+# ALLOWED_USER_HASHES
+#   Optional if ALLOWED_USERS is set. Preferred when other people can open
+#   Project Settings. SHA-256 hex of the trimmed, lowercased username.
+#   In the bound spreadsheet use the menu 出題代理 → 計算使用者名稱雜湊.
+#   Or locally: printf '%s' 'user_a' | shasum -a 256
+#
+# POE_MODEL
+#   Optional. Default: Claude-Sonnet-4.6
+#   Other public Poe model ids include GPT-5.4. The browser cannot choose.
+#
+# POE_MAX_REFERENCES
+#   Optional. Default: 40. How many filtered questions are sent as style samples.
+#
+# POE_MAX_REFERENCE_CHARS
+#   Optional. Default: 80000. Extra questions are dropped after this size.
+#
+# POE_MIN_INTERVAL_SECONDS
+#   Optional. Default: 20. Per-username cooldown between generations. 0 disables.
+#
+# POE_DAILY_LIMIT
+#   Optional. Default: 40 successful generations per username per script-timezone day.
+#   Set 0 for no daily cap.
+#
+# POE_MAX_TOKENS
+#   Optional. Leave empty to let the model decide. A low cap cuts answers short.
+#
+# POE_TEMPERATURE
+#   Optional. Leave empty to use the model default.
+#
+# SPREADSHEET_ID
+#   Optional when this project is bound to the question-log spreadsheet.
+#   Set it if the script is standalone. The id is the long string in the sheet URL.
+#
+# LOG_SHEET_NAME
+#   Optional. Default: UsageLog
+#   Do not point this at an existing data tab.

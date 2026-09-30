@@ -2,3 +2,15 @@ sdg-ggen-eternal/api.js
 
 __pycache__/
 *.pyc
+
+# Poe proxy secrets. Real values belong in Apps Script → Script properties.
+.env
+.env.*
+**/.env
+**/.env.*
+**/secrets.json
+**/*api-key*
+**/*apikey*
+**/script-properties.json
+**/private.properties
+econ-database/apps-script/local.settings.json

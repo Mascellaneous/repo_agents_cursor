@@ -81,6 +81,10 @@ Crops that do not match the stored wording are left out. `econ-database/HKEAA-�
 
 `econ-database/DSE-題目規律.md` collects the past-paper patterns (answer-key balance, diagrams, calculations, and wording). It keeps the notes already compiled by hand and fills only the years whose stems are in the question bank.
 
+## Poe question generation
+
+One button, **根據篩選題目連接 poe API 出題**, asks Poe for new questions in the style of the current filter. The browser calls a Google Apps Script web app. The Poe API key and the allowed-username list stay in that script’s Script properties, not in this repository. Admin steps: `econ-database/apps-script/README.md`. The question bank itself is still `database.json`; the script only writes a usage log.
+
 ## Adding another mock paper
 
 1. Put three files in `MockTests/`: 卷一, 卷二, and 參考答案. Keep the same filename style as the papers already there.

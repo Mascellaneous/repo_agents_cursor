@@ -55,6 +55,10 @@ Derived from reviewing live values in the bank:
 
 ---
 
+## Poe generation / 依篩選出題
+
+The button **根據篩選題目連接 poe API 出題** is hidden until Apps Script says the signed-in username is allowed. Setup, the allowlist, and the API key are admin-only and are not stored in this repository. Follow `apps-script/README.md`. Put the deployed `/exec` URL in `js/config.js` as `POE_PROXY_WEB_APP_URL`.
+
 ## Import scripts / 匯入腳本
 
 Under scripts/:
