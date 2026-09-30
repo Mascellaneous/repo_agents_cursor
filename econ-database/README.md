@@ -63,7 +63,7 @@ The button **AI出題** is hidden until Apps Script says the signed-in username 
 
 Allowed users (the same hash allowlist as AI出題) see **自動同步**, **上傳到 GitHub**, and **從 GitHub 載入**. The checkbox is stored only in that browser. The page POSTs the question JSON to the same Apps Script `/exec` URL. It does not call GitHub and it must not contain a token, owner, or repository name.
 
-Set `GITHUB_TOKEN`, `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH`, `GITHUB_DATA_PATH`, and `GITHUB_AI_BACKUP_DIR` in Apps Script Script properties, then redeploy. The token is a fine-grained PAT with Contents read and write on the private data repository only. Never commit those values. Details: `apps-script/README.md`.
+Set `GITHUB_TOKEN`, `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH`, `GITHUB_DATA_PATH`, and `GITHUB_AI_BACKUP_DIR` in Apps Script Script properties, then redeploy. The token is a fine-grained PAT with Contents read and write on the private data repository only. Never commit those values. Each allowed user's question file is `users/<username>/` plus `GITHUB_DATA_PATH`, and model replies are `users/<username>/` plus `GITHUB_AI_BACKUP_DIR`. `<username>` is the trimmed, lowercased signed-in name. The page does not choose that path. Details: `apps-script/README.md`.
 
 ## Import scripts / 匯入腳本
 
