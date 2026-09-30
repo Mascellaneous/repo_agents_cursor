@@ -13,6 +13,8 @@
 #   Grants AI出題, GitHub sync, 管理員模式, and mock tests.
 #
 # ALLOWED_AI_HASHES
+# ALLOWED_MOCK_HASHES
+# Comma or newline separated SHA-256 hex digests. Mock tests only.
 #   AI出題 and mock tests. No GitHub buttons, no Auto-sync, no 管理員模式.
 #   Same hash steps as ALLOWED_ADMIN_HASHES. Put each hex in only one list.
 #

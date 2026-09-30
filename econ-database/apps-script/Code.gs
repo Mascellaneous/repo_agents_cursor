@@ -565,15 +565,18 @@ function hashInList_(digest, list) {
   return false;
 }
 
-// Highest match wins: admin, then AI editor, then restricted.
+// Highest match wins: admin, then AI editor, then mock-only, then restricted.
 // A value that is not 64 hex characters never matches, so a plaintext
 // username in a property does not grant a role.
-function rightsFromLists_(digest, adminHashes, aiHashes, restrictedHashes) {
+function rightsFromLists_(digest, adminHashes, aiHashes, mockHashes, restrictedHashes) {
   if (hashInList_(digest, adminHashes)) {
     return { known: true, admin: true, ai: true, githubSync: true, mockTests: true };
   }
   if (hashInList_(digest, aiHashes)) {
     return { known: true, admin: false, ai: true, githubSync: false, mockTests: true };
+  }
+  if (hashInList_(digest, mockHashes)) {
+    return { known: true, admin: false, ai: false, githubSync: false, mockTests: true };
   }
   if (hashInList_(digest, restrictedHashes)) {
     return { known: true, admin: false, ai: false, githubSync: false, mockTests: false };
@@ -583,12 +586,13 @@ function rightsFromLists_(digest, adminHashes, aiHashes, restrictedHashes) {
 
 function lookupRights_(username) {
   var name = normalizeUsername_(username);
-  if (!name) return rightsFromLists_('', [], [], []);
+  if (!name) return rightsFromLists_('', [], [], [], []);
   var stored = props_();
   return rightsFromLists_(
     sha256Hex_(name),
     stored.getProperty('ALLOWED_ADMIN_HASHES'),
     stored.getProperty('ALLOWED_AI_HASHES'),
+    stored.getProperty('ALLOWED_MOCK_HASHES'),
     stored.getProperty('ALLOWED_RESTRICTED_HASHES')
   );
 }
@@ -941,22 +945,22 @@ function promptUsernameHash() {
 
 function selfTestRoleRights() {
   var sample = sha256Hex_('sample_user');
-  var adminRights = rightsFromLists_(sample, [sample], [], []);
+  var adminRights = rightsFromLists_(sample, [sample], [], [], []);
   if (!adminRights.known || !adminRights.admin || !adminRights.ai || !adminRights.githubSync || !adminRights.mockTests) {
     throw new Error('role_admin');
   }
-  var aiRights = rightsFromLists_(sample, [], [sample], []);
+  var aiRights = rightsFromLists_(sample, [], [sample], [], []);
   if (!aiRights.known || aiRights.admin || !aiRights.ai || aiRights.githubSync || !aiRights.mockTests) {
     throw new Error('role_ai');
   }
-  var restrictedRights = rightsFromLists_(sample, [], [], [sample]);
+  var restrictedRights = rightsFromLists_(sample, [], [], [], [sample]);
   if (!restrictedRights.known || restrictedRights.admin || restrictedRights.ai || restrictedRights.githubSync || restrictedRights.mockTests) {
     throw new Error('role_restricted');
   }
-  var none = rightsFromLists_(sample, [], [], []);
+  var none = rightsFromLists_(sample, [], [], [], []);
   if (none.known || none.ai || none.githubSync || none.mockTests) throw new Error('role_none');
-  if (rightsFromLists_(sample, ['sample_user'], [], []).known) throw new Error('role_plaintext_ignored');
-  if (rightsFromLists_(sample, [sample], [sample], [sample]).admin !== true) throw new Error('role_admin_wins');
+  if (rightsFromLists_(sample, ['sample_user'], [], [], []).known) throw new Error('role_plaintext_ignored');
+  if (rightsFromLists_(sample, [sample], [sample], [sample], [sample]).admin !== true) throw new Error('role_admin_wins');
   var payload = rightsResponse_(aiRights);
   var encoded = JSON.stringify(payload);
   if (payload.ok !== true || payload.ai !== true || payload.githubSync !== false || payload.mockTests !== true || payload.admin !== false || payload.allowed !== true) {

@@ -55,7 +55,9 @@ Production roles are **only** these three hash lists. Do not store plaintext use
 4. For each person, paste the username into that dialog. Do this privately. The dialog does not write the name into the sheet or into the repo. It lowercases and trims the name, then shows only the SHA-256 hex.
 5. Copy that hex into exactly one Script property:
    - `ALLOWED_ADMIN_HASHES` — full rights: AI出題, GitHub upload/download and the Auto-sync checkbox, 管理員模式 (edit, import, export), and mock tests.
-   - `ALLOWED_AI_HASHES` — AI出題 (filter, paste, modes, models, and 測試) and mock tests. No GitHub buttons, no Auto-sync, no 管理員模式.
+   - ALLOWED_AI_HASHES — AI出題 and mock tests; no GitHub; no admin edit.
+- ALLOWED_MOCK_HASHES — mock tests only; no AI出題; no GitHub; no admin edit.
+- ALLOWED_AI_HASHES (detail) — AI出題 (filter, paste, modes, models, and 測試) and mock tests. No GitHub buttons, no Auto-sync, no 管理員模式.
    - `ALLOWED_RESTRICTED_HASHES` — browse the site like a student or teacher. No AI出題, no GitHub buttons, no Auto-sync, and no mock-test questions. Everyone on this list has the same rights.
 6. Separate hashes in one property with commas, newlines, or spaces. If the same hash is in more than one list, the highest role wins: admin, then AI editor, then restricted.
 7. Delete `ALLOWED_USER_HASHES` and `ALLOWED_USERS` if they are still set.
