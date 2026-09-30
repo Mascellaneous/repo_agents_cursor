@@ -99,15 +99,20 @@ function handleLogin_(body) {
   return { ok: true };
 }
 
+function referenceSource_(value) {
+  return String(value || '') === 'paste' ? 'paste' : 'filter';
+}
+
 function handleGenerate_(body) {
   var username = normalizeUsername_(body.username);
+  var source = referenceSource_(body && body.source);
   if (!username || !isAllowed_(username)) {
     if (username && shouldAudit_(username, 'generate-denied', 60)) {
       writeLog_({
         username: username,
         action: 'generateQuestions',
         success: false,
-        metadata: { error: 'denied' }
+        metadata: { error: 'denied', source: source }
       }, false);
     }
     return { ok: false, error: 'feature_unavailable' };
@@ -119,7 +124,7 @@ function handleGenerate_(body) {
       username: username,
       action: 'generateQuestions',
       success: false,
-      metadata: { error: 'proxy_not_configured' }
+      metadata: { error: 'proxy_not_configured', source: source }
     }, true);
     return { ok: false, error: 'proxy_not_configured' };
   }
@@ -147,7 +152,7 @@ function handleGenerate_(body) {
       username: username,
       action: 'generateQuestions',
       success: false,
-      metadata: { error: 'daily_limit' }
+      metadata: { error: 'daily_limit', source: source }
     }, true);
     return { ok: false, error: 'rate_limited' };
   }
@@ -172,7 +177,8 @@ function handleGenerate_(body) {
         content: completion.content,
         sentCount: packed.questions.length,
         filteredCount: filteredCount,
-        durationMs: durationMs
+        durationMs: durationMs,
+        source: source
       }) || backup;
     } catch (backupErr) {
       safeLog_(backupErr);
@@ -205,7 +211,8 @@ function handleGenerate_(body) {
         instructionProvidedChars: instructionMeta.providedChars,
         customInstruction: instructionMeta.custom,
         gitBackup: result.gitBackup,
-        sheetBackup: result.sheetBackup
+        sheetBackup: result.sheetBackup,
+        source: source
       }
     }, true);
     return result;
@@ -224,7 +231,8 @@ function handleGenerate_(body) {
         durationMs: Date.now() - started,
         instructionChars: instructionMeta.chars,
         instructionProvidedChars: instructionMeta.providedChars,
-        customInstruction: instructionMeta.custom
+        customInstruction: instructionMeta.custom,
+        source: source
       }
     }, true);
     return { ok: false, error: code };
@@ -565,6 +573,10 @@ function selfTestPromptShape() {
   var listed = parseList_('aa bb\tcc,dd;ee\nff\rgg  ,  hh');
   if (listed.join('|') !== 'aa|bb|cc|dd|ee|ff|gg|hh') throw new Error('parse_list_separators');
   if (parseList_('  , ;\n\t').length !== 0) throw new Error('parse_list_empty');
+  if (referenceSource_('paste') !== 'paste') throw new Error('source_paste');
+  if (referenceSource_('filter') !== 'filter') throw new Error('source_filter');
+  if (referenceSource_('other') !== 'filter') throw new Error('source_other');
+  if (referenceSource_(null) !== 'filter') throw new Error('source_empty');
   console.log('selfTestPromptShape ok');
 }
 
@@ -698,7 +710,8 @@ function writeGenerationBackup_(info, gitBackup) {
       String(info.model || ''),
       reply.length,
       gitBackup ? 'github+sheet' : 'sheet',
-      clipChars_(reply, GENERATION_BACKUP_CELL_CHARS_)
+      clipChars_(reply, GENERATION_BACKUP_CELL_CHARS_),
+      referenceSource_(info.source)
     ]);
     return true;
   } finally {
@@ -719,9 +732,11 @@ function getGenerationBackupSheet_() {
     }
   }
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(['timestamp', 'username', 'action', 'model', 'replyChars', 'stored', 'reply']);
-    sheet.getRange(1, 1, 1, 7).setFontWeight('bold');
+    sheet.appendRow(['timestamp', 'username', 'action', 'model', 'replyChars', 'stored', 'reply', 'source']);
+    sheet.getRange(1, 1, 1, 8).setFontWeight('bold');
     sheet.setFrozenRows(1);
+  } else if (String(sheet.getRange(1, 8).getValue() || '') !== 'source') {
+    sheet.getRange(1, 8).setValue('source').setFontWeight('bold');
   }
   return sheet;
 }
@@ -745,6 +760,7 @@ function writeGitAiBackup_(info) {
     sentCount: numberOrNull_(info.sentCount),
     filteredCount: numberOrNull_(info.filteredCount),
     durationMs: numberOrNull_(info.durationMs),
+    source: referenceSource_(info.source),
     content: reply
   });
   var lock = LockService.getScriptLock();

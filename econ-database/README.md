@@ -57,7 +57,7 @@ Derived from reviewing live values in the bank:
 
 ## AI generation / 依篩選出題
 
-The button **AI出題** is hidden until Apps Script says the signed-in username is allowed. The modal sends an editable 出題指示 with the filtered questions. Setup, the hash allowlist, and the API key are admin-only and are not stored in this repository. Follow `apps-script/README.md`. Put the deployed `/exec` URL in `js/config.js` as `POE_PROXY_WEB_APP_URL`.
+The button **AI出題** is hidden until Apps Script says the signed-in username is allowed. The modal sends an editable 出題指示 with either the filtered questions or questions the user pasted. Setup, the hash allowlist, and the API key are admin-only and are not stored in this repository. Follow `apps-script/README.md`. Put the deployed `/exec` URL in `js/config.js` as `POE_PROXY_WEB_APP_URL`.
 
 ## Git sync / Git 同步
 

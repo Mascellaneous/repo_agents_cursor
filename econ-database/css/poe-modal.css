@@ -210,6 +210,74 @@ body.poe-modal-open {
     line-height: 1.5;
 }
 
+.poe-source {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 18px 0;
+}
+
+.poe-source-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 7px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.poe-source-option:has(input:checked) {
+    border-color: var(--secondary-color);
+    background: #eaf4fc;
+    color: var(--primary-color);
+}
+
+.poe-source-option input {
+    margin: 0;
+}
+
+.poe-paste {
+    padding: 10px 18px 12px;
+}
+
+.poe-paste[hidden] {
+    display: none !important;
+}
+
+.poe-paste label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--primary-color);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#poe-paste-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 160px;
+    max-height: 320px;
+    resize: vertical;
+    padding: 10px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background: #fff;
+    color: inherit;
+    font: inherit;
+    line-height: 1.6;
+}
+
+#poe-paste-input:disabled {
+    background: #f3f6f9;
+}
+
 .poe-stage {
     flex: 1;
     overflow: auto;

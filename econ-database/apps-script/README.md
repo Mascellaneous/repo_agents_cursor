@@ -149,7 +149,7 @@ The public question file is several megabytes, which is over the Contents API bl
 
 A successful `generateQuestions` call still returns the reply to the modal. It also:
 
-- appends a row to a sheet named `GenerationBackup` (`timestamp`, `username`, `action`, `model`, `replyChars`, `stored`, `reply`)
+- appends a row to a sheet named `GenerationBackup` (`timestamp`, `username`, `action`, `model`, `replyChars`, `stored`, `reply`, `source`)
 - writes the reply JSON under `GITHUB_AI_BACKUP_DIR`, in a new timestamped file, when the GitHub properties are set
 
 The sheet cell is clipped. The GitHub file keeps the reply (up to one million characters). Backup failure does not fail the generation. This script has no separate `testModel` action. `recordModelReply_` is the shared backup helper; a successful model test should call it with action `testModel`, which is stored under that name.
@@ -176,7 +176,9 @@ Login and denied-generation rows are deduped so a public `/exec` URL cannot fill
 
 ## How a generation is built
 
-The user message starts with the 出題指示, then the filtered questions (stem plus Chinese explanation).
+The user message starts with the 出題指示, then the reference questions (stem plus explanation when one was sent).
+
+The modal can send the current filter or questions the user pasted. The request field `source` is `filter` or `paste`. Anything else is stored as `filter`. UsageLog metadata, the `GenerationBackup` sheet, and the private GitHub reply file record that value. The pasted text itself is not written to the usage log.
 
 The modal shows this default instruction and lets the signed-in user edit it before generating. The last edit is kept in that browser’s `localStorage`. **回復預設** restores the sentence below. The request field is `instruction`. The script keeps a client instruction only when it is a non-empty string after trimming and control-character stripping, and it caps the length at 4000 characters. An empty or missing instruction uses the server default:
 
