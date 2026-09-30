@@ -1,10 +1,10 @@
 # AI question proxy (admin setup)
 
-The site button **AI出題** is hidden until `checkAccess` allows the signed-in user. It sends either the currently filtered questions or questions the user pasted, the instruction for the chosen 出題模式 (the user may still edit it), and one allowlisted model id to this Apps Script web app. The script calls the upstream question API and appends a row to the spreadsheet. The browser never receives the API key, and the public repository does not contain the allowlist.
+The site button **AI出題** is hidden until `checkAccess` returns `ai: true` for the signed-in user. It sends either the currently filtered questions or questions the user pasted, the instruction for the chosen 出題模式 (the user may still edit it), and one allowlisted model id to this Apps Script web app. The script calls the upstream question API and appends a row to the spreadsheet. The browser never receives the API key, and the public repository does not contain the allowlist.
 
 **After this change is merged**, paste the updated `Code.gs` from this repo into the live Apps Script project and create a **new deployment version** (Deploy → Manage deployments → Edit → Version: New version → Deploy). Keep the existing `/exec` URL. An older deployment ignores `testModel`, the model allowlist, and the backup tab.
 
-The same allowlist gates **Git 同步** and the shared question bank. Allowed users can upload or download their own question JSON through this web app, and the page loads shared diagrams, the question bank, and paper files through the same web app. The script talks to GitHub. The browser does not.
+Git sync and the shared question bank use the same sign-in, with different flags. Only `githubSync` can upload or download a personal question JSON. Any known username (a hash on one of the three role lists) can load shared diagrams, the question bank, and paper files through this web app. A restricted role receives the bank with mock-test questions removed. The script talks to GitHub. The browser does not.
 
 GitHub Pages is a static host. A private repository’s raw file URL answers 404 unless a token is sent, and the token must not be in the page. `fetchSharedAsset` and `listSharedData` are how the site reads those files. The question bank is not committed under `econ-database/data/`.
 
@@ -15,8 +15,8 @@ GitHub Pages is a static host. A private repository’s raw file URL answers 404
 - `POE_API_KEY`, the allowlist, and every `GITHUB_*` value live only in **Apps Script → Project Settings → Script properties**.
 - The page calls `POST` on the web app URL. It does not call the upstream API host or `api.github.com`.
 - Never commit the token, the GitHub owner, or the private repository name into this public site. Not in JavaScript, HTML, README examples, or `js/config.js`. The `/exec` URL is the only client setting, and it is not a secret.
-- `checkAccess` returns `{ "ok": true, "allowed": true|false }`. A refusal looks the same for every username that is not allowed. The page then leaves the button hidden. Do not show a disabled button in its place.
-- `generateQuestions` and `testModel` check the allowlist before they read the API key or call upstream. GitHub upload and download use the same check. A refused call does not reveal who is allowed.
+- `checkAccess` (alias `checkRights`) returns `{ "ok": true, "admin": false, "ai": false, "githubSync": false, "mockTests": false }`. It does not return a username, a hash, a role name, or `allowed`. Missing flags stay false, so an older page that still looks for `allowed` keeps AI出題 and GitHub hidden.
+- `generateQuestions` and `testModel` require `ai`. GitHub upload and download require `githubSync`. Shared reads require a known username. A refused call does not reveal who is listed.
 - The modal sends `model`. The script accepts only `Claude-Sonnet-5.5`, `GPT-6.1-Sol`, and `Gemini-3.8-Flash`. Any other string is ignored and the call uses `Claude-Sonnet-5.5`. If the client omits `model`, `POE_MODEL` is used only when it is one of those three ids; otherwise the same default applies.
 - `appsscript.json` limits `UrlFetchApp` to `https://api.poe.com/` and `https://api.github.com/`.
 - Do not commit real usernames, hashes of real usernames, or the API key. Examples below use placeholders such as `user_a` and an obviously fake hash. Never paste a production hash into git.
@@ -39,26 +39,36 @@ Set the Apps Script timezone and the spreadsheet timezone to `Asia/Hong_Kong` so
 
 After every pull, compare the deployed script with this repo. If they differ, paste the repo file again and redeploy a new version (section 4). Do not keep a private fork of `Code.gs` as the source of truth.
 
-You can ignore the editor’s run dropdown until the properties below exist. `selfTestPromptShape` checks the default instruction, the length cap, the model allowlist, the mode ids, and the sheet-cell truncation helper. It does not call the upstream API.
+You can ignore the editor’s run dropdown until the properties below exist. `selfTestPromptShape` checks the default instruction, the length cap, the model allowlist, the mode ids, the role flags, and the sheet-cell truncation helper. It does not call the upstream API.
 
 ## 3. Script properties
 
 **Project Settings → Script properties**. Names must match. Values are not in git.
 
-Production allowlist is **only** `ALLOWED_USER_HASHES`. Do not store plaintext usernames in the production project.
+Production roles are **only** these three hash lists. Do not store plaintext usernames. The script does not read `ALLOWED_USER_HASHES` or `ALLOWED_USERS`. Delete those properties on the live project after the three lists below are set, or a leftover plaintext name sits in Project Settings even though it no longer grants access.
 
-### Allowlist (production): hashes only
+### Roles (production): hashes only
 
 1. Open the bound spreadsheet linked above.
 2. Reload the spreadsheet after `Code.gs` is saved so **出題代理** is on the menu bar.
 3. Choose **出題代理 → 計算使用者名稱雜湊**.
 4. For each person, paste the username into that dialog. Do this privately. The dialog does not write the name into the sheet or into the repo. It lowercases and trims the name, then shows only the SHA-256 hex.
-5. Copy that hex into Script property `ALLOWED_USER_HASHES`. Separate hashes with commas, newlines, or spaces. Repeat for each person.
-6. Leave `ALLOWED_USERS` unset. If it is already set on the production project, delete it after the hashes are in place. Otherwise those plaintext names remain in Project Settings and still grant access.
+5. Copy that hex into exactly one Script property:
+   - `ALLOWED_ADMIN_HASHES` — full rights: AI出題, GitHub upload/download and the Auto-sync checkbox, 管理員模式 (edit, import, export), and mock tests.
+   - `ALLOWED_AI_HASHES` — AI出題 (filter, paste, modes, models, and 測試) and mock tests. No GitHub buttons, no Auto-sync, no 管理員模式.
+   - `ALLOWED_RESTRICTED_HASHES` — browse the site like a student or teacher. No AI出題, no GitHub buttons, no Auto-sync, and no mock-test questions. Everyone on this list has the same rights.
+6. Separate hashes in one property with commas, newlines, or spaces. If the same hash is in more than one list, the highest role wins: admin, then AI editor, then restricted.
+7. Delete `ALLOWED_USER_HASHES` and `ALLOWED_USERS` if they are still set.
 
-`ALLOWED_USERS` (comma-separated plaintext names) still works in the script for a local or development project. Do not use it in production, and do not commit names or their real hashes.
+A value that is not 64 hex characters never matches, so a plaintext username in a property does not grant a role. If all three lists are empty, nobody is known. `checkAccess` does not say which property matched, and it does not echo the username or any hash.
 
-If `ALLOWED_USER_HASHES` is empty and `ALLOWED_USERS` is empty, nobody is allowed. `checkAccess` does not say which property matched.
+`checkAccess` and `checkRights` return only:
+
+```json
+{ "ok": true, "admin": false, "ai": false, "githubSync": false, "mockTests": false }
+```
+
+An unknown username gets every flag false. The page then hides AI出題, GitHub, edit, and mock-test controls. Shared fetch, AI, and GitHub calls return `feature_unavailable`. A restricted user is known, so shared fetch works, but `ai`, `githubSync`, and `mockTests` are false: the bank loads with mock rows removed.
 
 A hash is 64 hex characters. This is a fake shape only — do not paste it into Script properties:
 
@@ -77,8 +87,9 @@ Changing properties does **not** require a new deployment. Changing `Code.gs` do
 | Property | Required | Placeholder / default |
 | --- | --- | --- |
 | `POE_API_KEY` | yes | key from the upstream API key page |
-| `ALLOWED_USER_HASHES` | yes in production | SHA-256 hex list from the menu above. Comma, newline, or space separated. |
-| `ALLOWED_USERS` | no; legacy/dev only | `user_a,user_b,user_c`. Leave empty in production. |
+| `ALLOWED_ADMIN_HASHES` | for full rights | SHA-256 hex list from the menu above. Example placeholder subject: `user_a`. |
+| `ALLOWED_AI_HASHES` | for AI出題 without GitHub | SHA-256 hex list. Same menu. No GitHub sync and no admin edit. |
+| `ALLOWED_RESTRICTED_HASHES` | for browse without mocks | SHA-256 hex list. Same menu. No AI出題, no GitHub, no mock tests. |
 | `POE_MODEL` | no | Fallback only when the client omits `model`, and only if the value is `Claude-Sonnet-5.5`, `GPT-6.1-Sol`, or `Gemini-3.8-Flash`. Other values are ignored. Default: `Claude-Sonnet-5.5`. |
 | `POE_MAX_REFERENCES` | no | `40` (hard cap 80) |
 | `POE_MAX_REFERENCE_CHARS` | no | `80000` |
@@ -118,20 +129,20 @@ When you later edit the script, including after pulling a new `Code.gs`: **Deplo
 
 In `econ-database/js/config.js`, set `POE_PROXY_WEB_APP_URL` to that `/exec` URL. It is not a secret. The key stays in Script properties.
 
-Reload the site and sign in. People whose username hash is listed see **AI出題** next to **複製篩選題目**. Everyone else does not see the button, and a failed check does not say why.
+Reload the site and sign in. **AI出題** appears only when `ai` is true. **管理員模式** appears only when `admin` is true. The GitHub panel appears only when `githubSync` is true. Mock-test questions and the mock publisher filter appear only when `mockTests` is true. A failed check leaves those controls hidden and does not say why.
 
 Opening the `/exec` URL in a browser should return JSON like `{ "ok": true, "service": "question-proxy", "configured": true, "gitConfigured": false, "sharedConfigured": false }`. `configured` only means a Poe key is present. `gitConfigured` is true only when the token, owner, repository, data path, and backup directory are all non-empty and well formed. `sharedConfigured` is true when the token, owner, repository, branch, and shared prefix are well formed. An empty `GITHUB_SHARED_PREFIX` still counts as configured, because the script uses `shared`. The response does not list users and does not contain the token, owner, repository name, or the prefix.
 
 ## GitHub sync
 
-Allowed users see **自動同步**, **上傳到 GitHub**, and **從 GitHub 載入** next to the admin actions. Everyone else does not see that panel. The checkbox is stored only in that browser’s `localStorage`. It is not sent to the server.
+Only `githubSync` (the admin role) sees **自動同步**, **上傳到 GitHub**, and **從 GitHub 載入**. AI editors and restricted users do not see that panel. The checkbox is stored only in that browser’s `localStorage`. It is not sent to the server.
 
 - **上傳到 GitHub** sends the current question bank to `syncDataUpload`.
 - **從 GitHub 載入** calls `syncDataDownload` and replaces the browser’s IndexedDB copy.
 - With **自動同步** on, opening the page tries to load the private copy. Saving, deleting, importing, or exporting a question uploads the current bank. Clearing the database does not upload by itself.
 - Reloading the page still starts from `data/database.json`, then replaces it when auto-sync can read the private file.
 
-Both actions check the same username hash allowlist as **AI出題** before any GitHub read or write. A refused call returns `feature_unavailable` and does not say whether GitHub is configured.
+Both actions require `githubSync` before any GitHub read or write. A refused call returns `feature_unavailable` and does not say whether GitHub is configured.
 
 ### Token
 
@@ -145,7 +156,7 @@ Create a **fine-grained** personal access token:
 
 Then set `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_DATA_PATH`, and `GITHUB_AI_BACKUP_DIR`. Set `GITHUB_BRANCH` if it is not `main`.
 
-Each allowed user gets their own folder. The script builds the path. The browser does not send it, and the page never contains the owner or repository name.
+Each user with `githubSync` gets their own folder. The script builds the path. The browser does not send it, and the page never contains the owner or repository name.
 
 - Question uploads and downloads use `users/<username>/` plus `GITHUB_DATA_PATH`. With the example path above, that is `users/<username>/data/questions.json`.
 - Model-reply files use `users/<username>/` plus `GITHUB_AI_BACKUP_DIR`, then a timestamped file name. With the example directory above, that is `users/<username>/ai-backups/<timestamp>-….json`.
@@ -156,7 +167,7 @@ The private repository needs at least one commit on that branch (a README create
 
 ## Shared assets
 
-GitHub Pages cannot read a private repository. Requesting a private raw file without a token returns 404. Putting the token in the page would expose the whole private repository, so the page never does that. `fetchSharedAsset` and `listSharedData` use the Script properties token and return only the file, or a directory listing, to an allowlisted username.
+GitHub Pages cannot read a private repository. Requesting a private raw file without a token returns 404. Putting the token in the page would expose the whole private repository, so the page never does that. `fetchSharedAsset` and `listSharedData` use the Script properties token and return only the file, or a directory listing, to a known username.
 
 `GITHUB_SHARED_PREFIX` defaults to `shared` when the property is empty. It must not be `users` or a path under `users`. The client sends a path relative to that prefix. The script joins the two and refuses `..`, a leading slash, and any path whose first folder is not one of `data`, `diagrams`, `originals`, `papers`, or `build`.
 
@@ -176,7 +187,7 @@ Expected layout inside the private repository:
 
 `listSharedData` takes `path` (a directory such as `papers/mock-tests`, or empty for the shared root) and optional `recursive: true`. It returns `{ "ok": true, "path", "truncated", "entries": [{ "path", "type", "size" }] }` with at most 8000 entries. `type` is `file` or `dir`.
 
-Both actions use the same username hash allowlist as **AI出題**. A refused call is `feature_unavailable` and does not say whether GitHub is configured. There is a per-username cap of 120 shared reads per minute (`rate_limited`). The page loads the bank once, then loads each diagram or original image when it is shown.
+Both actions require a known username (admin, AI editor, or restricted). They do not require `ai` or `githubSync`. Without `mockTests`, `data/database.json` is returned with mock-test rows removed, and `data/database.js`, `build/`, `diagrams/`, `papers/mock-tests/`, and numbered `originals/<digits>/` folders return `feature_unavailable`. `originals/dse/` and `papers/past-papers/` stay available. An unknown username gets `feature_unavailable` and does not receive the bank. A refused call does not say whether GitHub is configured. There is a per-username cap of 120 shared reads per minute (`rate_limited`). The page loads the bank once, then loads each diagram or original image when it is shown.
 
 `sharedConfigured` on a GET of `/exec` is true when a shared read can be attempted. It does not reveal the prefix.
 
@@ -207,8 +218,8 @@ The script creates a tab named `UsageLog` (or `LOG_SHEET_NAME`) with:
 
 - `login` — once per username about every 30 minutes, after someone signs in on the site.
 - `generateQuestions` — success or failure, with model, mode id, `source` (`filter` or `paste`), counts, duration, and the length of the 出題指示 (`instructionChars`, plus `instructionProvidedChars` for the raw client length). The instruction text and the question text are not written to this tab. The reply itself goes to `GenerationBackup` and, when configured, to the private repository.
-- `testModel` — the **測試** button. Success means the model returned the expected short ping (`正常`). The metadata has the model, duration, and a short `replyPreview`. It uses the same allowlist. It does not count toward `POE_DAILY_LIMIT`. It has its own cooldown of `POE_MIN_INTERVAL_SECONDS`, separate from generation. A successful reply is also written to `GenerationBackup` and, when configured, to the private repository.
-- `syncDataUpload` / `syncDataDownload` — success or failure for an allowed user. The log stores a byte count or an error code, not the question text and not the token.
+- `testModel` — the **測試** button. Success means the model returned the expected short ping (`正常`). The metadata has the model, duration, and a short `replyPreview`. It requires `ai`. It does not count toward `POE_DAILY_LIMIT`. It has its own cooldown of `POE_MIN_INTERVAL_SECONDS`, separate from generation. A successful reply is also written to `GenerationBackup` and, when configured, to the private repository.
+- `syncDataUpload` / `syncDataDownload` — success or failure when `githubSync` is true. The log stores a byte count or an error code, not the question text and not the token.
 
 Protect the `UsageLog` tab (**Data → Protect sheets and ranges**) so casual editors cannot clear it. The web app still appends rows because it runs as the deploying account.
 

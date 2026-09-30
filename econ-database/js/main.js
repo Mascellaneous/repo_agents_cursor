@@ -32,6 +32,10 @@ async function init() {
     
     console.log('✅ 使用者已驗證:', window.authManager.displayName);
 
+    if (typeof refreshAccessRights === 'function') {
+        await refreshAccessRights();
+    }
+
     if (typeof logQuestionToolLogin === 'function') {
         logQuestionToolLogin();
     }
@@ -132,7 +136,10 @@ async function initializeApp() {
     // Populate the dynamic filters
     if (typeof populateDynamicFilters === 'function') {
         await populateDynamicFilters();
-    }    
+    }
+    if (typeof applyAccessRights === 'function') {
+        applyAccessRights(window.accessRights);
+    }
     await renderQuestions();
     await refreshStatistics();
 

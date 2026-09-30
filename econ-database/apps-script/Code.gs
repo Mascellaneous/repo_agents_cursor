@@ -5,8 +5,9 @@
  * account, or the private repository name, and it never sees who is allowed
  * to use these features. All of that lives only in Script properties:
  *   POE_API_KEY
- *   ALLOWED_USER_HASHES  (production: SHA-256 hex from the spreadsheet menu)
- *   ALLOWED_USERS        (legacy/dev only; leave unset in production)
+ *   ALLOWED_ADMIN_HASHES       (SHA-256 hex; full rights)
+ *   ALLOWED_AI_HASHES          (SHA-256 hex; AI出題 and mock tests, no GitHub)
+ *   ALLOWED_RESTRICTED_HASHES  (SHA-256 hex; browse without mock tests, AI, or GitHub)
  *   GITHUB_TOKEN
  *   GITHUB_OWNER
  *   GITHUB_REPO
@@ -47,11 +48,12 @@
  * - The spreadsheet may currently be shared with edit access. Narrow that
  *   share when you can. Visitors do not need sheet access; the web app
  *   writes the log as the deploying account.
- * - Production allowlist is ALLOWED_USER_HASHES only. In the bound
- *   spreadsheet use 出題代理 → 計算使用者名稱雜湊. Paste each username in
- *   that private dialog, then copy the hash into the property (comma,
- *   newline, or space separated). Do not commit those hashes. ALLOWED_USERS is
- *   legacy/dev only; remove it from the production project.
+ * - Production allowlists are hash-only. In the bound spreadsheet use
+ *   出題代理 → 計算使用者名稱雜湊. Paste each username in that private
+ *   dialog, then copy the hex into exactly one of ALLOWED_ADMIN_HASHES,
+ *   ALLOWED_AI_HASHES, or ALLOWED_RESTRICTED_HASHES (comma, newline, or
+ *   space separated). Do not commit those hashes or the usernames.
+ *   ALLOWED_USER_HASHES and ALLOWED_USERS are not read. Delete them.
  * - Script property changes apply immediately. Code changes need a new
  *   deployment version (Manage deployments → Edit → New version) so the
  *   existing /exec URL keeps working.
@@ -106,7 +108,7 @@ function handlePost_(e) {
   var body = parseBody_(e);
   var action = String(body.action || '');
   if (action === 'logLogin') return handleLogin_(body);
-  if (action === 'checkAccess') return handleCheck_(body);
+  if (action === 'checkAccess' || action === 'checkRights') return handleCheck_(body);
   if (action === 'generateQuestions') return handleGenerate_(body);
   if (action === 'syncDataUpload') return handleGitUpload_(body);
   if (action === 'syncDataDownload') return handleGitDownload_(body);
@@ -118,8 +120,8 @@ function handlePost_(e) {
 
 function handleCheck_(body) {
   var username = normalizeUsername_(body.username);
-  if (!username) return { ok: true, allowed: false };
-  return { ok: true, allowed: isAllowed_(username) };
+  if (!username) return rightsResponse_(null);
+  return rightsResponse_(lookupRights_(username));
 }
 
 function handleLogin_(body) {
@@ -143,7 +145,7 @@ function referenceSource_(value) {
 function handleGenerate_(body) {
   var username = normalizeUsername_(body.username);
   var source = referenceSource_(body && body.source);
-  if (!username || !isAllowed_(username)) {
+  if (!username || !lookupRights_(username).ai) {
     if (username && shouldAudit_(username, 'generate-denied', 60)) {
       writeLog_({
         username: username,
@@ -307,7 +309,7 @@ function handleGenerate_(body) {
 
 function handleTest_(body) {
   var username = normalizeUsername_(body.username);
-  if (!username || !isAllowed_(username)) {
+  if (!username || !lookupRights_(username).ai) {
     if (username && shouldAudit_(username, 'test-denied', 60)) {
       writeLog_({
         username: username,
@@ -548,18 +550,86 @@ function packReferences_(raw, maxCount, maxChars) {
   return { questions: questions, truncated: truncated };
 }
 
-function isAllowed_(username) {
-  var digest = sha256Hex_(username);
-  var allowed = {};
-  parseList_(props_().getProperty('ALLOWED_USER_HASHES')).forEach(function (hash) {
-    var normalized = String(hash || '').trim().toLowerCase();
-    if (/^[0-9a-f]{64}$/.test(normalized)) allowed[normalized] = true;
-  });
-  parseList_(props_().getProperty('ALLOWED_USERS')).forEach(function (name) {
-    var normalized = normalizeUsername_(name);
-    if (normalized) allowed[sha256Hex_(normalized)] = true;
-  });
-  return allowed[digest] === true;
+function hashInList_(digest, list) {
+  var target = String(digest || '').trim().toLowerCase();
+  if (!/^[0-9a-f]{64}$/.test(target)) return false;
+  var items = Array.isArray(list) ? list : parseList_(list);
+  for (var i = 0; i < items.length; i++) {
+    var hex = String(items[i] || '').trim().toLowerCase();
+    if (/^[0-9a-f]{64}$/.test(hex) && hex === target) return true;
+  }
+  return false;
+}
+
+// Highest match wins: admin, then AI editor, then restricted.
+// A value that is not 64 hex characters never matches, so a plaintext
+// username in a property does not grant a role.
+function rightsFromLists_(digest, adminHashes, aiHashes, restrictedHashes) {
+  if (hashInList_(digest, adminHashes)) {
+    return { known: true, admin: true, ai: true, githubSync: true, mockTests: true };
+  }
+  if (hashInList_(digest, aiHashes)) {
+    return { known: true, admin: false, ai: true, githubSync: false, mockTests: true };
+  }
+  if (hashInList_(digest, restrictedHashes)) {
+    return { known: true, admin: false, ai: false, githubSync: false, mockTests: false };
+  }
+  return { known: false, admin: false, ai: false, githubSync: false, mockTests: false };
+}
+
+function lookupRights_(username) {
+  var name = normalizeUsername_(username);
+  if (!name) return rightsFromLists_('', [], [], []);
+  var stored = props_();
+  return rightsFromLists_(
+    sha256Hex_(name),
+    stored.getProperty('ALLOWED_ADMIN_HASHES'),
+    stored.getProperty('ALLOWED_AI_HASHES'),
+    stored.getProperty('ALLOWED_RESTRICTED_HASHES')
+  );
+}
+
+function rightsResponse_(rights) {
+  var item = rights || {};
+  return {
+    ok: true,
+    admin: item.admin === true,
+    ai: item.ai === true,
+    githubSync: item.githubSync === true,
+    mockTests: item.mockTests === true
+  };
+}
+
+function isMockQuestion_(question) {
+  if (!question || typeof question !== 'object') return false;
+  var id = String(question.id || '');
+  if (/^MT?\d/i.test(id)) return true;
+  var publisher = String(question.publisher || '');
+  return publisher !== '' && publisher !== 'HKEAA' && publisher !== '-';
+}
+
+function stripMockQuestions_(text) {
+  var parsed = JSON.parse(text);
+  var list = Array.isArray(parsed) ? parsed : (parsed && parsed.questions);
+  if (!Array.isArray(list)) throw gitFail_('github_error');
+  var kept = [];
+  for (var i = 0; i < list.length; i++) {
+    if (!isMockQuestion_(list[i])) kept.push(list[i]);
+  }
+  if (Array.isArray(parsed)) return JSON.stringify(kept);
+  parsed.questions = kept;
+  if (typeof parsed.questionCount === 'number') parsed.questionCount = kept.length;
+  return JSON.stringify(parsed);
+}
+
+function sharedMockOnly_(rel) {
+  var path = String(rel || '');
+  if (path === 'data/database.js') return true;
+  if (path === 'build' || path.indexOf('build/') === 0) return true;
+  if (path === 'diagrams' || path.indexOf('diagrams/') === 0) return true;
+  if (path === 'papers/mock-tests' || path.indexOf('papers/mock-tests/') === 0) return true;
+  if (/^originals\/\d+(\/|$)/.test(path)) return true;
+  return false;
 }
 
 function countTodayGenerations_(username) {
@@ -842,13 +912,12 @@ function onOpen() {
 }
 
 // Admin helper. The dialog shows only the SHA-256 hex of the normalized
-// username. Paste that hex into Script property ALLOWED_USER_HASHES
-// (comma-, newline-, or space-separated). Do not store the username itself there.
+// username. Paste that hex into one role property. Do not store the username.
 function promptUsernameHash() {
   var ui = SpreadsheetApp.getUi();
   var response = ui.prompt(
     '計算雜湊',
-    '輸入一個使用者名稱。程式會去掉首尾空白並轉成小寫，然後只顯示雜湊。把雜湊貼到指令碼屬性 ALLOWED_USER_HASHES（可用逗號、換行或空格分隔多個）。不要把使用者名稱寫進屬性。',
+    '輸入一個使用者名稱。程式會去掉首尾空白並轉成小寫，然後只顯示雜湊。把雜湊貼到 ALLOWED_ADMIN_HASHES、ALLOWED_AI_HASHES 或 ALLOWED_RESTRICTED_HASHES 其中一個（可用逗號、換行或空格分隔多個）。不要把使用者名稱寫進屬性。',
     ui.ButtonSet.OK_CANCEL
   );
   if (response.getSelectedButton() !== ui.Button.OK) return;
@@ -858,6 +927,53 @@ function promptUsernameHash() {
     return;
   }
   ui.alert('SHA-256', sha256Hex_(username), ui.ButtonSet.OK);
+}
+
+function selfTestRoleRights() {
+  var sample = sha256Hex_('sample_user');
+  var adminRights = rightsFromLists_(sample, [sample], [], []);
+  if (!adminRights.known || !adminRights.admin || !adminRights.ai || !adminRights.githubSync || !adminRights.mockTests) {
+    throw new Error('role_admin');
+  }
+  var aiRights = rightsFromLists_(sample, [], [sample], []);
+  if (!aiRights.known || aiRights.admin || !aiRights.ai || aiRights.githubSync || !aiRights.mockTests) {
+    throw new Error('role_ai');
+  }
+  var restrictedRights = rightsFromLists_(sample, [], [], [sample]);
+  if (!restrictedRights.known || restrictedRights.admin || restrictedRights.ai || restrictedRights.githubSync || restrictedRights.mockTests) {
+    throw new Error('role_restricted');
+  }
+  var none = rightsFromLists_(sample, [], [], []);
+  if (none.known || none.ai || none.githubSync || none.mockTests) throw new Error('role_none');
+  if (rightsFromLists_(sample, ['sample_user'], [], []).known) throw new Error('role_plaintext_ignored');
+  if (rightsFromLists_(sample, [sample], [sample], [sample]).admin !== true) throw new Error('role_admin_wins');
+  var payload = rightsResponse_(aiRights);
+  var encoded = JSON.stringify(payload);
+  if (payload.ok !== true || payload.ai !== true || payload.githubSync !== false || payload.mockTests !== true || payload.admin !== false) {
+    throw new Error('role_response');
+  }
+  if (encoded.indexOf(sample) !== -1 || encoded.indexOf('sample_user') !== -1 || encoded.indexOf('known') !== -1) {
+    throw new Error('role_response_leak');
+  }
+  if (!isMockQuestion_({ id: 'MT27-P1-01', publisher: 'HKEAA' })) throw new Error('mock_id');
+  if (isMockQuestion_({ id: 'DSE-2012-P1-01', publisher: 'HKEAA' })) throw new Error('mock_dse');
+  if (!isMockQuestion_({ id: 'DSE-2012-P1-01', publisher: '雅集出版社' })) throw new Error('mock_publisher');
+  var stripped = JSON.parse(stripMockQuestions_(JSON.stringify({
+    questionCount: 2,
+    questions: [
+      { id: 'MT27-P1-01', publisher: 'HKEAA' },
+      { id: 'DSE-2012-P1-01', publisher: 'HKEAA' }
+    ]
+  })));
+  if (stripped.questionCount !== 1 || stripped.questions.length !== 1 || stripped.questions[0].id !== 'DSE-2012-P1-01') {
+    throw new Error('mock_strip');
+  }
+  if (!sharedMockOnly_('diagrams/MT27-P1-24.jpg')) throw new Error('mock_path_diagram');
+  if (!sharedMockOnly_('originals/27/q-p1-01.jpg')) throw new Error('mock_path_original');
+  if (!sharedMockOnly_('papers/mock-tests/file.pdf')) throw new Error('mock_path_paper');
+  if (sharedMockOnly_('originals/dse/2012/q-p1-01.jpg')) throw new Error('mock_path_dse');
+  if (sharedMockOnly_('data/database.json')) throw new Error('mock_path_bank');
+  if (sharedMockOnly_('papers/past-papers/file.pdf')) throw new Error('mock_path_past');
 }
 
 function selfTestPromptShape() {
@@ -881,7 +997,7 @@ function selfTestPromptShape() {
   var meta = instructionMeta_(huge);
   if (meta.providedChars !== huge.length) throw new Error('instruction_length_meta');
   if (String(meta.text).length > POE_INSTRUCTION_MAX_) throw new Error('instruction_meta_text');
-  isAllowed_('sample_user');
+  selfTestRoleRights();
   var listed = parseList_('aa bb\tcc,dd;ee\nff\rgg  ,  hh');
   if (listed.join('|') !== 'aa|bb|cc|dd|ee|ff|gg|hh') throw new Error('parse_list_separators');
   if (parseList_('  , ;\n\t').length !== 0) throw new Error('parse_list_empty');
@@ -909,7 +1025,7 @@ function selfTestPromptShape() {
   console.log('selfTestPromptShape ok');
 }
 
-// GitHub identity stays in Script properties. Callers are allowlisted first.
+// GitHub identity stays in Script properties. Callers are checked for githubSync first.
 // Files that fit the Contents API are written with that API. Larger question
 // banks use the Git Data API (blob, tree, commit, ref), which the same
 // fine-grained Contents permission allows. Neither path is called from the browser.
@@ -925,7 +1041,7 @@ var SHARED_READS_PER_MINUTE_ = 120;
 
 function handleGitUpload_(body) {
   var username = normalizeUsername_(body.username);
-  if (!username || !isAllowed_(username)) return gitClientError_('feature_unavailable');
+  if (!username || !lookupRights_(username).githubSync) return gitClientError_('feature_unavailable');
   var cfg = githubConfig_();
   if (!githubDataReady_(cfg)) return gitClientError_('github_not_configured');
   var text;
@@ -979,7 +1095,7 @@ function handleGitUpload_(body) {
 
 function handleGitDownload_(body) {
   var username = normalizeUsername_(body.username);
-  if (!username || !isAllowed_(username)) return gitClientError_('feature_unavailable');
+  if (!username || !lookupRights_(username).githubSync) return gitClientError_('feature_unavailable');
   var cfg = githubConfig_();
   if (!githubDataReady_(cfg)) return gitClientError_('github_not_configured');
   var dataPath = githubUserDataPath_(cfg, username);
@@ -1015,13 +1131,15 @@ function handleGitDownload_(body) {
 
 function handleFetchShared_(body) {
   var username = normalizeUsername_(body.username);
-  if (!username || !isAllowed_(username)) return gitClientError_('feature_unavailable');
+  var rights = lookupRights_(username);
+  if (!username || !rights.known) return gitClientError_('feature_unavailable');
   if (!takeSharedReadSlot_(username)) return gitClientError_('rate_limited');
   var cfg = githubConfig_();
   if (!githubSharedReady_(cfg)) return gitClientError_('github_not_configured');
   var rel = String(body.path || '').trim();
   var full = githubSharedFilePath_(cfg, rel);
   if (!full) return gitClientError_('bad_request');
+  if (!rights.mockTests && sharedMockOnly_(rel)) return gitClientError_('feature_unavailable');
   var ext = sharedExt_(rel);
   try {
     var read = githubReadBase64_(cfg, full);
@@ -1031,15 +1149,20 @@ function handleFetchShared_(body) {
     }
     var textExt = sharedTextExt_(ext);
     var content = textExt ? decodeGithubBase64_(read.b64) : read.b64;
+    var bytes = read.bytes;
+    if (textExt && !rights.mockTests && rel === 'data/database.json') {
+      content = stripMockQuestions_(content);
+      bytes = utf8Length_(content);
+    }
     logSharedRead_(username, 'fetchSharedAsset', true, {
       path: clip_(rel, 180),
-      bytes: read.bytes
+      bytes: bytes
     }, textExt);
     return sharedClientOk_({
       path: rel,
       encoding: textExt ? 'utf8' : 'base64',
       mediaType: sharedMediaType_(ext),
-      bytes: read.bytes,
+      bytes: bytes,
       content: content
     });
   } catch (err) {
@@ -1055,7 +1178,8 @@ function handleFetchShared_(body) {
 
 function handleListShared_(body) {
   var username = normalizeUsername_(body.username);
-  if (!username || !isAllowed_(username)) return gitClientError_('feature_unavailable');
+  var rights = lookupRights_(username);
+  if (!username || !rights.known) return gitClientError_('feature_unavailable');
   if (!takeSharedReadSlot_(username)) return gitClientError_('rate_limited');
   var cfg = githubConfig_();
   if (!githubSharedReady_(cfg)) return gitClientError_('github_not_configured');
@@ -1076,6 +1200,7 @@ function handleListShared_(body) {
       var name = String(item.path || '');
       if (!name || name.indexOf('..') !== -1) continue;
       var child = rel ? rel + '/' + name : name;
+      if (!rights.mockTests && sharedMockOnly_(child)) continue;
       var kind = String(item.type || '');
       if (kind === 'tree') {
         if (!githubSharedDirOk_(child)) continue;
@@ -1436,7 +1561,7 @@ function githubPathOk_(value) {
   return true;
 }
 
-// Folder name for one allowlisted user. The signed-in name is trimmed and
+// Folder name for one signed-in user. The name is trimmed and
 // lowercased first. Spaces become hyphens. The result is one path segment,
 // so a username cannot add extra folders.
 function githubUserSegment_(username) {
