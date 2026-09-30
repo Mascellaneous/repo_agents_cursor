@@ -93,8 +93,8 @@ Changing properties does **not** require a new deployment. Changing `Code.gs` do
 | `GITHUB_OWNER` | for Git sync | GitHub user or organization that owns the private data repository |
 | `GITHUB_REPO` | for Git sync | private repository name |
 | `GITHUB_BRANCH` | no | `main` when this property is empty |
-| `GITHUB_DATA_PATH` | for Git sync | path of the question JSON inside that repository, such as `data/questions.json` |
-| `GITHUB_AI_BACKUP_DIR` | for Git sync | directory for model-reply backups, such as `ai-backups` |
+| `GITHUB_DATA_PATH` | for Git sync | path inside each user's folder, such as `data/questions.json`. Stored as `users/<username>/data/questions.json`. |
+| `GITHUB_AI_BACKUP_DIR` | for Git sync | directory inside each user's folder, such as `ai-backups`. Stored as `users/<username>/ai-backups/`. |
 
 Usernames are trimmed and lowercased before the hash check. The site already stores the signed-in name that way.
 
@@ -144,6 +144,13 @@ Create a **fine-grained** personal access token:
 
 Then set `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_DATA_PATH`, and `GITHUB_AI_BACKUP_DIR`. Set `GITHUB_BRANCH` if it is not `main`.
 
+Each allowed user gets their own folder. The script builds the path. The browser does not send it, and the page never contains the owner or repository name.
+
+- Question uploads and downloads use `users/<username>/` plus `GITHUB_DATA_PATH`. With the example path above, that is `users/<username>/data/questions.json`.
+- Model-reply files use `users/<username>/` plus `GITHUB_AI_BACKUP_DIR`, then a timestamped file name. With the example directory above, that is `users/<username>/ai-backups/<timestamp>-….json`.
+
+`<username>` is the signed-in name after trimming and lowercasing. A space in that name is written as a hyphen. The name has to be one path segment. A slash, a backslash, or `..` is rejected, and that user's upload or download returns an error. An AI backup is skipped in that case; the generation or test reply is still returned. An older shared file at `GITHUB_DATA_PATH` is not read and is not moved.
+
 The private repository needs at least one commit on that branch (a README created with the repository is enough). The script never creates the repository.
 
 The public question file is several megabytes, which is over the Contents API blob limit. Small files, including each AI backup, use the Contents API. The question bank uses the Git Data API when it is larger. The browser still only sees `ok` or `error`, and maybe a commit `sha` and the relative `path`.
@@ -153,7 +160,7 @@ The public question file is several megabytes, which is over the Contents API bl
 A successful `generateQuestions` or `testModel` call still returns the reply to the browser. It also:
 
 - appends a row to `GenerationBackup` (column list under GenerationBackup below)
-- writes the reply JSON under `GITHUB_AI_BACKUP_DIR`, in a new timestamped file, when the GitHub properties are set
+- writes the reply JSON under `users/<username>/<GITHUB_AI_BACKUP_DIR>/`, in a new timestamped file, when the GitHub properties are set
 
 `generateQuestions` files record `source` as `filter` or `paste`. The sheet cell is clipped. The GitHub file keeps the reply (up to one million characters). Backup failure does not fail the generation or the test.
 

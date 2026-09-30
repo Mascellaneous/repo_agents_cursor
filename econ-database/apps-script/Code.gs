@@ -11,8 +11,14 @@
  *   GITHUB_OWNER
  *   GITHUB_REPO
  *   GITHUB_BRANCH        (optional; main when empty)
- *   GITHUB_DATA_PATH
- *   GITHUB_AI_BACKUP_DIR
+ *   GITHUB_DATA_PATH     (inside each user's folder; shape data/questions.json)
+ *   GITHUB_AI_BACKUP_DIR (inside each user's folder; shape ai-backups)
+ *
+ * Question uploads and model-reply files are stored per user:
+ *   users/<username>/<GITHUB_DATA_PATH>
+ *   users/<username>/<GITHUB_AI_BACKUP_DIR>/<timestamp>-….json
+ * <username> is the trimmed, lowercased signed-in name. Spaces become hyphens.
+ * The browser does not choose the path and never sees the owner or repository.
  *
  * Least privilege (admin):
  * - Deploy the web app as "Execute as: Me" (the account that owns the key
@@ -912,6 +918,8 @@ function handleGitUpload_(body) {
   }
   var bytes = utf8Length_(text);
   if (bytes > GITHUB_DATA_MAX_BYTES_) return gitClientError_('payload_too_large');
+  var dataPath = githubUserDataPath_(cfg, username);
+  if (!dataPath) return gitClientError_('github_error');
   if (!takeGitSlot_(username, 8)) return gitClientError_('rate_limited');
   var lock = LockService.getScriptLock();
   var held = false;
@@ -923,7 +931,7 @@ function handleGitUpload_(body) {
     held = true;
     var count = 0;
     try { count = JSON.parse(text).questionCount; } catch (ignore) { count = 0; }
-    var written = githubWriteText_(cfg, cfg.dataPath, text, 'Update question data (' + count + ')');
+    var written = githubWriteText_(cfg, dataPath, text, 'Update question data (' + count + ')');
     lock.releaseLock();
     held = false;
     writeLog_({
@@ -932,7 +940,7 @@ function handleGitUpload_(body) {
       success: true,
       metadata: { questionCount: count, bytes: bytes }
     }, true);
-    return gitOk_({ sha: written.sha, path: cfg.dataPath });
+    return gitOk_({ sha: written.sha, path: dataPath });
   } catch (err) {
     if (held) {
       try { lock.releaseLock(); } catch (ignore) {}
@@ -956,8 +964,10 @@ function handleGitDownload_(body) {
   if (!username || !isAllowed_(username)) return gitClientError_('feature_unavailable');
   var cfg = githubConfig_();
   if (!githubDataReady_(cfg)) return gitClientError_('github_not_configured');
+  var dataPath = githubUserDataPath_(cfg, username);
+  if (!dataPath) return gitClientError_('github_error');
   try {
-    var read = githubReadText_(cfg, cfg.dataPath);
+    var read = githubReadText_(cfg, dataPath);
     var parsed;
     try {
       parsed = JSON.parse(read.text);
@@ -971,7 +981,7 @@ function handleGitDownload_(body) {
       success: true,
       metadata: { bytes: String(read.text || '').length }
     }, true);
-    return gitOk_({ sha: read.sha, path: cfg.dataPath, data: parsed });
+    return gitOk_({ sha: read.sha, path: dataPath, data: parsed });
   } catch (err) {
     safeLog_(err);
     var code = err && err.code ? err.code : 'github_error';
@@ -993,7 +1003,9 @@ function writeGitAiBackup_(info) {
   var stamp = Utilities.formatDate(new Date(), tz, 'yyyyMMdd-HHmmss-SSS');
   var nonce = String(Utilities.getUuid() || '').replace(/-/g, '').slice(0, 8).toLowerCase();
   if (!/^[0-9a-f]{8}$/.test(nonce)) nonce = '00000000';
-  var path = joinGithubPath_(cfg.backupDir, stamp + '-' + action + '-' + nonce + '.json');
+  var backupDir = githubUserBackupDir_(cfg, info && info.username);
+  if (!backupDir) return false;
+  var path = joinGithubPath_(backupDir, stamp + '-' + action + '-' + nonce + '.json');
   if (!path) return false;
   var reply = clipChars_(String(info.content || ''), GITHUB_REPLY_MAX_CHARS_);
   var text = JSON.stringify({
@@ -1053,9 +1065,47 @@ function githubBranchOk_(value) {
 
 function githubPathOk_(value) {
   var path = String(value || '');
-  if (!path || path.length > 200 || path.charAt(0) === '/' || path.indexOf('..') !== -1) return false;
+  if (!path || path.length > 240 || path.charAt(0) === '/' || path.indexOf('..') !== -1) return false;
   if (path.charAt(path.length - 1) === '/') return false;
-  return /^[A-Za-z0-9._\-\/]+$/.test(path);
+  if (path.indexOf('\\') !== -1 || /[\s?#%<>:"|*]/.test(path)) return false;
+  if (/[\u0000-\u001F\u007F]/.test(path)) return false;
+  var parts = path.split('/');
+  for (var i = 0; i < parts.length; i++) {
+    var part = parts[i];
+    if (!part || part === '.' || part === '..') return false;
+    for (var c = 0; c < part.length; c++) {
+      var code = part.charCodeAt(c);
+      if (code < 128 && !/[A-Za-z0-9._-]/.test(part.charAt(c))) return false;
+    }
+  }
+  return true;
+}
+
+// Folder name for one allowlisted user. The signed-in name is trimmed and
+// lowercased first. Spaces become hyphens. The result is one path segment,
+// so a username cannot add extra folders.
+function githubUserSegment_(username) {
+  var name = normalizeUsername_(username);
+  if (!name) return '';
+  var segment = name.replace(/\s+/g, '-');
+  if (!segment || segment.indexOf('/') !== -1 || segment.indexOf('\\') !== -1) return '';
+  if (segment.indexOf('..') !== -1 || segment === '.' || segment === '..') return '';
+  if (!githubPathOk_(segment)) return '';
+  return segment;
+}
+
+function githubUserDataPath_(cfg, username) {
+  var segment = githubUserSegment_(username);
+  var rel = String(cfg && cfg.dataPath || '').replace(/^\/+|\/+$/g, '');
+  if (!segment || !githubPathOk_(rel)) return '';
+  return joinGithubPath_('users/' + segment, rel);
+}
+
+function githubUserBackupDir_(cfg, username) {
+  var segment = githubUserSegment_(username);
+  var dir = String(cfg && cfg.backupDir || '').replace(/^\/+|\/+$/g, '');
+  if (!segment || !githubPathOk_(dir)) return '';
+  return joinGithubPath_('users/' + segment, dir);
 }
 
 function joinGithubPath_(dir, name) {
@@ -1413,6 +1463,23 @@ function selfTestGitPaths() {
   if (joinGithubPath_('ai-backups', '20260101-000000-000-generateQuestions-abcd1234.json') !== 'ai-backups/20260101-000000-000-generateQuestions-abcd1234.json') {
     throw new Error('join_path');
   }
+  if (githubUserSegment_('  Example.User ') !== 'example.user') throw new Error('user_segment');
+  if (githubUserSegment_('first last') !== 'first-last') throw new Error('user_segment_space');
+  if (githubUserSegment_('user甲') !== 'user甲') throw new Error('user_segment_text');
+  if (githubUserSegment_('a/b')) throw new Error('user_segment_slash');
+  if (githubUserSegment_('../x')) throw new Error('user_segment_dotdot');
+  if (githubUserSegment_('bad name.json') !== 'bad-name.json') throw new Error('user_segment_space_file');
+  if (githubUserDataPath_({ dataPath: 'data/questions.json' }, 'Example') !== 'users/example/data/questions.json') {
+    throw new Error('user_data_path');
+  }
+  if (githubUserDataPath_({ dataPath: '../questions.json' }, 'example')) throw new Error('user_data_escape');
+  if (githubUserBackupDir_({ backupDir: 'ai-backups' }, 'Example') !== 'users/example/ai-backups') {
+    throw new Error('user_backup_dir');
+  }
+  if (joinGithubPath_(githubUserBackupDir_({ backupDir: 'ai-backups' }, 'example'), '20260101-000000-000-generateQuestions-abcd1234.json') !== 'users/example/ai-backups/20260101-000000-000-generateQuestions-abcd1234.json') {
+    throw new Error('user_backup_file');
+  }
+  if (githubUserDataPath_({ dataPath: 'data/questions.json' }, 'a/b')) throw new Error('user_data_slash');
   if (backupFileAction_('generateQuestions') !== 'generateQuestions') throw new Error('backup_generate');
   if (backupFileAction_('testModel') !== 'testModel') throw new Error('backup_test_model');
   if (backupFileAction_('login') !== 'reply') throw new Error('backup_other');
@@ -1431,6 +1498,11 @@ function selfTestGitPaths() {
   if (kept.path !== 'data/questions.json' || kept.sha !== '0123456789abcdef0123456789abcdef01234567') {
     throw new Error('response_keep');
   }
+  var keptUser = gitOk_({
+    sha: '0123456789abcdef0123456789abcdef01234567',
+    path: 'users/example/data/questions.json'
+  });
+  if (keptUser.path !== 'users/example/data/questions.json') throw new Error('response_user_path');
   if (JSON.stringify(kept).indexOf('token') !== -1) throw new Error('response_token_key');
   var denied = gitClientError_('feature_unavailable');
   if (denied.ok !== false || denied.error !== 'feature_unavailable') throw new Error('client_error');

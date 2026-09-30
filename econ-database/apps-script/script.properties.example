@@ -77,9 +77,14 @@
 #   Optional. The script uses main when this is empty.
 #
 # GITHUB_DATA_PATH
-#   Path of the question JSON inside the private repository.
+#   Question JSON path inside that user's folder. Not a shared file.
 #   Shape example only: data/questions.json
+#   Stored as users/<username>/data/questions.json
 #
 # GITHUB_AI_BACKUP_DIR
-#   Directory for timestamped model-reply backups.
+#   Directory for that user's timestamped model-reply backups.
 #   Shape example only: ai-backups
+#   Stored as users/<username>/ai-backups/<timestamp>-….json
+#
+# <username> is the trimmed, lowercased signed-in name. Spaces become hyphens.
+# Do not put a real username in this file.
