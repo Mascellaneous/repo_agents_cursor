@@ -1101,7 +1101,7 @@ function handleGitUpload_(body) {
       username: username,
       action: 'syncDataUpload',
       success: false,
-      metadata: { error: code }
+      metadata: { error: code , detail: clip_(err && err.message, 120) }
     }, true);
     return gitClientError_(code);
   }
@@ -1763,8 +1763,8 @@ function githubWriteViaContents_(cfg, path, text, message) {
 function githubWriteViaGitData_(cfg, path, text, message) {
   var head = githubHead_(cfg);
   var blob = githubFetch_(cfg, 'post', githubRepoPrefix_(cfg) + '/git/blobs', {
-    content: encodeGithubBase64_(text),
-    encoding: 'base64'
+    content: String(text),
+    encoding: 'utf-8'
   });
   if (blob.status < 200 || blob.status >= 300 || !blob.body || !blob.body.sha) throw gitFail_('github_error');
   var tree = githubFetch_(cfg, 'post', githubRepoPrefix_(cfg) + '/git/trees', {
@@ -1839,7 +1839,8 @@ function githubRefApi_(cfg) {
   var branch = String(cfg.branch || 'main').split('/').map(function (part) {
     return encodeURIComponent(part);
   }).join('/');
-  return githubRepoPrefix_(cfg) + '/git/ref/heads/' + branch;
+  // GitHub update-ref requires /git/refs/… (plural). GET accepts it too.
+  return githubRepoPrefix_(cfg) + '/git/refs/heads/' + branch;
 }
 
 function githubContentsApi_(cfg, path) {
