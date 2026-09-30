@@ -177,7 +177,9 @@ async function uploadQuestionsToGit(options) {
         }
         return;
     }
-    await runGitJob(options.auto ? 'auto' : 'manual', async function () {
+    var mode = options.auto ? 'auto' : 'manual';
+    await runGitJob(mode, async function () {
+        console.log('[GitHub upload] ' + new Date().toISOString() + ' starting (' + mode + ')');
         setGitStatus(options.auto ? '正在自動同步到 GitHub…' : '正在上傳到 GitHub…', '');
         try {
             var exportData = typeof buildQuestionExport === 'function'
@@ -197,11 +199,13 @@ async function uploadQuestionsToGit(options) {
                 throw failed;
             }
             var count = exportData.questionCount;
+            console.log('[GitHub upload] ' + new Date().toISOString() + ' succeeded (' + count + ' questions)');
             var message = '已上傳 ' + count + ' 題到 GitHub';
             setGitStatus(message, 'ok');
             if (typeof showNotification === 'function') showNotification(message, 'success');
         } catch (error) {
             var message = gitFailureText(error);
+            console.warn('[GitHub upload] ' + new Date().toISOString() + ' failed: ' + message);
             setGitStatus(message, 'error');
             if (typeof showNotification === 'function') showNotification(message, 'error');
         }

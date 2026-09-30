@@ -15,7 +15,7 @@ GitHub Pages is a static host. A private repository’s raw file URL answers 404
 - `POE_API_KEY`, the allowlist, and every `GITHUB_*` value live only in **Apps Script → Project Settings → Script properties**.
 - The page calls `POST` on the web app URL. It does not call the upstream API host or `api.github.com`.
 - Never commit the token, the GitHub owner, or the private repository name into this public site. Not in JavaScript, HTML, README examples, or `js/config.js`. The `/exec` URL is the only client setting, and it is not a secret.
-- `checkAccess` (alias `checkRights`) returns `{ "ok": true, "admin": false, "ai": false, "githubSync": false, "mockTests": false }`. It does not return a username, a hash, a role name, or `allowed`. Missing flags stay false, so an older page that still looks for `allowed` keeps AI出題 and GitHub hidden.
+- `checkAccess` (alias `checkRights`) returns `{ "ok": true, "admin": false, "ai": false, "githubSync": false, "mockTests": false, "allowed": false }`. It does not return a username, a hash, or a role name. `allowed` is true only when `ai` or `githubSync` is true, so an older page that still checks `data.allowed` shows AI出題 and GitHub for those roles. The current page uses `ai`, `githubSync`, `admin`, and `mockTests` and ignores `allowed`.
 - `generateQuestions` and `testModel` require `ai`. GitHub upload and download require `githubSync`. Shared reads require a known username. A refused call does not reveal who is listed.
 - The modal sends `model`. The script accepts only `Claude-Sonnet-5.5`, `GPT-6.1-Sol`, and `Gemini-3.8-Flash`. Any other string is ignored and the call uses `Claude-Sonnet-5.5`. If the client omits `model`, `POE_MODEL` is used only when it is one of those three ids; otherwise the same default applies.
 - `appsscript.json` limits `UrlFetchApp` to `https://api.poe.com/` and `https://api.github.com/`.
@@ -65,7 +65,7 @@ A value that is not 64 hex characters never matches, so a plaintext username in 
 `checkAccess` and `checkRights` return only:
 
 ```json
-{ "ok": true, "admin": false, "ai": false, "githubSync": false, "mockTests": false }
+{ "ok": true, "admin": false, "ai": false, "githubSync": false, "mockTests": false, "allowed": false }
 ```
 
 An unknown username gets every flag false. The page then hides AI出題, GitHub, edit, and mock-test controls. Shared fetch, AI, and GitHub calls return `feature_unavailable`. A restricted user is known, so shared fetch works, but `ai`, `githubSync`, and `mockTests` are false: the bank loads with mock rows removed.

@@ -589,14 +589,20 @@ function lookupRights_(username) {
   );
 }
 
+// `allowed` is only for public Pages builds that still check data.allowed.
+// It is true when ai or githubSync is true. The current page uses the four
+// role flags and ignores this field.
 function rightsResponse_(rights) {
   var item = rights || {};
+  var ai = item.ai === true;
+  var githubSync = item.githubSync === true;
   return {
     ok: true,
     admin: item.admin === true,
-    ai: item.ai === true,
-    githubSync: item.githubSync === true,
-    mockTests: item.mockTests === true
+    ai: ai,
+    githubSync: githubSync,
+    mockTests: item.mockTests === true,
+    allowed: ai || githubSync
   };
 }
 
@@ -949,9 +955,13 @@ function selfTestRoleRights() {
   if (rightsFromLists_(sample, [sample], [sample], [sample]).admin !== true) throw new Error('role_admin_wins');
   var payload = rightsResponse_(aiRights);
   var encoded = JSON.stringify(payload);
-  if (payload.ok !== true || payload.ai !== true || payload.githubSync !== false || payload.mockTests !== true || payload.admin !== false) {
+  if (payload.ok !== true || payload.ai !== true || payload.githubSync !== false || payload.mockTests !== true || payload.admin !== false || payload.allowed !== true) {
     throw new Error('role_response');
   }
+  if (rightsResponse_(adminRights).allowed !== true) throw new Error('role_response_allowed_admin');
+  if (rightsResponse_(restrictedRights).allowed !== false) throw new Error('role_response_allowed_restricted');
+  if (rightsResponse_(none).allowed !== false) throw new Error('role_response_allowed_none');
+  if (rightsResponse_(null).allowed !== false) throw new Error('role_response_allowed_empty');
   if (encoded.indexOf(sample) !== -1 || encoded.indexOf('sample_user') !== -1 || encoded.indexOf('known') !== -1) {
     throw new Error('role_response_leak');
   }

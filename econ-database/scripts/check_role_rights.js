@@ -66,9 +66,13 @@ assert(!api.hashInList_(sample, 'sample_user'), 'role_hash_list_plaintext');
 
 const payload = api.rightsResponse_(aiRights);
 const encoded = JSON.stringify(payload);
-assert(payload.ok === true && payload.ai === true && payload.githubSync === false && payload.mockTests === true && payload.admin === false, 'role_response');
-assert(encoded.indexOf(sample) === -1 && encoded.indexOf('sample_user') === -1 && encoded.indexOf('known') === -1 && encoded.indexOf('allowed') === -1, 'role_response_leak');
-assert(Object.keys(payload).sort().join(',') === 'admin,ai,githubSync,mockTests,ok', 'role_response_keys');
+assert(payload.ok === true && payload.ai === true && payload.githubSync === false && payload.mockTests === true && payload.admin === false && payload.allowed === true, 'role_response');
+assert(api.rightsResponse_(adminRights).allowed === true, 'role_response_allowed_admin');
+assert(api.rightsResponse_(restrictedRights).allowed === false, 'role_response_allowed_restricted');
+assert(api.rightsResponse_(none).allowed === false, 'role_response_allowed_none');
+assert(api.rightsResponse_(null).allowed === false, 'role_response_allowed_empty');
+assert(encoded.indexOf(sample) === -1 && encoded.indexOf('sample_user') === -1 && encoded.indexOf('known') === -1, 'role_response_leak');
+assert(Object.keys(payload).sort().join(',') === 'admin,ai,allowed,githubSync,mockTests,ok', 'role_response_keys');
 
 assert(api.isMockQuestion_({ id: 'MT27-P1-01', publisher: 'HKEAA' }), 'mock_id');
 assert(!api.isMockQuestion_({ id: 'DSE-2012-P1-01', publisher: 'HKEAA' }), 'mock_dse');
