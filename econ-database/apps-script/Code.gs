@@ -28,7 +28,7 @@
  */
 
 var POE_CHAT_URL_ = 'https://api.poe.com/v1/chat/completions';
-var POE_DEFAULT_MODEL_ = 'Claude-Sonnet-4.6';
+var POE_DEFAULT_MODEL_ = 'Claude-Sonnet-5.5';
 var POE_INSTRUCTION_ = '參考以下題目，撰寫全新的題目，並參考過程題目的風格、用字、句式撰寫解釋。請盡量提供最多的題目。一條題目不一定只涉及一件事件。有沒有甚麼有少許新意的問法？請同樣提供問題與解釋，並說明它創新之處。';
 var POE_SYSTEM_PROMPT_ = '你是香港中學文憑試經濟科的出題助手。請只用繁體中文回答。題目必須是全新的，不可原句複製參考題。每題都要有問題與解釋；若問法有少許新意，請說明創新之處。';
 

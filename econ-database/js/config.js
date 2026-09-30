@@ -6,7 +6,7 @@ const CONFIG = {
     // Apps Script web app (/exec) from econ-database/apps-script/README.md.
     // Leave empty until that deployment exists. This URL is not a secret.
     // The Poe API key and the allowlist stay in Apps Script properties.
-    POE_PROXY_WEB_APP_URL: ''
+    POE_PROXY_WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbyWyuSs8FIpga0fwy8z8A3IGqE3T51FE24Ak3xuLawj5GmD81p3PwvDQjIRzLhIa53y/exec'
 };
 
 window.addEventListener('DOMContentLoaded', () => {
