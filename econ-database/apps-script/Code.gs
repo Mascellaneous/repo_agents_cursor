@@ -21,8 +21,8 @@
  *   writes the log as the deploying account.
  * - Production allowlist is ALLOWED_USER_HASHES only. In the bound
  *   spreadsheet use 出題代理 → 計算使用者名稱雜湊. Paste each username in
- *   that private dialog, then copy the hash into the property (comma or
- *   newline separated). Do not commit those hashes. ALLOWED_USERS is
+ *   that private dialog, then copy the hash into the property (comma,
+ *   newline, or space separated). Do not commit those hashes. ALLOWED_USERS is
  *   legacy/dev only; remove it from the production project.
  * - Script property changes apply immediately. Code changes need a new
  *   deployment version (Manage deployments → Edit → New version) so the
@@ -490,12 +490,12 @@ function onOpen() {
 
 // Admin helper. The dialog shows only the SHA-256 hex of the normalized
 // username. Paste that hex into Script property ALLOWED_USER_HASHES
-// (comma- or newline-separated). Do not store the username itself there.
+// (comma-, newline-, or space-separated). Do not store the username itself there.
 function promptUsernameHash() {
   var ui = SpreadsheetApp.getUi();
   var response = ui.prompt(
     '計算雜湊',
-    '輸入一個使用者名稱。程式會去掉首尾空白並轉成小寫，然後只顯示雜湊。把雜湊貼到指令碼屬性 ALLOWED_USER_HASHES（可用逗號或換行分隔多個）。不要把使用者名稱寫進屬性。',
+    '輸入一個使用者名稱。程式會去掉首尾空白並轉成小寫，然後只顯示雜湊。把雜湊貼到指令碼屬性 ALLOWED_USER_HASHES（可用逗號、換行或空格分隔多個）。不要把使用者名稱寫進屬性。',
     ui.ButtonSet.OK_CANCEL
   );
   if (response.getSelectedButton() !== ui.Button.OK) return;
@@ -528,6 +528,9 @@ function selfTestPromptShape() {
   if (meta.providedChars !== huge.length) throw new Error('instruction_length_meta');
   if (String(meta.text).length > POE_INSTRUCTION_MAX_) throw new Error('instruction_meta_text');
   isAllowed_('sample_user');
+  var listed = parseList_('aa bb\tcc,dd;ee\nff\rgg  ,  hh');
+  if (listed.join('|') !== 'aa|bb|cc|dd|ee|ff|gg|hh') throw new Error('parse_list_separators');
+  if (parseList_('  , ;\n\t').length !== 0) throw new Error('parse_list_empty');
   console.log('selfTestPromptShape ok');
 }
 
@@ -549,9 +552,10 @@ function parseBody_(e) {
   }
 }
 
+// Hashes may be comma-, newline-, or space-separated.
 function parseList_(value) {
   return String(value || '')
-    .split(/[,;\n\r]+/)
+    .split(/[,;\s]+/)
     .map(function (part) { return String(part || '').trim(); })
     .filter(Boolean);
 }
