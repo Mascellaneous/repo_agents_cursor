@@ -4,7 +4,8 @@
  * The public site never sees the Poe API key and never sees who is allowed
  * to use the feature. Both live only in Script properties:
  *   POE_API_KEY
- *   ALLOWED_USERS and/or ALLOWED_USER_HASHES
+ *   ALLOWED_USER_HASHES  (production: SHA-256 hex from the spreadsheet menu)
+ *   ALLOWED_USERS        (legacy/dev only; leave unset in production)
  *
  * Least privilege (admin):
  * - Deploy the web app as "Execute as: Me" (the account that owns the key
@@ -18,8 +19,11 @@
  * - The spreadsheet may currently be shared with edit access. Narrow that
  *   share when you can. Visitors do not need sheet access; the web app
  *   writes the log as the deploying account.
- * - Prefer ALLOWED_USER_HASHES when other people can open Project Settings.
- *   The spreadsheet menu 出題代理 → 計算使用者名稱雜湊 shows only the hash.
+ * - Production allowlist is ALLOWED_USER_HASHES only. In the bound
+ *   spreadsheet use 出題代理 → 計算使用者名稱雜湊. Paste each username in
+ *   that private dialog, then copy the hash into the property (comma or
+ *   newline separated). Do not commit those hashes. ALLOWED_USERS is
+ *   legacy/dev only; remove it from the production project.
  * - Script property changes apply immediately. Code changes need a new
  *   deployment version (Manage deployments → Edit → New version) so the
  *   existing /exec URL keeps working.
@@ -30,6 +34,7 @@
 var POE_CHAT_URL_ = 'https://api.poe.com/v1/chat/completions';
 var POE_DEFAULT_MODEL_ = 'Claude-Sonnet-5.5';
 var POE_INSTRUCTION_ = '參考以下題目，撰寫全新的題目，並參考過程題目的風格、用字、句式撰寫解釋。請盡量提供最多的題目。一條題目不一定只涉及一件事件。有沒有甚麼有少許新意的問法？請同樣提供問題與解釋，並說明它創新之處。';
+var POE_INSTRUCTION_MAX_ = 4000;
 var POE_SYSTEM_PROMPT_ = '你是香港中學文憑試經濟科的出題助手。請只用繁體中文回答。題目必須是全新的，不可原句複製參考題。每題都要有問題與解釋；若問法有少許新意，請說明創新之處。';
 
 function doGet() {
@@ -138,9 +143,10 @@ function handleGenerate_(body) {
   }
 
   var model = String(props_().getProperty('POE_MODEL') || POE_DEFAULT_MODEL_).trim() || POE_DEFAULT_MODEL_;
+  var instructionMeta = instructionMeta_(body.instruction);
   var started = Date.now();
   try {
-    var completion = requestCompletion_(apiKey, model, buildPrompt_(packed.questions, filteredCount, packed.truncated));
+    var completion = requestCompletion_(apiKey, model, buildPrompt_(packed.questions, filteredCount, packed.truncated, instructionMeta.text));
     var durationMs = Date.now() - started;
     var result = {
       ok: true,
@@ -163,7 +169,10 @@ function handleGenerate_(body) {
         truncated: packed.truncated,
         durationMs: durationMs,
         promptTokens: completion.promptTokens,
-        completionTokens: completion.completionTokens
+        completionTokens: completion.completionTokens,
+        instructionChars: instructionMeta.chars,
+        instructionProvidedChars: instructionMeta.providedChars,
+        customInstruction: instructionMeta.custom
       }
     }, true);
     return result;
@@ -179,15 +188,18 @@ function handleGenerate_(body) {
         error: code,
         model: model,
         sentCount: packed.questions.length,
-        durationMs: Date.now() - started
+        durationMs: Date.now() - started,
+        instructionChars: instructionMeta.chars,
+        instructionProvidedChars: instructionMeta.providedChars,
+        customInstruction: instructionMeta.custom
       }
     }, true);
     return { ok: false, error: code };
   }
 }
 
-function buildPrompt_(questions, filteredCount, truncated) {
-  var lines = [POE_INSTRUCTION_, ''];
+function buildPrompt_(questions, filteredCount, truncated, instruction) {
+  var lines = [instruction || POE_INSTRUCTION_, ''];
   if (truncated || questions.length < filteredCount) {
     lines.push('（篩選結果共有 ' + filteredCount + ' 題，以下只附上 ' + questions.length + ' 題作為風格、用字與句式的參考。）');
     lines.push('');
@@ -438,6 +450,37 @@ function getSpreadsheet_() {
   throw new Error('no_spreadsheet');
 }
 
+// Client `instruction` is optional. Empty, non-string, or whitespace-only
+// values fall back to POE_INSTRUCTION_. The sheet logs length only.
+function sanitizeInstruction_(value) {
+  if (typeof value !== 'string') return POE_INSTRUCTION_;
+  var text = value
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+    .replace(/[\u2028\u2029]/g, '\n')
+    .replace(/\r\n/g, '\n')
+    .replace(/\r/g, '\n')
+    .trim();
+  if (!text) return POE_INSTRUCTION_;
+  if (text.length > POE_INSTRUCTION_MAX_) {
+    text = text.slice(0, POE_INSTRUCTION_MAX_);
+    var last = text.charCodeAt(text.length - 1);
+    if (last >= 0xD800 && last <= 0xDBFF) text = text.slice(0, -1);
+    text = text.trim();
+  }
+  return text || POE_INSTRUCTION_;
+}
+
+function instructionMeta_(raw) {
+  var providedChars = typeof raw === 'string' ? raw.length : 0;
+  var text = sanitizeInstruction_(raw);
+  return {
+    text: text,
+    chars: text.length,
+    providedChars: providedChars,
+    custom: text !== POE_INSTRUCTION_
+  };
+}
+
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('出題代理')
@@ -445,11 +488,14 @@ function onOpen() {
     .addToUi();
 }
 
+// Admin helper. The dialog shows only the SHA-256 hex of the normalized
+// username. Paste that hex into Script property ALLOWED_USER_HASHES
+// (comma- or newline-separated). Do not store the username itself there.
 function promptUsernameHash() {
   var ui = SpreadsheetApp.getUi();
   var response = ui.prompt(
     '計算雜湊',
-    '輸入一個使用者名稱。程式會去掉首尾空白並轉成小寫，然後只顯示雜湊。',
+    '輸入一個使用者名稱。程式會去掉首尾空白並轉成小寫，然後只顯示雜湊。把雜湊貼到指令碼屬性 ALLOWED_USER_HASHES（可用逗號或換行分隔多個）。不要把使用者名稱寫進屬性。',
     ui.ButtonSet.OK_CANCEL
   );
   if (response.getSelectedButton() !== ui.Button.OK) return;
@@ -465,9 +511,22 @@ function selfTestPromptShape() {
   var sample = packReferences_([
     { id: 'SAMPLE-1', question: '測試題幹', explanation: '測試解釋', questionType: 'MC', concepts: '機會成本' }
   ], 5, 80000);
-  var built = buildPrompt_(sample.questions, 1, false);
+  var built = buildPrompt_(sample.questions, 1, false, sanitizeInstruction_(''));
   if (built.indexOf(POE_INSTRUCTION_) !== 0) throw new Error('instruction_mismatch');
   if (built.indexOf('測試題幹') === -1) throw new Error('missing_reference');
+  var custom = '請只出一題選擇題。';
+  var customBuilt = buildPrompt_(sample.questions, 1, false, sanitizeInstruction_(custom));
+  if (customBuilt.indexOf(custom) !== 0) throw new Error('custom_instruction_unused');
+  if (sanitizeInstruction_('   \n  ') !== POE_INSTRUCTION_) throw new Error('empty_instruction_fallback');
+  if (sanitizeInstruction_(null) !== POE_INSTRUCTION_) throw new Error('missing_instruction_fallback');
+  var huge = '';
+  while (huge.length < POE_INSTRUCTION_MAX_ + 50) huge += '題目指示';
+  var clipped = sanitizeInstruction_(huge);
+  if (clipped.length > POE_INSTRUCTION_MAX_) throw new Error('instruction_cap');
+  if (clipped === POE_INSTRUCTION_) throw new Error('instruction_cap_fell_back');
+  var meta = instructionMeta_(huge);
+  if (meta.providedChars !== huge.length) throw new Error('instruction_length_meta');
+  if (String(meta.text).length > POE_INSTRUCTION_MAX_) throw new Error('instruction_meta_text');
   isAllowed_('sample_user');
   console.log('selfTestPromptShape ok');
 }

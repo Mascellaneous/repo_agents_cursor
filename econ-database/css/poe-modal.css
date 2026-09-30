@@ -1,9 +1,4 @@
-/* Poe generation modal. The trigger stays hidden until a server allow check. */
-
-#poe-generate-btn {
-    white-space: normal;
-    text-align: left;
-}
+/* AI question generation modal. The trigger stays hidden until a server allow check. */
 
 #poe-generate-btn[hidden] {
     display: none !important;
@@ -223,7 +218,6 @@ body.poe-modal-open {
 
 .poe-lead,
 .poe-note,
-.poe-instruction p,
 .poe-result p,
 .poe-loading p,
 .poe-error p {
@@ -232,16 +226,14 @@ body.poe-modal-open {
     font-size: 15px;
 }
 
-.poe-note,
-.poe-instruction p {
+.poe-note {
     color: var(--text-light);
 }
 
 .poe-instruction {
-    margin-top: 8px;
-    padding: 12px 14px;
-    border: 1px solid var(--border-light);
-    border-radius: 10px;
+    margin: 0;
+    padding: 10px 18px 12px;
+    border-bottom: 1px solid var(--border-light);
     background: #fbfcfe;
 }
 
@@ -251,8 +243,47 @@ body.poe-modal-open {
     color: var(--primary-color);
 }
 
-.poe-instruction p {
-    margin: 10px 0 0;
+.poe-instruction-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px 12px;
+    margin-top: 8px;
+}
+
+.poe-instruction-hint {
+    margin: 0;
+    flex: 1;
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#poe-instruction-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+    min-height: 92px;
+    max-height: 200px;
+    resize: vertical;
+    padding: 8px 10px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background: #fff;
+    color: inherit;
+    font: inherit;
+    line-height: 1.6;
+}
+
+#poe-instruction-input:disabled {
+    background: #f3f6f9;
+}
+
+#poe-instruction-reset:disabled {
+    opacity: 0.55;
+    cursor: default;
 }
 
 .poe-loading {
