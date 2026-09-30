@@ -7,7 +7,7 @@
 #
 # ALLOWED_USER_HASHES
 #   Required in production. SHA-256 hex of each trimmed, lowercased username.
-#   Comma or newline separated. Do not commit real hashes.
+#   Comma, newline, or space separated. Do not commit real hashes.
 #   In the bound spreadsheet: 出題代理 → 計算使用者名稱雜湊.
 #   Paste each username only in that dialog, then copy the hex here.
 #   Fake shape only (do not paste this into Script properties):

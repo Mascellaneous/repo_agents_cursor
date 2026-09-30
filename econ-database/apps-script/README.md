@@ -48,7 +48,7 @@ Production allowlist is **only** `ALLOWED_USER_HASHES`. Do not store plaintext u
 2. Reload the spreadsheet after `Code.gs` is saved so **出題代理** is on the menu bar.
 3. Choose **出題代理 → 計算使用者名稱雜湊**.
 4. For each person, paste the username into that dialog. Do this privately. The dialog does not write the name into the sheet or into the repo. It lowercases and trims the name, then shows only the SHA-256 hex.
-5. Copy that hex into Script property `ALLOWED_USER_HASHES`. Separate hashes with commas or newlines. Repeat for each person.
+5. Copy that hex into Script property `ALLOWED_USER_HASHES`. Separate hashes with commas, newlines, or spaces. Repeat for each person.
 6. Leave `ALLOWED_USERS` unset. If it is already set on the production project, delete it after the hashes are in place. Otherwise those plaintext names remain in Project Settings and still grant access.
 
 `ALLOWED_USERS` (comma-separated plaintext names) still works in the script for a local or development project. Do not use it in production, and do not commit names or their real hashes.
@@ -72,7 +72,7 @@ Changing properties does **not** require a new deployment. Changing `Code.gs` do
 | Property | Required | Placeholder / default |
 | --- | --- | --- |
 | `POE_API_KEY` | yes | key from the upstream API key page |
-| `ALLOWED_USER_HASHES` | yes in production | SHA-256 hex list from the menu above. Comma or newline separated. |
+| `ALLOWED_USER_HASHES` | yes in production | SHA-256 hex list from the menu above. Comma, newline, or space separated. |
 | `ALLOWED_USERS` | no; legacy/dev only | `user_a,user_b,user_c`. Leave empty in production. |
 | `POE_MODEL` | no | `Claude-Sonnet-5.5` (the script default when this property is empty) |
 | `POE_MAX_REFERENCES` | no | `40` (hard cap 80) |
