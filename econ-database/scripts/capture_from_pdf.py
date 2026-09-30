@@ -17,11 +17,13 @@ from pathlib import Path
 from PIL import Image
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[2]
-MOCK = ROOT / "MockTests"
-DATA = ROOT / "econ-database" / "data"
-ORIG = ROOT / "econ-database" / "originals"
-DIAG = ROOT / "econ-database" / "diagrams"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from data_paths import data_dir, diagrams_dir, mock_tests_dir, originals_dir
+
+MOCK = mock_tests_dir()
+DATA = data_dir()
+ORIG = originals_dir()
+DIAG = diagrams_dir()
 DB_PATH = DATA / "database.json"
 
 PAPER_LABEL = {

@@ -4,9 +4,9 @@ The site button **AI出題** is hidden until `checkAccess` allows the signed-in 
 
 **After this change is merged**, paste the updated `Code.gs` from this repo into the live Apps Script project and create a **new deployment version** (Deploy → Manage deployments → Edit → Version: New version → Deploy). Keep the existing `/exec` URL. An older deployment ignores `testModel`, the model allowlist, and the backup tab.
 
-The same allowlist gates **Git 同步**. Allowed users can upload or download the question JSON through this web app. The script talks to GitHub. The browser does not.
+The same allowlist gates **Git 同步** and the shared question bank. Allowed users can upload or download their own question JSON through this web app, and the page loads shared diagrams, the question bank, and paper files through the same web app. The script talks to GitHub. The browser does not.
 
-Question data still loads from `econ-database/data/database.json` for everyone else. The private GitHub repository is only an admin copy.
+GitHub Pages is a static host. A private repository’s raw file URL answers 404 unless a token is sent, and the token must not be in the page. `fetchSharedAsset` and `listSharedData` are how the site reads those files. The question bank is not committed under `econ-database/data/`.
 
 `Code.gs` in this repository is the source of truth. If the copy already deployed in Apps Script has drifted, replace it with this file and **redeploy** (section 4). Property-only edits apply immediately. Code changes, including the editable 出題指示, do not: an old deployment ignores the client `instruction` field until you deploy a new version.
 
@@ -95,6 +95,7 @@ Changing properties does **not** require a new deployment. Changing `Code.gs` do
 | `GITHUB_BRANCH` | no | `main` when this property is empty |
 | `GITHUB_DATA_PATH` | for Git sync | path inside each user's folder, such as `data/questions.json`. Stored as `users/<username>/data/questions.json`. |
 | `GITHUB_AI_BACKUP_DIR` | for Git sync | directory inside each user's folder, such as `ai-backups`. Stored as `users/<username>/ai-backups/`. |
+| `GITHUB_SHARED_PREFIX` | no | `shared` when this property is empty. Shared diagrams, JSON, and papers live under this prefix. Do not set it to `users` or a path under `users`. |
 
 Usernames are trimmed and lowercased before the hash check. The site already stores the signed-in name that way.
 
@@ -119,7 +120,7 @@ In `econ-database/js/config.js`, set `POE_PROXY_WEB_APP_URL` to that `/exec` URL
 
 Reload the site and sign in. People whose username hash is listed see **AI出題** next to **複製篩選題目**. Everyone else does not see the button, and a failed check does not say why.
 
-Opening the `/exec` URL in a browser should return JSON like `{ "ok": true, "service": "question-proxy", "configured": true, "gitConfigured": false }`. `configured` only means a Poe key is present. `gitConfigured` is true only when the token, owner, repository, data path, and backup directory are all non-empty and well formed. The response does not list users and does not contain the token, owner, or repository name.
+Opening the `/exec` URL in a browser should return JSON like `{ "ok": true, "service": "question-proxy", "configured": true, "gitConfigured": false, "sharedConfigured": false }`. `configured` only means a Poe key is present. `gitConfigured` is true only when the token, owner, repository, data path, and backup directory are all non-empty and well formed. `sharedConfigured` is true when the token, owner, repository, branch, and shared prefix are well formed. An empty `GITHUB_SHARED_PREFIX` still counts as configured, because the script uses `shared`. The response does not list users and does not contain the token, owner, repository name, or the prefix.
 
 ## GitHub sync
 
@@ -152,6 +153,36 @@ Each allowed user gets their own folder. The script builds the path. The browser
 `<username>` is the signed-in name after trimming and lowercasing. A space in that name is written as a hyphen. The name has to be one path segment. A slash, a backslash, or `..` is rejected, and that user's upload or download returns an error. An AI backup is skipped in that case; the generation or test reply is still returned. An older shared file at `GITHUB_DATA_PATH` is not read and is not moved.
 
 The private repository needs at least one commit on that branch (a README created with the repository is enough). The script never creates the repository.
+
+## Shared assets
+
+GitHub Pages cannot read a private repository. Requesting a private raw file without a token returns 404. Putting the token in the page would expose the whole private repository, so the page never does that. `fetchSharedAsset` and `listSharedData` use the Script properties token and return only the file, or a directory listing, to an allowlisted username.
+
+`GITHUB_SHARED_PREFIX` defaults to `shared` when the property is empty. It must not be `users` or a path under `users`. The client sends a path relative to that prefix. The script joins the two and refuses `..`, a leading slash, and any path whose first folder is not one of `data`, `diagrams`, `originals`, `papers`, or `build`.
+
+Expected layout inside the private repository:
+
+- `shared/data/database.json` — question bank
+- `shared/data/vocabulary.json` — label list
+- `shared/diagrams/` — inline diagrams. Question field `inlineDiagrams` stays `diagrams/...`
+- `shared/originals/` — question, answer, and report images. Those fields stay `originals/...`
+- `shared/papers/mock-tests/` — mock-paper packs
+- `shared/papers/past-papers/` — past-paper packs
+- `shared/build/` — classification JSON used by the import scripts
+
+`users/<username>/` is unchanged and is not readable through these actions.
+
+`fetchSharedAsset` returns `{ "ok": true, "path", "encoding", "mediaType", "bytes", "content" }`. Text files (`.json`, `.js`, `.jsonl`, `.txt`, `.md`) use `encoding: "utf8"`. Images and other allowed files use `encoding: "base64"`. The path in the response is the client-relative path, not a GitHub URL. Files larger than 9 MB return `payload_too_large`. The question bank and the images are under that cap. Some past-paper PDFs are larger; `listSharedData` still lists them, and they are read from the private checkout by the import scripts rather than streamed through the web app.
+
+`listSharedData` takes `path` (a directory such as `papers/mock-tests`, or empty for the shared root) and optional `recursive: true`. It returns `{ "ok": true, "path", "truncated", "entries": [{ "path", "type", "size" }] }` with at most 8000 entries. `type` is `file` or `dir`.
+
+Both actions use the same username hash allowlist as **AI出題**. A refused call is `feature_unavailable` and does not say whether GitHub is configured. There is a per-username cap of 120 shared reads per minute (`rate_limited`). The page loads the bank once, then loads each diagram or original image when it is shown.
+
+`sharedConfigured` on a GET of `/exec` is true when a shared read can be attempted. It does not reveal the prefix.
+
+Copy the files into a local checkout of the private repository with `econ-database/scripts/stage_shared_assets.py`, then commit them there. That script does not contain a token. After `Code.gs` changes, paste this file into the live Apps Script project and deploy a new version. Property-only edits, including `GITHUB_SHARED_PREFIX`, apply immediately.
+
+The public site must not commit these assets. When publishing `econ-database/` to the public Pages repository `mas-repo/econ-database2`, do not restore `data/database.json`, `diagrams/`, `originals/`, `MockTests/`, or `PastPaper/` from an older public commit.
 
 The public question file is several megabytes, which is over the Contents API blob limit. Small files, including each AI backup, use the Contents API. The question bank uses the Git Data API when it is larger. The browser still only sees `ok` or `error`, and maybe a commit `sha` and the relative `path`.
 

@@ -3,7 +3,7 @@
 ## Purpose / 用途
 
 First-bank JSON question database for HKDSE / related Economics past papers.
-Primary data file: data/database.json (served into IndexedDB by the SPA).
+The question bank is not in this folder. The hosted page loads `shared/data/database.json` from the private data repository through the Apps Script proxy (`fetchSharedAsset`). Diagrams and original crops use the same proxy. A file at `data/database.json` is only a local fallback and is gitignored.
 
 Future agents editing mock papers or bulk fields: read this file first.
 Records with reviewedByAI equal to Y must not be overwritten by builders that fill other fields. stemPatterns fills are additive (merge / union), not a wipe-and-replace of reviewed rows.
@@ -63,7 +63,9 @@ The button **AI出題** is hidden until Apps Script says the signed-in username 
 
 Allowed users (the same hash allowlist as AI出題) see **自動同步**, **上傳到 GitHub**, and **從 GitHub 載入**. The checkbox is stored only in that browser. The page POSTs the question JSON to the same Apps Script `/exec` URL. It does not call GitHub and it must not contain a token, owner, or repository name.
 
-Set `GITHUB_TOKEN`, `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH`, `GITHUB_DATA_PATH`, and `GITHUB_AI_BACKUP_DIR` in Apps Script Script properties, then redeploy. The token is a fine-grained PAT with Contents read and write on the private data repository only. Never commit those values. Each allowed user's question file is `users/<username>/` plus `GITHUB_DATA_PATH`, and model replies are `users/<username>/` plus `GITHUB_AI_BACKUP_DIR`. `<username>` is the trimmed, lowercased signed-in name. The page does not choose that path. Details: `apps-script/README.md`.
+Set `GITHUB_TOKEN`, `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH`, `GITHUB_DATA_PATH`, and `GITHUB_AI_BACKUP_DIR` in Apps Script Script properties, then redeploy. The token is a fine-grained PAT with Contents read and write on the private data repository only. Never commit those values. Each allowed user's question file is `users/<username>/` plus `GITHUB_DATA_PATH`, and model replies are `users/<username>/` plus `GITHUB_AI_BACKUP_DIR`. `<username>` is the trimmed, lowercased signed-in name. The page does not choose that path.
+
+`GITHUB_SHARED_PREFIX` is optional and defaults to `shared`. The same allowlist can read `shared/data/database.json`, `shared/diagrams/`, `shared/originals/`, and `shared/papers/` through `fetchSharedAsset` and `listSharedData`. Those actions never return the token, owner, or repository name. People who are not on the allowlist do not receive the bank. Mock-test hiding for colleague accounts still happens in the browser after the bank loads. Details: `apps-script/README.md`.
 
 ## Import scripts / 匯入腳本
 

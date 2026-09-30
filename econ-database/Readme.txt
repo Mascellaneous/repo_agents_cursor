@@ -18,12 +18,13 @@ plain lists instead.
 
 ## 1. Quick Start
 
-1. Serve the project folder with any static web server (or open
-   index.html directly — but a server is recommended so fetch/CORS
-   behaves consistently).
-2. index.html starts reading data/database.json as soon as the page loads.
-   The app shows「載入中...」while it finishes that read and
-   writes the questions into IndexedDB.
+1. Serve the project folder with any static web server over http or https.
+   A file:// page cannot call the Apps Script proxy that holds the question bank.
+2. After sign-in, an allowlisted user loads the bank from the private data
+   repository (shared/data/database.json) through that proxy. The app shows
+   「載入中...」while that read finishes and the questions are written into
+   IndexedDB. The bank, diagrams, and paper packs are not files in this
+   public folder.
 3. When sync completes, a「✓ 資料載入完成」pill appears in the header
    corner and the question list renders.
 

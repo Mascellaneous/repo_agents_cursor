@@ -19,13 +19,14 @@ if hasattr(sys.stdout, "reconfigure"):
     except Exception:
         pass
 
-ROOT = Path(__file__).resolve().parents[1]
-SCRIPTS = Path(__file__).resolve().parent
-CHUNKS = SCRIPTS / "classify_chunks"
-DATABASE_JSON = ROOT / "data" / "database.json"
-DATABASE_JS = ROOT / "data" / "database.js"
-VOCABULARY_JSON = ROOT / "data" / "vocabulary.json"
-STEM_VOCAB_JSON = SCRIPTS / "stem_patterns_vocab.json"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from data_paths import build_dir, data_dir
+
+CHUNKS = build_dir() / "classify_chunks"
+DATABASE_JSON = data_dir() / "database.json"
+DATABASE_JS = data_dir() / "database.js"
+VOCABULARY_JSON = data_dir() / "vocabulary.json"
+STEM_VOCAB_JSON = build_dir() / "stem_patterns_vocab.json"
 
 DESCRIPTION = (
     "Each record is one question. topic is the chapter; concepts are specific "

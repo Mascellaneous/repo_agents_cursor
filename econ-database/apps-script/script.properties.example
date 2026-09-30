@@ -88,3 +88,17 @@
 #
 # <username> is the trimmed, lowercased signed-in name. Spaces become hyphens.
 # Do not put a real username in this file.
+#
+# GITHUB_SHARED_PREFIX
+#   Optional. Folder for diagrams, the question bank, and paper packs.
+#   The script uses shared when this is empty.
+#   Do not set this to users or to a path under users.
+#   Shape example only: shared
+#   The site then reads paths such as:
+#   shared/data/database.json
+#   shared/diagrams/...
+#   shared/originals/...
+#   shared/papers/mock-tests/...
+#   shared/papers/past-papers/...
+#   shared/build/...
+#   Per-user files stay under users/<username>/ and are not shared.

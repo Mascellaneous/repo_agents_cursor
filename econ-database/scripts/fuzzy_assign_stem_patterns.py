@@ -25,12 +25,13 @@ if hasattr(sys.stdout, "reconfigure"):
     except Exception:
         pass
 
-ROOT = Path(__file__).resolve().parents[1]
-SCRIPTS = Path(__file__).resolve().parent
-DATABASE_JSON = ROOT / "data" / "database.json"
-DATABASE_JS = ROOT / "data" / "database.js"
-VOCAB_JSON = SCRIPTS / "stem_patterns_vocab.json"
-FUZZY_JSON = SCRIPTS / "stem_patterns_fuzzy.json"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from data_paths import build_dir, data_dir
+
+DATABASE_JSON = data_dir() / "database.json"
+DATABASE_JS = data_dir() / "database.js"
+VOCAB_JSON = build_dir() / "stem_patterns_vocab.json"
+FUZZY_JSON = build_dir() / "stem_patterns_fuzzy.json"
 
 # Tunable (raise MIN_BEST / MIN_MARGIN if too many FPs; lower if too few)
 MIN_BEST = 0.35

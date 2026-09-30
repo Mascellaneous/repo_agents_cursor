@@ -69,8 +69,12 @@ async function init() {
             }
         } catch (error) {
             console.error('Failed to load JSON:', error);
-            console.warn('⚠️ JSON 載入失敗:', error.message);
-            updateStorageStatus('disconnected', '✗ JSON 載入失敗');
+            const detail = error && error.message ? String(error.message) : '';
+            const safe = detail && detail.length <= 80 && detail.indexOf('token') === -1 && detail.indexOf('github.com') === -1
+                ? detail
+                : 'JSON 載入失敗';
+            console.warn('⚠️ JSON 載入失敗:', safe);
+            updateStorageStatus('disconnected', '✗ ' + safe);
         }
     }
     
@@ -169,7 +173,7 @@ function showLoadingState(show) {
     }
 }
 
-// Reload questions from the bundled JSON file.
+// Reload questions from the shared bank (or a local JSON fallback).
 async function manualSync() {
     if (!window.questionJsonSource) {
         alert('JSON 資料來源未設定，請檢查 config.js');

@@ -13,12 +13,22 @@
  *   GITHUB_BRANCH        (optional; main when empty)
  *   GITHUB_DATA_PATH     (inside each user's folder; shape data/questions.json)
  *   GITHUB_AI_BACKUP_DIR (inside each user's folder; shape ai-backups)
+ *   GITHUB_SHARED_PREFIX (optional; shared when empty)
  *
  * Question uploads and model-reply files are stored per user:
  *   users/<username>/<GITHUB_DATA_PATH>
  *   users/<username>/<GITHUB_AI_BACKUP_DIR>/<timestamp>-….json
  * <username> is the trimmed, lowercased signed-in name. Spaces become hyphens.
- * The browser does not choose the path and never sees the owner or repository.
+ * The browser does not choose that path and never sees the owner or repository.
+ *
+ * Shared diagrams, the question bank, and paper packs are a separate tree.
+ * GITHUB_SHARED_PREFIX defaults to shared. The site asks for a relative path
+ * such as data/database.json, diagrams/…, originals/…, or papers/….
+ * The script reads <prefix>/<relative path> and will not read users/.
+ * A static host such as GitHub Pages cannot read a private repository:
+ * raw file URLs for a private repo answer 404 unless a token is sent, and
+ * the token stays in Script properties. fetchSharedAsset and listSharedData
+ * are the only browser path to those files.
  *
  * Least privilege (admin):
  * - Deploy the web app as "Execute as: Me" (the account that owns the key
@@ -78,7 +88,8 @@ function doGet() {
     ok: true,
     service: 'question-proxy',
     configured: key.length > 0,
-    gitConfigured: githubDataReady_(git) && githubBackupReady_(git)
+    gitConfigured: githubDataReady_(git) && githubBackupReady_(git),
+    sharedConfigured: githubSharedReady_(git)
   });
 }
 
@@ -99,6 +110,8 @@ function handlePost_(e) {
   if (action === 'generateQuestions') return handleGenerate_(body);
   if (action === 'syncDataUpload') return handleGitUpload_(body);
   if (action === 'syncDataDownload') return handleGitDownload_(body);
+  if (action === 'fetchSharedAsset') return handleFetchShared_(body);
+  if (action === 'listSharedData') return handleListShared_(body);
   if (action === 'testModel') return handleTest_(body);
   return { ok: false, error: 'bad_request' };
 }
@@ -904,6 +917,11 @@ var GITHUB_CONTENTS_MAX_BYTES_ = 900000;
 var GITHUB_DATA_MAX_BYTES_ = 12000000;
 var GITHUB_MAX_QUESTIONS_ = 20000;
 var GITHUB_REPLY_MAX_CHARS_ = 1000000;
+// One shared file returned to the browser. Covers the question bank and
+// images. Larger paper files are listed but not streamed.
+var SHARED_FETCH_MAX_BYTES_ = 9000000;
+var SHARED_LIST_MAX_ = 8000;
+var SHARED_READS_PER_MINUTE_ = 120;
 
 function handleGitUpload_(body) {
   var username = normalizeUsername_(body.username);
@@ -995,6 +1013,103 @@ function handleGitDownload_(body) {
   }
 }
 
+function handleFetchShared_(body) {
+  var username = normalizeUsername_(body.username);
+  if (!username || !isAllowed_(username)) return gitClientError_('feature_unavailable');
+  if (!takeSharedReadSlot_(username)) return gitClientError_('rate_limited');
+  var cfg = githubConfig_();
+  if (!githubSharedReady_(cfg)) return gitClientError_('github_not_configured');
+  var rel = String(body.path || '').trim();
+  var full = githubSharedFilePath_(cfg, rel);
+  if (!full) return gitClientError_('bad_request');
+  var ext = sharedExt_(rel);
+  try {
+    var read = githubReadBase64_(cfg, full);
+    if (!read || read.bytes > SHARED_FETCH_MAX_BYTES_) {
+      logSharedRead_(username, 'fetchSharedAsset', false, { error: 'payload_too_large', path: clip_(rel, 180) }, true);
+      return gitClientError_('payload_too_large');
+    }
+    var textExt = sharedTextExt_(ext);
+    var content = textExt ? decodeGithubBase64_(read.b64) : read.b64;
+    logSharedRead_(username, 'fetchSharedAsset', true, {
+      path: clip_(rel, 180),
+      bytes: read.bytes
+    }, textExt);
+    return sharedClientOk_({
+      path: rel,
+      encoding: textExt ? 'utf8' : 'base64',
+      mediaType: sharedMediaType_(ext),
+      bytes: read.bytes,
+      content: content
+    });
+  } catch (err) {
+    safeLog_(err);
+    var code = err && err.code ? err.code : 'github_error';
+    logSharedRead_(username, 'fetchSharedAsset', false, {
+      error: code === 'github_not_found' || code === 'payload_too_large' || code === 'bad_request' ? code : 'github_error',
+      path: clip_(rel, 180)
+    }, true);
+    return gitClientError_(code);
+  }
+}
+
+function handleListShared_(body) {
+  var username = normalizeUsername_(body.username);
+  if (!username || !isAllowed_(username)) return gitClientError_('feature_unavailable');
+  if (!takeSharedReadSlot_(username)) return gitClientError_('rate_limited');
+  var cfg = githubConfig_();
+  if (!githubSharedReady_(cfg)) return gitClientError_('github_not_configured');
+  var rel = String(body.path || '').trim().replace(/\/+$/g, '');
+  var full = githubSharedDirPath_(cfg, rel);
+  if (!full) return gitClientError_('bad_request');
+  var recursive = body.recursive === true;
+  try {
+    var listed = githubListTree_(cfg, full, recursive);
+    var entries = [];
+    var truncated = listed.truncated === true;
+    for (var i = 0; i < listed.entries.length; i++) {
+      if (entries.length >= SHARED_LIST_MAX_) {
+        truncated = true;
+        break;
+      }
+      var item = listed.entries[i];
+      var name = String(item.path || '');
+      if (!name || name.indexOf('..') !== -1) continue;
+      var child = rel ? rel + '/' + name : name;
+      var kind = String(item.type || '');
+      if (kind === 'tree') {
+        if (!githubSharedDirOk_(child)) continue;
+        entries.push({ path: child, type: 'dir', size: 0 });
+      } else if (kind === 'blob') {
+        if (!githubSharedRelOk_(child)) continue;
+        var size = Number(item.size);
+        entries.push({
+          path: child,
+          type: 'file',
+          size: isFinite(size) && size >= 0 ? size : 0
+        });
+      }
+    }
+    logSharedRead_(username, 'listSharedData', true, {
+      path: clip_(rel || '.', 180),
+      count: entries.length
+    }, true);
+    return sharedClientOk_({
+      path: rel,
+      truncated: truncated,
+      entries: entries
+    });
+  } catch (err) {
+    safeLog_(err);
+    var code = err && err.code ? err.code : 'github_error';
+    logSharedRead_(username, 'listSharedData', false, {
+      error: code === 'github_not_found' ? 'github_not_found' : 'github_error',
+      path: clip_(rel || '.', 180)
+    }, true);
+    return gitClientError_(code);
+  }
+}
+
 function writeGitAiBackup_(info) {
   var cfg = githubConfig_();
   if (!githubBackupReady_(cfg)) return false;
@@ -1040,7 +1155,8 @@ function githubConfig_() {
     repo: String(stored.getProperty('GITHUB_REPO') || '').trim(),
     branch: String(stored.getProperty('GITHUB_BRANCH') || '').trim() || 'main',
     dataPath: String(stored.getProperty('GITHUB_DATA_PATH') || '').trim(),
-    backupDir: String(stored.getProperty('GITHUB_AI_BACKUP_DIR') || '').trim()
+    backupDir: String(stored.getProperty('GITHUB_AI_BACKUP_DIR') || '').trim(),
+    sharedPrefix: String(stored.getProperty('GITHUB_SHARED_PREFIX') || '').trim()
   };
 }
 
@@ -1051,6 +1167,245 @@ function githubDataReady_(cfg) {
 function githubBackupReady_(cfg) {
   var dir = String(cfg && cfg.backupDir || '').replace(/^\/+|\/+$/g, '');
   return !!(cfg && cfg.token && githubIdentOk_(cfg.owner) && githubIdentOk_(cfg.repo) && githubBranchOk_(cfg.branch) && githubPathOk_(dir));
+}
+
+function githubSharedReady_(cfg) {
+  return !!(cfg && cfg.token && githubIdentOk_(cfg.owner) && githubIdentOk_(cfg.repo) && githubBranchOk_(cfg.branch) && githubSharedPrefix_(cfg));
+}
+
+function githubSharedPrefix_(cfg) {
+  var prefix = String(cfg && cfg.sharedPrefix || '').replace(/^\/+|\/+$/g, '');
+  if (!prefix) prefix = 'shared';
+  if (!githubPathOk_(prefix)) return '';
+  if (prefix === 'users' || prefix.indexOf('users/') === 0) return '';
+  return prefix;
+}
+
+function sharedExt_(path) {
+  var file = String(path || '').split('/').pop();
+  var dot = file.lastIndexOf('.');
+  if (dot <= 0) return '';
+  return file.slice(dot + 1).toLowerCase();
+}
+
+function sharedTextExt_(ext) {
+  return ext === 'json' || ext === 'js' || ext === 'jsonl' || ext === 'txt' || ext === 'md';
+}
+
+function sharedMediaType_(ext) {
+  var map = {
+    json: 'application/json',
+    js: 'text/javascript',
+    jsonl: 'application/x-ndjson',
+    txt: 'text/plain',
+    md: 'text/markdown',
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
+    png: 'image/png',
+    gif: 'image/gif',
+    webp: 'image/webp',
+    svg: 'image/svg+xml',
+    pdf: 'application/pdf',
+    doc: 'application/msword',
+    docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  };
+  return map[ext] || 'application/octet-stream';
+}
+
+function githubSharedSegmentOk_(part) {
+  if (!part || part === '.' || part === '..' || part.length > 180) return false;
+  for (var c = 0; c < part.length; c++) {
+    var ch = part.charAt(c);
+    var code = part.charCodeAt(c);
+    if (code < 32 || code === 127) return false;
+    if (code < 128 && !/[A-Za-z0-9._() -]/.test(ch)) return false;
+  }
+  return true;
+}
+
+function githubSharedRelOk_(value) {
+  var path = String(value || '');
+  if (!path || path.charAt(0) === '/' || path.charAt(0) === '\\') return false;
+  if (path.length > 400 || path.indexOf('..') !== -1 || path.indexOf('\\') !== -1) return false;
+  if (path.charAt(path.length - 1) === '/') return false;
+  if (/[\u0000-\u001F\u007F?#%<>:"|*]/.test(path)) return false;
+  var parts = path.split('/');
+  var roots = { data: true, diagrams: true, originals: true, papers: true, build: true };
+  if (!roots[parts[0]]) return false;
+  for (var i = 0; i < parts.length; i++) {
+    if (!githubSharedSegmentOk_(parts[i])) return false;
+  }
+  var ext = sharedExt_(path);
+  var allowed = {
+    json: true, js: true, jpg: true, jpeg: true, png: true, gif: true, webp: true,
+    svg: true, pdf: true, docx: true, doc: true, jsonl: true, txt: true, md: true
+  };
+  return !!allowed[ext];
+}
+
+function githubSharedDirOk_(value) {
+  var raw = String(value || '');
+  if (raw.charAt(0) === '/' || raw.charAt(0) === '\\') return false;
+  var path = raw.replace(/\/+$/g, '');
+  if (!path) return true;
+  if (path.length > 400 || path.indexOf('..') !== -1 || path.indexOf('\\') !== -1) return false;
+  if (/[\u0000-\u001F\u007F?#%<>:"|*]/.test(path)) return false;
+  var parts = path.split('/');
+  var roots = { data: true, diagrams: true, originals: true, papers: true, build: true };
+  if (!roots[parts[0]]) return false;
+  for (var i = 0; i < parts.length; i++) {
+    if (!githubSharedSegmentOk_(parts[i])) return false;
+  }
+  return true;
+}
+
+function githubSharedFilePath_(cfg, rel) {
+  var clean = String(rel || '').trim();
+  if (!githubSharedRelOk_(clean)) return '';
+  var prefix = githubSharedPrefix_(cfg);
+  if (!prefix) return '';
+  var path = prefix + '/' + clean;
+  if (path.indexOf('..') !== -1 || path.indexOf('\\') !== -1) return '';
+  if (path.indexOf(prefix + '/') !== 0) return '';
+  if (path === 'users' || path.indexOf('users/') === 0) return '';
+  return path;
+}
+
+function githubSharedDirPath_(cfg, rel) {
+  var clean = String(rel || '').replace(/\/+$/g, '');
+  if (!githubSharedDirOk_(clean)) return '';
+  var prefix = githubSharedPrefix_(cfg);
+  if (!prefix) return '';
+  var path = clean ? prefix + '/' + clean : prefix;
+  if (path.indexOf('..') !== -1 || path.indexOf('\\') !== -1) return '';
+  if (path !== prefix && path.indexOf(prefix + '/') !== 0) return '';
+  if (path === 'users' || path.indexOf('users/') === 0) return '';
+  return path;
+}
+
+function sharedClientOk_(extra) {
+  var out = { ok: true };
+  if (!extra) return out;
+  if (Object.prototype.hasOwnProperty.call(extra, 'path')) {
+    var path = String(extra.path);
+    if (path === '' || githubSharedRelOk_(path) || githubSharedDirOk_(path)) out.path = path;
+  }
+  if (extra.encoding === 'utf8' || extra.encoding === 'base64') out.encoding = extra.encoding;
+  if (typeof extra.mediaType === 'string' && extra.mediaType && extra.mediaType.length < 160 && extra.mediaType.indexOf('\n') === -1) {
+    out.mediaType = extra.mediaType;
+  }
+  if (typeof extra.bytes === 'number' && isFinite(extra.bytes) && extra.bytes >= 0 && extra.bytes <= SHARED_FETCH_MAX_BYTES_) {
+    out.bytes = extra.bytes;
+  }
+  if (typeof extra.content === 'string') out.content = extra.content;
+  if (extra.truncated === true || extra.truncated === false) out.truncated = extra.truncated;
+  if (Array.isArray(extra.entries)) out.entries = extra.entries;
+  return out;
+}
+
+function takeSharedReadSlot_(username) {
+  try {
+    var cache = CacheService.getScriptCache();
+    var bucket = Math.floor(Date.now() / 60000);
+    var key = 'sh_' + sha256Hex_(username).slice(0, 24) + '_' + bucket;
+    var count = parseInt(cache.get(key) || '0', 10);
+    if (!isFinite(count) || count < 0) count = 0;
+    if (count >= SHARED_READS_PER_MINUTE_) return false;
+    cache.put(key, String(count + 1), 120);
+    return true;
+  } catch (err) {
+    return true;
+  }
+}
+
+function logSharedRead_(username, action, success, metadata, always) {
+  if (!always && !shouldAudit_(username, action, 300)) return;
+  writeLog_({
+    username: username,
+    action: action,
+    success: success === true,
+    metadata: metadata || {}
+  }, false);
+}
+
+function cleanBase64_(b64) {
+  return String(b64 || '').replace(/[^A-Za-z0-9+/=]/g, '');
+}
+
+function githubReadBase64_(cfg, path) {
+  if (!path || path.indexOf('..') !== -1) throw gitFail_('github_error');
+  var existing = githubFetch_(cfg, 'get', githubContentsApi_(cfg, path) + '?ref=' + encodeURIComponent(cfg.branch), null);
+  if (existing.status === 404) throw gitFail_('github_not_found');
+  if (existing.status === 200 && existing.body && !Array.isArray(existing.body) && typeof existing.body.content === 'string' && String(existing.body.encoding || '') === 'base64') {
+    var small = Number(existing.body.size || 0);
+    if (small > SHARED_FETCH_MAX_BYTES_) throw gitFail_('payload_too_large');
+    var smallB64 = cleanBase64_(existing.body.content);
+    return {
+      b64: smallB64,
+      bytes: small > 0 ? small : base64Bytes_(smallB64),
+      sha: sanitizeSha_(existing.body.sha)
+    };
+  }
+  if (existing.status === 200 && Array.isArray(existing.body)) throw gitFail_('github_error');
+  if (existing.status !== 200 && !isGithubTooLarge_(existing)) throw gitFail_('github_error');
+  var meta = githubFindEntry_(cfg, path);
+  if (!meta || meta.type !== 'blob') throw gitFail_('github_not_found');
+  if (meta.size > SHARED_FETCH_MAX_BYTES_) throw gitFail_('payload_too_large');
+  var blob = githubFetch_(cfg, 'get', githubRepoPrefix_(cfg) + '/git/blobs/' + encodeURIComponent(meta.sha), null);
+  if (blob.status < 200 || blob.status >= 300 || !blob.body || blob.body.content == null) throw gitFail_('github_error');
+  var encoding = String(blob.body.encoding || 'base64').toLowerCase();
+  if (encoding !== 'base64') throw gitFail_('github_error');
+  var b64 = cleanBase64_(blob.body.content);
+  var bytes = Number(blob.body.size || meta.size || 0);
+  if (!(bytes > 0)) bytes = base64Bytes_(b64);
+  if (bytes > SHARED_FETCH_MAX_BYTES_) throw gitFail_('payload_too_large');
+  return { b64: b64, bytes: bytes, sha: sanitizeSha_(blob.body.sha || meta.sha) };
+}
+
+function base64Bytes_(b64) {
+  var cleaned = cleanBase64_(b64);
+  if (!cleaned) return 0;
+  var pad = 0;
+  if (cleaned.charAt(cleaned.length - 1) === '=') pad++;
+  if (cleaned.length > 1 && cleaned.charAt(cleaned.length - 2) === '=') pad++;
+  return Math.floor(cleaned.length * 3 / 4) - pad;
+}
+
+function githubFindEntry_(cfg, repoPath) {
+  var head = githubHead_(cfg);
+  var parts = String(repoPath || '').split('/').filter(Boolean);
+  var sha = head.treeSha;
+  var type = 'tree';
+  var size = 0;
+  for (var i = 0; i < parts.length; i++) {
+    var tree = githubFetch_(cfg, 'get', githubRepoPrefix_(cfg) + '/git/trees/' + encodeURIComponent(sha), null);
+    if (tree.status === 404) throw gitFail_('github_not_found');
+    if (tree.status < 200 || tree.status >= 300 || !tree.body || !Array.isArray(tree.body.tree)) throw gitFail_('github_error');
+    var found = null;
+    for (var j = 0; j < tree.body.tree.length; j++) {
+      if (tree.body.tree[j] && tree.body.tree[j].path === parts[i]) {
+        found = tree.body.tree[j];
+        break;
+      }
+    }
+    if (!found || !found.sha) throw gitFail_('github_not_found');
+    type = String(found.type || '');
+    sha = String(found.sha);
+    size = Number(found.size || 0);
+    if (i < parts.length - 1 && type !== 'tree') throw gitFail_('github_error');
+  }
+  return { sha: sha, type: type, size: size };
+}
+
+function githubListTree_(cfg, repoPath, recursive) {
+  var entry = githubFindEntry_(cfg, repoPath);
+  if (!entry || entry.type !== 'tree') throw gitFail_('github_not_found');
+  var api = githubRepoPrefix_(cfg) + '/git/trees/' + encodeURIComponent(entry.sha);
+  if (recursive) api += '?recursive=1';
+  var tree = githubFetch_(cfg, 'get', api, null);
+  if (tree.status === 404) throw gitFail_('github_not_found');
+  if (tree.status < 200 || tree.status >= 300 || !tree.body || !Array.isArray(tree.body.tree)) throw gitFail_('github_error');
+  return { entries: tree.body.tree, truncated: tree.body.truncated === true };
 }
 
 function githubIdentOk_(value) {
@@ -1518,6 +1873,53 @@ function selfTestGitPaths() {
     if (!err || err.code !== 'bad_request') throw err;
   }
   if (clipChars_('甲乙丙', 2) !== '甲乙') throw new Error('clip_chars');
+  if (githubSharedPrefix_({ sharedPrefix: '' }) !== 'shared') throw new Error('shared_prefix_default');
+  if (githubSharedPrefix_({ sharedPrefix: 'users' })) throw new Error('shared_prefix_users');
+  if (githubSharedPrefix_({ sharedPrefix: 'users/example' })) throw new Error('shared_prefix_users_child');
+  if (githubSharedPrefix_({ sharedPrefix: 'shared' }) !== 'shared') throw new Error('shared_prefix_explicit');
+  if (!githubSharedRelOk_('data/database.json')) throw new Error('shared_json');
+  if (!githubSharedRelOk_('diagrams/MT27-P1-24.jpg')) throw new Error('shared_diagram');
+  if (!githubSharedRelOk_('originals/dse/2019/q-p1-41.jpg')) throw new Error('shared_original');
+  if (!githubSharedRelOk_('papers/mock-tests/Mock Test 27 Paper 1.pdf')) throw new Error('shared_mock_name');
+  if (!githubSharedRelOk_('papers/past-papers/DSE 2012 (Chi).pdf')) throw new Error('shared_past_name');
+  if (!githubSharedRelOk_('papers/mock-tests/模擬試卷三十 卷二.pdf')) throw new Error('shared_mock_cjk');
+  if (githubSharedRelOk_('users/example/data/questions.json')) throw new Error('shared_blocks_users');
+  if (githubSharedRelOk_('../users/example/data/questions.json')) throw new Error('shared_blocks_dotdot');
+  if (githubSharedRelOk_('diagrams/../../users/example/x.json')) throw new Error('shared_blocks_nested_dotdot');
+  if (githubSharedRelOk_('/diagrams/a.jpg')) throw new Error('shared_blocks_abs');
+  if (githubSharedRelOk_('diagrams/a.exe')) throw new Error('shared_blocks_ext');
+  if (!githubSharedDirOk_('')) throw new Error('shared_dir_root');
+  if (!githubSharedDirOk_('papers/mock-tests')) throw new Error('shared_dir_papers');
+  if (githubSharedDirOk_('users')) throw new Error('shared_dir_users');
+  if (githubSharedDirOk_('papers/../users')) throw new Error('shared_dir_escape');
+  if (githubSharedFilePath_({ sharedPrefix: '' }, 'diagrams/MT27-P1-24.jpg') !== 'shared/diagrams/MT27-P1-24.jpg') {
+    throw new Error('shared_file_path');
+  }
+  if (githubSharedFilePath_({ sharedPrefix: 'shared' }, 'papers/past-papers/DSE 2012 (Chi).pdf') !== 'shared/papers/past-papers/DSE 2012 (Chi).pdf') {
+    throw new Error('shared_paper_path');
+  }
+  if (githubSharedFilePath_({ sharedPrefix: 'shared' }, 'users/example/data/questions.json')) throw new Error('shared_file_users');
+  if (githubSharedDirPath_({ sharedPrefix: 'shared' }, '') !== 'shared') throw new Error('shared_dir_path_root');
+  if (githubSharedDirPath_({ sharedPrefix: 'shared' }, 'originals/27') !== 'shared/originals/27') throw new Error('shared_dir_path_child');
+  var sampleCfg = { token: 't', owner: 'example-user', repo: 'example-repo', branch: 'main', sharedPrefix: '' };
+  if (!githubSharedReady_(sampleCfg)) throw new Error('shared_ready');
+  if (githubSharedReady_({ token: '', owner: 'example-user', repo: 'example-repo', branch: 'main', sharedPrefix: 'shared' })) {
+    throw new Error('shared_ready_token');
+  }
+  var sharedOut = sharedClientOk_({
+    path: 'diagrams/MT27-P1-24.jpg',
+    encoding: 'base64',
+    mediaType: 'image/jpeg',
+    bytes: 12,
+    content: 'aaaa',
+    token: 'secret-token',
+    owner: 'someone',
+    repo: 'private-data'
+  });
+  if (sharedOut.token || sharedOut.owner || sharedOut.repo) throw new Error('shared_response_leak');
+  if (sharedOut.path !== 'diagrams/MT27-P1-24.jpg' || sharedOut.encoding !== 'base64') throw new Error('shared_response_keep');
+  if (JSON.stringify(sharedOut).indexOf('secret-token') !== -1) throw new Error('shared_response_secret');
+  if (JSON.stringify(sharedOut).indexOf('private-data') !== -1) throw new Error('shared_response_repo');
   console.log('selfTestGitPaths ok');
 }
 

@@ -12,12 +12,15 @@ import json
 import re
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-SCRIPTS = Path(__file__).resolve().parent
-DATABASE_JSON = ROOT / "data" / "database.json"
-DATABASE_JS = ROOT / "data" / "database.js"
-VOCAB_JSON = SCRIPTS / "stem_patterns_vocab.json"
-AUTO_JSON = SCRIPTS / "stem_patterns_auto.json"
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from data_paths import build_dir, data_dir
+
+DATABASE_JSON = data_dir() / "database.json"
+DATABASE_JS = data_dir() / "database.js"
+VOCAB_JSON = build_dir() / "stem_patterns_vocab.json"
+AUTO_JSON = build_dir() / "stem_patterns_auto.json"
 
 FORCE_ID = "DSE-2026-P1-01"
 

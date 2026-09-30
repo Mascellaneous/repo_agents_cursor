@@ -1,6 +1,8 @@
 # Mock-paper question bank: notes for a future agent
 
-This repository holds Aristo HKDSE Economics mock papers, an HKEAA question export, and the `econ-database` app that browses them. Opening `econ-database/index.html` through a web server fetches `econ-database/data/database.json`. Opening that file directly (`file://`) cannot fetch a neighbour file, so the page loads `econ-database/data/database.js` instead. The builder writes both files together. The app does not fetch Google Sheets.
+This repository holds the `econ-database` app. The mock papers, past papers, diagrams, question images, and the question bank are not in this public tree. They live only in the private data repository, under `shared/`. The hosted page loads `shared/data/database.json` through the Apps Script proxy after an allowlisted user signs in. GitHub Pages cannot read a private repository: a raw file URL for a private repo answers 404 unless a token is sent, and that token stays in Apps Script Script properties. The browser never sees the token, the owner, or the repository name.
+
+Open the site over `http` or `https`. A `file://` page cannot call the proxy. A local `econ-database/data/database.json` is only a developer fallback and is gitignored.
 
 ## Version number
 
@@ -10,7 +12,7 @@ Bump both together on every change to the app or the question bank. Do not keep 
 
 ## What the Python script is for
 
-`econ-database/scripts/build_mock_questions.py` is only the first import. It reads every `.docx` in `MockTests/`, splits Paper 1 and Paper 2 into questions, guesses a chapter (`topic`), specific concepts, and question patterns, and writes `econ-database/data/database.json`.
+`econ-database/scripts/build_mock_questions.py` is only the first import. Set `ECON_DATA_ROOT` to a checkout of the private data repository (the directory that contains `shared/`). The script reads every `.docx` in `shared/papers/mock-tests/`, splits Paper 1 and Paper 2 into questions, guesses a chapter (`topic`), specific concepts, and question patterns, and writes `shared/data/database.json`.
 
 That parse is rough. Word files repeat text boxes, glue diagram labels into the stem, and sometimes split one question into two. Do not treat the script output as finished.
 
@@ -39,7 +41,7 @@ Running the script again is safe for reviewed rows. It will still refresh rows m
 
 Read the `.docx` and the JSON row together. For each question:
 
-1. Find the stem in `MockTests/`. Paper 1 files end in 卷一, Paper 2 in 卷二, marking schemes in 參考答案.
+1. Find the stem in `shared/papers/mock-tests/` on the private data checkout. Paper 1 files end in 卷一, Paper 2 in 卷二, marking schemes in 參考答案.
 2. Drop running headers, barcodes, 「請在此貼上電腦條碼」, page furniture, and a second copy of the same paragraph.
 3. Keep the stem, any table that is part of the question, and options A–D. If a diagram does not survive as text, write a short bracket such as `[圖：供需曲線，原均衡 E0]` instead of pasting the same axis labels three times. Do not assign a number to price or quantity unless the file states that pairing.
 4. Put the cleaned wording in both `plainText` and `questionTextChi`.
@@ -63,7 +65,7 @@ Read `econ-database/data/vocabulary.json` before you classify a new paper. It li
 
 ## HKEAA questions
 
-`econ-database/data/database.json` also holds questions published by HKEAA (HKDSE, HKCEE, and HKALE). They use the same fields as the mock papers. `publisher` is `HKEAA` or `雅集出版社`. The filter row has a 出版商 control that includes or excludes either publisher. A publisher badge on a question card applies the same filter.
+`shared/data/database.json` also holds questions published by HKEAA (HKDSE, HKCEE, and HKALE). They use the same fields as the mock papers. `publisher` is `HKEAA` or `雅集出版社`. The filter row has a 出版商 control that includes or excludes either publisher. A publisher badge on a question card applies the same filter.
 
 Import another HKEAA export with:
 
@@ -75,7 +77,7 @@ Question images for the mock papers are cut from the official PDF, not from the 
 
 Multiple-choice answer images are the「答案解釋」block in the Chinese solution PDF, and the matching「Explanation」block in the English solution PDF (`originalAnswerImageEng`). Each English multiple-choice answer is kept only when its letter matches the Chinese key. Written questions (SQ/LQ, Paper 2) also have an English answer image, cropped from the Paper 2 section of the English solution. The blank ruled lines left for students to write on (答案線) are not part of the question and are removed from both the Chinese and English question images. Paper 2 crops also drop the running header and footer, including the box around those lines: 「Please stick the barcode label here.」, 「請在此貼上電腦條碼」, 「Answers written in the margins will not be marked.」, and 「寫於邊界以外的答案，將不予評閱。」. `python3 econ-database/scripts/capture_from_pdf.py --sq-images` repeats that Paper 2 update.
 
-HKDSE papers for 2012–2025 live in `PastPaper/` as one Chinese file and one English file per year. Each file contains the question papers, the marking scheme, and the markers’ comments. `python3 econ-database/scripts/capture_hkeaa.py` cuts question images, written-answer images, and the exam-report image for a question. A crop is kept only when its wording agrees with the Chinese plain text or the English question text already stored for that question. Multiple-choice answer keys are not cropped. Question images also drop the year-and-page footer, such as `2025-DSE-ECON 1-14`, including when that line sits in the middle of a crop that crosses a page. `python3 econ-database/scripts/capture_hkeaa.py --strip-footers` repeats that cleanup. Report images use the 報告 and 英報告 buttons.
+HKDSE papers for 2012–2025 live in `shared/papers/past-papers/` as one Chinese file and one English file per year. Each file contains the question papers, the marking scheme, and the markers’ comments. `python3 econ-database/scripts/capture_hkeaa.py` cuts question images, written-answer images, and the exam-report image for a question. A crop is kept only when its wording agrees with the Chinese plain text or the English question text already stored for that question. Multiple-choice answer keys are not cropped. Question images also drop the year-and-page footer, such as `2025-DSE-ECON 1-14`, including when that line sits in the middle of a crop that crosses a page. `python3 econ-database/scripts/capture_hkeaa.py --strip-footers` repeats that cleanup. Report images use the 報告 and 英報告 buttons.
 
 Crops that do not match the stored wording are left out. `econ-database/HKEAA-待補圖片.md` lists every year from 2012 to 2025 that still needs a picture, and the filenames to use. 2013 was not cropped at all. The other years include only the crops that matched.
 
@@ -83,14 +85,41 @@ Crops that do not match the stored wording are left out. `econ-database/HKEAA-�
 
 ## AI question generation
 
-One button, **AI出題**, asks for new questions from the current filter or from questions the user pastes. It stays hidden unless the signed-in user is allowed. The modal picks a 出題模式, an editable 出題指示, and one of three models, and can send a short **測試** ping that does not use the reference questions. The browser calls a Google Apps Script web app. The upstream API key and the allowlist stay in that script’s Script properties, not in this repository. Production allowlist is hashed usernames only. Successful replies are also backed up to a `GenerationBackup` sheet tab. Admin steps, including the required new deployment version after `Code.gs` changes: `econ-database/apps-script/README.md`. The question bank itself is still `database.json`.
+One button, **AI出題**, asks for new questions from the current filter or from questions the user pastes. It stays hidden unless the signed-in user is allowed. The modal picks a 出題模式, an editable 出題指示, and one of three models, and can send a short **測試** ping that does not use the reference questions. The browser calls a Google Apps Script web app. The upstream API key and the allowlist stay in that script’s Script properties, not in this repository. Production allowlist is hashed usernames only. Successful replies are also backed up to a `GenerationBackup` sheet tab. Admin steps, including the required new deployment version after `Code.gs` changes: `econ-database/apps-script/README.md`. The question bank the page loads is `shared/data/database.json` in the private data repository, read by `fetchSharedAsset`. It is not a file in this public repository.
 
 Allowed users also get **自動同步**, **上傳到 GitHub**, and **從 GitHub 載入**. Those buttons use the same web app. The GitHub token, owner, and private repository name stay in Script properties. Do not commit them. The script stores that user's question file and model replies under `users/<username>/` in the private repository. The page does not choose the path.
 
 ## Adding another mock paper
 
-1. Put three files in `MockTests/`: 卷一, 卷二, and 參考答案. Keep the same filename style as the papers already there.
+1. Put three files in `shared/papers/mock-tests/` on the private data checkout: 卷一, 卷二, and 參考答案. Keep the same filename style as the papers already there. `ECON_DATA_ROOT` must point at that checkout.
 2. Add the Chinese paper number to `PAPER_NUM` in the builder if it is not already listed.
 3. Run `python3 econ-database/scripts/build_mock_questions.py`. New ids arrive with `reviewedByAI` `N`. Existing `Y` rows stay as they are.
 4. Review every new `N` row using the steps above. Do not mark `Y` from the script alone.
-5. Commit `database.json`, `vocabulary.json`, and the new docx files together. The builder refreshes `vocabulary.json` in the same run.
+5. Commit `shared/data/database.json`, `shared/data/vocabulary.json`, and the new docx files in the private data repository. The builder refreshes `vocabulary.json` in the same run. Do not commit those files into this public repository.
+
+## Shared files
+
+Per-user Git sync stays at `users/<username>/`. Shared content is a different tree. `GITHUB_SHARED_PREFIX` defaults to `shared`.
+
+- `shared/data/database.json` — question bank the site loads
+- `shared/data/database.js` — same bank as a script, for tools that still write it
+- `shared/data/vocabulary.json` — labels collected from the bank
+- `shared/diagrams/` — inline diagram images (`diagrams/...` on each question)
+- `shared/originals/` — question, answer, and report crops (`originals/...` on each question)
+- `shared/papers/mock-tests/` — mock-paper Word and PDF packs
+- `shared/papers/past-papers/` — HKDSE PDF packs
+- `shared/build/` — classification JSON and JSONL used by the import scripts
+
+Stage a copy from this repository’s history into a local private checkout, then commit there:
+
+`python3 econ-database/scripts/stage_shared_assets.py --check`
+
+`ECON_DATA_ROOT=/path/to/private/checkout python3 econ-database/scripts/stage_shared_assets.py`
+
+The script does not take a token and does not name the private repository. `--check` only validates paths. The copy reads the working tree when the assets are still present, otherwise the newest ancestor commit that still contains `econ-database/data/database.json`. Use a full clone for that fallback.
+
+Import scripts read and write those paths when `ECON_DATA_ROOT` is set. See `econ-database/scripts/data_paths.py`.
+
+## Publishing the public site
+
+The public Pages site is [mas-repo/econ-database2](https://github.com/mas-repo/econ-database2). Publish from this repository’s `econ-database/` folder after this change. Do not copy `MockTests/`, `PastPaper/`, `econ-database/diagrams/`, `econ-database/originals/`, or `econ-database/data/*.json` from an older commit. Those paths are gitignored here so a normal copy of the folder does not include them. The old `mas-repo/econ-database` repository is not part of this change.
