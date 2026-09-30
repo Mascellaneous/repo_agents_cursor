@@ -1,6 +1,8 @@
 # AI question proxy (admin setup)
 
-The site button **AI出題** is hidden until `checkAccess` allows the signed-in user. It sends the currently filtered questions, plus the edited 出題指示, to this Apps Script web app. The script calls the upstream question API and appends a row to the spreadsheet. The browser never receives the API key, and the public repository does not contain the allowlist.
+The site button **AI出題** is hidden until `checkAccess` allows the signed-in user. It sends the currently filtered questions, the instruction for the chosen 出題模式 (the user may still edit it), and one allowlisted model id to this Apps Script web app. The script calls the upstream question API and appends a row to the spreadsheet. The browser never receives the API key, and the public repository does not contain the allowlist.
+
+**After this change is merged**, paste the updated `Code.gs` from this repo into the live Apps Script project and create a **new deployment version** (Deploy → Manage deployments → Edit → Version: New version → Deploy). Keep the existing `/exec` URL. An older deployment ignores `testModel`, the model allowlist, and the backup tab.
 
 Question data still loads from `econ-database/data/database.json`. This proxy is only for generation and the usage log.
 
@@ -11,8 +13,8 @@ Question data still loads from `econ-database/data/database.json`. This proxy is
 - `POE_API_KEY` and the allowlist live only in **Apps Script → Project Settings → Script properties**.
 - The page calls `POST` on the web app URL. It does not call the upstream API host directly.
 - `checkAccess` returns `{ "ok": true, "allowed": true|false }`. A refusal looks the same for every username that is not allowed. The page then leaves the button hidden. Do not show a disabled button in its place.
-- `generateQuestions` checks the allowlist before it reads the API key or calls upstream. A refused call does not reveal who is allowed.
-- The model id is `POE_MODEL` on the server. The browser cannot choose a model.
+- `generateQuestions` and `testModel` check the allowlist before they read the API key or call upstream. A refused call does not reveal who is allowed.
+- The modal sends `model`. The script accepts only `Claude-Sonnet-5.5`, `GPT-6.1-Sol`, and `Gemini-3.8-Flash`. Any other string is ignored and the call uses `Claude-Sonnet-5.5`. If the client omits `model`, `POE_MODEL` is used only when it is one of those three ids; otherwise the same default applies.
 - `appsscript.json` limits `UrlFetchApp` to `https://api.poe.com/`.
 - Do not commit real usernames, hashes of real usernames, or the API key. Examples below use placeholders such as `user_a` and an obviously fake hash. Never paste a production hash into git.
 
@@ -34,7 +36,7 @@ Set the Apps Script timezone and the spreadsheet timezone to `Asia/Hong_Kong` so
 
 After every pull, compare the deployed script with this repo. If they differ, paste the repo file again and redeploy a new version (section 4). Do not keep a private fork of `Code.gs` as the source of truth.
 
-You can ignore the editor’s run dropdown until the properties below exist. `selfTestPromptShape` checks that an empty client instruction still starts the prompt with the built-in sentence, and that a non-empty instruction replaces it after the length cap. It does not call the upstream API.
+You can ignore the editor’s run dropdown until the properties below exist. `selfTestPromptShape` checks the default instruction, the length cap, the model allowlist, the mode ids, and the sheet-cell truncation helper. It does not call the upstream API.
 
 ## 3. Script properties
 
@@ -74,7 +76,7 @@ Changing properties does **not** require a new deployment. Changing `Code.gs` do
 | `POE_API_KEY` | yes | key from the upstream API key page |
 | `ALLOWED_USER_HASHES` | yes in production | SHA-256 hex list from the menu above. Comma, newline, or space separated. |
 | `ALLOWED_USERS` | no; legacy/dev only | `user_a,user_b,user_c`. Leave empty in production. |
-| `POE_MODEL` | no | `Claude-Sonnet-5.5` (the script default when this property is empty) |
+| `POE_MODEL` | no | Fallback only when the client omits `model`, and only if the value is `Claude-Sonnet-5.5`, `GPT-6.1-Sol`, or `Gemini-3.8-Flash`. Other values are ignored. Default: `Claude-Sonnet-5.5`. |
 | `POE_MAX_REFERENCES` | no | `40` (hard cap 80) |
 | `POE_MAX_REFERENCE_CHARS` | no | `80000` |
 | `POE_MIN_INTERVAL_SECONDS` | no | `20` (`0` disables the cooldown) |
@@ -83,6 +85,7 @@ Changing properties does **not** require a new deployment. Changing `Code.gs` do
 | `POE_TEMPERATURE` | no | empty |
 | `SPREADSHEET_ID` | only if the script is not bound | the id in the sheet URL |
 | `LOG_SHEET_NAME` | no | `UsageLog` |
+| `BACKUP_SHEET_NAME` | no | `GenerationBackup`. Do not point this at `UsageLog` or a data tab. If it matches the log tab name, the script uses `GenerationBackup` anyway. |
 
 Usernames are trimmed and lowercased before the hash check. The site already stores the signed-in name that way.
 
@@ -97,7 +100,7 @@ Copy the URL that ends in `/exec`.
 
 The first deployment asks you to authorize Sheets and external requests. Approve that as the deploying account.
 
-When you later edit the script, including after pulling a new `Code.gs`: **Deploy → Manage deployments → Edit → Version: New version → Deploy**. Keep the same `/exec` URL. The editable 出題指示 is ignored by a deployment that still runs an older script.
+When you later edit the script, including after pulling a new `Code.gs`: **Deploy → Manage deployments → Edit → Version: New version → Deploy**. Keep the same `/exec` URL. Modes, the model dropdown, `testModel`, and reply backup are ignored by a deployment that still runs an older script. Paste this repo’s `Code.gs` into the live project before you create that new version.
 
 ## 5. Point the site at the web app
 
@@ -114,9 +117,23 @@ The script creates a tab named `UsageLog` (or `LOG_SHEET_NAME`) with:
 `timestamp | username | action | success | metadata`
 
 - `login` — once per username about every 30 minutes, after someone signs in on the site.
-- `generateQuestions` — success or failure, with model, counts, duration, and the length of the 出題指示 (`instructionChars`, plus `instructionProvidedChars` for the raw client length). The instruction text and the question text are not written to the sheet.
+- `generateQuestions` — success or failure, with model, mode id, counts, duration, and the length of the 出題指示 (`instructionChars`, plus `instructionProvidedChars` for the raw client length). The instruction text and the question text are not written to this tab.
+- `testModel` — the **測試** button. Success means the model returned the expected short ping (`正常`). The metadata has the model, duration, and a short `replyPreview`. It uses the same allowlist. It does not count toward `POE_DAILY_LIMIT`. It has its own cooldown of `POE_MIN_INTERVAL_SECONDS`, separate from generation.
 
 Protect the `UsageLog` tab (**Data → Protect sheets and ranges**) so casual editors cannot clear it. The web app still appends rows because it runs as the deploying account.
+
+### GenerationBackup
+
+On a successful upstream reply, the script also appends a row to `GenerationBackup` (or `BACKUP_SHEET_NAME`):
+
+`timestamp | username | action | model | modeId | modeName | instruction | filteredCount | sentCount | responseTruncated | responseText | metadata`
+
+- `generateQuestions` stores the instruction that was sent, the mode id and name, the filtered and sent counts, and the model’s full reply.
+- `testModel` stores the fixed ping prompt, an empty mode, and the short reply. `passed` in `metadata` says whether the reply matched `正常`.
+- A cell is cut at 45,000 characters (instructions at 8,000). `responseTruncated` is `yes` when the reply was cut, and `metadata.truncation` lists `response_truncated` and/or `instruction_truncated`.
+- Reference stems are not copied into the sheet. The reply can still contain newly written questions.
+
+Protect `GenerationBackup` the same way as `UsageLog`.
 
 The sheet is the audit log, so usernames of people who sign in or generate questions will appear there. That is outside the public git repo. Narrow the spreadsheet’s share list when you can; site visitors do not need edit access.
 
@@ -126,7 +143,18 @@ Login and denied-generation rows are deduped so a public `/exec` URL cannot fill
 
 The user message starts with the 出題指示, then the filtered questions (stem plus Chinese explanation).
 
-The modal shows this default instruction and lets the signed-in user edit it before generating. The last edit is kept in that browser’s `localStorage`. **回復預設** restores the sentence below. The request field is `instruction`. The script keeps a client instruction only when it is a non-empty string after trimming and control-character stripping, and it caps the length at 4000 characters. An empty or missing instruction uses the server default:
+The modal has four 出題模式. Choosing one fills 出題指示 with that mode’s prompt. The user can still edit the textarea. **回復預設** restores the prompt of the mode that is currently selected. The last edit, mode, and model are kept in that browser’s `localStorage`. The request fields are `instruction`, `modeId`, and `model`.
+
+The mode prompts live in `POE_GENERATION_MODES` in `js/poeGenerateModal.js`. The server does not store those prompts. It records `modeId` only when it is one of `style-continue`, `vary-examples`, `add-novelty`, or `different-types`.
+
+| Mode | id | What it asks for |
+| --- | --- | --- |
+| 風格延續・求新 | `style-continue` | The default prompt below. New questions in the reference style, with a little novelty called out. |
+| 改例子／數字 | `vary-examples` | Keep the question type. Change only examples or numbers. Examples must be understandable to secondary-school students, with no specialist science jargon. |
+| 題型加新意 | `add-novelty` | Keep the screened question types as the base and add modest novelty in wording or approach. |
+| 截然不同題型 | `different-types` | Every item must use a question type that does not appear in the filtered set. |
+
+The script keeps a client instruction only when it is a non-empty string after trimming and control-character stripping, and it caps the length at 4000 characters. An empty or missing instruction uses the server default (the same sentence as 風格延續・求新). The page sends the selected mode’s prompt when the textarea is blank, so a chosen mode is not silently replaced by that default:
 
 > 參考以下題目，撰寫全新的題目，並參考過程題目的風格、用字、句式撰寫解釋。請盡量提供最多的題目。一條題目不一定只涉及一件事件。有沒有甚麼有少許新意的問法？請同樣提供問題與解釋，並說明它創新之處。
 
