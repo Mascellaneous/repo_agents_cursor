@@ -264,6 +264,40 @@
     display: inline-flex;
 }
 
+.git-sync-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.git-sync-panel[hidden] {
+    display: none !important;
+}
+
+.git-auto-sync {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.git-sync-status {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.git-sync-status.is-ok {
+    color: var(--success-color);
+}
+
+.git-sync-status.is-error {
+    color: var(--danger-color);
+}
+
 /* Disabled Button */
 .btn:disabled {
     opacity: 0.5;

@@ -9,7 +9,8 @@
     "https://www.googleapis.com/auth/script.container.ui"
   ],
   "urlFetchWhitelist": [
-    "https://api.poe.com/"
+    "https://api.poe.com/",
+    "https://api.github.com/"
   ],
   "webapp": {
     "executeAs": "USER_DEPLOYING",

@@ -50,3 +50,27 @@
 # LOG_SHEET_NAME
 #   Optional. Default: UsageLog
 #   Do not point this at an existing data tab.
+#
+# GitHub sync. Names only. Never commit real values, and never put the
+# token, owner, or repository name in the public site.
+#
+# GITHUB_TOKEN
+#   Fine-grained PAT. Repository access: only the private data repository.
+#   Permission: Contents read and write. No other permissions.
+#
+# GITHUB_OWNER
+#   GitHub user or organization that owns the private data repository.
+#
+# GITHUB_REPO
+#   Private repository name. Not the public site repository.
+#
+# GITHUB_BRANCH
+#   Optional. The script uses main when this is empty.
+#
+# GITHUB_DATA_PATH
+#   Path of the question JSON inside the private repository.
+#   Shape example only: data/questions.json
+#
+# GITHUB_AI_BACKUP_DIR
+#   Directory for timestamped model-reply backups.
+#   Shape example only: ai-backups

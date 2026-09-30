@@ -5,16 +5,24 @@
  * Export database to JSON file
  * Dependencies: storage-core.js (storage), admin.js (showNotification)
  */
+async function buildQuestionExport(includeAll) {
+    const source = window.storage || storage;
+    const questions = includeAll && typeof source.getAllQuestions === 'function'
+        ? await source.getAllQuestions()
+        : await source.getQuestions();
+
+    return {
+        version: '1.0',
+        exportDate: new Date().toISOString(),
+        questionCount: questions.length,
+        questions: questions
+    };
+}
+
 async function exportJSON() {
     try {
-        const questions = await storage.getQuestions();
-        
-        const exportData = {
-            version: '1.0',
-            exportDate: new Date().toISOString(),
-            questionCount: questions.length,
-            questions: questions
-        };
+        const exportData = await buildQuestionExport(false);
+        const questions = exportData.questions;
         
         const jsonString = JSON.stringify(exportData, null, 2);
         const blob = new Blob([jsonString], { type: 'application/json' });
@@ -29,6 +37,9 @@ async function exportJSON() {
         URL.revokeObjectURL(url);
         
         showNotification(`✅ 成功匯出 ${questions.length} 題`, 'success');
+        if (typeof maybeAutoSyncQuestions === 'function') {
+            await maybeAutoSyncQuestions();
+        }
     } catch (error) {
         console.error('Export failed:', error);
         showNotification('❌ 匯出失敗: ' + error.message, 'error');
@@ -87,6 +98,9 @@ async function importJSON() {
             await refreshViews();
             
             showNotification(`✅ 成功匯入 ${imported} 題`, 'success');
+            if (typeof maybeAutoSyncQuestions === 'function') {
+                await maybeAutoSyncQuestions();
+            }
             
         } catch (error) {
             console.error('Import failed:', error);

@@ -59,6 +59,12 @@ Derived from reviewing live values in the bank:
 
 The button **AI出題** is hidden until Apps Script says the signed-in username is allowed. The modal sends an editable 出題指示 with the filtered questions. Setup, the hash allowlist, and the API key are admin-only and are not stored in this repository. Follow `apps-script/README.md`. Put the deployed `/exec` URL in `js/config.js` as `POE_PROXY_WEB_APP_URL`.
 
+## Git sync / Git 同步
+
+Allowed users (the same hash allowlist as AI出題) see **自動同步**, **上傳到 GitHub**, and **從 GitHub 載入**. The checkbox is stored only in that browser. The page POSTs the question JSON to the same Apps Script `/exec` URL. It does not call GitHub and it must not contain a token, owner, or repository name.
+
+Set `GITHUB_TOKEN`, `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH`, `GITHUB_DATA_PATH`, and `GITHUB_AI_BACKUP_DIR` in Apps Script Script properties, then redeploy. The token is a fine-grained PAT with Contents read and write on the private data repository only. Never commit those values. Details: `apps-script/README.md`.
+
 ## Import scripts / 匯入腳本
 
 Under scripts/:

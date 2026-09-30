@@ -135,6 +135,9 @@ async function initializeApp() {
     if (typeof initPoeGenerateFeature === 'function') {
         initPoeGenerateFeature();
     }
+    if (typeof initGitSyncFeature === 'function') {
+        initGitSyncFeature();
+    }
 }
 
 // Also add to refreshViews() so they update if data changes (e.g. after sync)
