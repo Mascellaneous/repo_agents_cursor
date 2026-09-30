@@ -1,19 +1,28 @@
 /**
- * Poe question-generation proxy for the econ-database site.
+ * Poe question-generation proxy and private GitHub sync for econ-database.
  *
- * The public site never sees the Poe API key and never sees who is allowed
- * to use the feature. Both live only in Script properties:
+ * The public site never sees the Poe API key, the GitHub token, the GitHub
+ * account, or the private repository name, and it never sees who is allowed
+ * to use these features. All of that lives only in Script properties:
  *   POE_API_KEY
  *   ALLOWED_USER_HASHES  (production: SHA-256 hex from the spreadsheet menu)
  *   ALLOWED_USERS        (legacy/dev only; leave unset in production)
+ *   GITHUB_TOKEN
+ *   GITHUB_OWNER
+ *   GITHUB_REPO
+ *   GITHUB_BRANCH        (optional; main when empty)
+ *   GITHUB_DATA_PATH
+ *   GITHUB_AI_BACKUP_DIR
  *
  * Least privilege (admin):
  * - Deploy the web app as "Execute as: Me" (the account that owns the key
  *   and can edit this spreadsheet). Confirm "Who has access: Anyone".
  *   The public site has no Google sign-in, so anonymous access is required.
- *   This script still refuses the Poe call unless the username is allowed.
- * - Do not put the key or the real allowlist in the sheet, this repo, or the page.
- * - urlFetchWhitelist in appsscript.json limits outbound calls to api.poe.com.
+ *   This script still refuses Poe and GitHub calls unless the username is allowed.
+ * - Do not put the key, the token, the owner, the repository name, or the
+ *   real allowlist in the sheet, this repo, or the page.
+ * - urlFetchWhitelist in appsscript.json limits outbound calls to api.poe.com
+ *   and api.github.com. The browser never calls either host with a secret.
  * - UsageLog is created on first write. Protect that tab so casual editors
  *   cannot wipe the audit trail. The deploying account can still append.
  * - GenerationBackup is a separate tab. Successful generateQuestions and
@@ -32,6 +41,8 @@
  *   existing /exec URL keeps working.
  * - Bind this project to the log spreadsheet (Extensions → Apps Script)
  *   or set SPREADSHEET_ID. Do not point LOG_SHEET_NAME at a data tab.
+ * - GitHub responses to the browser are ok/error, plus a commit sha and the
+ *   configured relative path. They never include the token, owner, or repo.
  */
 
 var POE_CHAT_URL_ = 'https://api.poe.com/v1/chat/completions';
@@ -56,10 +67,12 @@ var POE_TEST_USER_PROMPT_ = '請只回覆這一個詞：正常';
 
 function doGet() {
   var key = String(props_().getProperty('POE_API_KEY') || '').trim();
+  var git = githubConfig_();
   return json_({
     ok: true,
     service: 'question-proxy',
-    configured: key.length > 0
+    configured: key.length > 0,
+    gitConfigured: githubDataReady_(git) && githubBackupReady_(git)
   });
 }
 
@@ -78,6 +91,8 @@ function handlePost_(e) {
   if (action === 'logLogin') return handleLogin_(body);
   if (action === 'checkAccess') return handleCheck_(body);
   if (action === 'generateQuestions') return handleGenerate_(body);
+  if (action === 'syncDataUpload') return handleGitUpload_(body);
+  if (action === 'syncDataDownload') return handleGitDownload_(body);
   if (action === 'testModel') return handleTest_(body);
   return { ok: false, error: 'bad_request' };
 }
@@ -102,15 +117,20 @@ function handleLogin_(body) {
   return { ok: true };
 }
 
+function referenceSource_(value) {
+  return String(value || '') === 'paste' ? 'paste' : 'filter';
+}
+
 function handleGenerate_(body) {
   var username = normalizeUsername_(body.username);
+  var source = referenceSource_(body && body.source);
   if (!username || !isAllowed_(username)) {
     if (username && shouldAudit_(username, 'generate-denied', 60)) {
       writeLog_({
         username: username,
         action: 'generateQuestions',
         success: false,
-        metadata: { error: 'denied' }
+        metadata: { error: 'denied', source: source }
       }, false);
     }
     return { ok: false, error: 'feature_unavailable' };
@@ -122,7 +142,7 @@ function handleGenerate_(body) {
       username: username,
       action: 'generateQuestions',
       success: false,
-      metadata: { error: 'proxy_not_configured' }
+      metadata: { error: 'proxy_not_configured', source: source }
     }, true);
     return { ok: false, error: 'proxy_not_configured' };
   }
@@ -151,7 +171,7 @@ function handleGenerate_(body) {
       username: username,
       action: 'generateQuestions',
       success: false,
-      metadata: { error: 'daily_limit' }
+      metadata: { error: 'daily_limit', source: source }
     }, true);
     return { ok: false, error: 'rate_limited' };
   }
@@ -168,6 +188,21 @@ function handleGenerate_(body) {
   try {
     var completion = requestCompletion_(apiKey, model, buildPrompt_(packed.questions, filteredCount, packed.truncated, instructionMeta.text), POE_SYSTEM_PROMPT_);
     var durationMs = Date.now() - started;
+    var gitBackup = false;
+    try {
+      gitBackup = writeGitAiBackup_({
+        action: 'generateQuestions',
+        username: username,
+        model: completion.model || model,
+        content: completion.content,
+        sentCount: packed.questions.length,
+        filteredCount: filteredCount,
+        durationMs: durationMs,
+        source: source
+      }) === true;
+    } catch (backupErr) {
+      safeLog_(backupErr);
+    }
     var result = {
       ok: true,
       content: completion.content,
@@ -177,7 +212,8 @@ function handleGenerate_(body) {
       truncated: packed.truncated,
       logged: false,
       backedUp: false,
-      durationMs: durationMs
+      durationMs: durationMs,
+      gitBackup: gitBackup
     };
     var generateMeta = {
       model: result.model,
@@ -192,7 +228,9 @@ function handleGenerate_(body) {
       completionTokens: completion.completionTokens,
       instructionChars: instructionMeta.chars,
       instructionProvidedChars: instructionMeta.providedChars,
-      customInstruction: instructionMeta.custom
+      customInstruction: instructionMeta.custom,
+      source: source,
+      gitBackup: gitBackup
     };
     result.logged = writeLog_({
       username: username,
@@ -215,8 +253,12 @@ function handleGenerate_(body) {
         durationMs: durationMs,
         promptTokens: completion.promptTokens,
         completionTokens: completion.completionTokens,
+        instructionChars: instructionMeta.chars,
+        instructionProvidedChars: instructionMeta.providedChars,
+        customInstruction: instructionMeta.custom,
         referencesTruncated: packed.truncated,
-        customInstruction: instructionMeta.custom
+        source: source,
+        gitBackup: gitBackup
       }
     });
     return result;
@@ -236,7 +278,8 @@ function handleGenerate_(body) {
         durationMs: Date.now() - started,
         instructionChars: instructionMeta.chars,
         instructionProvidedChars: instructionMeta.providedChars,
-        customInstruction: instructionMeta.custom
+        customInstruction: instructionMeta.custom,
+        source: source
       }
     }, true);
     return { ok: false, error: code };
@@ -287,6 +330,18 @@ function handleTest_(body) {
     var completion = requestCompletion_(apiKey, model, POE_TEST_USER_PROMPT_, POE_TEST_SYSTEM_PROMPT_);
     var durationMs = Date.now() - started;
     var passed = testReplyOk_(completion.content);
+    var gitBackup = false;
+    try {
+      gitBackup = writeGitAiBackup_({
+        action: 'testModel',
+        username: username,
+        model: completion.model || model,
+        content: completion.content,
+        durationMs: durationMs
+      }) === true;
+    } catch (backupErr) {
+      safeLog_(backupErr);
+    }
     var result = {
       ok: true,
       passed: passed,
@@ -294,7 +349,8 @@ function handleTest_(body) {
       model: completion.model || model,
       logged: false,
       backedUp: false,
-      durationMs: durationMs
+      durationMs: durationMs,
+      gitBackup: gitBackup
     };
     var testMeta = {
       model: result.model,
@@ -304,7 +360,8 @@ function handleTest_(body) {
       promptTokens: completion.promptTokens,
       completionTokens: completion.completionTokens,
       replyPreview: clip_(completion.content, 120),
-      replyChars: completion.content.length
+      replyChars: completion.content.length,
+      gitBackup: gitBackup
     };
     result.logged = writeLog_({
       username: username,
@@ -327,7 +384,8 @@ function handleTest_(body) {
         passed: passed,
         durationMs: durationMs,
         promptTokens: completion.promptTokens,
-        completionTokens: completion.completionTokens
+        completionTokens: completion.completionTokens,
+        gitBackup: gitBackup
       }
     });
     return result;
@@ -788,6 +846,7 @@ function selfTestPromptShape() {
     { id: 'SAMPLE-1', question: '測試題幹', explanation: '測試解釋', questionType: 'MC', concepts: '機會成本' }
   ], 5, 80000);
   var built = buildPrompt_(sample.questions, 1, false, sanitizeInstruction_(''));
+  selfTestGitPaths();
   if (built.indexOf(POE_INSTRUCTION_) !== 0) throw new Error('instruction_mismatch');
   if (built.indexOf('測試題幹') === -1) throw new Error('missing_reference');
   var custom = '請只出一題選擇題。';
@@ -807,6 +866,10 @@ function selfTestPromptShape() {
   var listed = parseList_('aa bb\tcc,dd;ee\nff\rgg  ,  hh');
   if (listed.join('|') !== 'aa|bb|cc|dd|ee|ff|gg|hh') throw new Error('parse_list_separators');
   if (parseList_('  , ;\n\t').length !== 0) throw new Error('parse_list_empty');
+  if (referenceSource_('paste') !== 'paste') throw new Error('source_paste');
+  if (referenceSource_('filter') !== 'filter') throw new Error('source_filter');
+  if (referenceSource_('other') !== 'filter') throw new Error('source_other');
+  if (referenceSource_(null) !== 'filter') throw new Error('source_empty');
   if (resolveModel_('GPT-6.1-Sol') !== 'GPT-6.1-Sol') throw new Error('model_allow');
   if (resolveModel_('  Gemini-3.8-Flash ') !== 'Gemini-3.8-Flash') throw new Error('model_trim');
   if (resolveModel_('Claude-Sonnet-4.6') !== POE_DEFAULT_MODEL_) throw new Error('model_reject');
@@ -825,6 +888,565 @@ function selfTestPromptShape() {
   if (!testReplyOk_(' 正常。 ')) throw new Error('test_reply_punct');
   if (testReplyOk_('未能連線')) throw new Error('test_reply_wrong');
   console.log('selfTestPromptShape ok');
+}
+
+// GitHub identity stays in Script properties. Callers are allowlisted first.
+// Files that fit the Contents API are written with that API. Larger question
+// banks use the Git Data API (blob, tree, commit, ref), which the same
+// fine-grained Contents permission allows. Neither path is called from the browser.
+var GITHUB_CONTENTS_MAX_BYTES_ = 900000;
+var GITHUB_DATA_MAX_BYTES_ = 12000000;
+var GITHUB_MAX_QUESTIONS_ = 20000;
+var GITHUB_REPLY_MAX_CHARS_ = 1000000;
+
+function handleGitUpload_(body) {
+  var username = normalizeUsername_(body.username);
+  if (!username || !isAllowed_(username)) return gitClientError_('feature_unavailable');
+  var cfg = githubConfig_();
+  if (!githubDataReady_(cfg)) return gitClientError_('github_not_configured');
+  var text;
+  try {
+    text = questionPayloadText_(coerceJson_(body && body.data));
+  } catch (err) {
+    return gitClientError_(err && err.code ? err.code : 'bad_request');
+  }
+  var bytes = utf8Length_(text);
+  if (bytes > GITHUB_DATA_MAX_BYTES_) return gitClientError_('payload_too_large');
+  if (!takeGitSlot_(username, 8)) return gitClientError_('rate_limited');
+  var lock = LockService.getScriptLock();
+  var held = false;
+  try {
+    if (!lock.tryLock(20000)) {
+      releaseGitSlot_(username);
+      return gitClientError_('rate_limited');
+    }
+    held = true;
+    var count = 0;
+    try { count = JSON.parse(text).questionCount; } catch (ignore) { count = 0; }
+    var written = githubWriteText_(cfg, cfg.dataPath, text, 'Update question data (' + count + ')');
+    lock.releaseLock();
+    held = false;
+    writeLog_({
+      username: username,
+      action: 'syncDataUpload',
+      success: true,
+      metadata: { questionCount: count, bytes: bytes }
+    }, true);
+    return gitOk_({ sha: written.sha, path: cfg.dataPath });
+  } catch (err) {
+    if (held) {
+      try { lock.releaseLock(); } catch (ignore) {}
+      held = false;
+    }
+    safeLog_(err);
+    releaseGitSlot_(username);
+    var code = err && err.code === 'payload_too_large' ? 'payload_too_large' : 'github_error';
+    writeLog_({
+      username: username,
+      action: 'syncDataUpload',
+      success: false,
+      metadata: { error: code }
+    }, true);
+    return gitClientError_(code);
+  }
+}
+
+function handleGitDownload_(body) {
+  var username = normalizeUsername_(body.username);
+  if (!username || !isAllowed_(username)) return gitClientError_('feature_unavailable');
+  var cfg = githubConfig_();
+  if (!githubDataReady_(cfg)) return gitClientError_('github_not_configured');
+  try {
+    var read = githubReadText_(cfg, cfg.dataPath);
+    var parsed;
+    try {
+      parsed = JSON.parse(read.text);
+    } catch (ignore) {
+      return gitClientError_('github_error');
+    }
+    if (!parsed || typeof parsed !== 'object') return gitClientError_('github_error');
+    writeLog_({
+      username: username,
+      action: 'syncDataDownload',
+      success: true,
+      metadata: { bytes: String(read.text || '').length }
+    }, true);
+    return gitOk_({ sha: read.sha, path: cfg.dataPath, data: parsed });
+  } catch (err) {
+    safeLog_(err);
+    var code = err && err.code ? err.code : 'github_error';
+    writeLog_({
+      username: username,
+      action: 'syncDataDownload',
+      success: false,
+      metadata: { error: code === 'github_not_found' ? 'github_not_found' : 'github_error' }
+    }, true);
+    return gitClientError_(code);
+  }
+}
+
+function writeGitAiBackup_(info) {
+  var cfg = githubConfig_();
+  if (!githubBackupReady_(cfg)) return false;
+  var action = backupFileAction_(info.action);
+  var tz = Session.getScriptTimeZone() || 'Asia/Hong_Kong';
+  var stamp = Utilities.formatDate(new Date(), tz, 'yyyyMMdd-HHmmss-SSS');
+  var nonce = String(Utilities.getUuid() || '').replace(/-/g, '').slice(0, 8).toLowerCase();
+  if (!/^[0-9a-f]{8}$/.test(nonce)) nonce = '00000000';
+  var path = joinGithubPath_(cfg.backupDir, stamp + '-' + action + '-' + nonce + '.json');
+  if (!path) return false;
+  var reply = clipChars_(String(info.content || ''), GITHUB_REPLY_MAX_CHARS_);
+  var text = JSON.stringify({
+    action: action,
+    username: String(info.username || ''),
+    model: String(info.model || ''),
+    createdAt: new Date().toISOString(),
+    sentCount: numberOrNull_(info.sentCount),
+    filteredCount: numberOrNull_(info.filteredCount),
+    durationMs: numberOrNull_(info.durationMs),
+    source: action === 'generateQuestions' ? referenceSource_(info.source) : '',
+    content: reply
+  });
+  var lock = LockService.getScriptLock();
+  if (!lock.tryLock(20000)) return false;
+  try {
+    githubWriteText_(cfg, path, text, 'Backup model reply');
+    return true;
+  } catch (err) {
+    safeLog_(err);
+    return false;
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function githubConfig_() {
+  var stored = props_();
+  return {
+    token: String(stored.getProperty('GITHUB_TOKEN') || '').trim(),
+    owner: String(stored.getProperty('GITHUB_OWNER') || '').trim(),
+    repo: String(stored.getProperty('GITHUB_REPO') || '').trim(),
+    branch: String(stored.getProperty('GITHUB_BRANCH') || '').trim() || 'main',
+    dataPath: String(stored.getProperty('GITHUB_DATA_PATH') || '').trim(),
+    backupDir: String(stored.getProperty('GITHUB_AI_BACKUP_DIR') || '').trim()
+  };
+}
+
+function githubDataReady_(cfg) {
+  return !!(cfg && cfg.token && githubIdentOk_(cfg.owner) && githubIdentOk_(cfg.repo) && githubBranchOk_(cfg.branch) && githubPathOk_(cfg.dataPath));
+}
+
+function githubBackupReady_(cfg) {
+  var dir = String(cfg && cfg.backupDir || '').replace(/^\/+|\/+$/g, '');
+  return !!(cfg && cfg.token && githubIdentOk_(cfg.owner) && githubIdentOk_(cfg.repo) && githubBranchOk_(cfg.branch) && githubPathOk_(dir));
+}
+
+function githubIdentOk_(value) {
+  return /^[A-Za-z0-9_.-]{1,100}$/.test(String(value || ''));
+}
+
+function githubBranchOk_(value) {
+  var branch = String(value || '');
+  if (!branch || branch.length > 200 || branch.indexOf('..') !== -1 || branch.charAt(0) === '/') return false;
+  return /^[A-Za-z0-9._\-\/]+$/.test(branch);
+}
+
+function githubPathOk_(value) {
+  var path = String(value || '');
+  if (!path || path.length > 200 || path.charAt(0) === '/' || path.indexOf('..') !== -1) return false;
+  if (path.charAt(path.length - 1) === '/') return false;
+  return /^[A-Za-z0-9._\-\/]+$/.test(path);
+}
+
+function joinGithubPath_(dir, name) {
+  var base = String(dir || '').replace(/^\/+|\/+$/g, '');
+  var file = String(name || '').replace(/^\/+/, '');
+  var path = base ? base + '/' + file : file;
+  return githubPathOk_(path) ? path : '';
+}
+
+function backupFileAction_(action) {
+  if (action === 'generateQuestions' || action === 'testModel') return action;
+  return 'reply';
+}
+
+function coerceJson_(data) {
+  if (typeof data !== 'string') return data;
+  try {
+    return JSON.parse(data);
+  } catch (err) {
+    return null;
+  }
+}
+
+function questionPayloadText_(data) {
+  var extracted = extractQuestions_(data);
+  if (!extracted.ok) throw gitFail_(extracted.error);
+  return JSON.stringify({
+    version: '1.0',
+    exportDate: new Date().toISOString(),
+    questionCount: extracted.questions.length,
+    questions: extracted.questions
+  });
+}
+
+function extractQuestions_(data) {
+  var questions = null;
+  if (Array.isArray(data)) questions = data;
+  else if (data && typeof data === 'object' && Array.isArray(data.questions)) questions = data.questions;
+  else return { ok: false, error: 'bad_request' };
+  if (questions.length > GITHUB_MAX_QUESTIONS_) return { ok: false, error: 'payload_too_large' };
+  for (var i = 0; i < questions.length; i++) {
+    var item = questions[i];
+    if (!item || typeof item !== 'object' || Array.isArray(item)) return { ok: false, error: 'bad_request' };
+  }
+  return { ok: true, questions: questions };
+}
+
+function gitFail_(code) {
+  var err = new Error(code || 'github_error');
+  err.code = code || 'github_error';
+  return err;
+}
+
+function gitClientError_(code) {
+  var allowed = {
+    feature_unavailable: true,
+    github_not_configured: true,
+    github_not_found: true,
+    github_error: true,
+    bad_request: true,
+    payload_too_large: true,
+    rate_limited: true,
+    server_error: true
+  };
+  return { ok: false, error: allowed[code] ? code : 'github_error' };
+}
+
+function gitOk_(extra) {
+  var out = { ok: true };
+  if (!extra) return out;
+  var sha = sanitizeSha_(extra.sha);
+  if (sha) out.sha = sha;
+  if (extra.path && githubPathOk_(extra.path)) out.path = extra.path;
+  if (Object.prototype.hasOwnProperty.call(extra, 'data')) out.data = extra.data;
+  return out;
+}
+
+function sanitizeSha_(value) {
+  var sha = String(value || '').toLowerCase();
+  return /^[0-9a-f]{40}$/.test(sha) ? sha : '';
+}
+
+function githubWriteText_(cfg, path, text, message) {
+  var last = gitFail_('github_error');
+  for (var attempt = 0; attempt < 2; attempt++) {
+    try {
+      return githubWriteOnce_(cfg, path, text, message);
+    } catch (err) {
+      last = err && err.code ? err : gitFail_('github_error');
+      if (last.code !== 'github_conflict') throw last;
+    }
+  }
+  throw last.code === 'github_conflict' ? gitFail_('github_error') : last;
+}
+
+function githubWriteOnce_(cfg, path, text, message) {
+  if (!githubPathOk_(path)) throw gitFail_('github_error');
+  var bytes = utf8Length_(text);
+  if (bytes > GITHUB_DATA_MAX_BYTES_) throw gitFail_('payload_too_large');
+  if (bytes <= GITHUB_CONTENTS_MAX_BYTES_) return githubWriteViaContents_(cfg, path, text, message);
+  return githubWriteViaGitData_(cfg, path, text, message);
+}
+
+function githubReadText_(cfg, path) {
+  if (!githubPathOk_(path)) throw gitFail_('github_error');
+  var existing = githubFetch_(cfg, 'get', githubContentsApi_(cfg, path) + '?ref=' + encodeURIComponent(cfg.branch), null);
+  if (existing.status === 404) throw gitFail_('github_not_found');
+  if (isGithubTooLarge_(existing)) return githubReadViaGitData_(cfg, path);
+  if (existing.status === 200 && existing.body && typeof existing.body.content === 'string' && String(existing.body.encoding || '') === 'base64') {
+    return {
+      text: decodeGithubBase64_(existing.body.content),
+      sha: sanitizeSha_(existing.body.sha),
+      path: path
+    };
+  }
+  if (existing.status === 200 && existing.body && existing.body.type === 'file' && existing.body.sha) {
+    return githubReadViaGitData_(cfg, path);
+  }
+  throw gitFail_('github_error');
+}
+
+function githubWriteViaContents_(cfg, path, text, message) {
+  var api = githubContentsApi_(cfg, path);
+  var existing = githubFetch_(cfg, 'get', api + '?ref=' + encodeURIComponent(cfg.branch), null);
+  if (isGithubTooLarge_(existing)) return githubWriteViaGitData_(cfg, path, text, message);
+  var sha = '';
+  if (existing.status === 200) {
+    if (!existing.body || existing.body.type === 'dir' || Array.isArray(existing.body)) throw gitFail_('github_error');
+    sha = existing.body.sha ? String(existing.body.sha) : '';
+  } else if (existing.status !== 404) {
+    throw gitFail_('github_error');
+  }
+  var payload = {
+    message: clip_(message, 200) || 'Update data',
+    content: encodeGithubBase64_(text),
+    branch: cfg.branch
+  };
+  if (sha) payload.sha = sha;
+  var put = githubFetch_(cfg, 'put', api, payload);
+  if (isGithubTooLarge_(put)) return githubWriteViaGitData_(cfg, path, text, message);
+  if (isGithubConflict_(put)) throw gitFail_('github_conflict');
+  if (put.status < 200 || put.status >= 300) throw gitFail_('github_error');
+  var newSha = put.body && put.body.content && put.body.content.sha ? put.body.content.sha : (put.body && put.body.commit && put.body.commit.sha);
+  return { sha: sanitizeSha_(newSha), path: path };
+}
+
+function githubWriteViaGitData_(cfg, path, text, message) {
+  var head = githubHead_(cfg);
+  var blob = githubFetch_(cfg, 'post', githubRepoPrefix_(cfg) + '/git/blobs', {
+    content: encodeGithubBase64_(text),
+    encoding: 'base64'
+  });
+  if (blob.status < 200 || blob.status >= 300 || !blob.body || !blob.body.sha) throw gitFail_('github_error');
+  var tree = githubFetch_(cfg, 'post', githubRepoPrefix_(cfg) + '/git/trees', {
+    base_tree: head.treeSha,
+    tree: [{ path: path, mode: '100644', type: 'blob', sha: blob.body.sha }]
+  });
+  if (tree.status < 200 || tree.status >= 300 || !tree.body || !tree.body.sha) throw gitFail_('github_error');
+  var commit = githubFetch_(cfg, 'post', githubRepoPrefix_(cfg) + '/git/commits', {
+    message: clip_(message, 200) || 'Update data',
+    tree: tree.body.sha,
+    parents: [head.commitSha]
+  });
+  if (commit.status < 200 || commit.status >= 300 || !commit.body || !commit.body.sha) throw gitFail_('github_error');
+  var updated = githubFetch_(cfg, 'patch', githubRefApi_(cfg), { sha: commit.body.sha });
+  if (isGithubConflict_(updated)) throw gitFail_('github_conflict');
+  if (updated.status < 200 || updated.status >= 300) throw gitFail_('github_error');
+  return { sha: sanitizeSha_(commit.body.sha), path: path };
+}
+
+function githubReadViaGitData_(cfg, path) {
+  var head = githubHead_(cfg);
+  var blobSha = githubBlobSha_(cfg, head.treeSha, path);
+  var blob = githubFetch_(cfg, 'get', githubRepoPrefix_(cfg) + '/git/blobs/' + encodeURIComponent(blobSha), null);
+  if (blob.status < 200 || blob.status >= 300 || !blob.body || blob.body.content == null) throw gitFail_('github_error');
+  var encoding = String(blob.body.encoding || 'base64').toLowerCase();
+  var text = encoding === 'utf-8' ? String(blob.body.content) : decodeGithubBase64_(blob.body.content);
+  return { text: text, sha: sanitizeSha_(blob.body.sha || blobSha), path: path };
+}
+
+function githubHead_(cfg) {
+  var ref = githubFetch_(cfg, 'get', githubRefApi_(cfg), null);
+  if (ref.status < 200 || ref.status >= 300 || !ref.body || !ref.body.object || !ref.body.object.sha) {
+    throw gitFail_('github_error');
+  }
+  var commitSha = String(ref.body.object.sha);
+  var commit = githubFetch_(cfg, 'get', githubRepoPrefix_(cfg) + '/git/commits/' + encodeURIComponent(commitSha), null);
+  if (commit.status < 200 || commit.status >= 300 || !commit.body || !commit.body.tree || !commit.body.tree.sha) {
+    throw gitFail_('github_error');
+  }
+  return { commitSha: commitSha, treeSha: String(commit.body.tree.sha) };
+}
+
+function githubBlobSha_(cfg, treeSha, path) {
+  var parts = String(path || '').split('/').filter(Boolean);
+  var sha = treeSha;
+  for (var i = 0; i < parts.length; i++) {
+    var tree = githubFetch_(cfg, 'get', githubRepoPrefix_(cfg) + '/git/trees/' + encodeURIComponent(sha), null);
+    if (tree.status < 200 || tree.status >= 300 || !tree.body || !Array.isArray(tree.body.tree)) throw gitFail_('github_error');
+    var found = null;
+    for (var j = 0; j < tree.body.tree.length; j++) {
+      if (tree.body.tree[j] && tree.body.tree[j].path === parts[i]) {
+        found = tree.body.tree[j];
+        break;
+      }
+    }
+    if (!found || !found.sha) throw gitFail_('github_not_found');
+    if (i === parts.length - 1) {
+      if (found.type !== 'blob') throw gitFail_('github_error');
+      return String(found.sha);
+    }
+    if (found.type !== 'tree') throw gitFail_('github_error');
+    sha = String(found.sha);
+  }
+  throw gitFail_('github_not_found');
+}
+
+function githubRepoPrefix_(cfg) {
+  return '/repos/' + encodeURIComponent(cfg.owner) + '/' + encodeURIComponent(cfg.repo);
+}
+
+function githubRefApi_(cfg) {
+  var branch = String(cfg.branch || 'main').split('/').map(function (part) {
+    return encodeURIComponent(part);
+  }).join('/');
+  return githubRepoPrefix_(cfg) + '/git/ref/heads/' + branch;
+}
+
+function githubContentsApi_(cfg, path) {
+  var encoded = String(path || '').split('/').map(function (part) {
+    return encodeURIComponent(part);
+  }).join('/');
+  return githubRepoPrefix_(cfg) + '/contents/' + encoded;
+}
+
+function githubFetch_(cfg, method, apiPath, payload) {
+  var options = {
+    method: String(method || 'get').toLowerCase(),
+    muteHttpExceptions: true,
+    escaping: false,
+    headers: {
+      Authorization: 'Bearer ' + cfg.token,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'User-Agent': 'econ-database-proxy'
+    }
+  };
+  if (payload != null) {
+    options.contentType = 'application/json; charset=utf-8';
+    options.payload = JSON.stringify(payload);
+  }
+  var response;
+  try {
+    response = UrlFetchApp.fetch('https://api.github.com' + apiPath, options);
+  } catch (err) {
+    safeLog_(err);
+    throw gitFail_('github_error');
+  }
+  var status = response.getResponseCode();
+  var raw = response.getContentText() || '';
+  var body = null;
+  if (raw) {
+    try { body = JSON.parse(raw); } catch (ignore) { body = null; }
+  }
+  if (status < 200 || status >= 300) safeGithubStatus_(status, body);
+  return { status: status, body: body };
+}
+
+function safeGithubStatus_(status, body) {
+  var msg = 'github_http_' + status;
+  if (body && body.message) {
+    var text = String(body.message).replace(/https?:\/\/\S+/g, '[url]');
+    if (text.length > 160) text = text.slice(0, 160);
+    msg += ' ' + text;
+  }
+  console.error(msg);
+}
+
+function isGithubTooLarge_(result) {
+  if (!result || !result.body) return false;
+  var message = String(result.body.message || '').toLowerCase();
+  if (message.indexOf('too large') !== -1) return true;
+  var errors = result.body.errors;
+  if (!Array.isArray(errors)) return false;
+  for (var i = 0; i < errors.length; i++) {
+    if (errors[i] && String(errors[i].code || '') === 'too_large') return true;
+  }
+  return false;
+}
+
+function isGithubConflict_(result) {
+  if (!result) return false;
+  if (result.status === 409) return true;
+  var message = String(result.body && result.body.message || '').toLowerCase();
+  if (message.indexOf('fast forward') !== -1) return true;
+  if (message.indexOf('does not match') !== -1) return true;
+  return false;
+}
+
+function encodeGithubBase64_(text) {
+  return Utilities.base64Encode(Utilities.newBlob(String(text), 'application/json', 'payload.json').getBytes());
+}
+
+function decodeGithubBase64_(b64) {
+  try {
+    var cleaned = String(b64 || '').replace(/[^A-Za-z0-9+/=]/g, '');
+    if (!cleaned) throw gitFail_('github_error');
+    return Utilities.newBlob(Utilities.base64Decode(cleaned)).getDataAsString('UTF-8');
+  } catch (err) {
+    if (err && err.code) throw err;
+    throw gitFail_('github_error');
+  }
+}
+
+function utf8Length_(text) {
+  return Utilities.newBlob(String(text)).getBytes().length;
+}
+
+function clipChars_(value, max) {
+  var text = String(value || '');
+  if (text.length <= max) return text;
+  var clipped = text.slice(0, max);
+  var last = clipped.charCodeAt(clipped.length - 1);
+  if (last >= 0xD800 && last <= 0xDBFF) clipped = clipped.slice(0, -1);
+  return clipped;
+}
+
+function takeGitSlot_(username, seconds) {
+  try {
+    var cache = CacheService.getScriptCache();
+    var key = 'git_iv_' + sha256Hex_(username).slice(0, 32);
+    if (cache.get(key)) return false;
+    cache.put(key, '1', Math.min(Math.max(Number(seconds) || 1, 1), 30));
+    return true;
+  } catch (err) {
+    return true;
+  }
+}
+
+function releaseGitSlot_(username) {
+  try {
+    CacheService.getScriptCache().remove('git_iv_' + sha256Hex_(username).slice(0, 32));
+  } catch (err) {
+    safeLog_(err);
+  }
+}
+
+function selfTestGitPaths() {
+  if (!githubPathOk_('data/questions.json')) throw new Error('path_ok');
+  if (githubPathOk_('../secrets')) throw new Error('path_dotdot');
+  if (githubPathOk_('/tmp/questions.json')) throw new Error('path_abs');
+  if (githubPathOk_('a b.json')) throw new Error('path_space');
+  if (!githubIdentOk_('example-user')) throw new Error('ident_ok');
+  if (githubIdentOk_('owner/repo')) throw new Error('ident_slash');
+  if (joinGithubPath_('ai-backups', '20260101-000000-000-generateQuestions-abcd1234.json') !== 'ai-backups/20260101-000000-000-generateQuestions-abcd1234.json') {
+    throw new Error('join_path');
+  }
+  if (backupFileAction_('generateQuestions') !== 'generateQuestions') throw new Error('backup_generate');
+  if (backupFileAction_('testModel') !== 'testModel') throw new Error('backup_test_model');
+  if (backupFileAction_('login') !== 'reply') throw new Error('backup_other');
+  var leaked = gitOk_({
+    sha: 'nope',
+    path: '../x',
+    token: 'secret-token',
+    owner: 'someone',
+    repo: 'private-data'
+  });
+  if (leaked.token || leaked.owner || leaked.repo || leaked.path || leaked.sha) throw new Error('response_leak');
+  var kept = gitOk_({
+    sha: '0123456789abcdef0123456789abcdef01234567',
+    path: 'data/questions.json'
+  });
+  if (kept.path !== 'data/questions.json' || kept.sha !== '0123456789abcdef0123456789abcdef01234567') {
+    throw new Error('response_keep');
+  }
+  if (JSON.stringify(kept).indexOf('token') !== -1) throw new Error('response_token_key');
+  var denied = gitClientError_('feature_unavailable');
+  if (denied.ok !== false || denied.error !== 'feature_unavailable') throw new Error('client_error');
+  var unknown = gitClientError_('token=abc owner=someone');
+  if (unknown.error !== 'github_error' || JSON.stringify(unknown).indexOf('someone') !== -1) throw new Error('client_error_redacted');
+  var packed = questionPayloadText_({ questions: [{ id: 'A', examination: 'DSE' }] });
+  var parsed = JSON.parse(packed);
+  if (parsed.questionCount !== 1 || parsed.questions[0].id !== 'A') throw new Error('payload_shape');
+  try {
+    questionPayloadText_({ nope: true });
+    throw new Error('payload_should_fail');
+  } catch (err) {
+    if (!err || err.code !== 'bad_request') throw err;
+  }
+  if (clipChars_('甲乙丙', 2) !== '甲乙') throw new Error('clip_chars');
+  console.log('selfTestGitPaths ok');
 }
 
 function props_() {
@@ -925,8 +1547,16 @@ function classifyFetchError_(err) {
 
 function safeLog_(err) {
   var msg = String(err && err.stack || err && err.message || err || '');
-  var key = String(props_().getProperty('POE_API_KEY') || '').trim();
-  if (key && msg.indexOf(key) !== -1) msg = msg.split(key).join('[redacted]');
+  var secrets = [
+    props_().getProperty('POE_API_KEY'),
+    props_().getProperty('GITHUB_TOKEN')
+  ];
+  secrets.forEach(function (secret) {
+    var value = String(secret || '').trim();
+    if (value && msg.indexOf(value) !== -1) msg = msg.split(value).join('[redacted]');
+  });
+  msg = msg.replace(/Bearer\s+[A-Za-z0-9._\-]+/g, 'Bearer [redacted]');
+  msg = msg.replace(/https:\/\/api\.github\.com\/repos\/\S+/g, 'https://api.github.com/repos/[redacted]');
   console.error(msg.slice(0, 1000));
 }
 

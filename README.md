@@ -83,7 +83,9 @@ Crops that do not match the stored wording are left out. `econ-database/HKEAA-�
 
 ## AI question generation
 
-One button, **AI出題**, asks for new questions from the current filter. It stays hidden unless the signed-in user is allowed. The modal picks a 出題模式, an editable 出題指示, and one of three models, and can send a short **測試** ping that does not use the filtered questions. The browser calls a Google Apps Script web app. The upstream API key and the allowlist stay in that script’s Script properties, not in this repository. Production allowlist is hashed usernames only. Successful replies are also backed up to a `GenerationBackup` sheet tab. Admin steps, including the required new deployment version after `Code.gs` changes: `econ-database/apps-script/README.md`. The question bank itself is still `database.json`.
+One button, **AI出題**, asks for new questions from the current filter or from questions the user pastes. It stays hidden unless the signed-in user is allowed. The modal picks a 出題模式, an editable 出題指示, and one of three models, and can send a short **測試** ping that does not use the reference questions. The browser calls a Google Apps Script web app. The upstream API key and the allowlist stay in that script’s Script properties, not in this repository. Production allowlist is hashed usernames only. Successful replies are also backed up to a `GenerationBackup` sheet tab. Admin steps, including the required new deployment version after `Code.gs` changes: `econ-database/apps-script/README.md`. The question bank itself is still `database.json`.
+
+Allowed users also get **自動同步**, **上傳到 GitHub**, and **從 GitHub 載入**. Those buttons use the same web app. The GitHub token, owner, and private repository name stay in Script properties. Do not commit them. The script can also store a model reply in that private repository.
 
 ## Adding another mock paper
 

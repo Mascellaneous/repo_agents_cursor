@@ -91,6 +91,19 @@ class IndexedDBStorage {
         });
     }
 
+    // Unfiltered bank. Git sync must not drop rows the current user cannot
+    // see in the UI, or an upload would erase them from the private copy.
+    async getAllQuestions() {
+        if (!this.db) return [];
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction([this.storeName], 'readonly');
+            const store = transaction.objectStore(this.storeName);
+            const request = store.getAll();
+            request.onsuccess = () => resolve(request.result || []);
+            request.onerror = () => reject(request.error);
+        });
+    }
+
     async getQuestions(filters = {}) {
         // Clicks during startup can reach here after `storage` exists and
         // before IndexedDB open finishes. An empty list is safer than throwing.

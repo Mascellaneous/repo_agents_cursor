@@ -44,8 +44,9 @@
     var ERROR_TEXT = {
         feature_unavailable: '此功能暫不可用。',
         proxy_not_configured: '出題服務尚未完成設定。',
-        no_reference_questions: '沒有可送出的參考題目。請先篩選出含題幹的題目。',
-        missing_references: '找不到當時的參考題。請改用「根據目前篩選出題」。',
+        no_reference_questions: '沒有可送出的參考題目。請先篩選出含題幹的題目，或改為貼上題目。',
+        empty_paste: '請先貼上至少一題題目。',
+        missing_references: '找不到當時的參考題。請再選擇來源後出題。',
         rate_limited: '出題次數暫時達到上限，請稍後再試。',
         upstream_error: '出題服務暫時未能回應，請再試一次。',
         upstream_timeout: '出題時間過長而被中斷。可以縮小篩選範圍後再試。',
@@ -64,6 +65,7 @@
         records: [],
         activeRecord: null,
         filteredCount: 0,
+        pasteCount: 0,
         counting: false,
         trigger: null,
         db: null,
@@ -414,6 +416,110 @@
         });
     }
 
+    function currentSource() {
+        var selected = document.querySelector('input[name="poe-reference-source"]:checked');
+        return selected && selected.value === 'paste' ? 'paste' : 'filter';
+    }
+
+    function pasteField() {
+        return document.getElementById('poe-paste-input');
+    }
+
+    function normalizePaste(raw) {
+        return String(raw == null ? '' : raw)
+            .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+            .replace(/[\u2028\u2029]/g, '\n')
+            .replace(/\r\n/g, '\n')
+            .replace(/\r/g, '\n')
+            .trim();
+    }
+
+    function isNumberedQuestionLine(line) {
+        return /^(?:\d{1,3})\s*[.、．)）]\s*\S/.test(line) || /^[（(]\s*\d{1,3}\s*[）)]\s*\S/.test(line);
+    }
+
+    function isOptionBlock(block) {
+        var lines = String(block || '').split('\n').map(function (line) { return line.trim(); }).filter(Boolean);
+        if (!lines.length) return false;
+        return lines.every(function (line) {
+            return /^(?:[A-Ha-h]|[甲乙丙丁戊己庚辛])\s*[.、．)）]\s*\S/.test(line)
+                || /^[（(]\s*[A-Ha-h]\s*[）)]\s*\S/.test(line);
+        });
+    }
+
+    function isExplanationOnly(block) {
+        return /^(?:解釋|答案|explanation)\s*[:：]/i.test(String(block || '').trim());
+    }
+
+    function splitPasteChunks(text) {
+        var lines = text.split('\n');
+        var markerRows = [];
+        lines.forEach(function (line, index) {
+            if (isNumberedQuestionLine(line.trim())) markerRows.push(index);
+        });
+        if (markerRows.length >= 2) {
+            var numbered = [];
+            for (var i = 0; i < markerRows.length; i++) {
+                var start = markerRows[i];
+                var end = i + 1 < markerRows.length ? markerRows[i + 1] : lines.length;
+                var chunk = lines.slice(start, end).join('\n').trim();
+                if (chunk) numbered.push(chunk);
+            }
+            if (numbered.length >= 2) return numbered;
+        }
+        var blocks = text.split(/\n\s*\n+/).map(function (block) { return block.trim(); }).filter(Boolean);
+        if (blocks.length < 2) return [text];
+        var merged = [];
+        blocks.forEach(function (block) {
+            if (merged.length && (isOptionBlock(block) || isExplanationOnly(block))) {
+                merged[merged.length - 1] += '\n\n' + block;
+            } else {
+                merged.push(block);
+            }
+        });
+        return merged.length ? merged : [text];
+    }
+
+    function parsePasteChunk(chunk) {
+        var text = String(chunk || '').trim();
+        if (!text) return null;
+        text = text.replace(/^(?:\d{1,3})\s*[.、．)）]\s*/, '');
+        text = text.replace(/^[（(]\s*\d{1,3}\s*[）)]\s*/, '');
+        text = text.replace(/^【[^】\n]{0,24}】\s*/, '');
+        var labelAt = text.search(/(?:^|\n)\s*(?:解釋|答案|explanation)\s*[:：]/i);
+        var explanation = '';
+        if (labelAt >= 0) {
+            explanation = text.slice(labelAt).replace(/^(?:\n)?\s*(?:解釋|答案|explanation)\s*[:：]\s*/i, '').trim();
+            text = text.slice(0, labelAt).trim();
+        }
+        text = text.replace(/^(?:題目|問題|question)\s*[:：]\s*/i, '').trim();
+        if (!text) return null;
+        if (text.length > 6000) text = text.slice(0, 6000);
+        if (explanation.length > 6000) explanation = explanation.slice(0, 6000);
+        return { question: text, explanation: explanation };
+    }
+
+    function parsePastedQuestions(raw) {
+        var text = normalizePaste(raw);
+        if (!text) return [];
+        var chunks = splitPasteChunks(text);
+        var items = [];
+        chunks.forEach(function (chunk) {
+            var item = parsePasteChunk(chunk);
+            if (item && item.question) items.push(item);
+        });
+        if (!items.length) {
+            var only = parsePasteChunk(text);
+            if (only && only.question) items.push(only);
+        }
+        return items;
+    }
+
+    function pasteQuestions() {
+        var field = pasteField();
+        return parsePastedQuestions(field ? field.value : '');
+    }
+
     function filterSummary(count) {
         var searchEl = document.getElementById('search');
         var search = searchEl ? String(searchEl.value || '').trim() : '';
@@ -430,6 +536,15 @@
             return '目前篩選有 ' + count + ' 題含題幹。出題時會依目前排序送出前 ' + CLIENT_SEND_CAP + ' 題，伺服器可能再減少。';
         }
         return '目前篩選有 ' + count + ' 題含題幹，會全部送出作為參考。';
+    }
+
+    function leadForPaste(count) {
+        if (!count) return '請在下方貼上題目。題與題之間可用空行分隔，或以 1. 2. 3. 編號。';
+        if (count > CLIENT_SEND_CAP) {
+            return '貼上內容可分成 ' + count + ' 題。出題時會送出前 ' + CLIENT_SEND_CAP + ' 題。';
+        }
+        if (count === 1) return '貼上內容會當成 1 題參考。';
+        return '貼上內容可分成 ' + count + ' 題參考，會全部送出。';
     }
 
     function idbRequest(request) {
@@ -578,7 +693,7 @@
             + '  <header class="poe-header">'
             + '    <div>'
             + '      <h2 id="poe-generate-title">AI出題</h2>'
-            + '      <p class="poe-subtitle">選擇出題模式與模型，可再改出題指示，然後按出題。測試只檢查所選模型能否回應，不會用篩選題目出題。</p>'
+            + '      <p class="poe-subtitle">可以參考目前篩選，或貼上自己的題目。選擇出題模式與模型，可再改出題指示，然後按出題。測試只檢查所選模型能否回應，不會用題目出題。</p>'
             + '    </div>'
             + '    <button type="button" class="poe-close" aria-label="關閉">×</button>'
             + '  </header>'
@@ -592,6 +707,14 @@
             + '    </aside>'
             + '    <section class="poe-main">'
             + '      <div class="poe-meta" id="poe-meta"></div>'
+            + '      <div class="poe-source" role="radiogroup" aria-label="參考題來源">'
+            + '        <label class="poe-source-option"><input type="radio" name="poe-reference-source" value="filter" checked> 使用目前篩選</label>'
+            + '        <label class="poe-source-option"><input type="radio" name="poe-reference-source" value="paste"> 自行貼上題目</label>'
+            + '      </div>'
+            + '      <div class="poe-paste" id="poe-paste-wrap" hidden>'
+            + '        <label for="poe-paste-input">貼上題目</label>'
+            + '        <textarea id="poe-paste-input" rows="8" maxlength="100000" aria-label="貼上題目" placeholder="可貼上一題或多題。用空行分隔，或以 1. 2. 3. 編號。若有解釋，在題幹後另起一行寫「解釋：」。"></textarea>'
+            + '      </div>'
             + '      <div class="poe-controls">'
             + '        <label class="poe-field">出題模式'
             + '          <select id="poe-mode" aria-label="出題模式"></select>'
@@ -630,8 +753,12 @@
             if (event.target === overlay) closePoeGenerateModal();
         });
         overlay.querySelector('.poe-close').addEventListener('click', closePoeGenerateModal);
+        overlay.querySelector('#poe-start').addEventListener('click', generateFromCurrentSource);
+        overlay.querySelectorAll('input[name="poe-reference-source"]').forEach(function (input) {
+            input.addEventListener('change', onSourceChange);
+        });
+        overlay.querySelector('#poe-paste-input').addEventListener('input', onPasteInput);
         fillComposerOptions();
-        overlay.querySelector('#poe-start').addEventListener('click', generateFromFilters);
         overlay.querySelector('#poe-again').addEventListener('click', regenerateActive);
         overlay.querySelector('#poe-test').addEventListener('click', testSelectedModel);
         overlay.querySelector('#poe-mode').addEventListener('change', onModeChange);
@@ -701,6 +828,9 @@
         ensureModal();
         loadComposer();
         clearTestBanner();
+        var pasteWrap = document.getElementById('poe-paste-wrap');
+        if (pasteWrap) pasteWrap.hidden = currentSource() !== 'paste';
+        poeUi.pasteCount = pasteQuestions().length;
         poeUi.trigger = document.getElementById('poe-generate-btn');
         poeUi.overlay.hidden = false;
         document.body.classList.add('poe-modal-open');
@@ -732,9 +862,36 @@
 
     function updateMeta(count, counting) {
         poeUi.filteredCount = count;
+        refreshSourceMeta(counting);
+    }
+
+    function refreshSourceMeta(counting) {
         var meta = document.getElementById('poe-meta');
         if (!meta) return;
-        meta.textContent = counting ? '正在計算目前篩選的題數…' : leadForCount(count);
+        if (currentSource() === 'paste') {
+            meta.textContent = leadForPaste(poeUi.pasteCount);
+            return;
+        }
+        meta.textContent = counting ? '正在計算目前篩選的題數…' : leadForCount(poeUi.filteredCount);
+    }
+
+    function onSourceChange() {
+        var wrap = document.getElementById('poe-paste-wrap');
+        var paste = currentSource() === 'paste';
+        if (wrap) wrap.hidden = !paste;
+        if (paste) poeUi.pasteCount = pasteQuestions().length;
+        refreshSourceMeta(poeUi.counting);
+        if (!poeUi.activeRecord && !poeUi.busy) showIdle(poeUi.filteredCount, poeUi.counting);
+        syncActionButtons();
+    }
+
+    function onPasteInput() {
+        poeUi.pasteCount = pasteQuestions().length;
+        if (currentSource() === 'paste') {
+            refreshSourceMeta(false);
+            if (!poeUi.activeRecord && !poeUi.busy) showIdle(poeUi.filteredCount, false);
+        }
+        syncActionButtons();
     }
 
     function setStatus(message) {
@@ -748,12 +905,22 @@
         stage.textContent = '';
         var lead = document.createElement('p');
         lead.className = 'poe-lead';
-        lead.textContent = '按「根據目前篩選出題」後，伺服器會附上參考題，並依上方的出題模式與出題指示要求模型撰寫全新題目與解釋。結果會保存在這部瀏覽器。';
+        if (currentSource() === 'paste') {
+            lead.textContent = '按「根據貼上內容出題」後，伺服器會附上貼上的題目，並依上方的出題模式與出題指示要求模型撰寫全新題目與解釋。結果會保存在這部瀏覽器。';
+        } else {
+            lead.textContent = '按「根據目前篩選出題」後，伺服器會附上參考題，並依上方的出題模式與出題指示要求模型撰寫全新題目與解釋。結果會保存在這部瀏覽器。';
+        }
         stage.appendChild(lead);
-        if (counting || !count) {
+        var noteText = '';
+        if (currentSource() === 'paste') {
+            noteText = leadForPaste(poeUi.pasteCount);
+        } else if (counting || !count) {
+            noteText = counting ? '正在計算目前篩選的題數…' : leadForCount(0);
+        }
+        if (noteText) {
             var empty = document.createElement('p');
             empty.className = 'poe-note';
-            empty.textContent = counting ? '正在計算目前篩選的題數…' : leadForCount(0);
+            empty.textContent = noteText;
             stage.appendChild(empty);
         }
     }
@@ -956,6 +1123,7 @@
             var meta = document.createElement('span');
             meta.className = 'poe-history-meta';
             var metaBits = [];
+            if (record.referenceSource === 'paste') metaBits.push('貼上');
             if (record.modeName) metaBits.push(record.modeName);
             metaBits.push((record.sentCount || 0) + ' 題參考');
             meta.textContent = metaBits.join(' · ');
@@ -1035,13 +1203,30 @@
         var mode = document.getElementById('poe-mode');
         var model = document.getElementById('poe-model');
         var test = document.getElementById('poe-test');
-        var canRegenerate = !!(poeUi.activeRecord && poeUi.activeRecord.referenceIds && poeUi.activeRecord.referenceIds.length);
-        if (start) start.disabled = poeUi.busy || poeUi.counting || poeUi.filteredCount === 0;
+        var pasteMode = currentSource() === 'paste';
+        var canRegenerate = false;
+        if (poeUi.activeRecord && poeUi.activeRecord.referenceSource === 'paste') {
+            canRegenerate = !!(poeUi.activeRecord.pastedReferences && poeUi.activeRecord.pastedReferences.length);
+        } else {
+            canRegenerate = !!(poeUi.activeRecord && poeUi.activeRecord.referenceIds && poeUi.activeRecord.referenceIds.length);
+        }
+        if (start) {
+            start.textContent = pasteMode ? '根據貼上內容出題' : '根據目前篩選出題';
+            var blocked = pasteMode ? poeUi.pasteCount === 0 : (poeUi.counting || poeUi.filteredCount === 0);
+            start.disabled = poeUi.busy || blocked;
+        }
         if (again) again.disabled = poeUi.busy || !canRegenerate;
         if (copy) copy.disabled = poeUi.busy || !(poeUi.activeRecord && poeUi.activeRecord.content);
         if (cancel) cancel.hidden = !poeUi.busy;
         if (instruction) instruction.disabled = !!poeUi.busy;
         if (reset) reset.disabled = !!poeUi.busy;
+        var pasteInput = pasteField();
+        if (pasteInput) pasteInput.disabled = !!poeUi.busy;
+        if (poeUi.overlay) {
+            poeUi.overlay.querySelectorAll('input[name="poe-reference-source"]').forEach(function (input) {
+                input.disabled = !!poeUi.busy;
+            });
+        }
         if (mode) mode.disabled = !!poeUi.busy;
         if (model) model.disabled = !!poeUi.busy;
         if (test) test.disabled = !!poeUi.busy;
@@ -1075,7 +1260,22 @@
         }
     }
 
-    async function generateFromFilters() {
+    async function generateFromCurrentSource() {
+        if (currentSource() === 'paste') {
+            var parsed = pasteQuestions();
+            poeUi.pasteCount = parsed.length;
+            refreshSourceMeta(false);
+            syncActionButtons();
+            if (!String(pasteField() && pasteField().value || '').trim() || !parsed.length) {
+                showError('empty_paste');
+                return;
+            }
+            var pastedBank = parsed.map(function (item) {
+                return { plainText: item.question, answerChi: item.explanation || '' };
+            });
+            await runGeneration(pastedBank, '貼上 ' + parsed.length + ' 題', 'paste');
+            return;
+        }
         var usable = [];
         try {
             usable = await loadFilteredQuestions();
@@ -1085,22 +1285,32 @@
         }
         updateMeta(usable.length);
         syncActionButtons();
-        await runGeneration(usable, filterSummary(usable.length));
+        await runGeneration(usable, filterSummary(usable.length), 'filter');
     }
 
     async function regenerateActive() {
-        if (!poeUi.activeRecord || !poeUi.activeRecord.referenceIds) return;
-        var questions = await questionsByIds(poeUi.activeRecord.referenceIds);
+        var active = poeUi.activeRecord;
+        if (!active) return;
+        if (active.referenceSource === 'paste' && active.pastedReferences && active.pastedReferences.length) {
+            var pastedBank = active.pastedReferences.map(function (item) {
+                return { plainText: item.question, answerChi: item.explanation || '' };
+            });
+            await runGeneration(pastedBank, active.filterSummary || '貼上的參考題', 'paste');
+            return;
+        }
+        if (!active.referenceIds) return;
+        var questions = await questionsByIds(active.referenceIds);
         if (!questions.length) {
             showError('missing_references');
             syncActionButtons();
             return;
         }
-        await runGeneration(questions, poeUi.activeRecord.filterSummary || '沿用上一批參考題');
+        await runGeneration(questions, active.filterSummary || '沿用上一批參考題', 'filter');
     }
 
-    async function runGeneration(bankQuestions, summary) {
+    async function runGeneration(bankQuestions, summary, source) {
         if (poeUi.busy) return;
+        source = source === 'paste' ? 'paste' : 'filter';
         var references = bankQuestions.map(toReference).filter(function (item) { return item.question; });
         if (!references.length) {
             showError('no_reference_questions');
@@ -1132,6 +1342,7 @@
                 filteredCount: filteredCount,
                 questions: sending,
                 instruction: instruction,
+                source: source,
                 modeId: mode.id,
                 model: model
             }, 240000, poeUi.control);
@@ -1155,7 +1366,11 @@
                 sentCount: data.sentCount || sending.length,
                 filteredCount: data.filteredCount || filteredCount,
                 truncated: !!data.truncated || filteredCount > sending.length,
-                referenceIds: sending.map(function (item) { return item.id; }).filter(Boolean),
+                referenceSource: source,
+                referenceIds: source === 'paste' ? [] : sending.map(function (item) { return item.id; }).filter(Boolean),
+                pastedReferences: source === 'paste' ? sending.map(function (item) {
+                    return { question: item.question, explanation: item.explanation || '' };
+                }) : [],
                 filterSummary: summary,
                 durationMs: data.durationMs || (Date.now() - poeUi.startedAt)
             };

@@ -69,6 +69,15 @@ function renderTabContentsTemplate() {
                 <button class="btn btn-outline-primary btn-admin-only" onclick="importJSON()">📤 匯入 JSON</button>
                 <button class="btn btn-outline-danger btn-admin-only" onclick="clearDatabase()">🗑️ 清除資料庫</button>
             </div>
+            <div id="git-sync-panel" class="git-sync-panel" hidden>
+                <label class="git-auto-sync" for="git-auto-sync" title="只記在這部瀏覽器。進入頁面時會載入 GitHub 題庫；儲存、刪除、匯入或匯出後會再上傳。">
+                    <input type="checkbox" id="git-auto-sync">
+                    自動同步
+                </label>
+                <button type="button" class="btn btn-outline-primary" id="git-upload-btn">上傳到 GitHub</button>
+                <button type="button" class="btn btn-outline-primary" id="git-download-btn">從 GitHub 載入</button>
+                <span id="git-sync-status" class="git-sync-status" aria-live="polite"></span>
+            </div>
         </div>
 
         ${renderFormTemplate()}

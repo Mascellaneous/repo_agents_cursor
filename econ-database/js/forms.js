@@ -128,6 +128,9 @@ function setupFormHandler() {
         document.getElementById('form-section').classList.add('hidden');
         clearForm();
         window.editingId = null;
+        if (typeof maybeAutoSyncQuestions === 'function') {
+            await maybeAutoSyncQuestions();
+        }
     });
 }
 
@@ -196,5 +199,8 @@ async function deleteQuestion(id) {
     if (confirm('確定要刪除此題目？')) {
         await window.storage.deleteQuestion(id);
         await refreshViews();
+        if (typeof maybeAutoSyncQuestions === 'function') {
+            await maybeAutoSyncQuestions();
+        }
     }
 }
