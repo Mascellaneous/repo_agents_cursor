@@ -71,6 +71,8 @@ IndexedDBStorage.prototype.applyFilters = function(questions, filters) {
                     return q.concepts && Array.isArray(q.concepts) && q.concepts.some(c => c.toLowerCase().includes(searchLower));
                 case 'patterns':
                     return q.patterns && Array.isArray(q.patterns) && q.patterns.some(p => p.toLowerCase().includes(searchLower));
+                case 'stemPatterns':
+                    return q.stemPatterns && Array.isArray(q.stemPatterns) && q.stemPatterns.some(p => p.toLowerCase().includes(searchLower));
                 case 'markersReport':
                     return checkReport();
                 case 'section':
@@ -318,6 +320,26 @@ IndexedDBStorage.prototype.applyFilters = function(questions, filters) {
                 questions = questions.filter(q => {
                     if (!q.patterns || !Array.isArray(q.patterns)) return true;
                     return !excludedPatterns.some(p => q.patterns.includes(p));
+                });
+            }
+        }
+
+        // Stem pattern filters
+        if (filters.triState.stemPatterns) {
+            const checkedStemPatterns = Object.keys(filters.triState.stemPatterns).filter(k => filters.triState.stemPatterns[k] === 'checked');
+            const excludedStemPatterns = Object.keys(filters.triState.stemPatterns).filter(k => filters.triState.stemPatterns[k] === 'excluded');
+
+            if (checkedStemPatterns.length > 0) {
+                questions = questions.filter(q => {
+                    if (!q.stemPatterns || !Array.isArray(q.stemPatterns)) return false;
+                    return checkedStemPatterns.some(p => q.stemPatterns.includes(p));
+                });
+            }
+
+            if (excludedStemPatterns.length > 0) {
+                questions = questions.filter(q => {
+                    if (!q.stemPatterns || !Array.isArray(q.stemPatterns)) return true;
+                    return !excludedStemPatterns.some(p => q.stemPatterns.includes(p));
                 });
             }
         }

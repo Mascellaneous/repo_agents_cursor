@@ -246,6 +246,8 @@ function switchTab(tabName, event) {
         if (typeof renderConcepts === 'function') renderConcepts();
     } else if (tabName === 'patterns') {
         if (typeof renderPatterns === 'function') renderPatterns();
+    } else if (tabName === 'stemPatterns') {
+        if (typeof renderStemPatterns === 'function') renderStemPatterns();
     }
 }
 

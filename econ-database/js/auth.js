@@ -434,7 +434,7 @@ async function loadAuthenticatedData(data) {
                 
                 if (!value) {
                     // Initialize array fields as empty arrays
-                    if (['curriculumClassification', 'AristochapterClassification', 'concepts', 'patterns'].includes(fieldName)) {
+                    if (['curriculumClassification', 'AristochapterClassification', 'concepts', 'patterns', 'stemPatterns'].includes(fieldName)) {
                         question[fieldName] = [];
                     }
                     return;
@@ -458,6 +458,7 @@ async function loadAuthenticatedData(data) {
                     case 'AristochapterClassification':
                     case 'concepts':
                     case 'patterns':
+                    case 'stemPatterns':
                         const trimmedValue = value.trim();
                         if (trimmedValue) {
                             question[fieldName] = trimmedValue.split(',').map(s => s.trim()).filter(s => s);
@@ -478,7 +479,7 @@ async function loadAuthenticatedData(data) {
             });
             
             // Ensure array fields exist
-            ['curriculumClassification', 'AristochapterClassification', 'concepts', 'patterns'].forEach(field => {
+            ['curriculumClassification', 'AristochapterClassification', 'concepts', 'patterns', 'stemPatterns'].forEach(field => {
                 if (!question[field]) {
                     question[field] = [];
                 }

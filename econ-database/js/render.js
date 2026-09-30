@@ -213,7 +213,8 @@ async function renderQuestions() {
             sortedCurriculum.length > 0 ||
             sortedChapters.length > 0 ||
             (q.concepts && q.concepts.length > 0) ||
-            (q.patterns && q.patterns.length > 0)
+            (q.patterns && q.patterns.length > 0) ||
+            (q.stemPatterns && q.stemPatterns.length > 0)
         );
 
         if (hasClassifications) {
@@ -273,6 +274,20 @@ async function renderQuestions() {
                         <strong style="white-space: nowrap; font-size: 0.9em; color: #555;">題型:</strong>
                         ${q.patterns.map(p => `
                             <span class="tag clickable-tag" data-action="filter" data-type="patterns" data-value="${escapeHTML(p)}" style="${getTagStyle('patterns', p)}">
+                                ${escapeHTML(p)}
+                            </span>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            // 5. Stem patterns
+            if (q.stemPatterns && q.stemPatterns.length > 0) {
+                classificationHtml += `
+                    <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                        <strong style="white-space: nowrap; font-size: 0.9em; color: #555;">題幹模式:</strong>
+                        ${q.stemPatterns.map(p => `
+                            <span class="tag clickable-tag" data-action="filter" data-type="stemPatterns" data-value="${escapeHTML(p)}" style="${getTagStyle('stemPatterns', p)}">
                                 ${escapeHTML(p)}
                             </span>
                         `).join('')}

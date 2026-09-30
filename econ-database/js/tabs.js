@@ -11,7 +11,8 @@
 // so switchTab() in main.js requires no changes.
 //
 // Dependencies: statistics.js (renderPublisherStats, renderTopicStats,
-//               renderChapterStats, renderConceptStats, renderPatternStats)
+//               renderChapterStats, renderConceptStats, renderPatternStats,
+//               renderStemPatternStats)
 
 async function renderPublishers() {
     if (typeof renderPublisherStats === 'function') await renderPublisherStats();
@@ -31,4 +32,8 @@ async function renderConcepts() {
 
 async function renderPatterns() {
     if (typeof renderPatternStats === 'function') await renderPatternStats();
+}
+
+async function renderStemPatterns() {
+    if (typeof renderStemPatternStats === 'function') await renderStemPatternStats();
 }

@@ -1,9 +1,9 @@
 // filter-modal.js
-// Modal-based pickers for the six long-option filters:
-// 圖表類型 / 表格類型 / 計算類型 / 複選類型 / 概念類型 / 題型
+// Modal-based pickers for the seven long-option filters:
+// 圖表類型 / 表格類型 / 計算類型 / 複選類型 / 概念類型 / 題型 / 題幹模式
 //
 // DESIGN: state lives directly in window.triStateFilters (keys: graph,
-// table, calculation, multipleSelection, concepts, patterns) with the
+// table, calculation, multipleSelection, concepts, patterns, stemPatterns) with the
 // existing 'checked' / 'excluded' tri-state semantics. This means
 // applyFilters (storage-filters.js), the active-filter badges
 // (updateSearchInfo), clickable question-card tags (filterByTag) and
@@ -27,6 +27,7 @@ const MODAL_FILTER_DEFS = [
     { key: 'multipleSelection', label: '🔍 複選類型' },
     { key: 'concepts',          label: '💡 概念類型' },
     { key: 'patterns',          label: '🎯 題型' },
+    { key: 'stemPatterns',      label: '🧩 題幹模式' },
 ];
 
 // key -> { values: [sorted option strings], counts: { value: n } }

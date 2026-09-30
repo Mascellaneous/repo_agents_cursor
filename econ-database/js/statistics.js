@@ -240,6 +240,46 @@ async function renderPatternStats() {
         `).join('');
 }
 
+// Dependencies: storage-core.js (window.storage)
+async function renderStemPatternStats() {
+    const questions = await window.storage.getQuestions();
+    const stats = {};
+    
+    questions.forEach(q => {
+        if (q.stemPatterns && Array.isArray(q.stemPatterns)) {
+            q.stemPatterns.forEach(pattern => {
+                if (!stats[pattern]) {
+                    stats[pattern] = { total: 0, mc: 0, text: 0 };
+                }
+                stats[pattern].total++;
+                if (q.questionType === 'MC') stats[pattern].mc++;
+                if (q.questionType === '文字題 (SQ/LQ)') stats[pattern].text++;
+            });
+        }
+    });
+    
+    const grid = document.getElementById('stemPatterns-grid');
+    if (!grid) return;
+    
+    if (Object.keys(stats).length === 0) {
+        grid.innerHTML = '<p class="empty-state">暫無題幹模式資料</p>';
+        return;
+    }
+    
+    grid.innerHTML = Object.entries(stats)
+        .sort((a, b) => b[1].total - a[1].total)
+        .map(([pattern, data]) => `
+            <div class="stat-card">
+                <h3>${pattern}</h3>
+                <div class="stat-details">
+                    <div>總題目: ${data.total}</div>
+                    <div>MC: ${data.mc}</div>
+                    <div>文字題: ${data.text}</div>
+                </div>
+            </div>
+        `).join('');
+}
+
 // Dependencies: None (calls all render functions)
 async function refreshStatistics() {
     await renderPublisherStats();
@@ -247,4 +287,5 @@ async function refreshStatistics() {
     await renderChapterStats();
     await renderConceptStats();
     await renderPatternStats();
+    await renderStemPatternStats();
 }

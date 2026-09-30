@@ -14,6 +14,7 @@ var triStateFilters = {
     section: {},
     concepts: {},
     patterns: {},
+    stemPatterns: {},
     ai: {},
     multipleSelection: {},
     graph: {},

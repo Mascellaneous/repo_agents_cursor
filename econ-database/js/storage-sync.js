@@ -24,7 +24,7 @@ class QuestionJsonSource {
         Object.keys(raw).forEach((fieldName) => {
             let value = raw[fieldName];
             if (value === null || value === undefined || value === '') {
-                if (['curriculumClassification', 'AristochapterClassification', 'concepts', 'patterns'].includes(fieldName)) {
+                if (['curriculumClassification', 'AristochapterClassification', 'concepts', 'patterns', 'stemPatterns'].includes(fieldName)) {
                     question[fieldName] = [];
                 }
                 return;
@@ -41,6 +41,7 @@ class QuestionJsonSource {
                 case 'AristochapterClassification':
                 case 'concepts':
                 case 'patterns':
+                case 'stemPatterns':
                     if (Array.isArray(value)) {
                         question[fieldName] = value.map(s => String(s).trim()).filter(Boolean);
                     } else {
@@ -58,7 +59,7 @@ class QuestionJsonSource {
             }
         });
 
-        ['curriculumClassification', 'AristochapterClassification', 'concepts', 'patterns'].forEach(field => {
+        ['curriculumClassification', 'AristochapterClassification', 'concepts', 'patterns', 'stemPatterns'].forEach(field => {
             if (!question[field]) question[field] = [];
         });
 

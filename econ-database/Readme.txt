@@ -59,14 +59,15 @@ JavaScript (js/):
 - filters.js — Filter state machine, context-aware dynamic option
   building (buildOptionData), applyFilters orchestration, active-filter
   badges. All Sheet-sourced values are HTML-escaped before injection.
-- filter-modal.js — Modal pickers for the six long-option filters
-  (圖表類型 / 表格類型 / 計算類型 / 複選類型 / 概念類型 / 題型). State
-  lives directly in window.triStateFilters, so tri-state include/exclude,
-  badges, tag-clicks and clearFilters all work unchanged.
+- filter-modal.js — Modal pickers for the seven long-option filters
+  (圖表類型 / 表格類型 / 計算類型 / 複選類型 / 概念類型 / 題型 /
+  題幹模式 stemPatterns). State lives directly in window.triStateFilters,
+  so tri-state include/exclude, badges, tag-clicks and clearFilters all
+  work unchanged.
 - render.js — Question card rendering + pagination. Fully XSS-hardened:
   every Sheet field is escaped; image/AI links restricted to http(s).
 - statistics.js — Read-only stat aggregations (publishers, topics,
-  chapters, concepts, patterns).
+  chapters, concepts, patterns, stemPatterns / 題幹模式).
 - tabs.js — Thin delegation layer: tab renderers call statistics.js.
   Kept so switchTab() in main.js needs no changes.
 - main.js — Boot sequence, sync flow, switchTab(), debounced search
@@ -74,7 +75,7 @@ JavaScript (js/):
 
 Templates (js/templates/):
 - template-filters.js — renderFiltersTemplate() — full filter panel,
-  including the six modal trigger buttons (ids mf-item-*, mf-trigger-*,
+  including the seven modal trigger buttons (ids mf-item-*, mf-trigger-*,
   mf-badge-* must match filter-modal.js).
 - template-tabs.js — TAB_DEFINITIONS + renderTabsNavTemplate() +
   renderTabContentsTemplate().
@@ -88,22 +89,24 @@ Templates (js/templates/):
 - Tabs are declared in TAB_DEFINITIONS (template-tabs.js). Set
   visible: true to publish a tab. With only one visible tab, the tab
   bar is not rendered at all.
-- The statistics tabs (出版商 / 課程分類 / Chapters / 涉及概念 / 題型)
-  are currently unpublished (visible: false). Their content containers
-  still exist in the DOM, and their renderers in statistics.js are kept
-  working so they can be re-enabled instantly.
+- The statistics tabs (出版商 / 課程分類 / Chapters / 涉及概念 / 題型 /
+  題幹模式) may be published or unpublished via TAB_DEFINITIONS. Their
+  content containers still exist in the DOM, and their renderers in
+  statistics.js are kept working so visibility can flip instantly.
 
 ### Filters
 - Most filters are tri-state: unselected → ✔ included → ✕ excluded.
 - Curriculum and Chapter filters support OR/AND logic via a toggle.
-- 答對率 and 分數 use dual-thumb range sliders.
-- All six dynamic long-option filters — 圖表類型, 表格類型, 計算類型,
-  複選類型, 概念類型, 題型 — open as a modal dialog (bottom sheet on
-  narrow screens) with an in-modal search box, per-option counts, and a
-  selected-count badge on the trigger button (hidden when the count is
-  zero). Clicking an option cycles 未選 → ✔ 包含 → ✕ 排除. Option
-  ordering is frozen while the modal is open so rows don't jump.
-  Triggers are hidden when the dataset has no values for that field.
+- 答對率, 分數, and 題號 use dual-thumb range sliders (題號 uses the
+  last digits of the question id, range from QUESTION_NUMBER_RANGE).
+- All seven dynamic long-option filters — 圖表類型, 表格類型, 計算類型,
+  複選類型, 概念類型, 題型, 題幹模式 (stemPatterns) — open as a modal
+  dialog (bottom sheet on narrow screens) with an in-modal search box,
+  per-option counts, and a selected-count badge on the trigger button
+  (hidden when the count is zero). Clicking an option cycles 未選 → ✔
+  包含 → ✕ 排除. Option ordering is frozen while the modal is open so
+  rows don't jump. Triggers are hidden when the dataset has no values
+  for that field.
 - The input-first dropdown pattern is fully retired; its helpers
   (inputFilter, filterDropdownList, setupInputDropdownListeners,
   populateList) and CSS were removed. Restore from git history if
@@ -190,9 +193,18 @@ Templates (js/templates/):
 
 ## 6. Changelog
 
-### 2026-06 (current)
+### 2026-09-30 (current)
+- Added stemPatterns (題幹模式): seventh modal long-option filter
+  (🧩 題幹模式), statistics tab 題幹模式統計, and agent-facing README.md
+  for taxonomy / writing rules. Import helpers live under scripts/
+  (apply_stem_patterns_import.py, auto_assign, fuzzy_assign,
+  merge_stem_pattern_classifications.py, classify_chunks/).
+- Added 題號 dual-thumb range slider (last digits of id;
+  QUESTION_NUMBER_RANGE).
+
+### 2026-06
 - 複選類型 upgraded to a modal long-option filter; all six dynamic
-  filters now share the modal picker. Input-first dropdown machinery
+  filters then shared the modal picker. Input-first dropdown machinery
   removed (template helper, filterDropdownList,
   setupInputDropdownListeners, populateList, related CSS).
 - Modal trigger count badges are now fully hidden at zero selections

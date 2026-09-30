@@ -10,7 +10,8 @@ const TAB_DEFINITIONS = [
     { id: 'concepts',   label: '概念統計',     visible: true  },
     { id: 'topics',     label: '課程分類統計', visible: true  },
     { id: 'chapters',   label: 'Chapters統計', visible: true  },
-    { id: 'patterns',   label: '題型統計',     visible: true  },
+    { id: 'patterns',      label: '題型統計',     visible: true  },
+    { id: 'stemPatterns',  label: '題幹模式統計', visible: true  },
 ];
 
 function renderTabsNavTemplate() {
@@ -118,6 +119,11 @@ function renderTabContentsTemplate() {
     <div id="patterns-tab" class="tab-content">
         <h2>題型統計</h2>
         <div class="stats-grid" id="patterns-grid"></div>
+    </div>
+
+    <div id="stemPatterns-tab" class="tab-content">
+        <h2>題幹模式統計</h2>
+        <div class="stats-grid" id="stemPatterns-grid"></div>
     </div>`;
 }
 

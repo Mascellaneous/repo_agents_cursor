@@ -3,7 +3,7 @@
 // (populateModalFilter, updateModalFilterBadges, closeFilterModal)
 //
 // NOTE: the input-first dropdown machinery (filterDropdownList,
-// setupInputDropdownListeners, populateList) has been removed — all six
+// setupInputDropdownListeners, populateList) has been removed — all seven
 // dynamic filters now use the modal pickers in filter-modal.js. Restore
 // from git history if an input-first filter is ever needed again.
 
@@ -41,6 +41,7 @@ if (!window.triStateFilters) {
         year: {},
         concepts: {},
         patterns: {},
+        stemPatterns: {},
         ai: {},
         multipleSelection: {},
         graph: {},
@@ -84,7 +85,8 @@ const PRIORITY_CONFIG = {
     table: ['沒有表格', '未命名表格'],
     calculation: ['沒有計算', '未命名計算題'],
     concepts: [],
-    patterns: ['未分類']
+    patterns: ['未分類'],
+    stemPatterns: ['未分類']
 };
 
 /**
@@ -266,8 +268,8 @@ window.filterByTag = async function(category, value) {
 };
 
 function updateFilterIndicators() {
-    // graph/table/calculation/multipleSelection/concepts/patterns use
-    // modal trigger badges (filter-modal.js) instead of dot indicators.
+    // graph/table/calculation/multipleSelection/concepts/patterns/stemPatterns
+    // use modal trigger badges (filter-modal.js) instead of dot indicators.
     const triStateTypes = [
         'publisher', 'exam', 'qtype', 'curriculum', 'chapter', 'feature', 'year',
         'section', 'ai'
@@ -475,6 +477,7 @@ async function updateDynamicDropdowns() {
         delete contextFilters.triState.calculation;
         delete contextFilters.triState.concepts;
         delete contextFilters.triState.patterns;
+        delete contextFilters.triState.stemPatterns;
         delete contextFilters.triState.ai;
         delete contextFilters.triState.year; // Allow seeing other years
     }
@@ -621,7 +624,7 @@ async function updateDynamicDropdowns() {
     populateYearGrid();
     // ---------------------------------------------
 
-    // Modal-based filters (圖表 / 表格 / 計算 / 複選 / 概念 / 題型)
+    // Modal-based filters (圖表 / 表格 / 計算 / 複選 / 概念 / 題型 / 題幹模式)
     if (typeof populateModalFilter === 'function') {
         populateModalFilter('graph',             buildOptionData('graphType',             'graph',             false, contextQuestions, allQuestions));
         populateModalFilter('table',             buildOptionData('tableType',             'table',             false, contextQuestions, allQuestions));
@@ -629,6 +632,7 @@ async function updateDynamicDropdowns() {
         populateModalFilter('multipleSelection', buildOptionData('multipleSelectionType', 'multipleSelection', false, contextQuestions, allQuestions));
         populateModalFilter('concepts',          buildOptionData('concepts',              'concepts',          true,  contextQuestions, allQuestions));
         populateModalFilter('patterns',          buildOptionData('patterns',              'patterns',          true,  contextQuestions, allQuestions));
+        populateModalFilter('stemPatterns',      buildOptionData('stemPatterns',          'stemPatterns',      true,  contextQuestions, allQuestions));
     }
 
     const aiContainer = document.getElementById('ai-options');
@@ -718,7 +722,8 @@ function populateSearchScope() {
 
     const fieldMapping = {
         'concepts': '相關概念',
-        'patterns': '題型標籤' 
+        'patterns': '題型標籤',
+        'stemPatterns': '題幹模式'
     };
 
     Object.entries(fieldMapping).forEach(([field, label]) => {
@@ -883,6 +888,7 @@ function clearFilters() {
         year: {},
         concepts: {},
         patterns: {},
+        stemPatterns: {},
         ai: {},
         multipleSelection: {},
         graph: {},
@@ -1015,6 +1021,7 @@ function updateSearchInfo() {
         'year': '年份',
         'concepts': '概念',
         'patterns': '題型標籤',
+        'stemPatterns': '題幹模式',
         'multipleSelection': '複選',
         'graph': '圖表',
         'table': '表格',

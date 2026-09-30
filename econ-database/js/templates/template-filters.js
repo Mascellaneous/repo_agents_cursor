@@ -6,7 +6,7 @@
 // match: mf-item-*, mf-trigger-*, mf-badge-*).
 //
 // NOTE: the input-first dropdown pattern has been fully retired — all
-// six dynamic filters (圖表 / 表格 / 計算 / 複選 / 概念 / 題型) now use
+// seven dynamic filters (圖表 / 表格 / 計算 / 複選 / 概念 / 題型 / 題幹模式) now use
 // modal pickers. If you ever need an input-first filter again, restore
 // the inputFilter helper from git history along with filterDropdownList
 // and setupInputDropdownListeners in filters.js.
@@ -268,6 +268,7 @@ function renderFiltersTemplate() {
                 ${modalTrigger('multipleSelection', '🔍 複選類型')}
                 ${modalTrigger('concepts', '💡 概念類型')}
                 ${modalTrigger('patterns', '🎯 題型')}
+                ${modalTrigger('stemPatterns', '🧩 題幹模式')}
 
                 <!-- 🤖 AI 詳解 (shown only when data exists) -->
                 <div class="filter-item">

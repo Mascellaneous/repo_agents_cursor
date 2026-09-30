@@ -135,6 +135,10 @@ function renderFormTemplate() {
                     <input type="text" id="patterns">
                 </div>
                 <div class="form-group">
+                    <label for="stemPatterns">題幹模式 (用逗號分隔)</label>
+                    <input type="text" id="stemPatterns">
+                </div>
+                <div class="form-group">
                     <label for="option-design">選項設計</label>
                     <input type="text" id="option-design">
                 </div>
