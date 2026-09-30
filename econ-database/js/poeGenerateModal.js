@@ -2,15 +2,42 @@
 // Modal for generating new questions from the current filters.
 // The browser only talks to the Apps Script web app in config.js.
 // The upstream API key and the allowlist stay in Apps Script properties.
-// The editable 出題指示 is stored in localStorage and sent as `instruction`.
+// Modes, the edited 出題指示, and the chosen model are stored in localStorage.
+// The request sends `instruction`, `modeId`, and `model`.
 
 (function () {
-    // Keep this sentence identical to POE_INSTRUCTION_ in apps-script/Code.gs.
-    // It is the default textarea value. The server uses it when the client
-    // sends an empty instruction.
-    var POE_INSTRUCTION = '參考以下題目，撰寫全新的題目，並參考過程題目的風格、用字、句式撰寫解釋。請盡量提供最多的題目。一條題目不一定只涉及一件事件。有沒有甚麼有少許新意的問法？請同樣提供問題與解釋，並說明它創新之處。';
+    // Mode prompts live in this one object. style-continue must stay identical
+    // to POE_INSTRUCTION_ in apps-script/Code.gs. Names for those ids are
+    // repeated there only so the backup sheet can label a row.
+    var POE_GENERATION_MODES = [
+        {
+            id: 'style-continue',
+            name: '風格延續・求新',
+            prompt: '參考以下題目，撰寫全新的題目，並參考過程題目的風格、用字、句式撰寫解釋。請盡量提供最多的題目。一條題目不一定只涉及一件事件。有沒有甚麼有少許新意的問法？請同樣提供問題與解釋，並說明它創新之處。'
+        },
+        {
+            id: 'vary-examples',
+            name: '改例子／數字',
+            prompt: '參考以下題目，撰寫全新的題目。這次只需要修改例子或數字，不需要在題型上作出有新意的修改。請保持與參考題相同或非常接近的題型、問法結構與考點，只更換情境、例子或數字，使題目是新的，而不是原句複製。例子必須是中學生能夠理解的日常生活情境，不可包括過於深奧的科學知識或術語。請盡量提供最多的題目。每題都要提供問題與解釋。解釋請參考所附題目的風格、用字與句式。'
+        },
+        {
+            id: 'add-novelty',
+            name: '題型加新意',
+            prompt: '建基於以下所篩選題目的現有題型，撰寫全新的題目，並在問法、切入角度或情境安排上加上適度的新意。請以參考題的題型為基礎，不要只替換例子或數字，也不必完全改成另一種題型。請盡量提供最多的題目。一條題目不一定只涉及一件事件。每題都要提供問題與解釋，並說明它相對於參考題型的新意在哪裡。解釋請參考所附題目的風格、用字與句式。'
+        },
+        {
+            id: 'different-types',
+            name: '截然不同題型',
+            prompt: '先辨認以下所篩選題目已經出現的題型與問法格式，然後撰寫全新的題目。每一題都必須使用所篩選題目中沒有出現過的題型或問法格式，目標是提供截然不同的題型，而不是沿用、微調或只改例子。請盡量提供最多的題目，並讓各題的題型彼此也盡量不同。每題都要提供問題與解釋，並說明該題的題型為何與參考題不同、創新之處在哪裡。解釋請使用清晰的中學經濟科用語。'
+        }
+    ];
+    var POE_INSTRUCTION = POE_GENERATION_MODES[0].prompt;
+    var POE_DEFAULT_MODEL = 'Claude-Sonnet-5.5';
+    var POE_MODELS = ['Claude-Sonnet-5.5', 'GPT-6.1-Sol', 'Gemini-3.8-Flash'];
     var INSTRUCTION_MAX = 4000;
     var INSTRUCTION_KEY = 'econ_ai_instruction_v1';
+    var MODE_KEY = 'econ_ai_mode_v1';
+    var MODEL_KEY = 'econ_ai_model_v1';
     var CLIENT_SEND_CAP = 60;
     var LOCAL_KEY = 'econ_poe_generations_v1';
     var HISTORY_LIMIT = 30;
@@ -42,8 +69,29 @@
         counting: false,
         trigger: null,
         db: null,
-        storeMode: null
+        storeMode: null,
+        busyAction: ''
     };
+
+    function modeById(id) {
+        for (var i = 0; i < POE_GENERATION_MODES.length; i++) {
+            if (POE_GENERATION_MODES[i].id === id) return POE_GENERATION_MODES[i];
+        }
+        return null;
+    }
+
+    function currentMode() {
+        var select = document.getElementById('poe-mode');
+        var mode = select ? modeById(select.value) : null;
+        return mode || POE_GENERATION_MODES[0];
+    }
+
+    function currentModel() {
+        var select = document.getElementById('poe-model');
+        var value = select ? String(select.value || '').trim() : '';
+        if (POE_MODELS.indexOf(value) !== -1) return value;
+        return POE_DEFAULT_MODEL;
+    }
 
     function sanitizeClientInstruction(value) {
         var text = String(value == null ? '' : value)
@@ -64,17 +112,18 @@
     function readStoredInstruction() {
         try {
             var raw = localStorage.getItem(INSTRUCTION_KEY);
-            if (raw == null) return POE_INSTRUCTION;
-            return sanitizeClientInstruction(raw) || POE_INSTRUCTION;
+            if (raw == null) return null;
+            return sanitizeClientInstruction(raw);
         } catch (error) {
-            return POE_INSTRUCTION;
+            return null;
         }
     }
 
     function writeStoredInstruction(value) {
         try {
             var text = sanitizeClientInstruction(value);
-            if (!text || text === POE_INSTRUCTION) {
+            var baseline = currentMode().prompt;
+            if (!text || text === baseline) {
                 localStorage.removeItem(INSTRUCTION_KEY);
                 return;
             }
@@ -84,27 +133,107 @@
         }
     }
 
+    function readStoredModeId() {
+        try {
+            var id = localStorage.getItem(MODE_KEY);
+            if (modeById(id)) return id;
+        } catch (error) {}
+        return POE_GENERATION_MODES[0].id;
+    }
+
+    function writeStoredMode(id) {
+        try {
+            if (!modeById(id) || id === POE_GENERATION_MODES[0].id) {
+                localStorage.removeItem(MODE_KEY);
+                return;
+            }
+            localStorage.setItem(MODE_KEY, id);
+        } catch (error) {}
+    }
+
+    function readStoredModel() {
+        try {
+            var id = localStorage.getItem(MODEL_KEY);
+            if (POE_MODELS.indexOf(id) !== -1) return id;
+        } catch (error) {}
+        return POE_DEFAULT_MODEL;
+    }
+
+    function writeStoredModel(id) {
+        try {
+            if (POE_MODELS.indexOf(id) === -1 || id === POE_DEFAULT_MODEL) {
+                localStorage.removeItem(MODEL_KEY);
+                return;
+            }
+            localStorage.setItem(MODEL_KEY, id);
+        } catch (error) {}
+    }
+
     function instructionField() {
         return document.getElementById('poe-instruction-input');
     }
 
-    function loadInstructionField() {
+    function fillComposerOptions() {
+        var modeSelect = document.getElementById('poe-mode');
+        var modelSelect = document.getElementById('poe-model');
+        if (modeSelect && !modeSelect.options.length) {
+            POE_GENERATION_MODES.forEach(function (mode) {
+                var option = document.createElement('option');
+                option.value = mode.id;
+                option.textContent = mode.name;
+                modeSelect.appendChild(option);
+            });
+        }
+        if (modelSelect && !modelSelect.options.length) {
+            POE_MODELS.forEach(function (model) {
+                var option = document.createElement('option');
+                option.value = model;
+                option.textContent = model;
+                modelSelect.appendChild(option);
+            });
+        }
+    }
+
+    function loadComposer() {
+        fillComposerOptions();
+        var modeSelect = document.getElementById('poe-mode');
+        var modelSelect = document.getElementById('poe-model');
+        var mode = modeById(readStoredModeId()) || POE_GENERATION_MODES[0];
+        if (modeSelect) modeSelect.value = mode.id;
+        if (modelSelect) modelSelect.value = readStoredModel();
         var area = instructionField();
         if (!area) return;
-        area.value = readStoredInstruction();
+        var stored = readStoredInstruction();
+        area.value = stored || mode.prompt;
     }
 
     function currentInstructionForRequest() {
         var area = instructionField();
-        if (!area) return '';
-        return sanitizeClientInstruction(area.value);
+        var text = area ? sanitizeClientInstruction(area.value) : '';
+        if (text) return text;
+        return currentMode().prompt;
     }
 
     function resetInstruction() {
         var area = instructionField();
         if (!area || poeUi.busy) return;
-        area.value = POE_INSTRUCTION;
-        writeStoredInstruction(POE_INSTRUCTION);
+        area.value = currentMode().prompt;
+        writeStoredInstruction(area.value);
+    }
+
+    function onModeChange() {
+        if (poeUi.busy) return;
+        var mode = currentMode();
+        writeStoredMode(mode.id);
+        var area = instructionField();
+        if (!area) return;
+        area.value = mode.prompt;
+        writeStoredInstruction(area.value);
+    }
+
+    function onModelChange() {
+        if (poeUi.busy) return;
+        writeStoredModel(currentModel());
     }
 
     function proxyUrl() {
@@ -564,7 +693,7 @@
             + '  <header class="poe-header">'
             + '    <div>'
             + '      <h2 id="poe-generate-title">AI出題</h2>'
-            + '      <p class="poe-subtitle">可以參考目前篩選，或貼上自己的題目。可先改出題指示，再按出題。</p>'
+            + '      <p class="poe-subtitle">可以參考目前篩選，或貼上自己的題目。選擇出題模式與模型，可再改出題指示，然後按出題。測試只檢查所選模型能否回應，不會用題目出題。</p>'
             + '    </div>'
             + '    <button type="button" class="poe-close" aria-label="關閉">×</button>'
             + '  </header>'
@@ -586,10 +715,20 @@
             + '        <label for="poe-paste-input">貼上題目</label>'
             + '        <textarea id="poe-paste-input" rows="8" maxlength="100000" aria-label="貼上題目" placeholder="可貼上一題或多題。用空行分隔，或以 1. 2. 3. 編號。若有解釋，在題幹後另起一行寫「解釋：」。"></textarea>'
             + '      </div>'
+            + '      <div class="poe-controls">'
+            + '        <label class="poe-field">出題模式'
+            + '          <select id="poe-mode" aria-label="出題模式"></select>'
+            + '        </label>'
+            + '        <label class="poe-field">模型'
+            + '          <select id="poe-model" aria-label="模型"></select>'
+            + '        </label>'
+            + '        <button type="button" class="btn btn-outline-primary" id="poe-test">測試</button>'
+            + '      </div>'
+            + '      <div id="poe-test-banner" class="poe-test-banner" hidden role="status" aria-live="polite"></div>'
             + '      <details class="poe-instruction" open>'
             + '        <summary>出題指示</summary>'
             + '        <div class="poe-instruction-bar">'
-            + '          <p class="poe-instruction-hint" id="poe-instruction-hint">這段文字會連同參考題送給模型。上次修改會記在這部瀏覽器。留空則用預設指示。</p>'
+            + '          <p class="poe-instruction-hint" id="poe-instruction-hint">選擇模式會填入該模式的指示，仍可再修改。回復預設會還原目前所選模式的指示。上次修改會記在這部瀏覽器。留空送出時，會改用目前所選模式的預設指示。</p>'
             + '          <button type="button" class="poe-text-btn" id="poe-instruction-reset">回復預設</button>'
             + '        </div>'
             + '        <textarea id="poe-instruction-input" maxlength="4000" rows="4" aria-label="出題指示" aria-describedby="poe-instruction-hint"></textarea>'
@@ -619,7 +758,11 @@
             input.addEventListener('change', onSourceChange);
         });
         overlay.querySelector('#poe-paste-input').addEventListener('input', onPasteInput);
+        fillComposerOptions();
         overlay.querySelector('#poe-again').addEventListener('click', regenerateActive);
+        overlay.querySelector('#poe-test').addEventListener('click', testSelectedModel);
+        overlay.querySelector('#poe-mode').addEventListener('change', onModeChange);
+        overlay.querySelector('#poe-model').addEventListener('change', onModelChange);
         overlay.querySelector('#poe-instruction-reset').addEventListener('click', resetInstruction);
         overlay.querySelector('#poe-instruction-input').addEventListener('input', function (event) {
             writeStoredInstruction(event.target.value);
@@ -683,7 +826,8 @@
             return;
         }
         ensureModal();
-        loadInstructionField();
+        loadComposer();
+        clearTestBanner();
         var pasteWrap = document.getElementById('poe-paste-wrap');
         if (pasteWrap) pasteWrap.hidden = currentSource() !== 'paste';
         poeUi.pasteCount = pasteQuestions().length;
@@ -762,9 +906,9 @@
         var lead = document.createElement('p');
         lead.className = 'poe-lead';
         if (currentSource() === 'paste') {
-            lead.textContent = '按「根據貼上內容出題」後，伺服器會附上貼上的題目，並依上方的出題指示要求模型撰寫全新題目與解釋。結果會保存在這部瀏覽器。';
+            lead.textContent = '按「根據貼上內容出題」後，伺服器會附上貼上的題目，並依上方的出題模式與出題指示要求模型撰寫全新題目與解釋。結果會保存在這部瀏覽器。';
         } else {
-            lead.textContent = '按「根據目前篩選出題」後，伺服器會附上參考題，並依上方的出題指示要求模型撰寫全新題目與解釋。結果會保存在這部瀏覽器。';
+            lead.textContent = '按「根據目前篩選出題」後，伺服器會附上參考題，並依上方的出題模式與出題指示要求模型撰寫全新題目與解釋。結果會保存在這部瀏覽器。';
         }
         stage.appendChild(lead);
         var noteText = '';
@@ -978,7 +1122,11 @@
             setInlineMarkdown(preview, previewText(record.content));
             var meta = document.createElement('span');
             meta.className = 'poe-history-meta';
-            meta.textContent = (record.referenceSource === 'paste' ? '貼上 ' : '') + (record.sentCount || 0) + ' 題參考';
+            var metaBits = [];
+            if (record.referenceSource === 'paste') metaBits.push('貼上');
+            if (record.modeName) metaBits.push(record.modeName);
+            metaBits.push((record.sentCount || 0) + ' 題參考');
+            meta.textContent = metaBits.join(' · ');
             open.appendChild(time);
             open.appendChild(preview);
             open.appendChild(meta);
@@ -1000,6 +1148,7 @@
         poeUi.activeRecord = record;
         showResult(record);
         var bits = [formatTime(record.createdAt), record.filterSummary || ''];
+        if (record.modeName) bits.push(record.modeName);
         if (record.model) bits.push('模型：' + record.model);
         if (record.truncated) bits.push('參考題曾經截斷');
         setStatus(bits.filter(Boolean).join(' · '));
@@ -1051,6 +1200,9 @@
         var cancel = document.getElementById('poe-cancel');
         var instruction = instructionField();
         var reset = document.getElementById('poe-instruction-reset');
+        var mode = document.getElementById('poe-mode');
+        var model = document.getElementById('poe-model');
+        var test = document.getElementById('poe-test');
         var pasteMode = currentSource() === 'paste';
         var canRegenerate = false;
         if (poeUi.activeRecord && poeUi.activeRecord.referenceSource === 'paste') {
@@ -1075,6 +1227,9 @@
                 input.disabled = !!poeUi.busy;
             });
         }
+        if (mode) mode.disabled = !!poeUi.busy;
+        if (model) model.disabled = !!poeUi.busy;
+        if (test) test.disabled = !!poeUi.busy;
         var dialog = poeUi.overlay && poeUi.overlay.querySelector('.poe-dialog');
         if (dialog) dialog.setAttribute('aria-busy', poeUi.busy ? 'true' : 'false');
     }
@@ -1100,7 +1255,9 @@
             poeUi.control.cancelled = true;
             if (poeUi.control.handle) poeUi.control.handle.cancel();
         }
-        if (!silent && isPoeGenerateModalOpen()) setStatus('已取消這次出題。');
+        if (!silent && isPoeGenerateModalOpen()) {
+            setStatus(poeUi.busyAction === 'test' ? '已取消這次測試。' : '已取消這次出題。');
+        }
     }
 
     async function generateFromCurrentSource() {
@@ -1163,9 +1320,15 @@
         var filteredCount = references.length;
         var sending = references.slice(0, CLIENT_SEND_CAP);
         var instruction = currentInstructionForRequest();
+        var mode = currentMode();
+        var model = currentModel();
         writeStoredInstruction(instruction);
+        writeStoredMode(mode.id);
+        writeStoredModel(model);
         poeUi.busy = true;
+        poeUi.busyAction = 'generate';
         poeUi.control = { cancelled: false, handle: null };
+        clearTestBanner();
         syncActionButtons();
         showLoading();
         startElapsed();
@@ -1179,7 +1342,9 @@
                 filteredCount: filteredCount,
                 questions: sending,
                 instruction: instruction,
-                source: source
+                source: source,
+                modeId: mode.id,
+                model: model
             }, 240000, poeUi.control);
             if (!isPoeGenerateModalOpen()) return;
             if (!data || data.ok !== true || !data.content) {
@@ -1194,7 +1359,10 @@
                 username: currentUsername(),
                 createdAt: Date.now(),
                 content: String(data.content),
-                model: data.model || '',
+                model: data.model || model,
+                modeId: mode.id,
+                modeName: mode.name,
+                instruction: instruction,
                 sentCount: data.sentCount || sending.length,
                 filteredCount: data.filteredCount || filteredCount,
                 truncated: !!data.truncated || filteredCount > sending.length,
@@ -1218,11 +1386,13 @@
             showResult(record);
             renderHistory();
             var statusParts = [];
+            if (record.modeName) statusParts.push(record.modeName);
             if (record.model) statusParts.push('模型：' + record.model);
             statusParts.push('參考 ' + record.sentCount + ' / ' + record.filteredCount + ' 題');
             if (record.durationMs) statusParts.push('用時 ' + Math.max(1, Math.round(record.durationMs / 1000)) + ' 秒');
             statusParts.push(saved ? '已儲存在這部瀏覽器' : ERROR_TEXT.save_failed);
             if (data.logged === false) statusParts.push('未能寫入試算表紀錄');
+            if (data.backedUp === false) statusParts.push('未能備份回覆到試算表');
             setStatus(statusParts.join(' · '));
         } catch (error) {
             if (!isPoeGenerateModalOpen()) return;
@@ -1235,8 +1405,97 @@
             setStatus('');
         } finally {
             poeUi.busy = false;
+            poeUi.busyAction = '';
             poeUi.control = null;
             stopElapsed();
+            if (isPoeGenerateModalOpen()) syncActionButtons();
+        }
+    }
+
+    function errorTextFor(code, action) {
+        if (action === 'test' && code === 'rate_limited') return '測試太頻密，請稍後再試。';
+        if (action === 'test' && code === 'upstream_timeout') return '模型測試逾時，請再試一次。';
+        return ERROR_TEXT[code] || ERROR_TEXT.server_error;
+    }
+
+    function clearTestBanner() {
+        var banner = document.getElementById('poe-test-banner');
+        if (!banner) return;
+        banner.hidden = true;
+        banner.className = 'poe-test-banner';
+        banner.textContent = '';
+    }
+
+    function showTestBanner(kind, message) {
+        var banner = document.getElementById('poe-test-banner');
+        if (!banner) return;
+        banner.hidden = false;
+        banner.className = 'poe-test-banner is-' + kind;
+        banner.textContent = '';
+        var title = document.createElement('p');
+        title.className = 'poe-test-title';
+        title.textContent = kind === 'ok' ? '模型測試成功' : (kind === 'pending' ? '正在測試模型' : '模型測試失敗');
+        var body = document.createElement('p');
+        body.textContent = message || '';
+        banner.appendChild(title);
+        banner.appendChild(body);
+    }
+
+    function clipReply(text, max) {
+        var value = String(text || '').replace(/\s+/g, ' ').trim();
+        if (value.length <= max) return value;
+        return value.slice(0, max) + '…';
+    }
+
+    async function testSelectedModel() {
+        if (poeUi.busy) return;
+        var model = currentModel();
+        writeStoredModel(model);
+        poeUi.busy = true;
+        poeUi.busyAction = 'test';
+        poeUi.control = { cancelled: false, handle: null };
+        syncActionButtons();
+        showTestBanner('pending', '正在測試模型「' + model + '」。這不會根據篩選出題。');
+        setStatus('正在測試模型…');
+        try {
+            var data = await proxyRequest({
+                action: 'testModel',
+                username: currentUsername(),
+                model: model
+            }, 90000, poeUi.control);
+            if (!isPoeGenerateModalOpen()) return;
+            if (!data || data.ok !== true || !data.content) {
+                var code = data && data.error ? data.error : 'server_error';
+                if (code === 'feature_unavailable') hideGenerateButton();
+                showTestBanner('fail', errorTextFor(code, 'test'));
+                setStatus('模型測試失敗。');
+                return;
+            }
+            var returned = data.model || model;
+            var shown = clipReply(data.content, 400);
+            var note = [];
+            if (data.logged === false) note.push('未能寫入試算表紀錄');
+            if (data.backedUp === false) note.push('未能備份回覆到試算表');
+            if (data.passed === false) {
+                showTestBanner('fail', '模型「' + returned + '」有回應，但內容不是預期的「正常」。回覆：' + shown);
+                setStatus(['模型測試未通過'].concat(note).join(' · '));
+                return;
+            }
+            showTestBanner('ok', '模型「' + returned + '」有回應。回覆：' + shown);
+            setStatus(['模型測試成功'].concat(note).join(' · '));
+        } catch (error) {
+            if (!isPoeGenerateModalOpen()) return;
+            if (error && error.code === 'cancelled') {
+                showTestBanner('fail', '已取消這次測試。');
+                setStatus('已取消這次測試。');
+                return;
+            }
+            showTestBanner('fail', errorTextFor(error && error.code ? error.code : 'network', 'test'));
+            setStatus('模型測試失敗。');
+        } finally {
+            poeUi.busy = false;
+            poeUi.busyAction = '';
+            poeUi.control = null;
             if (isPoeGenerateModalOpen()) syncActionButtons();
         }
     }

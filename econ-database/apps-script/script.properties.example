@@ -21,8 +21,11 @@
 #   Example placeholders: user_a,user_b,user_c
 #
 # POE_MODEL
-#   Optional. Default in Code.gs: Claude-Sonnet-5.5
-#   The browser cannot choose a model.
+#   Optional fallback when the client omits `model`.
+#   Used only if it is exactly one of:
+#   Claude-Sonnet-5.5, GPT-6.1-Sol, Gemini-3.8-Flash
+#   Any other value is ignored. Default in Code.gs: Claude-Sonnet-5.5
+#   The modal sends one of those three ids. Do not put other model ids here.
 #
 # POE_MAX_REFERENCES
 #   Optional. Default: 40. How many filtered questions are sent as style samples.
@@ -31,7 +34,8 @@
 #   Optional. Default: 80000. Extra questions are dropped after this size.
 #
 # POE_MIN_INTERVAL_SECONDS
-#   Optional. Default: 20. Per-username cooldown between generations. 0 disables.
+#   Optional. Default: 20. Per-username cooldown between generations.
+#   testModel uses the same number of seconds on a separate cooldown. 0 disables.
 #
 # POE_DAILY_LIMIT
 #   Optional. Default: 40 successful generations per username per script-timezone day.
@@ -50,6 +54,11 @@
 # LOG_SHEET_NAME
 #   Optional. Default: UsageLog
 #   Do not point this at an existing data tab.
+#
+# BACKUP_SHEET_NAME
+#   Optional. Default: GenerationBackup
+#   Successful generateQuestions and testModel replies are appended here.
+#   Do not point this at UsageLog or a data tab.
 #
 # GitHub sync. Names only. Never commit real values, and never put the
 # token, owner, or repository name in the public site.

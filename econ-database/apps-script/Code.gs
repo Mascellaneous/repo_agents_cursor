@@ -23,8 +23,11 @@
  *   real allowlist in the sheet, this repo, or the page.
  * - urlFetchWhitelist in appsscript.json limits outbound calls to api.poe.com
  *   and api.github.com. The browser never calls either host with a secret.
- * - UsageLog and GenerationBackup are created on first write. Protect those
- *   tabs so casual editors cannot wipe them. The deploying account can still append.
+ * - UsageLog is created on first write. Protect that tab so casual editors
+ *   cannot wipe the audit trail. The deploying account can still append.
+ * - GenerationBackup is a separate tab. Successful generateQuestions and
+ *   testModel calls append the model reply there. Protect that tab too.
+ *   Do not point BACKUP_SHEET_NAME at UsageLog or a data tab.
  * - The spreadsheet may currently be shared with edit access. Narrow that
  *   share when you can. Visitors do not need sheet access; the web app
  *   writes the log as the deploying account.
@@ -44,9 +47,23 @@
 
 var POE_CHAT_URL_ = 'https://api.poe.com/v1/chat/completions';
 var POE_DEFAULT_MODEL_ = 'Claude-Sonnet-5.5';
+// Client model strings outside this list are ignored. Keep in sync with
+// POE_MODELS in js/poeGenerateModal.js.
+var POE_ALLOWED_MODELS_ = ['Claude-Sonnet-5.5', 'GPT-6.1-Sol', 'Gemini-3.8-Flash'];
+// Ids and display names only. Prompts stay in POE_GENERATION_MODES on the client
+// and arrive as `instruction`. Keep ids and names in sync with that object.
+var POE_MODE_NAMES_ = {
+  'style-continue': '風格延續・求新',
+  'vary-examples': '改例子／數字',
+  'add-novelty': '題型加新意',
+  'different-types': '截然不同題型'
+};
 var POE_INSTRUCTION_ = '參考以下題目，撰寫全新的題目，並參考過程題目的風格、用字、句式撰寫解釋。請盡量提供最多的題目。一條題目不一定只涉及一件事件。有沒有甚麼有少許新意的問法？請同樣提供問題與解釋，並說明它創新之處。';
 var POE_INSTRUCTION_MAX_ = 4000;
-var POE_SYSTEM_PROMPT_ = '你是香港中學文憑試經濟科的出題助手。請只用繁體中文回答。題目必須是全新的，不可原句複製參考題。每題都要有問題與解釋；若問法有少許新意，請說明創新之處。';
+var POE_SHEET_CELL_MAX_ = 45000;
+var POE_SYSTEM_PROMPT_ = '你是香港中學文憑試經濟科的出題助手。請只用繁體中文回答。題目必須是全新的，不可原句複製參考題。請依照使用者的出題指示。每題都要有問題與解釋；若指示要求說明新意或創新之處，請一併說明。';
+var POE_TEST_SYSTEM_PROMPT_ = '你是連線測試助手。請嚴格依照使用者要求回覆，不要出題，不要加解釋。';
+var POE_TEST_USER_PROMPT_ = '請只回覆這一個詞：正常';
 
 function doGet() {
   var key = String(props_().getProperty('POE_API_KEY') || '').trim();
@@ -76,6 +93,7 @@ function handlePost_(e) {
   if (action === 'generateQuestions') return handleGenerate_(body);
   if (action === 'syncDataUpload') return handleGitUpload_(body);
   if (action === 'syncDataDownload') return handleGitDownload_(body);
+  if (action === 'testModel') return handleTest_(body);
   return { ok: false, error: 'bad_request' };
 }
 
@@ -131,6 +149,7 @@ function handleGenerate_(body) {
 
   try {
     getLogSheet_();
+    getBackupSheet_();
   } catch (err) {
     safeLog_(err);
     return { ok: false, error: 'server_error' };
@@ -162,15 +181,16 @@ function handleGenerate_(body) {
     return { ok: false, error: 'rate_limited' };
   }
 
-  var model = String(props_().getProperty('POE_MODEL') || POE_DEFAULT_MODEL_).trim() || POE_DEFAULT_MODEL_;
+  var model = resolveModel_(body.model);
+  var modeId = resolveModeId_(body.modeId);
   var instructionMeta = instructionMeta_(body.instruction);
   var started = Date.now();
   try {
-    var completion = requestCompletion_(apiKey, model, buildPrompt_(packed.questions, filteredCount, packed.truncated, instructionMeta.text));
+    var completion = requestCompletion_(apiKey, model, buildPrompt_(packed.questions, filteredCount, packed.truncated, instructionMeta.text), POE_SYSTEM_PROMPT_);
     var durationMs = Date.now() - started;
-    var backup = { gitBackup: false, sheetBackup: false };
+    var gitBackup = false;
     try {
-      backup = recordModelReply_({
+      gitBackup = writeGitAiBackup_({
         action: 'generateQuestions',
         username: username,
         model: completion.model || model,
@@ -179,7 +199,7 @@ function handleGenerate_(body) {
         filteredCount: filteredCount,
         durationMs: durationMs,
         source: source
-      }) || backup;
+      }) === true;
     } catch (backupErr) {
       safeLog_(backupErr);
     }
@@ -191,30 +211,56 @@ function handleGenerate_(body) {
       filteredCount: filteredCount,
       truncated: packed.truncated,
       logged: false,
+      backedUp: false,
       durationMs: durationMs,
-      gitBackup: backup.gitBackup === true,
-      sheetBackup: backup.sheetBackup === true
+      gitBackup: gitBackup
+    };
+    var generateMeta = {
+      model: result.model,
+      requestedModel: model,
+      modeId: modeId,
+      modeName: modeName_(modeId),
+      sentCount: result.sentCount,
+      filteredCount: filteredCount,
+      truncated: packed.truncated,
+      durationMs: durationMs,
+      promptTokens: completion.promptTokens,
+      completionTokens: completion.completionTokens,
+      instructionChars: instructionMeta.chars,
+      instructionProvidedChars: instructionMeta.providedChars,
+      customInstruction: instructionMeta.custom,
+      source: source,
+      gitBackup: gitBackup
     };
     result.logged = writeLog_({
       username: username,
       action: 'generateQuestions',
       success: true,
+      metadata: generateMeta
+    }, true);
+    result.backedUp = writeBackup_({
+      username: username,
+      action: 'generateQuestions',
+      model: result.model,
+      modeId: modeId,
+      modeName: modeName_(modeId),
+      instruction: instructionMeta.text,
+      filteredCount: filteredCount,
+      sentCount: result.sentCount,
+      content: completion.content,
       metadata: {
-        model: result.model,
-        sentCount: result.sentCount,
-        filteredCount: filteredCount,
-        truncated: packed.truncated,
+        requestedModel: model,
         durationMs: durationMs,
         promptTokens: completion.promptTokens,
         completionTokens: completion.completionTokens,
         instructionChars: instructionMeta.chars,
         instructionProvidedChars: instructionMeta.providedChars,
         customInstruction: instructionMeta.custom,
-        gitBackup: result.gitBackup,
-        sheetBackup: result.sheetBackup,
-        source: source
+        referencesTruncated: packed.truncated,
+        source: source,
+        gitBackup: gitBackup
       }
-    }, true);
+    });
     return result;
   } catch (err) {
     releaseIntervalSlot_(username);
@@ -227,12 +273,134 @@ function handleGenerate_(body) {
       metadata: {
         error: code,
         model: model,
+        modeId: modeId,
         sentCount: packed.questions.length,
         durationMs: Date.now() - started,
         instructionChars: instructionMeta.chars,
         instructionProvidedChars: instructionMeta.providedChars,
         customInstruction: instructionMeta.custom,
         source: source
+      }
+    }, true);
+    return { ok: false, error: code };
+  }
+}
+
+function handleTest_(body) {
+  var username = normalizeUsername_(body.username);
+  if (!username || !isAllowed_(username)) {
+    if (username && shouldAudit_(username, 'test-denied', 60)) {
+      writeLog_({
+        username: username,
+        action: 'testModel',
+        success: false,
+        metadata: { error: 'denied' }
+      }, false);
+    }
+    return { ok: false, error: 'feature_unavailable' };
+  }
+
+  var apiKey = String(props_().getProperty('POE_API_KEY') || '').trim();
+  if (!apiKey) {
+    writeLog_({
+      username: username,
+      action: 'testModel',
+      success: false,
+      metadata: { error: 'proxy_not_configured' }
+    }, true);
+    return { ok: false, error: 'proxy_not_configured' };
+  }
+
+  try {
+    getLogSheet_();
+    getBackupSheet_();
+  } catch (err) {
+    safeLog_(err);
+    return { ok: false, error: 'server_error' };
+  }
+
+  var intervalSeconds = nonNegativeInt_(props_().getProperty('POE_MIN_INTERVAL_SECONDS'), 20);
+  if (!takeIntervalSlot_(username, intervalSeconds, 'test')) {
+    return { ok: false, error: 'rate_limited' };
+  }
+
+  var model = resolveModel_(body.model);
+  var started = Date.now();
+  try {
+    var completion = requestCompletion_(apiKey, model, POE_TEST_USER_PROMPT_, POE_TEST_SYSTEM_PROMPT_);
+    var durationMs = Date.now() - started;
+    var passed = testReplyOk_(completion.content);
+    var gitBackup = false;
+    try {
+      gitBackup = writeGitAiBackup_({
+        action: 'testModel',
+        username: username,
+        model: completion.model || model,
+        content: completion.content,
+        durationMs: durationMs
+      }) === true;
+    } catch (backupErr) {
+      safeLog_(backupErr);
+    }
+    var result = {
+      ok: true,
+      passed: passed,
+      content: completion.content,
+      model: completion.model || model,
+      logged: false,
+      backedUp: false,
+      durationMs: durationMs,
+      gitBackup: gitBackup
+    };
+    var testMeta = {
+      model: result.model,
+      requestedModel: model,
+      passed: passed,
+      durationMs: durationMs,
+      promptTokens: completion.promptTokens,
+      completionTokens: completion.completionTokens,
+      replyPreview: clip_(completion.content, 120),
+      replyChars: completion.content.length,
+      gitBackup: gitBackup
+    };
+    result.logged = writeLog_({
+      username: username,
+      action: 'testModel',
+      success: passed,
+      metadata: testMeta
+    }, true);
+    result.backedUp = writeBackup_({
+      username: username,
+      action: 'testModel',
+      model: result.model,
+      modeId: '',
+      modeName: '',
+      instruction: POE_TEST_USER_PROMPT_,
+      filteredCount: '',
+      sentCount: '',
+      content: completion.content,
+      metadata: {
+        requestedModel: model,
+        passed: passed,
+        durationMs: durationMs,
+        promptTokens: completion.promptTokens,
+        completionTokens: completion.completionTokens,
+        gitBackup: gitBackup
+      }
+    });
+    return result;
+  } catch (err) {
+    releaseIntervalSlot_(username, 'test');
+    var code = classifyFetchError_(err);
+    safeLog_(err);
+    writeLog_({
+      username: username,
+      action: 'testModel',
+      success: false,
+      metadata: {
+        error: code,
+        model: model,
+        durationMs: Date.now() - started
       }
     }, true);
     return { ok: false, error: code };
@@ -263,11 +431,11 @@ function buildPrompt_(questions, filteredCount, truncated, instruction) {
   return lines.join('\n');
 }
 
-function requestCompletion_(apiKey, model, userPrompt) {
+function requestCompletion_(apiKey, model, userPrompt, systemPrompt) {
   var payload = {
     model: model,
     messages: [
-      { role: 'system', content: POE_SYSTEM_PROMPT_ },
+      { role: 'system', content: systemPrompt || POE_SYSTEM_PROMPT_ },
       { role: 'user', content: userPrompt }
     ]
   };
@@ -400,18 +568,23 @@ function countTodayGenerations_(username) {
   }
 }
 
-function takeIntervalSlot_(username, seconds) {
+function intervalKey_(username, slot) {
+  var prefix = slot === 'test' ? 'poe_test_iv_' : 'poe_iv_';
+  return prefix + sha256Hex_(username).slice(0, 32);
+}
+
+function takeIntervalSlot_(username, seconds, slot) {
   if (!seconds) return true;
   var cache = CacheService.getScriptCache();
-  var key = 'poe_iv_' + sha256Hex_(username).slice(0, 32);
+  var key = intervalKey_(username, slot);
   if (cache.get(key)) return false;
   cache.put(key, '1', Math.min(seconds, 21600));
   return true;
 }
 
-function releaseIntervalSlot_(username) {
+function releaseIntervalSlot_(username, slot) {
   try {
-    CacheService.getScriptCache().remove('poe_iv_' + sha256Hex_(username).slice(0, 32));
+    CacheService.getScriptCache().remove(intervalKey_(username, slot));
   } catch (err) {
     safeLog_(err);
   }
@@ -483,6 +656,125 @@ function getLogSheet_() {
   return sheet;
 }
 
+function getBackupSheet_() {
+  var ss = getSpreadsheet_();
+  var logName = clip_(props_().getProperty('LOG_SHEET_NAME') || 'UsageLog', 80) || 'UsageLog';
+  var name = clip_(props_().getProperty('BACKUP_SHEET_NAME') || 'GenerationBackup', 80) || 'GenerationBackup';
+  if (name === logName) name = 'GenerationBackup';
+  var sheet = ss.getSheetByName(name);
+  if (!sheet) {
+    sheet = ss.insertSheet(name);
+  }
+  if (sheet.getLastRow() === 0) {
+    var headers = [
+      'timestamp',
+      'username',
+      'action',
+      'model',
+      'modeId',
+      'modeName',
+      'instruction',
+      'filteredCount',
+      'sentCount',
+      'responseTruncated',
+      'responseText',
+      'metadata'
+    ];
+    sheet.appendRow(headers);
+    sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+
+function writeBackup_(entry) {
+  try {
+    var lock = LockService.getScriptLock();
+    if (!lock.tryLock(10000)) return false;
+    try {
+      var sheet = getBackupSheet_();
+      var instruction = fitSheetText_(entry.instruction, 8000);
+      var response = fitSheetText_(entry.content, POE_SHEET_CELL_MAX_);
+      var metadata = {};
+      var source = entry.metadata || {};
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) metadata[key] = source[key];
+      }
+      var notes = [];
+      if (response.truncated) notes.push('response_truncated');
+      if (instruction.truncated) notes.push('instruction_truncated');
+      if (notes.length) metadata.truncation = notes.join(',');
+      var encoded = JSON.stringify(metadata);
+      if (encoded.length > 2000) encoded = '{"truncation":"metadata_truncated"}';
+      sheet.appendRow([
+        new Date(),
+        entry.username,
+        entry.action,
+        clip_(entry.model, 80),
+        entry.modeId || '',
+        entry.modeName || '',
+        instruction.text,
+        entry.filteredCount == null ? '' : entry.filteredCount,
+        entry.sentCount == null ? '' : entry.sentCount,
+        response.truncated ? 'yes' : 'no',
+        response.text,
+        encoded
+      ]);
+      return true;
+    } finally {
+      lock.releaseLock();
+    }
+  } catch (err) {
+    safeLog_(err);
+    return false;
+  }
+}
+
+function fitSheetText_(value, max) {
+  var text = String(value == null ? '' : value);
+  var limit = max > 0 ? max : POE_SHEET_CELL_MAX_;
+  if (text.length <= limit) return { text: text, truncated: false };
+  var sliced = text.slice(0, limit);
+  var last = sliced.charCodeAt(sliced.length - 1);
+  if (last >= 0xD800 && last <= 0xDBFF) sliced = sliced.slice(0, -1);
+  return { text: sliced, truncated: true };
+}
+
+function isAllowedModel_(value) {
+  var name = String(value || '').trim();
+  for (var i = 0; i < POE_ALLOWED_MODELS_.length; i++) {
+    if (POE_ALLOWED_MODELS_[i] === name) return true;
+  }
+  return false;
+}
+
+// Allowlisted client model wins. A missing model may use POE_MODEL when that
+// property is itself allowlisted. Any other string falls back to the default.
+function resolveModel_(requested) {
+  var value = String(requested == null ? '' : requested).trim();
+  if (isAllowedModel_(value)) return value;
+  if (!value) {
+    var fromProperty = String(props_().getProperty('POE_MODEL') || '').trim();
+    if (isAllowedModel_(fromProperty)) return fromProperty;
+  }
+  return POE_DEFAULT_MODEL_;
+}
+
+function resolveModeId_(value) {
+  var id = String(value || '').trim();
+  return Object.prototype.hasOwnProperty.call(POE_MODE_NAMES_, id) ? id : '';
+}
+
+function modeName_(id) {
+  return POE_MODE_NAMES_[id] || '';
+}
+
+function testReplyOk_(content) {
+  var text = String(content || '').replace(/\s+/g, '');
+  text = text.replace(/[。．.！!，,、：:；;「」"'“”]/g, '');
+  return text === '正常' || text.indexOf('正常') === 0;
+}
+
 function getSpreadsheet_() {
   var id = String(props_().getProperty('SPREADSHEET_ID') || '').trim();
   if (id) return SpreadsheetApp.openById(id);
@@ -492,7 +784,8 @@ function getSpreadsheet_() {
 }
 
 // Client `instruction` is optional. Empty, non-string, or whitespace-only
-// values fall back to POE_INSTRUCTION_. The sheet logs length only.
+// values fall back to POE_INSTRUCTION_. UsageLog stores the length only.
+// GenerationBackup stores the instruction text that was actually sent.
 function sanitizeInstruction_(value) {
   if (typeof value !== 'string') return POE_INSTRUCTION_;
   var text = value
@@ -577,6 +870,23 @@ function selfTestPromptShape() {
   if (referenceSource_('filter') !== 'filter') throw new Error('source_filter');
   if (referenceSource_('other') !== 'filter') throw new Error('source_other');
   if (referenceSource_(null) !== 'filter') throw new Error('source_empty');
+  if (resolveModel_('GPT-6.1-Sol') !== 'GPT-6.1-Sol') throw new Error('model_allow');
+  if (resolveModel_('  Gemini-3.8-Flash ') !== 'Gemini-3.8-Flash') throw new Error('model_trim');
+  if (resolveModel_('Claude-Sonnet-4.6') !== POE_DEFAULT_MODEL_) throw new Error('model_reject');
+  var emptyModel = resolveModel_('');
+  var propertyModel = String(props_().getProperty('POE_MODEL') || '').trim();
+  var expectedEmpty = isAllowedModel_(propertyModel) ? propertyModel : POE_DEFAULT_MODEL_;
+  if (emptyModel !== expectedEmpty) throw new Error('model_empty_fallback');
+  if (resolveModeId_('add-novelty') !== 'add-novelty') throw new Error('mode_allow');
+  if (resolveModeId_('nope') !== '') throw new Error('mode_reject');
+  if (modeName_('vary-examples') !== '改例子／數字') throw new Error('mode_name');
+  if (modeName_('style-continue') !== '風格延續・求新') throw new Error('mode_default_name');
+  var fitted = fitSheetText_('題目回覆超過上限', 4);
+  if (!fitted.truncated || fitted.text.length > 4) throw new Error('fit_sheet');
+  if (fitSheetText_('正常', 10).truncated) throw new Error('fit_sheet_short');
+  if (!testReplyOk_('正常')) throw new Error('test_reply_plain');
+  if (!testReplyOk_(' 正常。 ')) throw new Error('test_reply_punct');
+  if (testReplyOk_('未能連線')) throw new Error('test_reply_wrong');
   console.log('selfTestPromptShape ok');
 }
 
@@ -588,7 +898,6 @@ var GITHUB_CONTENTS_MAX_BYTES_ = 900000;
 var GITHUB_DATA_MAX_BYTES_ = 12000000;
 var GITHUB_MAX_QUESTIONS_ = 20000;
 var GITHUB_REPLY_MAX_CHARS_ = 1000000;
-var GENERATION_BACKUP_CELL_CHARS_ = 45000;
 
 function handleGitUpload_(body) {
   var username = normalizeUsername_(body.username);
@@ -676,71 +985,6 @@ function handleGitDownload_(body) {
   }
 }
 
-// Shared by successful generateQuestions. A future testModel success path
-// should call this with action "testModel"; backupFileAction_ keeps that name.
-function recordModelReply_(info) {
-  info = info || {};
-  var gitBackup = false;
-  try {
-    gitBackup = writeGitAiBackup_(info) === true;
-  } catch (err) {
-    safeLog_(err);
-    gitBackup = false;
-  }
-  var sheetBackup = false;
-  try {
-    sheetBackup = writeGenerationBackup_(info, gitBackup) === true;
-  } catch (err) {
-    safeLog_(err);
-    sheetBackup = false;
-  }
-  return { gitBackup: gitBackup, sheetBackup: sheetBackup };
-}
-
-function writeGenerationBackup_(info, gitBackup) {
-  var lock = LockService.getScriptLock();
-  if (!lock.tryLock(10000)) return false;
-  try {
-    var sheet = getGenerationBackupSheet_();
-    var reply = String(info.content || '');
-    sheet.appendRow([
-      new Date(),
-      String(info.username || ''),
-      backupFileAction_(info.action),
-      String(info.model || ''),
-      reply.length,
-      gitBackup ? 'github+sheet' : 'sheet',
-      clipChars_(reply, GENERATION_BACKUP_CELL_CHARS_),
-      referenceSource_(info.source)
-    ]);
-    return true;
-  } finally {
-    lock.releaseLock();
-  }
-}
-
-function getGenerationBackupSheet_() {
-  var ss = getSpreadsheet_();
-  var name = 'GenerationBackup';
-  var sheet = ss.getSheetByName(name);
-  if (!sheet) {
-    try {
-      sheet = ss.insertSheet(name);
-    } catch (err) {
-      sheet = ss.getSheetByName(name);
-      if (!sheet) throw err;
-    }
-  }
-  if (sheet.getLastRow() === 0) {
-    sheet.appendRow(['timestamp', 'username', 'action', 'model', 'replyChars', 'stored', 'reply', 'source']);
-    sheet.getRange(1, 1, 1, 8).setFontWeight('bold');
-    sheet.setFrozenRows(1);
-  } else if (String(sheet.getRange(1, 8).getValue() || '') !== 'source') {
-    sheet.getRange(1, 8).setValue('source').setFontWeight('bold');
-  }
-  return sheet;
-}
-
 function writeGitAiBackup_(info) {
   var cfg = githubConfig_();
   if (!githubBackupReady_(cfg)) return false;
@@ -760,7 +1004,7 @@ function writeGitAiBackup_(info) {
     sentCount: numberOrNull_(info.sentCount),
     filteredCount: numberOrNull_(info.filteredCount),
     durationMs: numberOrNull_(info.durationMs),
-    source: referenceSource_(info.source),
+    source: action === 'generateQuestions' ? referenceSource_(info.source) : '',
     content: reply
   });
   var lock = LockService.getScriptLock();

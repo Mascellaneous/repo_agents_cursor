@@ -57,7 +57,7 @@ Derived from reviewing live values in the bank:
 
 ## AI generation / 依篩選出題
 
-The button **AI出題** is hidden until Apps Script says the signed-in username is allowed. The modal sends an editable 出題指示 with either the filtered questions or questions the user pasted. Setup, the hash allowlist, and the API key are admin-only and are not stored in this repository. Follow `apps-script/README.md`. Put the deployed `/exec` URL in `js/config.js` as `POE_PROXY_WEB_APP_URL`.
+The button **AI出題** is hidden until Apps Script says the signed-in username is allowed. The modal sends an editable 出題指示 with either the filtered questions or questions the user pasted. It has four 出題模式, a model dropdown (`Claude-Sonnet-5.5`, `GPT-6.1-Sol`, `Gemini-3.8-Flash`), and a **測試** button that only pings the selected model. Setup, the hash allowlist, and the API key are admin-only and are not stored in this repository. Follow `apps-script/README.md`. Put the deployed `/exec` URL in `js/config.js` as `POE_PROXY_WEB_APP_URL`. After a proxy change is merged, paste `apps-script/Code.gs` into the live Apps Script project and deploy a new version of the existing `/exec` URL.
 
 ## Git sync / Git 同步
 
