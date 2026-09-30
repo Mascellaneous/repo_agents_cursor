@@ -586,6 +586,35 @@
         stage.appendChild(box);
     }
 
+    function escapeHtml(text) {
+        return String(text)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    // Escape first, then allow only strong/em. A function replacer avoids
+    // treating $&, $`, or $' in the model text as replacement patterns.
+    function inlineMarkdownHtml(text) {
+        var html = escapeHtml(text);
+        html = html.replace(/\*\*([^*\n]+?)\*\*/g, function (_match, inner) {
+            return '<strong>' + inner + '</strong>';
+        });
+        html = html.replace(/__([^_\n]+?)__/g, function (_match, inner) {
+            return '<strong>' + inner + '</strong>';
+        });
+        html = html.replace(/(^|[\s（(])\*([^*\s](?:[^*]*[^*\s])?)\*(?=[\s。，、；：！？)）」]|$)/g, function (_match, prefix, inner) {
+            return prefix + '<em>' + inner + '</em>';
+        });
+        return html;
+    }
+
+    function setInlineMarkdown(element, text) {
+        element.innerHTML = inlineMarkdownHtml(text);
+    }
+
     function renderStructured(container, text) {
         container.textContent = '';
         var lines = String(text || '').replace(/\r\n/g, '\n').split('\n');
@@ -608,7 +637,7 @@
                 var level = heading[1].length;
                 var head = document.createElement(level === 1 ? 'h3' : 'h4');
                 head.className = 'poe-md-h';
-                head.textContent = heading[2];
+                setInlineMarkdown(head, heading[2]);
                 container.appendChild(head);
                 return;
             }
@@ -618,13 +647,13 @@
                     list.className = 'poe-md-list';
                 }
                 var item = document.createElement('li');
-                item.textContent = bullet[1];
+                setInlineMarkdown(item, bullet[1]);
                 list.appendChild(item);
                 return;
             }
             endList();
             var paragraph = document.createElement('p');
-            paragraph.textContent = line;
+            setInlineMarkdown(paragraph, line);
             container.appendChild(paragraph);
         });
         endList();
@@ -662,9 +691,28 @@
         }
     }
 
+    function clipPreview(line, max) {
+        var count = 0;
+        var index = 0;
+        while (index < line.length && count < max) {
+            if (line.substr(index, 2) === '**' || line.substr(index, 2) === '__') {
+                index += 2;
+                continue;
+            }
+            count += 1;
+            index += 1;
+        }
+        var sliced = line.slice(0, index);
+        if ((sliced.match(/\*\*/g) || []).length % 2 === 1) sliced += '**';
+        if ((sliced.match(/__/g) || []).length % 2 === 1) sliced += '__';
+        if (index < line.length) sliced += '…';
+        return sliced;
+    }
+
     function previewText(content) {
         var line = String(content || '').split('\n').map(function (item) { return item.trim(); }).filter(Boolean)[0] || '（沒有內容）';
-        return line.length > 42 ? line.slice(0, 42) + '…' : line;
+        line = line.replace(/^#{1,6}\s+/, '');
+        return clipPreview(line, 42);
     }
 
     function renderHistory() {
@@ -690,7 +738,7 @@
             time.textContent = formatTime(record.createdAt);
             var preview = document.createElement('span');
             preview.className = 'poe-history-preview';
-            preview.textContent = previewText(record.content);
+            setInlineMarkdown(preview, previewText(record.content));
             var meta = document.createElement('span');
             meta.className = 'poe-history-meta';
             meta.textContent = (record.sentCount || 0) + ' 題參考';
